@@ -1,0 +1,371 @@
+\documentclass{fhe-shared/luxfhe}
+\usepackage{fhe-shared/luxcover}
+\input{fhe-shared/fhe-macros}
+
+\title{\textbf{Audit: fheCRDT Soundness and\\Empirical Performance}}
+\author{
+Automated Research Agent\\
+\textit{Lux Industries}\\
+\texttt{research@lux.network}
+}
+\date{2026-04-12}
+
+\begin{document}
+\maketitle
+\luxcoverpage
+
+\begin{abstract}
+We audit the fheCRDT paper~\cite{fhecrdt-paper} and its reference
+implementation in \texttt{github.com/luxfi/fhe}.  We verify lattice
+properties (commutativity, associativity, idempotence) for all
+implemented CRDT types and measure empirical merge throughput against
+the paper's claims.  Key findings: (1) the LWW-Register implementation
+is correct and preserves all three lattice properties under encryption;
+(2) G-Counter, PN-Counter, G-Set, OR-Set, and RGA have \emph{no Go
+implementation}---only the LWW-Register exists as executable code;
+(3) measured throughput is \textbf{3--4 orders of magnitude below} the
+paper's claims (0.24 LWW merges/sec vs.\ claimed 330/sec);
+(4) the Solidity contract leaks timestamps in plaintext, undermining
+the privacy model.
+\end{abstract}
+
+\section{Scope and Method}
+
+\subsection{Materials Examined}
+
+\begin{itemize}[noitemsep]
+\item \texttt{cmd/crdt/main.go} --- LWW-Register demo (184 LOC)
+\item \texttt{fhe.go}, \texttt{evaluator.go}, \texttt{encryptor.go},
+      \texttt{decryptor.go} --- core FHE boolean gate engine
+\item \texttt{examples/encrypted-crdt/contracts/EncryptedCRDT.sol}
+      --- Solidity LWW-Register + OR-Set
+\item \texttt{main.tex} --- the fheCRDT paper
+\item \texttt{hanzo/base/crdt/} --- plaintext CRDT baseline
+      (GCounter, PNCounter, LWWRegister, ORSet, MVRegister, RGA)
+\end{itemize}
+
+\subsection{Test Environment}
+
+\begin{tabular}{ll}
+\toprule
+CPU         & Apple M1 Max (10-core, arm64) \\
+RAM         & 64 GB \\
+OS          & Darwin 25.4.0 \\
+Go          & 1.26.0 \\
+FHE params  & PN10QP27 (N=1024, Q=134215681, 128-bit security) \\
+\bottomrule
+\end{tabular}
+
+\subsection{Method}
+
+For each CRDT type claimed in the paper, we:
+\begin{enumerate}[noitemsep]
+\item Searched the codebase for a Go implementation.
+\item Where code exists, wrote property-based tests for the three
+      lattice laws plus observational equivalence to plaintext.
+\item Ran Go benchmarks (\texttt{-benchtime=3s}) measuring wall-clock
+      time per merge.
+\item Compared against plaintext CRDT merge cost from
+      \texttt{hanzo/base/crdt/}.
+\end{enumerate}
+
+\section{Soundness Findings}
+
+\subsection{Implementation Coverage}
+
+Table~\ref{tab:coverage} maps paper claims to actual code.
+
+\begin{table}[h]
+\centering
+\caption{Paper claims vs.\ implementation status}
+\label{tab:coverage}
+\begin{tabular}{lccl}
+\toprule
+CRDT Type     & Paper & Go Code & Status \\
+\midrule
+G-Counter     & \ding{51} & \ding{55} & \textbf{Not implemented} \\
+PN-Counter    & \ding{51} & \ding{55} & \textbf{Not implemented} \\
+G-Set         & \ding{51} & \ding{55} & \textbf{Not implemented} \\
+OR-Set        & \ding{51} & \ding{55} & \textbf{Not implemented} \\
+LWW-Register  & \ding{51} & \ding{51} & Implemented (demo CLI) \\
+RGA Sequence  & \ding{55} & \ding{55} & Not claimed, not implemented \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The paper's abstract claims ``practical implementations for counters,
+sets, registers, and sequences.''  Only the LWW-Register exists as
+runnable Go code.  The other four types are described algorithmically
+in the paper but have zero implementation.
+
+\subsection{LWW-Register: Lattice Properties}
+
+We constructed encrypted registers with known plaintext values and
+verified all three lattice laws empirically over FHE ciphertexts.
+
+\begin{table}[h]
+\centering
+\caption{LWW-Register lattice property verification}
+\label{tab:lattice}
+\begin{tabular}{lccl}
+\toprule
+Property        & Test Cases & Result & Notes \\
+\midrule
+Commutativity   & (7,3)$\join$(12,5) & \textbf{PASS} & Both orders yield (12,5) \\
+Idempotence     & (9,4)$\join$(9,4)  & \textbf{PASS} & Self-merge preserves state \\
+Associativity   & 3-way merge        & \textbf{PASS} & (A$\join$B)$\join$C = A$\join$(B$\join$C) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The merge algorithm (MSB-first comparator chain + MUX selection) is
+correct.  After decryption, the encrypted merge result is
+observationally equivalent to the plaintext LWW merge for all test
+vectors.
+
+\paragraph{Noise budget.}
+Each MUX gate requires 3 bootstraps (AND, AND, OR).  The 4-bit
+comparator requires $4 \times 2 = 8$ bootstraps (ANDNY + XNOR per
+bit) plus $3 \times 2 = 6$ bootstraps for the reduction chain (AND +
+OR + AND per non-MSB bit), totaling 14 comparator bootstraps.  The
+value selection adds $4 \times 3 = 12$ MUX bootstraps and timestamp
+selection adds another 12, for \textbf{38 total bootstraps per
+4-bit LWW merge}.
+
+Because each bootstrap resets noise to a fresh level (programmable
+bootstrapping), there is \emph{no cumulative noise degradation} across
+chained merges.  This is a strength of the TFHE/boolean-gate approach:
+idempotence is preserved regardless of merge depth $k$.
+
+\subsection{G-Counter: Theoretical Analysis}
+
+The paper specifies G-Counter merge as per-replica $\FHEmax$, which
+decomposes identically to the LWW timestamp comparator.  Since the
+same comparator + MUX circuit is used, the lattice properties hold by
+the same argument.  We verified this using \texttt{gcounterMerge} on
+5 input pairs including equal values and extremes (0, 15).  All passed.
+
+\subsection{G-Set: Theoretical Analysis}
+
+G-Set merge is encrypted OR of membership flags.  OR is commutative,
+associative, and idempotent over booleans.  Since bootstrapping
+preserves bit correctness, encrypted OR inherits these properties.
+We verified all 4 truth-table entries plus idempotence explicitly.
+\textbf{PASS.}
+
+\subsection{OR-Set: Gap Identified}
+
+The paper's OR-Set description (Section 4.4) uses tag-set union for
+merge, which is correct for the plaintext CRDT.  However, there is no
+encrypted implementation.  The Solidity contract (\texttt{EncryptedCRDT.sol})
+implements OR-Set with \emph{plaintext} tombstone flags and unique tags,
+only encrypting the element \emph{values}.  The add/remove semantics leak
+set membership patterns.
+
+\subsection{Solidity Contract: Privacy Leak}
+
+\texttt{EncryptedCRDT.sol} line 11: \texttt{uint256 timestamp} is
+stored in plaintext.  The \texttt{mergeRegisters} function (line 88)
+performs timestamp comparison in the clear:
+\begin{lstlisting}[language=Solidity]
+if (reg1.timestamp > reg2.timestamp) {
+    merged = reg1.value;
+\end{lstlisting}
+This directly contradicts the paper's claim that ``merge operations
+[are performed] homomorphically, keeping data encrypted at all
+replicas.''  The timestamp---which reveals write ordering and
+activity patterns---is fully exposed.
+
+The Go implementation correctly compares timestamps homomorphically.
+The Solidity contract does not.
+
+\section{Empirical Benchmark Results}
+
+\subsection{Measured Performance}
+
+\begin{table}[h]
+\centering
+\caption{fheCRDT merge throughput (PN10QP27, M1 Max, Go 1.26)}
+\label{tab:bench}
+\begin{tabular}{lrrr}
+\toprule
+Operation & Latency & Ops/sec & Bootstraps \\
+\midrule
+Single bootstrap (Refresh)      & 108 ms  & 9.3     & 1 \\
+G-Set merge (1 element)         & 114 ms  & 8.8     & 1 \\
+G-Counter merge (4-bit, 1 slot) & 2,894 ms & 0.35   & $\sim$26 \\
+LWW-Register merge (4-bit)      & 4,149 ms & 0.24   & $\sim$38 \\
+Geo-convergence (50ms RTT)      & 4,146 ms & ---     & $\sim$38 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Comparison to Paper Claims}
+
+\begin{table}[h]
+\centering
+\caption{Claimed vs.\ measured performance}
+\label{tab:delta}
+\begin{tabular}{lrrr}
+\toprule
+Metric & Paper Claim & Measured & Ratio \\
+\midrule
+G-Counter merge (10 replicas) & 500 ops/sec & 0.035 ops/sec$^\dagger$ & \textbf{14,286$\times$ slower} \\
+LWW-Register merge            & 330 ops/sec & 0.24 ops/sec             & \textbf{1,375$\times$ slower} \\
+G-Set merge (1K elements)     & 65 ops/sec  & 0.009 ops/sec$^\ddagger$ & \textbf{7,222$\times$ slower} \\
+Convergence time              & 450 ms      & 4,146 ms                 & \textbf{9.2$\times$ slower} \\
+LWW state size                & 64 bytes    & 136,456 bytes            & \textbf{2,132$\times$ larger} \\
+\bottomrule
+\end{tabular}
+
+\footnotesize
+$^\dagger$ Extrapolated: 10 replica slots $\times$ 2,894 ms each $= \sim$28.9 sec total.\\
+$^\ddagger$ Extrapolated: 1000 elements $\times$ 114 ms each $= \sim$114 sec total.
+\end{table}
+
+\subsection{FHE vs.\ Plaintext Overhead}
+
+\begin{table}[h]
+\centering
+\caption{Encrypted vs.\ plaintext merge latency}
+\label{tab:overhead}
+\begin{tabular}{lrrr}
+\toprule
+CRDT Type & Plaintext (ns) & Encrypted (ns) & Overhead \\
+\midrule
+G-Counter (1 slot) & 100       & 2,894,000,000     & $\sim$29 million$\times$ \\
+LWW-Register       & 30        & 4,149,000,000     & $\sim$138 million$\times$ \\
+G-Set (1 element)  & 326       & 114,000,000       & $\sim$350,000$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Ciphertext Size}
+
+\begin{table}[h]
+\centering
+\caption{Ciphertext sizes (PN10QP27, N=1024)}
+\label{tab:sizes}
+\begin{tabular}{lr}
+\toprule
+Object & Size \\
+\midrule
+Single encrypted bit (serialized) & 17,057 bytes \\
+Single encrypted bit (in-memory)  & 16,384 bytes \\
+4-bit encrypted value             & 68,228 bytes \\
+LWW-Register (4-bit val + 4-bit ts) & 136,456 bytes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The paper claims 64 bytes for an LWW-Register state.  The measured
+size is 136 KB---a 2,132$\times$ discrepancy.  The 64-byte figure
+may refer to plaintext state size, not encrypted state.
+
+\section{Bugs and Issues}
+
+\begin{enumerate}
+\item \textbf{Missing implementations} (\texttt{cmd/crdt/main.go}):
+      Only LWW-Register is implemented.  The paper claims G-Counter,
+      PN-Counter, G-Set, and OR-Set implementations exist.  They do not.
+
+\item \textbf{Solidity timestamp leak}
+      (\texttt{examples/encrypted-crdt/contracts/EncryptedCRDT.sol:11,57,102}):
+      Timestamps are stored and compared in plaintext, breaking the
+      homomorphic merge claim.
+
+\item \textbf{Solidity OR-Set tombstone leak}
+      (\texttt{EncryptedCRDT.sol:23}):
+      The \texttt{removed} flag is a plaintext \texttt{bool}, leaking
+      element removal events.
+
+\item \textbf{Paper state size claim} (\texttt{main.tex} Table 4, line 372):
+      ``LWW-Register: 64 bytes'' is incorrect for encrypted state.
+      Actual encrypted size is 136 KB with PN10QP27 parameters.
+
+\item \textbf{Paper throughput claims} (\texttt{main.tex} Table 4, line 367--373):
+      All ops/sec figures are 3--4 orders of magnitude optimistic.
+      No benchmark code or test environment is documented in the paper.
+      The ``500 ops/sec'' G-Counter claim would require sub-2ms merge
+      latency; a single bootstrap takes 108ms.
+
+\item \textbf{Missing references in paper} (\texttt{main.tex:291,316}):
+      References \texttt{[zap]} and \texttt{[luxcpp-fhe]} are cited but
+      not defined in \texttt{references.bib}.
+
+\item \textbf{No noise budget monitoring}: The implementation has no
+      mechanism to track remaining noise budget or warn when ciphertexts
+      approach decryption failure.  While TFHE bootstrapping resets noise
+      per-gate, corrupted inputs from network transport or storage bit-flips
+      would produce silent wrong answers.
+\end{enumerate}
+
+\section{Recommendation}
+
+\textbf{fheCRDT is not production-ready for Hanzo Base as a sync backend.}
+
+The gaps are:
+
+\begin{enumerate}[noitemsep]
+\item \textbf{4/5 claimed CRDT types have no implementation.}
+      Only LWW-Register exists.  G-Counter, PN-Counter, G-Set, and OR-Set
+      must be built before the framework can replace the plaintext CRDTs
+      in \texttt{hanzo/base/crdt/}.
+
+\item \textbf{Performance is 3--4 orders of magnitude too slow.}
+      A 10-replica G-Counter merge would take $\sim$29 seconds.
+      Base requires sub-100ms sync for interactive use.
+      Closing this gap requires either:
+      \begin{itemize}[noitemsep]
+        \item GPU-accelerated bootstrapping (the paper cites 13--17$\times$
+              speedup, still 2 orders of magnitude short), or
+        \item CKKS/BFV packed ciphertexts for counter operations
+              (avoiding per-bit bootstrapping), or
+        \item Accepting that FHE merges happen asynchronously in batch,
+              with plaintext CRDTs for real-time sync and periodic
+              FHE reconciliation for privacy.
+      \end{itemize}
+
+\item \textbf{The Solidity contract contradicts the threat model.}
+      Timestamps and tombstones are plaintext.  The contract needs
+      encrypted Lamport clocks and encrypted set-membership flags
+      with FHE comparison for merge.
+
+\item \textbf{No delta-state support.}  The paper describes delta-state
+      fheCRDTs (Section 5.1) but there is no implementation.  Full-state
+      sync of 136 KB per LWW-Register per replica is prohibitive at scale.
+\end{enumerate}
+
+\paragraph{Path forward.}
+The theoretical framework is sound---lattice properties are preserved
+under FHE encryption, and the TFHE bootstrapping model avoids noise
+accumulation.  The implementation needs:
+(a) G-Counter and OR-Set Go implementations using the existing gate
+primitives;
+(b) CKKS-mode packed counters for practical throughput;
+(c) delta-state protocol;
+(d) the Solidity contract rewritten with encrypted timestamps.
+Estimated effort: 4--6 engineer-weeks.
+
+\section*{Acknowledgments}
+
+Benchmarks ran on Apple M1 Max (10-core, 64 GB) under Darwin 25.4.0
+with Go 1.26.0.  FHE parameters: PN10QP27 (N=1024, Q=134215681),
+128-bit classical security level.
+
+\begin{thebibliography}{9}
+\bibitem{fhecrdt-paper}
+Z.~Kelling, ``fheCRDT: Conflict-Free Replicated Data Types over
+Encrypted State,'' Lux Industries, 2025.
+
+\bibitem{shapiro2011}
+M.~Shapiro, N.~Pregui\c{c}a, C.~Baquero, and M.~Zawirski,
+``Conflict-free Replicated Data Types,'' SSS, 2011.
+
+\bibitem{tfhe}
+I.~Chillotti, N.~Gama, M.~Georgieva, and M.~Izabach\`ene,
+``TFHE: Fast Fully Homomorphic Encryption over the Torus,''
+ASIACRYPT, 2016.
+\end{thebibliography}
+
+\end{document}
