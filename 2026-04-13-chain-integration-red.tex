@@ -1,0 +1,645 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{listings,xcolor,hyperref,longtable,booktabs}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+\title{Red Team Audit: Chain-Level Integration\\Indexer / Graph / Explorer / Node}
+\author{Red Team --- Adversarial Security Review}
+\date{2026-04-13}
+\begin{document}
+\maketitle
+
+\section*{Findings Summary}
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{CRITICAL} & \textbf{HIGH} & \textbf{MEDIUM} & \textbf{LOW} & \textbf{INFO} \\
+\midrule
+1 & 4 & 5 & 3 & 3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ==========================================================================
+\section{[CRITICAL] C-01: WebSocket Subscriber Has No Client Limit --- Unbounded Connection DoS}
+
+\textbf{File:} \texttt{indexer/chain/chain.go:382--453}
+
+\textbf{Class:} websocket / resource-exhaustion
+
+\textbf{Description:}
+The \texttt{Subscriber} in the chain indexer accepts unlimited WebSocket connections.
+The \texttt{HandleWebSocket} handler upgrades every HTTP request to a WebSocket with
+no authentication, no rate limiting, and no maximum client count.
+The \texttt{clients} map grows without bound.
+
+Every 30 seconds the heartbeat sends a JSON message to every connected client
+(line 429). Every new block broadcasts to every client (line 423). With 10K
+connections, each broadcast is O(10K) serializations under \texttt{mu.RLock()},
+which blocks all writes.
+
+Additionally:
+\begin{itemize}
+  \item \texttt{CheckOrigin} returns \texttt{true} unconditionally (line 399).
+  \item No \texttt{SetReadLimit} is called. The gorilla/websocket default read limit
+        is \textbf{unlimited}. An attacker can send a single message of arbitrary size
+        and the server will allocate a buffer to hold it, causing OOM.
+  \item This same pattern is duplicated in \texttt{dag/dag.go:440--486} (also no read limit).
+\end{itemize}
+
+The \texttt{evm/api/websocket.go} correctly sets \texttt{conn.SetReadLimit(512)},
+and \texttt{explorer/standalone.go} sets 4096. The chain and DAG subscribers do not.
+
+\textbf{Exploit:}
+\begin{lstlisting}
+# Open 50,000 WebSocket connections (no auth required):
+for i in $(seq 1 50000); do
+  websocat -n ws://indexer:4100/v1/explorer/blocks/subscribe &
+done
+# Or: send a single 1GB message to trigger OOM:
+python3 -c "
+import websocket
+ws = websocket.create_connection('ws://indexer:4100/v1/explorer/blocks/subscribe')
+ws.send(b'A' * (1 << 30))
+"
+\end{lstlisting}
+
+\textbf{Impact:} Service OOM / denial of service. All indexer subscribers share
+the same process. One chain's subscriber crash kills all chains.
+
+\textbf{Fix:}
+\begin{enumerate}
+  \item Add \texttt{conn.SetReadLimit(4096)} after every \texttt{Upgrade}.
+  \item Cap \texttt{len(s.clients)} (e.g., 1000). Reject new connections at cap.
+  \item Add per-IP rate limiting to the upgrade handler.
+  \item Set \texttt{CheckOrigin} to validate against allowed domains.
+\end{enumerate}
+
+
+% ==========================================================================
+\section{[HIGH] H-01: I-Chain Indexer Calls Wrong RPC Method}
+
+\textbf{File:} \texttt{indexer/multichain/platform\_indexer.go:388--389}
+
+\textbf{Class:} naming / silent-data-loss
+
+\textbf{Description:}
+The \texttt{fetchIdentityBlock} function's comment says it should call
+\texttt{identity.getLatestBlock}, but the actual code calls:
+\begin{lstlisting}
+block, err := idx.rpcCall(ctx, "identity.Health", nil)
+\end{lstlisting}
+
+\texttt{identity.Health} is a health-check endpoint that returns a status object,
+not a block. This means:
+\begin{itemize}
+  \item The response is not a valid \texttt{PlatformBlock} and will fail
+        \texttt{json.Unmarshal} in \texttt{processBlock} (line 552).
+  \item Because \texttt{processBlock} silently swallows parse errors
+        (lines 553--557), the indexer increments \texttt{BlocksProcessed}
+        without actually indexing anything.
+  \item The I-Chain indexer appears healthy (no errors logged) while indexing
+        zero real blocks. A monitoring dashboard would show it running.
+\end{itemize}
+
+\textbf{Impact:} I-Chain data is completely absent from the indexer.
+Users querying identity data get empty results. No error is surfaced.
+
+\textbf{Fix:} Change line 389 to:
+\begin{lstlisting}
+block, err := idx.rpcCall(ctx, "identity.getLatestBlock", nil)
+\end{lstlisting}
+
+
+% ==========================================================================
+\section{[HIGH] H-02: Graph Resolver Pagination Has No Upper Bound}
+
+\textbf{File:} All 29 resolver packages in \texttt{graph/resolvers/*/}
+
+\textbf{Class:} resource-exhaustion / DoS
+
+\textbf{Description:}
+Every resolver package defines an identical \texttt{pl()} helper:
+\begin{lstlisting}
+func pl(args map[string]interface{}) int {
+    limit := 100
+    if l, ok := args["first"]; ok {
+        fmt.Sscanf(fmt.Sprint(l), "%d", &limit)
+    }
+    return limit
+}
+\end{lstlisting}
+
+There is no upper bound. An attacker can pass \texttt{first: 2147483647}
+(max int32) or \texttt{first: 999999999}. The underlying
+\texttt{Store.ListByType()} runs \texttt{SELECT data FROM entities WHERE
+type=? LIMIT ?} with this value.
+
+With a large dataset, this forces SQLite to scan and return the entire table,
+consuming unbounded memory in the Go process.
+
+\textbf{Exploit:}
+\begin{lstlisting}
+# GraphQL query:
+{ zkProofs(first: 999999999) { id } }
+{ signingSessions(first: 999999999) { id } }
+\end{lstlisting}
+
+\textbf{Impact:} OOM crash of the graph service. Affects all resolvers
+because they share the same process.
+
+\textbf{Fix:} Clamp \texttt{limit} to a maximum (e.g., 1000):
+\begin{lstlisting}
+func pl(args map[string]interface{}) int {
+    limit := 100
+    if l, ok := args["first"]; ok {
+        fmt.Sscanf(fmt.Sprint(l), "%d", &limit)
+    }
+    if limit > 1000 { limit = 1000 }
+    if limit < 1 { limit = 1 }
+    return limit
+}
+\end{lstlisting}
+
+
+% ==========================================================================
+\section{[HIGH] H-03: SQL Injection via Table Name and WHERE Clause in Indexer Storage}
+
+\textbf{File:} \texttt{indexer/storage/query/postgres.go:424--442}
+and \texttt{indexer/chain/chain.go:186--192}
+
+\textbf{Class:} SQL injection
+
+\textbf{Description:}
+The PostgreSQL storage engine interpolates \texttt{table} and \texttt{column}
+names directly into SQL via \texttt{fmt.Sprintf}:
+\begin{lstlisting}
+// postgres.go:425
+query := fmt.Sprintf("SELECT COUNT(*) FROM %s", table)
+// postgres.go:435
+query := fmt.Sprintf("SELECT COALESCE(SUM(%s), 0) FROM %s", column, table)
+\end{lstlisting}
+
+The \texttt{Count} function also appends a raw \texttt{where} string:
+\begin{lstlisting}
+// postgres.go:426-427
+if where != "" {
+    query += " WHERE " + where
+}
+\end{lstlisting}
+
+The chain indexer calls \texttt{Count} with hardcoded WHERE clauses
+(\texttt{"1=1"}, \texttt{"status='pending'"}), so the direct risk is
+limited \emph{if} table names are always derived from config. However:
+
+\begin{itemize}
+  \item The \texttt{tableName} field is set to \texttt{string(cfg.ChainType)}
+        (line 109 of chain.go), which comes from the parsed YAML config.
+  \item The YAML config uses \texttt{os.ExpandEnv()} (config.go:68), so
+        environment variable injection can control chain type strings.
+  \item The \texttt{AddChain} method (manager.go:573) accepts a \texttt{ChainConfig}
+        at runtime. If an admin API is exposed (even internally), a malicious
+        config with \texttt{Type: "evm; DROP TABLE blocks--"} would be
+        interpolated directly into SQL.
+  \item The \texttt{Sum} function takes \texttt{column} as a raw string parameter.
+\end{itemize}
+
+\textbf{Impact:} If any code path allows untrusted input to reach table/column
+names, full SQL injection is possible (data exfiltration, table deletion).
+
+\textbf{Fix:} Validate table and column names against a whitelist of
+\texttt{[a-zA-Z0-9\_]+}. Use \texttt{pq.QuoteIdentifier()} for table names.
+
+
+% ==========================================================================
+\section{[HIGH] H-04: WS Realtime Loop Has No Reconnect Backoff}
+
+\textbf{File:} \texttt{indexer/multichain/platform\_indexer.go:148--157, 184--243}
+
+\textbf{Class:} websocket / reconnect-flood
+
+\textbf{Description:}
+When the WebSocket connection fails in \texttt{runRealtimeLoop}, it returns
+\texttt{false} (line 228). The caller in \texttt{indexLoop} (line 151--152)
+checks the return value and falls back to polling. However, there is a
+subtler issue: when the WS connection drops \emph{after} initial success
+(e.g., line 227), \texttt{runRealtimeLoop} returns \texttt{false}, and
+\texttt{indexLoop} falls through to polling forever.
+
+But the more dangerous pattern is: if the upstream WS endpoint accepts
+connections but immediately closes them (a common scenario during node
+restarts), the loop in \texttt{indexLoop} will:
+\begin{enumerate}
+  \item \texttt{runRealtimeLoop} connects, gets immediate close, returns false
+  \item Falls to polling (which starts a ticker)
+\end{enumerate}
+
+This is actually handled correctly because the fallback is one-way. However,
+when 14 platform indexers all lose WS simultaneously (node restart), all 14
+attempt reconnection simultaneously. There is no jitter or backoff on the
+initial \texttt{DialContext}. The gorilla dialer has a 10s handshake timeout,
+so 14 goroutines will block for 10s, but in a 100-chain deployment this
+becomes 100 concurrent dial attempts with no staggering.
+
+Additionally, \texttt{runRealtimeLoop} does not validate TLS certificates.
+The \texttt{websocket.Dialer} is created with default settings (line 190),
+which means \texttt{TLSClientConfig} is nil --- Go's default does verify,
+which is correct. However, the WS URL comes from YAML config which uses
+\texttt{os.ExpandEnv()}, so a misconfigured environment variable could
+point to an attacker's WS endpoint.
+
+\textbf{Impact:} Thundering herd on node restart. No TLS pinning means a
+DNS hijack of the WS endpoint would allow block injection.
+
+\textbf{Fix:} Add exponential backoff (1s, 2s, 4s, ..., 60s cap) before
+reconnection attempts. Add jitter. Consider TLS certificate pinning for
+production endpoints.
+
+
+% ==========================================================================
+\section{[MEDIUM] M-01: Compose.yml Missing 7 of 14 Chain Indexers}
+
+\textbf{File:} \texttt{indexer/compose.yml}
+
+\textbf{Class:} config / incomplete
+
+\textbf{Description:}
+The compose.yml defines indexers for 7 chains: P, X, A, B, Q, T, Z.
+But the indexer code supports 14 native chain types:
+Platform, UTXO, AI, Bridge, DEX, Graph, Identity, Key, MPC, Oracle,
+Quantum, Relay, Threshold, ZK.
+
+Missing from compose.yml: D-Chain (DEX), G-Chain (Graph), I-Chain (Identity),
+K-Chain (Key), M-Chain (MPC), O-Chain (Oracle), R-Chain (Relay).
+
+Additionally, the T-Chain comment says ``Teleport - MPC signatures'' (line 128)
+but T-Chain is Threshold FHE, not Teleport. The MPC chain is M-Chain.
+This suggests the compose.yml predates the brand-neutral rename and was
+not fully updated.
+
+\textbf{Impact:} 7 chains are not indexed in the default Docker deployment.
+The stale ``Teleport'' name creates confusion.
+
+\textbf{Fix:} Add the missing 7 indexer services. Fix the T-Chain comment.
+
+
+% ==========================================================================
+\section{[MEDIUM] M-02: Stale Legacy Names in YAML Config and Adapter Defaults}
+
+\textbf{File:} \texttt{indexer/config/chains.yaml:122--137},
+\texttt{indexer/ai/adapter.go:24},
+\texttt{indexer/chains.example.yaml:35--51}
+
+\textbf{Class:} naming / config-drift
+
+\textbf{Description:}
+The YAML config still uses \texttt{lux\_ai}, \texttt{lux\_bridge} as type values
+(chains.yaml lines 126, 137). While the parser preserves these as legacy aliases
+(config.go:226--253), they should be updated to the brand-neutral canonical names
+(\texttt{ai}, \texttt{bridge}).
+
+The A-Chain adapter hardcodes \texttt{DefaultDatabase = "explorer\_achain"}
+(ai/adapter.go:24). After the rename from \texttt{achain/} to \texttt{ai/},
+this database name is a stale reference to the old directory naming.
+
+The \texttt{chains.example.yaml} still uses \texttt{slug: xchain},
+\texttt{slug: achain}, \texttt{slug: bchain}.
+
+The compose.yml container names use old naming: \texttt{lux-achain-indexer},
+\texttt{lux-bchain-indexer}, etc.
+
+\textbf{Impact:} Configuration confusion. New deployments using the example
+configs will reference stale names. If legacy aliases are ever removed from
+the parser, these configs break silently (default to EVM type).
+
+\textbf{Fix:} Update all YAML configs to use canonical names. Update adapter
+defaults. Update container names. Remove \texttt{lux\_*} aliases after
+migration window.
+
+
+% ==========================================================================
+\section{[MEDIUM] M-03: processBlock Silently Swallows Unmarshal Errors}
+
+\textbf{File:} \texttt{indexer/multichain/platform\_indexer.go:546--570}
+
+\textbf{Class:} silent-data-loss
+
+\textbf{Description:}
+\begin{lstlisting}
+func (idx *PlatformIndexer) processBlock(data json.RawMessage) error {
+    ...
+    var block PlatformBlock
+    if err := json.Unmarshal(data, &block); err != nil {
+        // Not all responses are blocks, ignore parse errors
+        idx.mu.Lock()
+        idx.stats.BlocksProcessed++
+        idx.mu.Unlock()
+        return nil
+    }
+    ...
+}
+\end{lstlisting}
+
+When unmarshal fails, the function increments \texttt{BlocksProcessed} and
+returns nil (success). This means:
+\begin{itemize}
+  \item A malformed RPC response is counted as a successfully processed block.
+  \item The I-Chain bug (H-01) is masked by this behavior.
+  \item If the RPC response format changes upstream, the indexer silently
+        stops indexing while reporting increasing block counts.
+  \item Stats dashboards show healthy progress with zero actual data.
+\end{itemize}
+
+\textbf{Impact:} Silent data integrity loss. Monitoring cannot detect
+the failure because error counters are not incremented.
+
+\textbf{Fix:} On unmarshal failure, increment \texttt{ErrorCount} instead of
+\texttt{BlocksProcessed}. Return a distinguishable error for non-block
+responses vs actual parse failures.
+
+
+% ==========================================================================
+\section{[MEDIUM] M-04: Explorer ChainSwitcher Renders SVG via dangerouslySetInnerHTML}
+
+\textbf{File:} \texttt{explore/ui/snippets/topBar/ChainSwitcher.tsx:89, 182--184}
+and \texttt{explore/ui/snippets/topBar/TopBar.tsx:90}
+
+\textbf{Class:} XSS (mitigated)
+
+\textbf{Description:}
+The ChainSwitcher renders chain logos using:
+\begin{lstlisting}
+dangerouslySetInnerHTML={{ __html: current.branding.logoContent }}
+\end{lstlisting}
+
+Currently, \texttt{logoContent} comes from the hardcoded \texttt{CHAINS}
+array in \texttt{chainRegistry.ts} or from the white-label fallback which
+uses a static circle SVG. So the data source is trusted code.
+
+However, if a future feature loads branding from an API (e.g., dynamic chain
+registry), \texttt{logoContent} becomes an XSS vector. SVG supports
+\texttt{<script>}, \texttt{onload}, \texttt{<foreignObject>}, and
+\texttt{<use href="data:...">} which can execute JavaScript.
+
+The search result components use an \texttt{xss()} sanitizer library, but
+the ChainSwitcher does not.
+
+\textbf{Impact:} Currently low risk (static data). Becomes critical if
+branding data source changes to untrusted input.
+
+\textbf{Fix:} Wrap \texttt{logoContent} through a DOMPurify or the existing
+\texttt{xss} library before rendering. Or render logos as \texttt{<img>}
+tags with data URIs instead of inline SVG.
+
+
+% ==========================================================================
+\section{[MEDIUM] M-05: CORS Wildcard on All Indexer HTTP Endpoints}
+
+\textbf{File:} \texttt{indexer/chain/chain.go:277}
+
+\textbf{Class:} CORS / misconfiguration
+
+\textbf{Description:}
+\begin{lstlisting}
+w.Header().Set("Access-Control-Allow-Origin", "*")
+\end{lstlisting}
+
+Every chain indexer HTTP endpoint allows requests from any origin. The indexer
+is a read-only data API, so this does not enable state-changing attacks.
+However, it means any website can query the indexer from a browser and
+extract block data, transaction data, and statistics.
+
+For a public block explorer this is expected. But if any indexer endpoint
+exposes admin functionality (e.g., \texttt{AddChain}/\texttt{RemoveChain}
+via a future HTTP handler), the wildcard CORS becomes an attack vector.
+
+\textbf{Impact:} Low risk currently. Preemptive concern for admin endpoints.
+
+\textbf{Fix:} Keep wildcard for public read endpoints. Add origin
+restriction for any future admin/write endpoints.
+
+
+% ==========================================================================
+\section{[LOW] L-01: Hardcoded PostgreSQL Credentials in compose.yml}
+
+\textbf{File:} \texttt{indexer/compose.yml:27--28}
+
+\textbf{Class:} secrets
+
+\textbf{Description:}
+\begin{lstlisting}
+POSTGRES_USER: explorer
+POSTGRES_PASSWORD: explorer
+\end{lstlisting}
+
+And connection strings like:
+\begin{lstlisting}
+DATABASE_URL: postgresql://explorer:explorer@postgres:5432/...
+\end{lstlisting}
+
+These are development-only credentials and the compose file is clearly for
+local dev. However, per project policy, secrets belong in KMS.
+
+\textbf{Impact:} Low. Development only. Risk if someone deploys compose.yml
+to production without changing credentials.
+
+\textbf{Fix:} Use \texttt{\$\{POSTGRES\_PASSWORD\}} variable with no default.
+Document that production must use KMS-sourced credentials.
+
+
+% ==========================================================================
+\section{[LOW] L-02: Graph Resolver Type Collision --- ZKProof in Both zk/ and privacy/}
+
+\textbf{File:} \texttt{graph/resolvers/zk/zk.go:19},
+\texttt{graph/resolvers/privacy/privacy.go:38}
+
+\textbf{Class:} namespace collision
+
+\textbf{Description:}
+Both the \texttt{zk} resolver and the \texttt{privacy} resolver register
+a resolver that calls \texttt{s.GetByType("ZKProof", ...)}.
+They use the same entity type string \texttt{"ZKProof"} in the same
+backing store.
+
+If both resolvers write data with the same type key, queries from one
+resolver will return data intended for the other. The
+\texttt{privacy.zkProof} resolver (line 38) and \texttt{zk.resolveZKProof}
+(line 33) would collide.
+
+The resolvers register different GraphQL field names (\texttt{zkProof} vs
+\texttt{privacyZkProof}), so the GraphQL schema does not collide. But the
+storage layer does.
+
+\textbf{Impact:} Data cross-contamination between ZK chain data and privacy
+chain data if both are indexed into the same store instance.
+
+\textbf{Fix:} Use distinct entity type strings:
+\texttt{"ZKProof"} for zk chain, \texttt{"PrivacyZKProof"} for privacy.
+
+
+% ==========================================================================
+\section{[LOW] L-03: Chain Count Misalignment Across Components}
+
+\textbf{Class:} config / coherence
+
+\textbf{Description:}
+Component chain counts:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Component} & \textbf{Native Chain Count} \\
+\midrule
+Node VMs & 15 (aivm, bridgevm, dexvm, evm, graphvm, identityvm, keyvm, \\
+         & oraclevm, platformvm, quantumvm, relayvm, servicenodevm, \\
+         & thresholdvm, xvm, zkvm) \\
+Indexer types & 14 (Platform, UTXO, AI, Bridge, DEX, Graph, Identity, \\
+              & Key, MPC, Oracle, Quantum, Relay, Threshold, ZK) \\
+Indexer compose & 7 (P, X, A, B, Q, T, Z) \\
+Graph resolvers & 29 packages (includes non-chain resolvers) \\
+Explorer chains & 6 brands $\times$ 4 networks (C-Chain, Zoo, Hanzo, SPC, Pars, Liquidity) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Notable mismatches:
+\begin{itemize}
+  \item Node has \texttt{servicenodevm} --- indexer has no \texttt{ChainTypeServiceNode}.
+  \item Indexer has \texttt{ChainTypeMPC} --- node has no \texttt{mpcvm} directory
+        (MPC coordination is in \texttt{bridgevm} and \texttt{chainadapter}).
+  \item Explorer shows C-Chain (EVM) and white-label L2s but does not show
+        the 14 native chains (A/B/D/G/I/K/M/O/P/Q/R/T/X/Z) in the switcher.
+  \item Graph has 29 resolver packages but the indexer only feeds 14 native types.
+\end{itemize}
+
+\textbf{Impact:} Operational confusion. The MPC indexer type will never get
+data from a matching VM. The ServiceNode VM is not indexed.
+
+\textbf{Fix:} Align: add servicenodevm to indexer types. Decide whether
+MPC is a standalone VM or part of bridgevm and remove the phantom type.
+
+
+% ==========================================================================
+\section{[INFO] I-01: os.ExpandEnv in YAML Config Enables Env Variable Injection}
+
+\textbf{File:} \texttt{indexer/multichain/config.go:68}
+
+\textbf{Class:} config / injection
+
+\textbf{Description:}
+\begin{lstlisting}
+expanded := os.ExpandEnv(string(data))
+\end{lstlisting}
+
+The YAML config file is expanded with all environment variables before
+parsing. This is standard practice for configuration, but it means:
+\begin{itemize}
+  \item Any env var accessible to the indexer process is injectable into
+        any config field (RPC URLs, chain names, type strings).
+  \item If the YAML file is sourced from an untrusted location (e.g., mounted
+        ConfigMap with write access), an attacker could inject
+        \texttt{\$\{SECRET\_KEY\}} into an RPC URL field, causing the
+        indexer to send the secret as part of an HTTP request to an
+        attacker-controlled endpoint.
+\end{itemize}
+
+\textbf{Impact:} Info. Standard pattern, but worth noting for threat model.
+
+\textbf{Fix:} Document that YAML config files must be treated as trusted input.
+Consider limiting expansion to a specific prefix (e.g., \texttt{LUX\_*}).
+
+
+% ==========================================================================
+\section{[INFO] I-02: Explorer Uses window.location.href for Navigation}
+
+\textbf{File:} \texttt{explore/ui/snippets/topBar/ChainSwitcher.tsx:23}
+
+\textbf{Class:} redirect
+
+\textbf{Description:}
+\begin{lstlisting}
+window.location.href = this.targetUrl;
+\end{lstlisting}
+
+The \texttt{targetUrl} comes from \texttt{chain.explorerUrl} in the
+\texttt{CHAINS} array or from \texttt{getChainsForNetwork()}. All URLs
+are hardcoded \texttt{https://} values in \texttt{chainRegistry.ts}.
+
+This is NOT an open redirect because the URL source is compile-time
+constants, not user input. The \texttt{DropdownNavigator} class correctly
+captures the URL at construction time and cannot be mutated after.
+
+\textbf{Impact:} None currently. Safe pattern.
+
+
+% ==========================================================================
+\section{[INFO] I-03: Graph Search Results XSS Is Properly Mitigated}
+
+\textbf{File:} \texttt{explore/lib/highlightText.ts}
+
+\textbf{Class:} XSS (negative finding)
+
+\textbf{Description:}
+The \texttt{highlightText} function correctly:
+\begin{enumerate}
+  \item Escapes the regex pattern with \texttt{escapeRegExp}
+  \item Runs the output through the \texttt{xss} sanitization library
+\end{enumerate}
+
+All \texttt{dangerouslySetInnerHTML} usages in search results go through
+either \texttt{highlightText()} or direct \texttt{xss()} calls. This is
+correct.
+
+\textbf{Impact:} None. Positive finding.
+
+
+% ==========================================================================
+\section{Blue Handoff}
+
+\subsection*{What Blue Got Right}
+\begin{itemize}
+  \item The brand-neutral ChainType rename (commit 7f625a6) is clean.
+        14 types with legacy aliases preserved in the parser --- good
+        backwards compatibility.
+  \item The xvm method rename (commit 2d0821e) correctly updated RPC methods
+        from \texttt{avm.*} to \texttt{xvm.*} in the platform indexer.
+  \item The graph resolver architecture is sound: registration pattern,
+        type-safe resolution, SQLite with parameterized queries for data access.
+  \item The explorer's XSS sanitization in search results is thorough.
+  \item The chain registry white-label design is well-structured:
+        hostname-based detection, compile-time branding constants, env var
+        fallback.
+\end{itemize}
+
+\subsection*{What Blue Missed}
+\begin{itemize}
+  \item WebSocket security was not reviewed (no read limits, no client caps,
+        no origin validation in chain/dag subscribers).
+  \item The I-Chain method bug (identity.Health vs identity.getLatestBlock)
+        was introduced or preserved during the rename.
+  \item processBlock error masking makes the above bug invisible.
+  \item Pagination limits in graph resolvers were not enforced.
+  \item The compose.yml was not updated for the 7 new chain types.
+  \item SQL identifier injection risk in the storage layer was not flagged.
+\end{itemize}
+
+\subsection*{Fix Priority for Blue}
+\begin{enumerate}
+  \item \textbf{C-01}: Add read limits + client caps to chain/dag WebSocket subscribers
+  \item \textbf{H-01}: Fix I-Chain RPC method to \texttt{identity.getLatestBlock}
+  \item \textbf{H-02}: Cap graph resolver pagination at 1000
+  \item \textbf{H-03}: Add identifier validation in SQL storage layer
+  \item \textbf{H-04}: Add backoff/jitter to WS reconnection
+  \item \textbf{M-03}: Stop counting unmarshal failures as processed blocks
+  \item \textbf{M-01}: Add missing 7 chain indexers to compose.yml
+  \item \textbf{M-02}: Update stale names in configs
+  \item \textbf{M-04}: Sanitize SVG logo content before render
+  \item \textbf{L-02}: Fix ZKProof entity type collision
+\end{enumerate}
+
+\subsection*{Re-review Scope}
+After fixes: re-verify WebSocket subscriber limits under load test,
+confirm I-Chain blocks are actually indexed, verify pagination cap
+works at boundary values.
+
+\end{document}
