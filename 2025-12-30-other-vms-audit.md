@@ -206,7 +206,7 @@ This audit covers nine specialized Virtual Machines in the Lux ecosystem beyond 
 
 **Location:** `/vms/exchangevm/`
 
-**Purpose:** UTXO-based asset creation and exchange (fork of AvalancheGo AVM).
+**Purpose:** UTXO-based asset creation and exchange (X-Chain XVM).
 
 **Implementation Status:**
 - [x] Full VM lifecycle
