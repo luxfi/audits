@@ -1,0 +1,1150 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Secondary VMs Security Audit
+Report}\label{lux-secondary-vms-security-audit-report}
+
+\textbf{Date:} 2025-12-30 \textbf{Auditor:} CTO (Automated)
+\textbf{Scope:} BridgeVM, GraphVM, KeyVM, QuantumVM, ExchangeVM,
+ThresholdVM, ZKVM, AIVM, DexVM
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This audit covers nine specialized Virtual Machines in the Lux ecosystem
+beyond the core PlatformVM/C-Chain. These VMs provide unique
+functionality for cross-chain bridging, graph queries, key management,
+post-quantum cryptography, UTXO exchange, threshold MPC, zero-knowledge
+proofs, AI compute, and decentralized exchange operations.
+
+\textbf{Overall Assessment:} Mixed maturity levels. Several VMs have
+strong foundational implementations while others remain in early
+development with significant gaps.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Status Matrix}\label{status-matrix}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+VM & Status & Implementation & Security & Tests & Documentation \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{BridgeVM (B-Chain)} & Alpha & 75\% & Medium Risk & Partial &
+Good \\
+\textbf{GraphVM (G-Chain)} & Alpha & 60\% & Low Risk & Partial &
+Minimal \\
+\textbf{KeyVM (K-Chain)} & Alpha & 65\% & High Risk & Partial & Good \\
+\textbf{QuantumVM (Q-Chain)} & Beta & 80\% & Medium Risk & Present &
+Good \\
+\textbf{ExchangeVM (X-Chain)} & Production & 95\% & Low Risk &
+Comprehensive & Complete \\
+\textbf{ThresholdVM (T-Chain)} & Beta & 85\% & High Risk & Present &
+Complete \\
+\textbf{ZKVM (Z-Chain)} & Alpha & 70\% & High Risk & Minimal &
+Minimal \\
+\textbf{AIVM (A-Chain)} & Alpha & 55\% & Medium Risk & Missing &
+Minimal \\
+\textbf{DexVM (D-Chain)} & Beta & 80\% & Medium Risk & Present & Good \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Detailed VM Assessments}\label{detailed-vm-assessments}
+
+\subsubsection{1. BridgeVM (B-Chain) - MPC Cross-Chain
+Bridge}\label{1-bridgevm-b-chain---mpc-cross-chain-bridge}
+
+\textbf{Location:} \texttt{/vms/bridgevm/}
+
+\textbf{Purpose:} MPC-based cross-chain bridge using threshold CMP
+protocol.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle (Initialize, Shutdown, handlers)
+\item[$\boxtimes$]
+  LP-333 opt-in signer set management (100 signers max)
+\item[$\boxtimes$]
+  Signer registration and waitlist
+\item[$\boxtimes$]
+  Signer replacement with reshare trigger
+\item[$\boxtimes$]
+  Slashing mechanism for misbehaving signers
+\item[$\boxtimes$]
+  Bridge request/response structures
+\item[$\square$]
+  Actual MPC keygen execution (TODO)
+\item[$\square$]
+  Actual signing protocol execution (TODO)
+\item[$\square$]
+  Cross-chain message verification (TODO)
+\item[$\square$]
+  Chain client implementations (placeholder)
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CRITICAL & \textbf{MPC keygen not implemented} - mpcConfig populated
+during keygen placeholder & vm.go:294 \\
+HIGH & \textbf{No signature verification} - Cross-chain signatures not
+validated & vm.go:576-590 \\
+HIGH & \textbf{Bond amount not enforced} - 100M LUX bond parsed but not
+verified on-chain & vm.go:643-648 \\
+MEDIUM & \textbf{Daily limits not enforced} - dailyBridgeLimit in config
+but no tracking & BridgeConfig \\
+MEDIUM & \textbf{No warp message verification} - AppRequestFailed takes
+warp.Error but unused & vm.go:487-489 \\
+LOW & \textbf{Placeholder chain clients} - No actual chain connectivity
+& vm.go:305-311 \\
+\end{longtable}
+}
+
+\textbf{LP-333 Compliance:} Properly implements opt-in signer model with
+2/3 threshold. Reshare only triggers on slot replacement.
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Integrate actual threshold CMP keygen/sign from
+  \texttt{github.com/luxfi/threshold}
+\item
+  Implement proper bond verification via P-Chain queries
+\item
+  Add warp message validation for cross-chain verification
+\item
+  Implement rate limiting and daily volume tracking
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2. GraphVM (G-Chain) - Read-Only Graph
+Database}\label{2-graphvm-g-chain---read-only-graph-database}
+
+\textbf{Location:} \texttt{/vms/graphvm/}
+
+\textbf{Purpose:} Cross-chain GraphQL query layer for blockchain data.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle
+\item[$\boxtimes$]
+  GraphQL query parser (simplified)
+\item[$\boxtimes$]
+  Built-in resolvers (block, tx, account, balance)
+\item[$\boxtimes$]
+  DEX resolvers (Uniswap v2/v3 subgraph compatible)
+\item[$\boxtimes$]
+  Query depth limiting
+\item[$\boxtimes$]
+  Timeout configuration
+\item[$\square$]
+  Block building (returns errNotImplemented)
+\item[$\square$]
+  Subscription support (structure only)
+\item[$\square$]
+  Cross-chain data federation
+\item[$\square$]
+  Data indexing pipeline
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIGH & \textbf{No authentication} - GraphQL endpoint has no auth layer &
+vm.go:236-244 \\
+MEDIUM & \textbf{Regex DoS potential} - Query parser uses regex without
+limits & graphql.go:203 \\
+MEDIUM & \textbf{Unbounded iteration} - resolveIterate capped at 1000
+but still large & graphql.go:539-545 \\
+LOW & \textbf{Read-only by design} - Mutations rejected (correct
+behavior) & graphql.go:199 \\
+LOW & \textbf{JSON injection in args} - Args parsed without sanitization
+& graphql.go:364-377 \\
+\end{longtable}
+}
+
+\textbf{Positive:}
+
+\begin{itemize}
+\tightlist
+\item
+  Enforces read-only access (mutations rejected)
+\item
+  Query depth limiting prevents complexity attacks
+\item
+  Result size limiting prevents memory exhaustion
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add API key or JWT authentication for GraphQL endpoint
+\item
+  Implement proper GraphQL parser (use graphql-go library)
+\item
+  Add rate limiting per client
+\item
+  Implement data indexing background workers
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{3. KeyVM (K-Chain) / KMSVM - Post-Quantum Key
+Management}\label{3-keyvm-k-chain--kmsvm---post-quantum-key-management}
+
+\textbf{Location:} \texttt{/vms/kchainvm/} and \texttt{/vms/kmsvm/}
+(duplicates)
+
+\textbf{Purpose:} Distributed key management using ML-KEM/ML-DSA
+post-quantum cryptography.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle
+\item[$\boxtimes$]
+  ML-KEM key generation (512/768/1024)
+\item[$\boxtimes$]
+  ML-DSA signing support (structure)
+\item[$\boxtimes$]
+  Threshold key sharing structure
+\item[$\boxtimes$]
+  Key metadata management
+\item[$\boxtimes$]
+  Encrypt/encapsulate operations
+\item[$\square$]
+  Actual secret sharing (placeholder)
+\item[$\square$]
+  Key reconstruction from shares
+\item[$\square$]
+  Database persistence (TODO markers)
+\item[$\square$]
+  BLS threshold signing (placeholder)
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CRITICAL & \textbf{No actual secret sharing} - Threshold values stored
+but not used & vm.go:276-284 \\
+CRITICAL & \textbf{XOR encryption insecure} - Demo encryption uses XOR
+with repeated key & vm.go:400-407 \\
+HIGH & \textbf{Private keys in memory} - Keys cached without secure
+memory & vm.go:250-251 \\
+HIGH & \textbf{Database persistence not implemented} - saveKeyMetadata
+is placeholder & vm.go:572-575 \\
+MEDIUM & \textbf{Validator list from config} - No dynamic validator
+discovery & vm.go:279 \\
+LOW & \textbf{Duplicate VMs} - kchainvm and kmsvm are identical copies &
+files \\
+\end{longtable}
+}
+
+\textbf{Post-Quantum Status:}
+
+\begin{itemize}
+\tightlist
+\item
+  Uses \texttt{github.com/luxfi/crypto/mlkem} for real ML-KEM-768/1024
+\item
+  Mode selection based on algorithm version
+\item
+  Key sizes match NIST standards
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement Shamir secret sharing for threshold key distribution
+\item
+  Replace XOR demo encryption with AES-GCM using KEM shared secret
+\item
+  Use secure memory allocation for private keys (mlock)
+\item
+  Consolidate kchainvm and kmsvm into single implementation
+\item
+  Implement proper database persistence
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{4. QuantumVM (Q-Chain) - Post-Quantum
+Consensus}\label{4-quantumvm-q-chain---post-quantum-consensus}
+
+\textbf{Location:} \texttt{/vms/quantumvm/}
+
+\textbf{Purpose:} Post-quantum signatures using ML-DSA (Dilithium) for
+quantum-safe finality.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle
+\item[$\boxtimes$]
+  ML-DSA signature implementation (MLDSA44/65/87)
+\item[$\boxtimes$]
+  Quantum stamp generation with SHA-512
+\item[$\boxtimes$]
+  Signature verification with CIRCL
+\item[$\boxtimes$]
+  Parallel verification support
+\item[$\boxtimes$]
+  Transaction pool management
+\item[$\boxtimes$]
+  Hybrid P/Q bridge interface
+\item[$\boxtimes$]
+  Block building with quantum signing
+\item[$\square$]
+  Height tracking (placeholder)
+\item[$\square$]
+  Last accepted persistence (placeholder)
+\item[$\square$]
+  Genesis parsing
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIGH & \textbf{Quantum stamp binding weak} - Only verified through
+signature & signer.go:234-241 \\
+MEDIUM & \textbf{Nonce not tracked} - Random noise in stamp but no
+replay protection & signer.go:220-228 \\
+MEDIUM & \textbf{Height tracking missing} - getHeight() returns 0 &
+vm.go:466-468 \\
+LOW & \textbf{Stamp window configurable} - Could be set too large &
+signer.go:180 \\
+\end{longtable}
+}
+
+\textbf{Cryptographic Implementation:}
+
+\begin{itemize}
+\tightlist
+\item
+  Real ML-DSA via \texttt{github.com/luxfi/crypto/mldsa}
+\item
+  Supports NIST security levels 2, 3, 5
+\item
+  Proper key generation using crypto/rand
+\item
+  Signature caching with LRU
+\end{itemize}
+
+\textbf{Hybrid Bridge:}
+
+\begin{itemize}
+\tightlist
+\item
+  Interface for P-Chain BLS + Q-Chain Ringtail integration
+\item
+  StampBlock/VerifyStamp for cross-chain finality
+\item
+  Bridge set by chain manager after initialization
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement proper nonce tracking to prevent replay attacks
+\item
+  Add state persistence for last accepted block
+\item
+  Strengthen quantum stamp verification
+\item
+  Complete hybrid finality integration with P-Chain
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{5. ExchangeVM (X-Chain) - UTXO Asset
+Exchange}\label{5-exchangevm-x-chain---utxo-asset-exchange}
+
+\textbf{Location:} \texttt{/vms/exchangevm/}
+
+\textbf{Purpose:} UTXO-based asset creation and exchange (X-Chain XVM).
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Full VM lifecycle
+\item[$\boxtimes$]
+  UTXO state management
+\item[$\boxtimes$]
+  Asset creation and transfer
+\item[$\boxtimes$]
+  Import/export transactions
+\item[$\boxtimes$]
+  DAG consensus integration
+\item[$\boxtimes$]
+  Network gossip handling
+\item[$\boxtimes$]
+  Wallet service
+\item[$\boxtimes$]
+  Transaction indexing
+\item[$\boxtimes$]
+  Linearization support
+\item[$\boxtimes$]
+  Warp validator integration
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+LOW & \textbf{No atomic swaps} - Cross-chain atomicity relies on shared
+memory & network/atomic.go \\
+LOW & \textbf{Indexer uses baseDB} - Bypasses versiondb for visibility &
+vm.go:388-394 \\
+INFO & \textbf{Feature complete} - Most mature secondary VM & - \\
+\end{longtable}
+}
+
+\textbf{Assessment:} Production-ready. This is the most mature secondary
+VM with comprehensive test coverage and proper error handling.
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Consider atomic swap protocol enhancement
+\item
+  Monitor indexer consistency with versiondb
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{6. ThresholdVM (T-Chain) - MPC as a
+Service}\label{6-thresholdvm-t-chain---mpc-as-a-service}
+
+\textbf{Location:} \texttt{/vms/thresholdvm/}
+
+\textbf{Purpose:} Threshold MPC services for all Lux chains.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle
+\item[$\boxtimes$]
+  Multiple protocol support (LSS, CMP, FROST, Ringtail)
+\item[$\boxtimes$]
+  Protocol registry and executor
+\item[$\boxtimes$]
+  Key management with generations
+\item[$\boxtimes$]
+  Signing session management
+\item[$\boxtimes$]
+  Chain authorization/permissions
+\item[$\boxtimes$]
+  Quota tracking per chain
+\item[$\boxtimes$]
+  FHE integration layer
+\item[$\boxtimes$]
+  Warp cross-chain messaging
+\item[$\square$]
+  Protocol execution completion (partial)
+\item[$\square$]
+  Key rotation automation
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIGH & \textbf{Signing quotas bypassable} - Daily limits in config but
+reset tracking unclear & vm.go:125-126 \\
+MEDIUM & \textbf{Session expiry not enforced} - ExpiresAt stored but
+cleanup unclear & SigningSession \\
+MEDIUM & \textbf{Key rotation not automated} - Period configured but no
+scheduler & ThresholdConfig \\
+LOW & \textbf{Pre-hash requirement optional} - Can sign raw messages if
+not required & ChainPermissions \\
+\end{longtable}
+}
+
+\textbf{Protocol Support:}
+
+\begin{itemize}
+\tightlist
+\item
+  LSS (Lux Secret Sharing)
+\item
+  CMP (CGGMP21 threshold ECDSA)
+\item
+  FROST (Schnorr threshold)
+\item
+  Ringtail (post-quantum threshold)
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement session cleanup goroutine or block-driven expiry
+\item
+  Add automated key rotation scheduler
+\item
+  Enforce pre-hash requirement by default
+\item
+  Add audit logging for all signing operations
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{7. ZKVM (Z-Chain) - Zero-Knowledge
+Privacy}\label{7-zkvm-z-chain---zero-knowledge-privacy}
+
+\textbf{Location:} \texttt{/vms/zkvm/}
+
+\textbf{Purpose:} Privacy-preserving UTXO transactions with ZK proofs.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle
+\item[$\boxtimes$]
+  UTXO database management
+\item[$\boxtimes$]
+  Nullifier tracking (double-spend prevention)
+\item[$\boxtimes$]
+  State tree (Merkle commitments)
+\item[$\boxtimes$]
+  Proof verifier structure
+\item[$\boxtimes$]
+  FHE processor integration
+\item[$\boxtimes$]
+  Address manager for stealth addresses
+\item[$\boxtimes$]
+  Mempool for pending transactions
+\item[$\square$]
+  Actual ZK circuit implementation
+\item[$\square$]
+  Trusted setup management
+\item[$\square$]
+  FHE coprocessor completeness
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CRITICAL & \textbf{ZK circuits not implemented} - ProofVerifier
+placeholder & proof\_verifier.go \\
+CRITICAL & \textbf{No trusted setup} - Required for Groth16 not present
+& ZConfig \\
+HIGH & \textbf{FHE verifier placeholder} - VerifyFHEOperations may not
+work & vm.go:450-452 \\
+MEDIUM & \textbf{Nullifier could leak} - Stored in database without
+encryption & nullifier\_db.go \\
+LOW & \textbf{Proof cache size configurable} - Could be set too small &
+ZConfig \\
+\end{longtable}
+}
+
+\textbf{Privacy Features:}
+
+\begin{itemize}
+\tightlist
+\item
+  Confidential transfers (enabled by config)
+\item
+  Private/stealth addresses
+\item
+  Multiple proof systems (Groth16, PLONK)
+\item
+  FHE for encrypted computation
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Integrate actual ZK circuit library (gnark or similar)
+\item
+  Implement trusted setup ceremony tooling
+\item
+  Encrypt nullifier database or use secure enclave
+\item
+  Complete FHE processor with real operations
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{8. AIVM (A-Chain) - AI Compute
+Attestation}\label{8-aivm-a-chain---ai-compute-attestation}
+
+\textbf{Location:} \texttt{/vms/aivm/}
+
+\textbf{Purpose:} AI compute task management with TEE attestation.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle
+\item[$\boxtimes$]
+  Provider registration
+\item[$\boxtimes$]
+  TEE attestation verification (nvtrust)
+\item[$\boxtimes$]
+  Task submission/results
+\item[$\boxtimes$]
+  Merkle root for Q-Chain anchoring
+\item[$\boxtimes$]
+  Reward claiming structure
+\item[$\square$]
+  Block building (not implemented)
+\item[$\square$]
+  Block storage (not implemented)
+\item[$\square$]
+  Model registry completeness
+\item[$\square$]
+  Task matching/scheduling
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIGH & \textbf{No block consensus} - Blocks defined but not
+built/verified & Block struct \\
+HIGH & \textbf{External dependency} - Relies on github.com/luxfi/ai
+package & vm.go:34-36 \\
+MEDIUM & \textbf{Trust score threshold} - MinTrustScore of 50 may be too
+low & DefaultConfig \\
+MEDIUM & \textbf{GPU attestation optional} - Could register without
+hardware proof & vm.go:264-274 \\
+LOW & \textbf{No task verification} - Results accepted without
+validation & vm.go:308-317 \\
+\end{longtable}
+}
+
+\textbf{TEE Support:}
+
+\begin{itemize}
+\tightlist
+\item
+  CPU: SGX/SEV-SNP/TDX (planned)
+\item
+  GPU: nvtrust (local, no cloud dependency)
+\item
+  Trust score system for providers
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement proper block building and consensus
+\item
+  Make TEE attestation mandatory by default
+\item
+  Add task result verification (ZK proofs or committee)
+\item
+  Increase minimum trust score threshold
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{9. DexVM (D-Chain) - Decentralized
+Exchange}\label{9-dexvm-d-chain---decentralized-exchange}
+
+\textbf{Location:} \texttt{/vms/dexvm/}
+
+\textbf{Purpose:} High-performance DEX with CLOB, AMM, and perpetuals.
+
+\textbf{Implementation Status:}
+
+\begin{itemize}
+\tightlist
+\item[$\boxtimes$]
+  Core VM lifecycle (functional mode)
+\item[$\boxtimes$]
+  Central Limit Order Book (CLOB)
+\item[$\boxtimes$]
+  AMM liquidity pools
+\item[$\boxtimes$]
+  Perpetual futures engine
+\item[$\boxtimes$]
+  Funding rate processing (8-hour)
+\item[$\boxtimes$]
+  Liquidation engine
+\item[$\boxtimes$]
+  MEV protection (commit-reveal)
+\item[$\boxtimes$]
+  Auto-deleveraging (ADL)
+\item[$\boxtimes$]
+  Block-driven deterministic execution
+\item[$\square$]
+  Transaction decoding/execution
+\item[$\square$]
+  WebSocket handler
+\item[$\square$]
+  State root computation
+\end{itemize}
+
+\textbf{Security Findings:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Finding & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+MEDIUM & \textbf{processTx not implemented} - All tx types are TODO &
+vm.go:332-345 \\
+MEDIUM & \textbf{State root always empty} - computeStateRoot returns
+Empty & vm.go:424-431 \\
+LOW & \textbf{WebSocket not implemented} - Returns 501 &
+vm.go:487-493 \\
+LOW & \textbf{Config parsing TODO} - parseConfig empty &
+vm.go:231-235 \\
+\end{longtable}
+}
+
+\textbf{Design Strengths:}
+
+\begin{itemize}
+\tightlist
+\item
+  Pure functional architecture (no background goroutines)
+\item
+  Deterministic block processing
+\item
+  All state changes within ProcessBlock
+\item
+  Replay-safe for auditing
+\end{itemize}
+
+\textbf{Components:}
+
+\begin{itemize}
+\tightlist
+\item
+  Orderbook with advanced order types
+\item
+  Stop engine for conditional orders
+\item
+  Referral system for perpetuals
+\item
+  Tiered fee structure
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Complete transaction type implementations
+\item
+  Implement proper Merkle state root
+\item
+  Add WebSocket for real-time orderbook updates
+\item
+  Complete genesis/config parsing
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Cross-Cutting Concerns}\label{cross-cutting-concerns}
+
+\subsubsection{1. Duplicate Code (KeyVM)}\label{1-duplicate-code-keyvm}
+
+\texttt{kchainvm} and \texttt{kmsvm} are identical implementations.
+Consolidate to single package.
+
+\subsubsection{2. Warp Integration}\label{2-warp-integration}
+
+Several VMs define warp.Error handling but don\textquotesingle t
+validate messages. Need consistent cross-chain verification.
+
+\subsubsection{3. Database Persistence}\label{3-database-persistence}
+
+Multiple VMs have TODO markers for database persistence (KeyVM,
+QuantumVM, AIVM). Critical for production.
+
+\subsubsection{4. Test Coverage}\label{4-test-coverage}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+VM & Test Files & Coverage \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+BridgeVM & 2 (signer, teleport) & Partial \\
+GraphVM & 1 (graphql) & Partial \\
+KeyVM & 1 (vm) & Minimal \\
+QuantumVM & 1 (vm) & Minimal \\
+ExchangeVM & 10+ & Comprehensive \\
+ThresholdVM & 4 (fhe, lifecycle, protocols) & Good \\
+ZKVM & 1 (vm) & Minimal \\
+AIVM & 0 & None \\
+DexVM & 8+ & Good \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2025 Implementation
+Roadmap}\label{2025-implementation-roadmap}
+
+\subsubsection{Q1 2025 - Critical Path}\label{q1-2025---critical-path}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{BridgeVM MPC Integration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Complete threshold CMP keygen
+  \item
+    Implement signing protocol
+  \item
+    Warp message verification
+  \item
+    Bond verification via P-Chain
+  \end{itemize}
+\item
+  \textbf{ZKVM Circuit Implementation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Integrate gnark or similar
+  \item
+    Trusted setup tooling
+  \item
+    Basic transfer circuit
+  \end{itemize}
+\item
+  \textbf{KeyVM Secret Sharing}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implement Shamir SSS
+  \item
+    Proper AES-GCM encryption
+  \item
+    Database persistence
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Q2 2025 - Feature
+Completion}\label{q2-2025---feature-completion}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{ThresholdVM Production Readiness}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Session cleanup automation
+  \item
+    Key rotation scheduler
+  \item
+    Comprehensive audit logging
+  \end{itemize}
+\item
+  \textbf{GraphVM Authentication}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    API key system
+  \item
+    Rate limiting
+  \item
+    Proper GraphQL parser
+  \end{itemize}
+\item
+  \textbf{AIVM Block Consensus}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Block building implementation
+  \item
+    Task verification
+  \item
+    Result consensus
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Q3 2025 - Hardening}\label{q3-2025---hardening}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  \textbf{QuantumVM Hybrid Finality}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Complete P-Chain integration
+  \item
+    Replay protection
+  \item
+    State persistence
+  \end{itemize}
+\item
+  \textbf{DexVM Transaction Processing}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All transaction types
+  \item
+    State root computation
+  \item
+    WebSocket support
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Q4 2025 - Integration
+Testing}\label{q4-2025---integration-testing}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  \textbf{Cross-Chain Integration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Full 11-chain deployment
+  \item
+    E2E testing suite
+  \item
+    Security audit (external)
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Summary Statistics}\label{summary-statistics}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Metric & Count \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Total VMs Audited & 9 \\
+Production Ready & 1 (ExchangeVM) \\
+Beta Stage & 3 (QuantumVM, ThresholdVM, DexVM) \\
+Alpha Stage & 5 (BridgeVM, GraphVM, KeyVM, ZKVM, AIVM) \\
+Critical Findings & 6 \\
+High Findings & 10 \\
+Medium Findings & 14 \\
+Low Findings & 12 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix: Key File
+Locations}\label{appendix-key-file-locations}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+VM & Primary Files \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+BridgeVM & \texttt{vms/bridgevm/vm.go}, \texttt{block.go},
+\texttt{codec.go}, \texttt{rpc.go} \\
+GraphVM & \texttt{vms/graphvm/vm.go}, \texttt{graphql.go},
+\texttt{dex\_resolvers.go} \\
+KeyVM & \texttt{vms/kchainvm/vm.go}, \texttt{vms/kmsvm/vm.go} \\
+QuantumVM & \texttt{vms/quantumvm/vm.go}, \texttt{quantum/signer.go} \\
+ExchangeVM & \texttt{vms/exchangevm/vm.go}, \texttt{block/},
+\texttt{txs/}, \texttt{state/} \\
+ThresholdVM & \texttt{vms/thresholdvm/vm.go}, \texttt{protocols.go},
+\texttt{fhe/} \\
+ZKVM & \texttt{vms/zkvm/vm.go}, \texttt{proof\_verifier.go},
+\texttt{fhe/} \\
+AIVM & \texttt{vms/aivm/vm.go}, \texttt{service.go} \\
+DexVM & \texttt{vms/dexvm/vm.go}, \texttt{orderbook/},
+\texttt{perpetuals/}, \texttt{liquidity/} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{End of Audit Report}
+
+\end{document}

@@ -1,0 +1,1320 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Treasury Contracts Security
+Audit}\label{treasury-contracts-security-audit}
+
+\textbf{Audit Date:} 2026-01-30 \textbf{Auditor:} Trail of Bits-level
+security review \textbf{Scope:} /contracts/treasury/ (10 contracts)
+\textbf{Solidity Version:} \^{}0.8.31
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This audit identifies \textbf{6 Critical}, \textbf{8 High}, \textbf{12
+Medium}, and \textbf{9 Low} severity findings across the treasury
+contract suite. The most severe issues involve missing access control,
+oracle manipulation vectors, and potential fund loss through rounding
+errors.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Severity & Count & Fixed & Acknowledged \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Critical & 6 & - & - \\
+High & 8 & - & - \\
+Medium & 12 & - & - \\
+Low & 9 & - & - \\
+Info & 5 & - & - \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Critical Findings}\label{critical-findings}
+
+\subsubsection{{[}C-01{]} CollateralRegistry.recordBond() lacks access
+control - Arbitrary bond
+inflation}\label{c-01-collateralregistryrecordbond-lacks-access-control---arbitrary-bond-inflation}
+
+\textbf{File:} CollateralRegistry.sol:266-278 \textbf{Severity:}
+Critical \textbf{Impact:} Fund Loss
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function recordBond(address token, uint256 amount) external \{}
+\NormalTok{    // Note: Should add access control for only authorized bond contracts}
+\NormalTok{    CollateralConfig storage config = collaterals[token];}
+\NormalTok{    if (!config.whitelisted) revert NotWhitelisted(token);}
+\NormalTok{    // ...}
+\NormalTok{    config.totalBonded += amount;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} The \texttt{recordBond()} function has no access
+control. Any address can call it to artificially inflate
+\texttt{totalBonded}, potentially exhausting capacity limits and
+blocking legitimate bonds.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker calls \texttt{recordBond(token,\ maxCapacity)} repeatedly
+\item
+  \texttt{totalBonded} reaches \texttt{maxCapacity}
+\item
+  Legitimate users cannot bond (CapacityExceeded revert)
+\item
+  DoS on bonding mechanism
+\end{enumerate}
+
+\textbf{Recommendation:} Add access control modifier:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mapping(address =\textgreater{} bool) public authorizedBonders;}
+
+\NormalTok{function recordBond(address token, uint256 amount) external \{}
+\NormalTok{    require(authorizedBonders[msg.sender], "Unauthorized");}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}C-02{]} Vault.init() one-time setup has no access
+control - Permanent router
+hijack}\label{c-02-vaultinit-one-time-setup-has-no-access-control---permanent-router-hijack}
+
+\textbf{File:} Vault.sol:87-92 \textbf{Severity:} Critical
+\textbf{Impact:} Fund Loss (permanent)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function init(address \_router) external \{}
+\NormalTok{    if (router != address(0)) revert Invalid();}
+\NormalTok{    if (\_router == address(0)) revert Zero();}
+\NormalTok{    router = \_router;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} The \texttt{init()} function can be called by
+anyone before the legitimate owner sets the router. An attacker can
+front-run deployment and set a malicious router address.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Monitor mempool for Vault deployment
+\item
+  Front-run to call \texttt{init(attackerControlledRouter)}
+\item
+  All \texttt{flush()} and \texttt{flushAll()} operations now require
+  attacker\textquotesingle s approval
+\item
+  Attacker can permanently block fee distribution
+\end{enumerate}
+
+\textbf{Recommendation:} Restrict to deployer or use constructor
+initialization:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{constructor(address \_token, address \_router) \{}
+\NormalTok{    token = IERC20(\_token);}
+\NormalTok{    router = \_router;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}C-03{]} LiquidBond oracle manipulation via stale price
+- Arbitrage
+attack}\label{c-03-liquidbond-oracle-manipulation-via-stale-price---arbitrage-attack}
+
+\textbf{File:} LiquidBond.sol:362-388 \textbf{Severity:} Critical
+\textbf{Impact:} Fund Loss
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_getValueInSats(address token, uint256 amount) internal view returns (uint256) \{}
+\NormalTok{    // ...}
+\NormalTok{    (, int256 tokenPrice,,,) = IPriceFeed(config.priceFeed).latestRoundData();}
+\NormalTok{    // No staleness check on updatedAt}
+\NormalTok{    (, int256 btcPrice,,,) = IPriceFeed(btcPriceFeed).latestRoundData();}
+\NormalTok{    // No staleness check}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} The oracle price fetching ignores
+\texttt{updatedAt} timestamp. Stale prices enable arbitrage attacks.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Oracle stops updating (network congestion, oracle failure)
+\item
+  Real price moves significantly
+\item
+  Attacker bonds at favorable stale rate
+\item
+  Claims ASHA at discount far exceeding intended parameters
+\end{enumerate}
+
+\textbf{Recommendation:} Add staleness checks:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 public constant MAX\_PRICE\_STALENESS = 1 hours;}
+
+\NormalTok{(, int256 tokenPrice,, uint256 updatedAt,) = IPriceFeed(config.priceFeed).latestRoundData();}
+\NormalTok{if (block.timestamp {-} updatedAt \textgreater{} MAX\_PRICE\_STALENESS) revert StalePrice();}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}C-04{]} ProtocolLiquidity LP valuation vulnerable to
+manipulation}\label{c-04-protocolliquidity-lp-valuation-vulnerable-to-manipulation}
+
+\textbf{File:} ProtocolLiquidity.sol:463-480 \textbf{Severity:} Critical
+\textbf{Impact:} Fund Loss
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_getLPValue(address lpToken, uint256 lpAmount) internal view returns (uint256) \{}
+\NormalTok{    (uint112 reserve0, uint112 reserve1,) = pool.getReserves();}
+\NormalTok{    uint256 totalSupply = pool.totalSupply();}
+
+\NormalTok{    uint256 price0 = oracle.getPrice(pool.token0());}
+\NormalTok{    uint256 price1 = oracle.getPrice(pool.token1());}
+
+\NormalTok{    uint256 value0 = uint256(reserve0) * price0 / 1e18;}
+\NormalTok{    uint256 value1 = uint256(reserve1) * price1 / 1e18;}
+\NormalTok{    uint256 totalPoolValue = value0 + value1;}
+
+\NormalTok{    return (totalPoolValue * lpAmount) / totalSupply;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} LP token valuation using spot reserves is
+manipulable via flash loans. Attacker can inflate reserves, bond LP, and
+extract value.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Flash loan large amounts of both tokens
+\item
+  Add liquidity to inflate reserves
+\item
+  Call \texttt{bondLP()} at inflated LP valuation
+\item
+  Receive excessive ASHA
+\item
+  Remove liquidity and repay flash loan
+\item
+  Profit from arbitrage
+\end{enumerate}
+
+\textbf{Recommendation:} Use TWAP oracles or fair LP pricing:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Fair LP price = 2 * sqrt(reserve0 * reserve1) * sqrt(price0 * price1) / totalSupply}
+\NormalTok{function \_getLPValueFair(address lpToken, uint256 lpAmount) internal view returns (uint256) \{}
+\NormalTok{    (uint112 r0, uint112 r1,) = ILiquidityPool(lpToken).getReserves();}
+\NormalTok{    uint256 sqrtK = Math.sqrt(uint256(r0) * uint256(r1));}
+\NormalTok{    uint256 p0 = oracle.getPrice(pool.token0());}
+\NormalTok{    uint256 p1 = oracle.getPrice(pool.token1());}
+\NormalTok{    uint256 sqrtP = Math.sqrt(p0 * p1);}
+\NormalTok{    return (2 * sqrtK * sqrtP * lpAmount) / (pool.totalSupply() * 1e18);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}C-05{]} Recall.sol executeRecall uses safeTransferFrom
+incorrectly}\label{c-05-recallsol-executerecall-uses-safetransferfrom-incorrectly}
+
+\textbf{File:} Recall.sol:175 \textbf{Severity:} Critical
+\textbf{Impact:} Fund Loss / DoS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function executeRecall(uint256 recallId) external onlyParent \{}
+\NormalTok{    // ...}
+\NormalTok{    IERC20(request.token).safeTransferFrom(childSafe, parentSafe, request.amount);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} \texttt{safeTransferFrom()} requires prior
+approval from \texttt{childSafe} to \texttt{Recall} contract. If
+approval is not set, all recalls will fail permanently.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Child DAO does not approve Recall contract
+\item
+  Parent initiates recall
+\item
+  Grace period passes
+\item
+  \texttt{executeRecall()} reverts on missing approval
+\item
+  Funds remain locked (DoS on recall mechanism)
+\end{enumerate}
+
+\textbf{Recommendation:} The comment mentions this requires Safe module
+integration. Either:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Document clearly that Recall must be a Safe module
+\item
+  Use different transfer pattern (pull from Safe via module exec)
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}C-06{]} ValidatorVault reward distribution precision
+loss}\label{c-06-validatorvault-reward-distribution-precision-loss}
+
+\textbf{File:} ValidatorVault.sol:134-148 \textbf{Severity:} Critical
+\textbf{Impact:} Fund Loss (dust accumulation)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_distributeRewards(uint256 amount) internal \{}
+\NormalTok{    if (amount == 0 || totalDelegated == 0) return;}
+
+\NormalTok{    uint256 toReserve = (amount * slashingReserveBps) / BPS;}
+\NormalTok{    slashingReserve += toReserve;}
+
+\NormalTok{    uint256 toDistribute = amount {-} toReserve;}
+
+\NormalTok{    // Precision loss: if toDistribute \textless{} totalDelegated, this rounds to 0}
+\NormalTok{    accRewardPerShare += (toDistribute * 1e18) / totalDelegated;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} When
+\texttt{toDistribute\ *\ 1e18\ \textless{}\ totalDelegated}, the
+division rounds to zero. Small reward amounts become permanently stuck.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Delegator stakes very large amount (e.g., 1e30)
+\item
+  Small rewards (\textless{} 1e12) contribute 0 to accRewardPerShare
+\item
+  These funds remain in contract, never distributed
+\item
+  Over time, significant dust accumulation
+\end{enumerate}
+
+\textbf{Recommendation:} Track undistributed dust:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 public undistributedRewards;}
+
+\NormalTok{function \_distributeRewards(uint256 amount) internal \{}
+\NormalTok{    // ...}
+\NormalTok{    uint256 distributedPerShare = (toDistribute * 1e18) / totalDelegated;}
+\NormalTok{    uint256 actualDistributed = (distributedPerShare * totalDelegated) / 1e18;}
+\NormalTok{    undistributedRewards += toDistribute {-} actualDistributed;}
+\NormalTok{    accRewardPerShare += distributedPerShare;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{High Findings}\label{high-findings}
+
+\subsubsection{{[}H-01{]} Bond.sol token calculation can overflow with
+extreme
+parameters}\label{h-01-bondsol-token-calculation-can-overflow-with-extreme-parameters}
+
+\textbf{File:} Bond.sol:142 \textbf{Severity:} High \textbf{Impact:}
+Incorrect token allocation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 tokensOwed = (amount * bond.tokensToMint * (10000 + bond.discount)) / (bond.targetRaise * 10000);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} With large \texttt{amount}, \texttt{tokensToMint},
+and \texttt{discount}, the multiplication can exceed uint256.
+
+\textbf{PoC:}
+
+\begin{itemize}
+\tightlist
+\item
+  amount = 1e24 (1M tokens with 18 decimals)
+\item
+  tokensToMint = 1e26
+\item
+  discount = 9000 (90\%)
+\item
+  Multiplication: 1e24 * 1e26 * 19000 = 1.9e54 (overflow)
+\end{itemize}
+
+\textbf{Recommendation:} Use intermediate calculations or mulDiv:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 discountMultiplier = 10000 + bond.discount;}
+\NormalTok{uint256 tokensOwed = (amount * discountMultiplier).mulDiv(bond.tokensToMint, bond.targetRaise * 10000);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}H-02{]} LiquidBond.\_swapCollateral approves without
+checking existing
+approval}\label{h-02-liquidbond_swapcollateral-approves-without-checking-existing-approval}
+
+\textbf{File:} LiquidBond.sol:401-414 \textbf{Severity:} High
+\textbf{Impact:} Approval race condition
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_swapCollateral(...) internal returns (address, uint256) \{}
+\NormalTok{    // ...}
+\NormalTok{    IERC20(tokenIn).safeTransferFrom(msg.sender, address(this), amountIn);}
+\NormalTok{    IERC20(tokenIn).approve(router, amountIn);  // Does not reset to 0 first}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Some tokens (USDT) require approval to be set to 0
+before changing. This can cause swap to revert.
+
+\textbf{Recommendation:} Use \texttt{forceApprove} or reset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IERC20(tokenIn).forceApprove(router, amountIn);}
+\NormalTok{// After swap:}
+\NormalTok{IERC20(tokenIn).forceApprove(router, 0);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}H-03{]} Router weight changes during pending
+distribution cause fund
+mismatch}\label{h-03-router-weight-changes-during-pending-distribution-cause-fund-mismatch}
+
+\textbf{File:} Router.sol:78-90, 122-145 \textbf{Severity:} High
+\textbf{Impact:} Incorrect distribution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function set(address recipient, uint256 \_weight) external onlyOwner \{}
+\NormalTok{    // Can change weight anytime}
+\NormalTok{    weight[recipient] = \_weight;}
+\NormalTok{\}}
+
+\NormalTok{function distribute(bytes32[] calldata chains) external returns (uint256 amount) \{}
+\NormalTok{    // Uses current weights}
+\NormalTok{    uint256 share = (amount * w) / BASE;}
+\NormalTok{    owed[recipient] += share;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} If weights are changed between
+\texttt{distribute()} calls, the total distributed may not equal the
+total received due to rounding with different weight distributions.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Funds flush, waiting to distribute
+\item
+  Governance changes weights mid-epoch
+\item
+  Some funds distributed at old weights, some at new
+\item
+  Total \texttt{owed} does not match actual balance
+\end{enumerate}
+
+\textbf{Recommendation:} Checkpoint weights per distribution cycle or
+require weights sum validation before distribution.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}H-04{]} Router.setBatch does not remove old
+recipients}\label{h-04-routersetbatch-does-not-remove-old-recipients}
+
+\textbf{File:} Router.sol:95-115 \textbf{Severity:} High
+\textbf{Impact:} Incorrect weight distribution
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function setBatch(address[] calldata recipients, uint256[] calldata weightValues) external onlyOwner \{}
+\NormalTok{    // Only validates new recipients sum to 10000}
+\NormalTok{    // Old recipients in list still have non{-}zero weights}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} \texttt{setBatch} requires weights sum to BASE but
+does not zero out previous recipients. Old recipients retain their
+weights.
+
+\textbf{Recommendation:} Zero all weights before setting new ones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function setBatch(...) external onlyOwner \{}
+\NormalTok{    // Zero existing weights}
+\NormalTok{    for (uint256 i = 0; i \textless{} list.length; i++) \{}
+\NormalTok{        weight[list[i]] = 0;}
+\NormalTok{    \}}
+\NormalTok{    // Set new weights}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}H-05{]} Collect.sol sync() lacks Warp verification -
+Fake settings
+injection}\label{h-05-collectsol-sync-lacks-warp-verification---fake-settings-injection}
+
+\textbf{File:} Collect.sol:70-80 \textbf{Severity:} High
+\textbf{Impact:} Arbitrary fee rate manipulation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function sync(uint16 \_rate, uint32 \_version) external \{}
+\NormalTok{    // TODO: Verify Warp proof from C{-}Chain FeeGov}
+\NormalTok{    // WarpLib.verifyFrom(cchain, abi.encode(\_rate, \_version));}
+
+\NormalTok{    if (\_version \textless{}= version) revert Stale();}
+\NormalTok{    rate = \_rate;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} The TODO indicates Warp verification is not
+implemented. Anyone can call \texttt{sync()} with arbitrary rates.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker calls \texttt{sync(0,\ currentVersion\ +\ 1)}
+\item
+  Fee rate set to 0\%
+\item
+  Protocol loses all fee revenue
+\end{enumerate}
+
+\textbf{Recommendation:} Implement Warp verification before deployment
+or add temporary access control.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}H-06{]} ValidatorVault.forwardRewardsToLiquidLUX is
+permissionless}\label{h-06-validatorvaultforwardrewardstoliquidlux-is-permissionless}
+
+\textbf{File:} ValidatorVault.sol:157-180 \textbf{Severity:} High
+\textbf{Impact:} Timing manipulation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function forwardRewardsToLiquidLUX() external nonReentrant \{}
+\NormalTok{    // Anyone can call}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Permissionless forwarding allows MEV bots to
+front-run reward accumulation, potentially affecting LiquidLUX share
+pricing.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Large reward deposit incoming
+\item
+  Attacker front-runs with \texttt{forwardRewardsToLiquidLUX()} at bad
+  timing
+\item
+  Manipulates LiquidLUX reward distribution timing
+\end{enumerate}
+
+\textbf{Recommendation:} Add keeper role or minimum accumulation
+threshold:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 public minForwardAmount = 1e18;}
+
+\NormalTok{function forwardRewardsToLiquidLUX() external nonReentrant \{}
+\NormalTok{    uint256 forwardable = ...;}
+\NormalTok{    require(forwardable \textgreater{}= minForwardAmount, "Below minimum");}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}H-07{]} Bond.sol AlreadyPurchased prevents legitimate
+second
+purchases}\label{h-07-bondsol-alreadypurchased-prevents-legitimate-second-purchases}
+
+\textbf{File:} Bond.sol:138 \textbf{Severity:} High \textbf{Impact:}
+Functionality limitation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (purchases[bondId][msg.sender].paymentAmount \textgreater{} 0) revert AlreadyPurchased();}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Users cannot purchase additional bonds in the same
+offering, even if under maxPurchase limit.
+
+\textbf{Recommendation:} Allow multiple purchases up to maxPurchase:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 totalPurchased = purchases[bondId][msg.sender].paymentAmount + amount;}
+\NormalTok{if (totalPurchased \textgreater{} bond.maxPurchase) revert AmountTooHigh();}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}H-08{]} LiquidBond epoch limit bypass via contract
+deployment}\label{h-08-liquidbond-epoch-limit-bypass-via-contract-deployment}
+
+\textbf{File:} LiquidBond.sol:267-271 \textbf{Severity:} High
+\textbf{Impact:} Rate limit bypass
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 userEpochTotal = userEpochBonds[currentEpoch][msg.sender] + collateralValueSats;}
+\NormalTok{if (userEpochTotal \textgreater{} maxBondPerAddress) \{}
+\NormalTok{    revert ExceedsMaxBond(userEpochTotal, maxBondPerAddress);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Sybil attack via multiple addresses or contracts
+bypasses per-address limits.
+
+\textbf{Recommendation:} This is a known limitation. Consider:
+
+\begin{itemize}
+\tightlist
+\item
+  Whitelist-only bonding
+\item
+  KYC integration
+\item
+  Time-weighted bonding limits
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Medium Findings}\label{medium-findings}
+
+\subsubsection{{[}M-01{]} Bond.sol getActiveBonds() unbounded loop -
+DoS}\label{m-01-bondsol-getactivebonds-unbounded-loop---dos}
+
+\textbf{File:} Bond.sol:227-240 \textbf{Severity:} Medium
+\textbf{Impact:} DoS on view functions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function getActiveBonds() external view returns (uint256[] memory ids) \{}
+\NormalTok{    for (uint256 i = 0; i \textless{} nextBondId; i++) \{}
+\NormalTok{        if (bonds[i].active) count++;}
+\NormalTok{    \}}
+\NormalTok{    // Second loop}
+\NormalTok{    for (uint256 i = 0; i \textless{} nextBondId; i++) \{}
+\NormalTok{        if (bonds[i].active) \{}
+\NormalTok{            ids[j++] = i;}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Two unbounded loops over all bonds. Gas cost grows
+linearly with total bonds ever created.
+
+\textbf{Recommendation:} Maintain active bond list separately or
+paginate.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-02{]} Recall balance tracking desync from actual
+Safe
+balance}\label{m-02-recall-balance-tracking-desync-from-actual-safe-balance}
+
+\textbf{File:} Recall.sol:101-128 \textbf{Severity:} Medium
+\textbf{Impact:} Accounting mismatch
+
+\textbf{Description:} \texttt{allocatedBalance} and
+\texttt{bondedBalance} are manually updated via \texttt{recordFunding()}
+and \texttt{recordSpending()}. If the Safe executes transactions not
+through this interface, balances desync.
+
+\textbf{Recommendation:} Consider reading actual token balance or
+implementing as Safe Guard module.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-03{]} FeeGov version overflow after
+\textasciitilde4B
+updates}\label{m-03-feegov-version-overflow-after-4b-updates}
+
+\textbf{File:} FeeGov.sol:69 \textbf{Severity:} Medium \textbf{Impact:}
+Staleness check bypass
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{unchecked \{ version++; \}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} uint32 overflows after 4,294,967,295 updates.
+After overflow, new versions appear "stale."
+
+\textbf{Recommendation:} Use uint64 or add overflow check.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-04{]} ProtocolLiquidity position index
+collision}\label{m-04-protocolliquidity-position-index-collision}
+
+\textbf{File:} ProtocolLiquidity.sol:282, 321 \textbf{Severity:} Medium
+\textbf{Impact:} Position management confusion
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{positionId = userPositionCount[msg.sender]++;}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Position IDs increment globally per user across LP
+and single-sided deposits. This is not inherently wrong but may cause
+confusion.
+
+\textbf{Recommendation:} Use separate counters or encode position type
+in ID.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-05{]} Vault.receive\_ permissionless relay without
+Warp
+verification}\label{m-05-vaultreceive_-permissionless-relay-without-warp-verification}
+
+\textbf{File:} Vault.sol:65-82 \textbf{Severity:} Medium
+\textbf{Impact:} Fake fee inflation (with token requirement)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function receive\_(bytes32 chain, uint256 amount, bytes32 warpId) external \{}
+\NormalTok{    // TODO: Verify Warp proof via precompile}
+\NormalTok{    token.safeTransferFrom(msg.sender, address(this), amount);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} While requiring actual tokens mitigates fake
+inflation, accounting per chain can be manipulated without Warp
+verification.
+
+\textbf{Recommendation:} Implement Warp verification.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-06{]} ValidatorVault slash() incomplete
+implementation}\label{m-06-validatorvault-slash-incomplete-implementation}
+
+\textbf{File:} ValidatorVault.sol:378-382 \textbf{Severity:} Medium
+\textbf{Impact:} Slashing non-functional
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function slash(bytes32 validatorId, uint256 amount) external onlyOwner \{}
+\NormalTok{    require(amount \textless{}= slashingReserve, "Insufficient reserve");}
+\NormalTok{    slashingReserve {-}= amount;}
+\NormalTok{    // Slashing logic {-} redistribute to affected delegators}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Slashing deducts from reserve but does not
+redistribute to affected delegators as commented.
+
+\textbf{Recommendation:} Implement full slashing logic or remove
+function.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-07{]} LiquidBond.claimAll unbounded
+loop}\label{m-07-liquidbondclaimall-unbounded-loop}
+
+\textbf{File:} LiquidBond.sol:333-350 \textbf{Severity:} Medium
+\textbf{Impact:} DoS for users with many purchases
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function claimAll() external nonReentrant \{}
+\NormalTok{    for (uint256 i = 0; i \textless{} purchases.length; i++) \{}
+\NormalTok{        // ...}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Users with many purchases may hit gas limits.
+
+\textbf{Recommendation:} Add pagination or limit claims per tx.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-08{]} Router distribute() rounding
+loss}\label{m-08-router-distribute-rounding-loss}
+
+\textbf{File:} Router.sol:137 \textbf{Severity:} Medium \textbf{Impact:}
+Dust accumulation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 share = (amount * w) / BASE;}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Division truncation leaves dust in router. Over
+time, this accumulates.
+
+\textbf{Recommendation:} Track and redistribute dust:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 distributed;}
+\NormalTok{for (...) \{}
+\NormalTok{    uint256 share = (amount * w) / BASE;}
+\NormalTok{    owed[recipient] += share;}
+\NormalTok{    distributed += share;}
+\NormalTok{\}}
+\NormalTok{uint256 dust = amount {-} distributed;}
+\NormalTok{// Add dust to highest weight recipient or reserve}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-09{]} CollateralRegistry tier discount can exceed
+100\%}\label{m-09-collateralregistry-tier-discount-can-exceed-100}
+
+\textbf{File:} CollateralRegistry.sol:104-107, 301 \textbf{Severity:}
+Medium \textbf{Impact:} Excessive discounts
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tierBaseDiscount[RiskTier.TIER\_1] = 2500;  // 25\%}
+\NormalTok{// Plus discountBonus with no cap}
+
+\NormalTok{function getDiscount(address token) external view returns (uint256) \{}
+\NormalTok{    return tierBaseDiscount[config.tier] + config.discountBonus;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Total discount (tierBase + bonus) can exceed 10000
+BPS (100\%), resulting in undefined behavior in bond calculations.
+
+\textbf{Recommendation:} Cap total discount:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function getDiscount(address token) external view returns (uint256) \{}
+\NormalTok{    uint256 total = tierBaseDiscount[config.tier] + config.discountBonus;}
+\NormalTok{    return total \textgreater{} MAX\_TOTAL\_DISCOUNT ? MAX\_TOTAL\_DISCOUNT : total;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-10{]} Bond.sol no mechanism to recover unminted
+tokens}\label{m-10-bondsol-no-mechanism-to-recover-unminted-tokens}
+
+\textbf{File:} Bond.sol \textbf{Severity:} Medium \textbf{Impact:} Stuck
+value
+
+\textbf{Description:} If \texttt{IMintable(identityToken).mint()}
+reverts (e.g., max supply reached), users cannot claim tokens. No
+recovery mechanism exists.
+
+\textbf{Recommendation:} Add emergency claim mechanism or pre-validate
+mintability.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-11{]} ProtocolLiquidity oracle address(0) check
+missing in
+constructor}\label{m-11-protocolliquidity-oracle-address0-check-missing-in-constructor}
+
+\textbf{File:} ProtocolLiquidity.sol:150-159 \textbf{Severity:} Medium
+\textbf{Impact:} Deployment failure mode
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{constructor(...) \{}
+\NormalTok{    oracle = IPriceOracle(oracle\_);  // No zero check}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Add validation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(oracle\_ != address(0), "Invalid oracle");}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}M-12{]} ValidatorVault commission can be changed after
+delegation}\label{m-12-validatorvault-commission-can-be-changed-after-delegation}
+
+\textbf{File:} ValidatorVault.sol:232-245 \textbf{Severity:} Medium
+\textbf{Impact:} Unexpected fee changes
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function updateValidator(bytes32 validatorId, uint256 commissionBps, bool active) external onlyOwner \{}
+\NormalTok{    v.commissionBps = commissionBps;  // Applies to existing delegators}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description:} Commission changes affect existing delegators
+retroactively.
+
+\textbf{Recommendation:} Apply commission changes only to new
+delegations or with time delay.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Low Findings}\label{low-findings}
+
+\subsubsection{{[}L-01{]} Missing zero-address checks in
+constructors}\label{l-01-missing-zero-address-checks-in-constructors}
+
+\textbf{Files:} Multiple contracts \textbf{Severity:} Low
+
+Bond.sol, LiquidBond.sol, Vault.sol constructors accept addresses
+without validation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-02{]} Events emitted before state
+changes}\label{l-02-events-emitted-before-state-changes}
+
+\textbf{File:} Bond.sol:159, ValidatorVault.sol:268 \textbf{Severity:}
+Low
+
+Events should be emitted after all state changes for consistency.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-03{]} Magic numbers without
+constants}\label{l-03-magic-numbers-without-constants}
+
+\textbf{File:} Multiple \textbf{Severity:} Low
+
+Values like \texttt{10000}, \texttt{1e18} should be named constants.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-04{]} Lack of two-step ownership
+transfer}\label{l-04-lack-of-two-step-ownership-transfer}
+
+\textbf{Files:} All Ownable contracts \textbf{Severity:} Low
+
+Single-step ownership transfer risks losing control if wrong address
+specified.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-05{]} FeeGov list never
+shrinks}\label{l-05-feegov-list-never-shrinks}
+
+\textbf{File:} FeeGov.sol:89-93 \textbf{Severity:} Low
+
+\texttt{remove()} sets \texttt{chains{[}id{]}\ =\ false} but does not
+remove from \texttt{list{[}{]}}. Gas cost increases over time.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-06{]} ValidatorVault delegations array never shrinks
+efficiently}\label{l-06-validatorvault-delegations-array-never-shrinks-efficiently}
+
+\textbf{File:} ValidatorVault.sol:298-300 \textbf{Severity:} Low
+
+Swap-and-pop changes array order, potentially confusing off-chain
+indexers.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-07{]} Missing natspec on public
+functions}\label{l-07-missing-natspec-on-public-functions}
+
+\textbf{Files:} Multiple \textbf{Severity:} Low
+
+Many public functions lack documentation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-08{]} Inconsistent error naming
+conventions}\label{l-08-inconsistent-error-naming-conventions}
+
+\textbf{Files:} Multiple \textbf{Severity:} Low
+
+Some errors are single words (\texttt{Zero}, \texttt{Invalid}), others
+are descriptive (\texttt{BondNotActive}).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}L-09{]} No event for LiquidBond epoch
+advancement}\label{l-09-no-event-for-liquidbond-epoch-advancement}
+
+\textbf{File:} LiquidBond.sol:435-441 \textbf{Severity:} Low
+
+Event exists but is only emitted on manual advancement, not automatic.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Informational}\label{informational}
+
+\subsubsection{{[}I-01{]} TODO comments in production
+code}\label{i-01-todo-comments-in-production-code}
+
+\textbf{Files:} Vault.sol:69-70, Collect.sol:71-72, FeeGov.sol:104
+
+TODO comments indicate incomplete Warp verification. Remove or implement
+before mainnet.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}I-02{]} Unused imports}\label{i-02-unused-imports}
+
+Multiple files import but do not use all symbols.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}I-03{]} Consider using custom errors
+throughout}\label{i-03-consider-using-custom-errors-throughout}
+
+Some contracts mix \texttt{require()} strings with custom errors.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{{[}I-04{]} Gas optimization: use
+\texttt{unchecked} for safe
+increments}{{[}I-04{]} Gas optimization: use unchecked for safe increments}}\label{i-04-gas-optimization-use-unchecked-for-safe-increments}
+
+Multiple loops use checked arithmetic for iterator increment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}I-05{]} Consider EIP-712 for off-chain
+signatures}\label{i-05-consider-eip-712-for-off-chain-signatures}
+
+For future features requiring signatures, implement EIP-712.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Recommendations Summary}\label{recommendations-summary}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Immediate (pre-deployment):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implement Warp verification in Vault, Collect, FeeGov
+  \item
+    Add access control to CollateralRegistry.recordBond()
+  \item
+    Fix Vault.init() access control
+  \item
+    Add oracle staleness checks in LiquidBond
+  \item
+    Fix LP valuation in ProtocolLiquidity (use fair pricing)
+  \end{itemize}
+\item
+  \textbf{High Priority:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Review Recall.sol transfer mechanism (Safe module integration)
+  \item
+    Add precision loss tracking in ValidatorVault
+  \item
+    Fix Router weight management
+  \end{itemize}
+\item
+  \textbf{Medium Priority:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add pagination to unbounded loops
+  \item
+    Implement complete slashing logic
+  \item
+    Add dust recovery mechanisms
+  \end{itemize}
+\item
+  \textbf{Best Practices:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Two-step ownership transfers
+  \item
+    Comprehensive natspec documentation
+  \item
+    Remove TODO comments
+  \item
+    Consistent error naming
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix: Attack Scenarios}\label{appendix-attack-scenarios}
+
+\subsubsection{Scenario A: Bond Protocol Drain via Oracle
+Manipulation}\label{scenario-a-bond-protocol-drain-via-oracle-manipulation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker identifies stale oracle price
+\item
+  Real ETH price: \$3000, Oracle price: \$2000 (stale)
+\item
+  Attacker bonds 100 ETH at \$2000 valuation
+\item
+  Receives ASHA worth \$200,000 + discount
+\item
+  Real value contributed: \$300,000
+\item
+  Loss to protocol: \$100,000+ per bond
+\end{enumerate}
+
+\subsubsection{Scenario B: LP Valuation
+Attack}\label{scenario-b-lp-valuation-attack}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Flash loan 10M USDC and 3000 ETH
+\item
+  Add liquidity to ASHA/ETH pool (massive reserve increase)
+\item
+  Bond LP at inflated valuation
+\item
+  Remove liquidity
+\item
+  Repay flash loan
+\item
+  Net profit: difference in ASHA received vs fair value
+\end{enumerate}
+
+\subsubsection{Scenario C: Router Privilege
+Escalation}\label{scenario-c-router-privilege-escalation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Monitor for Vault deployment
+\item
+  Front-run init() with attacker-controlled router
+\item
+  Attacker can now:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Block all fee distribution (DoS)
+  \item
+    Redirect fees via malicious weight setting
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Audit Report}
+
+\end{document}

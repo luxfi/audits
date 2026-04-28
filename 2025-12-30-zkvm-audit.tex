@@ -1,0 +1,1160 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{ZKVM (Z-Chain) Security Audit
+Report}\label{zkvm-z-chain-security-audit-report}
+
+\textbf{Date}: 2025-12-30\\
+\textbf{Auditor}: CTO Audit System\\
+\textbf{Scope}: \texttt{/Users/z/work/lux/node/vms/zkvm/}\\
+\textbf{Version}: 1.0.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The ZKVM (Z-Chain) is a zero-knowledge proof chain implementing
+confidential transactions, shielded UTXOs, FHE (Fully Homomorphic
+Encryption), and threshold decryption. This audit covers ZK circuits,
+proof verification, FHE integration, GPU acceleration, and privacy
+features.
+
+\textbf{Overall Risk Level}: MEDIUM-HIGH
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Category & Status & Critical & High & Medium & Low \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ZK Circuits & Partial Implementation & 1 & 2 & 3 & 2 \\
+FHE Integration & Implemented & 0 & 2 & 4 & 3 \\
+Proof Verification & Stubbed & 2 & 3 & 2 & 1 \\
+Privacy Features & Implemented & 1 & 2 & 3 & 2 \\
+GPU Acceleration & Partial & 0 & 1 & 2 & 2 \\
+\textbf{TOTAL} & & \textbf{4} & \textbf{10} & \textbf{14} &
+\textbf{10} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. ZK Circuit Analysis}\label{1-zk-circuit-analysis}
+
+\subsubsection{1.1 Proof Systems
+Supported}\label{11-proof-systems-supported}
+
+\textbf{Location}: \texttt{proof\_verifier.go}, \texttt{accel/types.go}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Supported proof types (line 87{-}96, proof\_verifier.go)}
+\ControlFlowTok{switch}\NormalTok{ tx}\OperatorTok{.}\NormalTok{Proof}\OperatorTok{.}\NormalTok{ProofType }\OperatorTok{\{}
+\ControlFlowTok{case} \StringTok{"groth16"}\OperatorTok{:}
+\NormalTok{    err }\OperatorTok{=}\NormalTok{ pv}\OperatorTok{.}\NormalTok{verifyGroth16Proof}\OperatorTok{(}\NormalTok{tx}\OperatorTok{)}
+\ControlFlowTok{case} \StringTok{"plonk"}\OperatorTok{:}
+\NormalTok{    err }\OperatorTok{=}\NormalTok{ pv}\OperatorTok{.}\NormalTok{verifyPLONKProof}\OperatorTok{(}\NormalTok{tx}\OperatorTok{)}
+\ControlFlowTok{case} \StringTok{"bulletproofs"}\OperatorTok{:}
+\NormalTok{    err }\OperatorTok{=}\NormalTok{ pv}\OperatorTok{.}\NormalTok{verifyBulletproof}\OperatorTok{(}\NormalTok{tx}\OperatorTok{)}
+\ControlFlowTok{default}\OperatorTok{:}
+\NormalTok{    err }\OperatorTok{=}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"unsupported proof type"}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{1.2 CRITICAL: Proof Verification is
+Simulated}\label{12-critical-proof-verification-is-simulated}
+
+\textbf{Severity}: CRITICAL\\
+\textbf{Location}: \texttt{proof\_verifier.go:124-154}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// CRITICAL: This is NOT actual cryptographic verification}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{pv }\OperatorTok{*}\NormalTok{ProofVerifier}\OperatorTok{)}\NormalTok{ verifyGroth16Proof}\OperatorTok{(}\NormalTok{tx }\OperatorTok{*}\NormalTok{Transaction}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// Simulate proof verification time}
+\NormalTok{    time}\OperatorTok{.}\NormalTok{Sleep}\OperatorTok{(}\DecValTok{10} \OperatorTok{*}\NormalTok{ time}\OperatorTok{.}\NormalTok{Millisecond}\OperatorTok{)}  \CommentTok{// \textless{}{-}{-} SIMULATED}
+    
+    \CommentTok{// In production: pairing check}
+    \CommentTok{// For now, basic validation}
+    \ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{tx}\OperatorTok{.}\NormalTok{Proof}\OperatorTok{.}\NormalTok{ProofData}\OperatorTok{)} \OperatorTok{\textless{}} \DecValTok{256} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"invalid proof data length"}\OperatorTok{)}
+    \OperatorTok{\}}
+    \CommentTok{// ... No actual BLS12{-}381 pairing check}
+    \ControlFlowTok{return} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Any malformed proof with length \textgreater= 256 bytes
+passes verification.
+
+\textbf{Recommendation}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Integrate actual Groth16 verifier from
+  \texttt{github.com/luxfi/crypto} or gnark
+\item
+  Implement BLS12-381 pairing checks for Groth16
+\item
+  Use KZG commitments for PLONK verification
+\item
+  Consider STARK verifier for transparency (no trusted setup)
+\end{enumerate}
+
+\subsubsection{1.3 HIGH: No Trusted Setup
+Validation}\label{13-high-no-trusted-setup-validation}
+
+\textbf{Severity}: HIGH\\
+\textbf{Location}: \texttt{block.go:282-292}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ SetupParams }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    PowersOfTau       }\OperatorTok{[]}\DataTypeTok{byte} \StringTok{\textasciigrave{}json:"powersOfTau,omitempty"\textasciigrave{}}
+\NormalTok{    VerifyingKey      }\OperatorTok{[]}\DataTypeTok{byte} \StringTok{\textasciigrave{}json:"verifyingKey,omitempty"\textasciigrave{}}
+\NormalTok{    PlonkSRS          }\OperatorTok{[]}\DataTypeTok{byte} \StringTok{\textasciigrave{}json:"plonkSRS,omitempty"\textasciigrave{}}
+\NormalTok{    FHEPublicParams   }\OperatorTok{[]}\DataTypeTok{byte} \StringTok{\textasciigrave{}json:"fhePublicParams,omitempty"\textasciigrave{}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  No validation of powers of tau
+\item
+  No subgroup checks on elliptic curve points
+\item
+  No verification that VK matches circuit
+\item
+  Setup parameters stored as raw bytes without integrity checks
+\end{itemize}
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ SetupParams }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    PowersOfTau       }\OperatorTok{[]}\DataTypeTok{byte} \StringTok{\textasciigrave{}json:"powersOfTau"\textasciigrave{}}
+\NormalTok{    PowersOfTauHash   }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte} \StringTok{\textasciigrave{}json:"powersOfTauHash"\textasciigrave{}}  \CommentTok{// SHA256 commitment}
+\NormalTok{    CeremonyTxID      ids}\OperatorTok{.}\NormalTok{ID }\StringTok{\textasciigrave{}json:"ceremonyTxId"\textasciigrave{}}       \CommentTok{// On{-}chain reference}
+\NormalTok{    VerifyingKey      }\OperatorTok{*}\NormalTok{groth16}\OperatorTok{.}\NormalTok{VerifyingKey }\StringTok{\textasciigrave{}json:"verifyingKey"\textasciigrave{}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{1.4 MEDIUM: Verifying Keys Not Cryptographically
+Loaded}\label{14-medium-verifying-keys-not-cryptographically-loaded}
+
+\textbf{Severity}: MEDIUM\\
+\textbf{Location}: \texttt{proof\_verifier.go:238-258}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{pv }\OperatorTok{*}\NormalTok{ProofVerifier}\OperatorTok{)}\NormalTok{ loadVerifyingKeys}\OperatorTok{()} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// In production, load from files or embedded data}
+    \CommentTok{// For now, create dummy keys}
+\NormalTok{    pv}\OperatorTok{.}\NormalTok{verifyingKeys}\OperatorTok{[}\DataTypeTok{string}\OperatorTok{(}\NormalTok{TransactionTypeTransfer}\OperatorTok{)]} \OperatorTok{=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DecValTok{1024}\OperatorTok{)}  \CommentTok{// DUMMY}
+\NormalTok{    pv}\OperatorTok{.}\NormalTok{verifyingKeys}\OperatorTok{[}\DataTypeTok{string}\OperatorTok{(}\NormalTok{TransactionTypeShield}\OperatorTok{)]} \OperatorTok{=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DecValTok{1024}\OperatorTok{)}    \CommentTok{// DUMMY}
+\NormalTok{    pv}\OperatorTok{.}\NormalTok{verifyingKeys}\OperatorTok{[}\DataTypeTok{string}\OperatorTok{(}\NormalTok{TransactionTypeUnshield}\OperatorTok{)]} \OperatorTok{=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DecValTok{1024}\OperatorTok{)}  \CommentTok{// DUMMY}
+    \ControlFlowTok{return} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation}: Load actual verifying keys and validate curve
+point membership.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. FHE Integration
+Analysis}\label{2-fhe-integration-analysis}
+
+\subsubsection{2.1 CKKS Scheme
+Implementation}\label{21-ckks-scheme-implementation}
+
+\textbf{Location}: \texttt{fhe/processor.go}, \texttt{fhe/operations.go}
+
+The FHE implementation uses luxfi/lattice with CKKS scheme:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Default parameters (line 46{-}55, processor.go)}
+\KeywordTok{func}\NormalTok{ DefaultConfig}\OperatorTok{()}\NormalTok{ Config }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ Config}\OperatorTok{\{}
+\NormalTok{        LogN}\OperatorTok{:}            \DecValTok{14}\OperatorTok{,}                              \CommentTok{// 2\^{}14 = 16384 slots}
+\NormalTok{        LogQ}\OperatorTok{:}            \OperatorTok{[]}\DataTypeTok{int}\OperatorTok{\{}\DecValTok{55}\OperatorTok{,} \DecValTok{45}\OperatorTok{,} \DecValTok{45}\OperatorTok{,} \DecValTok{45}\OperatorTok{,} \DecValTok{45}\OperatorTok{,} \DecValTok{45}\OperatorTok{,} \DecValTok{45}\OperatorTok{,} \DecValTok{45}\OperatorTok{\},} \CommentTok{// 8 levels}
+\NormalTok{        LogP}\OperatorTok{:}            \OperatorTok{[]}\DataTypeTok{int}\OperatorTok{\{}\DecValTok{61}\OperatorTok{,} \DecValTok{61}\OperatorTok{\},}                   \CommentTok{// Key{-}switching modulus}
+\NormalTok{        LogDefaultScale}\OperatorTok{:} \DecValTok{45}\OperatorTok{,}                              \CommentTok{// 45{-}bit precision}
+\NormalTok{        Threshold}\OperatorTok{:}       \DecValTok{67}\OperatorTok{,}                              \CommentTok{// 67{-}of{-}100 threshold (2/3)}
+\NormalTok{        MaxOperations}\OperatorTok{:}   \DecValTok{6}\OperatorTok{,}                               \CommentTok{// 6 mults before bootstrap}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Security Level}: 128-bit (adequate for 2025)
+
+\subsubsection{2.2 HIGH: No Ciphertext Freshness/Validity
+Checks}\label{22-high-no-ciphertext-freshnessvalidity-checks}
+
+\textbf{Severity}: HIGH\\
+\textbf{Location}: \texttt{fhe/operations.go:464-472}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{p }\OperatorTok{*}\NormalTok{Processor}\OperatorTok{)}\NormalTok{ checkOperands}\OperatorTok{(}\NormalTok{a}\OperatorTok{,}\NormalTok{ b }\OperatorTok{*}\NormalTok{Ciphertext}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ a }\OperatorTok{==} \OtherTok{nil} \OperatorTok{||}\NormalTok{ a}\OperatorTok{.}\NormalTok{Ct }\OperatorTok{==} \OtherTok{nil} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"first operand is nil"}\OperatorTok{)}
+    \OperatorTok{\}}
+    \ControlFlowTok{if}\NormalTok{ b }\OperatorTok{==} \OtherTok{nil} \OperatorTok{||}\NormalTok{ b}\OperatorTok{.}\NormalTok{Ct }\OperatorTok{==} \OtherTok{nil} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"second operand is nil"}\OperatorTok{)}
+    \OperatorTok{\}}
+    \ControlFlowTok{return} \OtherTok{nil}  \CommentTok{// No level check, no noise budget check}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  No check if ciphertext noise is within acceptable bounds
+\item
+  No verification that ciphertexts belong to same key
+\item
+  No level compatibility check before operations
+\end{itemize}
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{p }\OperatorTok{*}\NormalTok{Processor}\OperatorTok{)}\NormalTok{ checkOperands}\OperatorTok{(}\NormalTok{a}\OperatorTok{,}\NormalTok{ b }\OperatorTok{*}\NormalTok{Ciphertext}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ a }\OperatorTok{==} \OtherTok{nil} \OperatorTok{||}\NormalTok{ a}\OperatorTok{.}\NormalTok{Ct }\OperatorTok{==} \OtherTok{nil} \OperatorTok{||}\NormalTok{ b }\OperatorTok{==} \OtherTok{nil} \OperatorTok{||}\NormalTok{ b}\OperatorTok{.}\NormalTok{Ct }\OperatorTok{==} \OtherTok{nil} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"nil operand"}\OperatorTok{)}
+    \OperatorTok{\}}
+    \ControlFlowTok{if}\NormalTok{ a}\OperatorTok{.}\NormalTok{Ct}\OperatorTok{.}\NormalTok{Level}\OperatorTok{()} \OperatorTok{\textless{}} \DecValTok{1} \OperatorTok{||}\NormalTok{ b}\OperatorTok{.}\NormalTok{Ct}\OperatorTok{.}\NormalTok{Level}\OperatorTok{()} \OperatorTok{\textless{}} \DecValTok{1} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"insufficient levels {-} refresh required"}\OperatorTok{)}
+    \OperatorTok{\}}
+    \CommentTok{// Add noise estimation check}
+    \ControlFlowTok{if}\NormalTok{ p}\OperatorTok{.}\NormalTok{estimateNoise}\OperatorTok{(}\NormalTok{a}\OperatorTok{.}\NormalTok{Ct}\OperatorTok{)} \OperatorTok{\textgreater{}}\NormalTok{ p}\OperatorTok{.}\NormalTok{config}\OperatorTok{.}\NormalTok{MaxNoiseThreshold }\OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"noise budget exceeded"}\OperatorTok{)}
+    \OperatorTok{\}}
+    \ControlFlowTok{return} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{2.3 MEDIUM: CKKS Approximate Comparison Vulnerable to
+Precision
+Errors}\label{23-medium-ckks-approximate-comparison-vulnerable-to-precision-errors}
+
+\textbf{Severity}: MEDIUM\\
+\textbf{Location}: \texttt{fhe/operations.go:232-277}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{p }\OperatorTok{*}\NormalTok{Processor}\OperatorTok{)}\NormalTok{ Eq}\OperatorTok{(}\NormalTok{a}\OperatorTok{,}\NormalTok{ b }\OperatorTok{*}\NormalTok{Ciphertext}\OperatorTok{)} \OperatorTok{(*}\NormalTok{Ciphertext}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// For equality, we need |a {-} b| \textless{} epsilon}
+    \CommentTok{// This is more complex with CKKS due to approximate arithmetic}
+    \CommentTok{// We use: eq = 1 {-} sign(|a{-}b| {-} epsilon) where epsilon is small}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  CKKS is inherently approximate; equality is undecidable for close
+  values
+\item
+  No epsilon threshold defined
+\item
+  False positives/negatives possible for values differing by \textless{}
+  epsilon
+\end{itemize}
+
+\textbf{Recommendation}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Document CKKS approximate nature in API
+\item
+  Use integer-based FHE (TFHE/BFV) for exact comparison
+\item
+  Define explicit tolerance for comparisons
+\end{enumerate}
+
+\subsubsection{2.4 MEDIUM: Threshold Decryption Session
+Management}\label{24-medium-threshold-decryption-session-management}
+
+\textbf{Severity}: MEDIUM\\
+\textbf{Location}: \texttt{fhe/threshold.go:244-320}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{td }\OperatorTok{*}\NormalTok{ThresholdDecryptor}\OperatorTok{)}\NormalTok{ completeDecryption}\OperatorTok{(}\NormalTok{session }\OperatorTok{*}\NormalTok{DecryptionSession}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    session}\OperatorTok{.}\NormalTok{SharesMu}\OperatorTok{.}\NormalTok{Lock}\OperatorTok{()}
+    \ControlFlowTok{if}\NormalTok{ session}\OperatorTok{.}\NormalTok{Completed }\OperatorTok{\{}
+\NormalTok{        session}\OperatorTok{.}\NormalTok{SharesMu}\OperatorTok{.}\NormalTok{Unlock}\OperatorTok{()}
+        \ControlFlowTok{return}
+    \OperatorTok{\}}
+\NormalTok{    session}\OperatorTok{.}\NormalTok{Completed }\OperatorTok{=} \OtherTok{true}
+\NormalTok{    session}\OperatorTok{.}\NormalTok{SharesMu}\OperatorTok{.}\NormalTok{Unlock}\OperatorTok{()}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  No timeout for stale sessions
+\item
+  No limit on concurrent sessions (potential DoS)
+\item
+  Sessions not cleaned up on error paths
+\end{itemize}
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ ThresholdDecryptor }\KeywordTok{struct} \OperatorTok{\{}
+    \CommentTok{// ... existing fields}
+\NormalTok{    sessionTimeout   time}\OperatorTok{.}\NormalTok{Duration}
+\NormalTok{    maxActiveSessions }\DataTypeTok{int}
+\OperatorTok{\}}
+
+\KeywordTok{func} \OperatorTok{(}\NormalTok{td }\OperatorTok{*}\NormalTok{ThresholdDecryptor}\OperatorTok{)}\NormalTok{ cleanupStaleSessions}\OperatorTok{()} \OperatorTok{\{}
+    \ControlFlowTok{for}\NormalTok{ id}\OperatorTok{,}\NormalTok{ session }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ td}\OperatorTok{.}\NormalTok{sessions }\OperatorTok{\{}
+        \ControlFlowTok{if}\NormalTok{ time}\OperatorTok{.}\NormalTok{Since}\OperatorTok{(}\NormalTok{session}\OperatorTok{.}\NormalTok{CreatedAt}\OperatorTok{)} \OperatorTok{\textgreater{}}\NormalTok{ td}\OperatorTok{.}\NormalTok{sessionTimeout }\OperatorTok{\{}
+            \BuiltInTok{delete}\OperatorTok{(}\NormalTok{td}\OperatorTok{.}\NormalTok{sessions}\OperatorTok{,}\NormalTok{ id}\OperatorTok{)}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Privacy Feature
+Analysis}\label{3-privacy-feature-analysis}
+
+\subsubsection{3.1 CRITICAL: Note Encryption Uses Placeholder
+Cryptography}\label{31-critical-note-encryption-uses-placeholder-cryptography}
+
+\textbf{Severity}: CRITICAL\\
+\textbf{Location}: \texttt{transaction.go:236-247}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ EncryptNote}\OperatorTok{(}\NormalTok{note }\OperatorTok{*}\NormalTok{Note}\OperatorTok{,}\NormalTok{ recipientPubKey }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ ephemeralPrivKey }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// In production, use proper encryption (e.g., ChaCha20{-}Poly1305)}
+    \CommentTok{// This is a placeholder}
+\NormalTok{    encryptedNote }\OperatorTok{:=} \BuiltInTok{append}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Value}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{(),}\NormalTok{ note}\OperatorTok{.}\NormalTok{Address}\OperatorTok{...)}
+\NormalTok{    encryptedNote }\OperatorTok{=} \BuiltInTok{append}\OperatorTok{(}\NormalTok{encryptedNote}\OperatorTok{,}\NormalTok{ note}\OperatorTok{.}\NormalTok{AssetID}\OperatorTok{[:]...)}
+\NormalTok{    encryptedNote }\OperatorTok{=} \BuiltInTok{append}\OperatorTok{(}\NormalTok{encryptedNote}\OperatorTok{,}\NormalTok{ note}\OperatorTok{.}\NormalTok{Randomness}\OperatorTok{...)}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Notes are NOT encrypted - plaintext values exposed
+on-chain.
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ EncryptNote}\OperatorTok{(}\NormalTok{note }\OperatorTok{*}\NormalTok{Note}\OperatorTok{,}\NormalTok{ recipientPubKey }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ ephemeralPrivKey }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// ECDH key exchange}
+\NormalTok{    sharedSecret }\OperatorTok{:=}\NormalTok{ curve25519}\OperatorTok{.}\NormalTok{ScalarMult}\OperatorTok{(}\NormalTok{ephemeralPrivKey}\OperatorTok{,}\NormalTok{ recipientPubKey}\OperatorTok{)}
+    
+    \CommentTok{// Derive symmetric key}
+\NormalTok{    key }\OperatorTok{:=}\NormalTok{ hkdf}\OperatorTok{.}\NormalTok{Expand}\OperatorTok{(}\NormalTok{sha256}\OperatorTok{.}\NormalTok{New}\OperatorTok{,}\NormalTok{ sharedSecret}\OperatorTok{,} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{(}\StringTok{"note{-}encryption"}\OperatorTok{))}
+    
+    \CommentTok{// Encrypt with ChaCha20{-}Poly1305}
+\NormalTok{    aead}\OperatorTok{,}\NormalTok{ \_ }\OperatorTok{:=}\NormalTok{ chacha20poly1305}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\NormalTok{key}\OperatorTok{)}
+\NormalTok{    nonce }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ aead}\OperatorTok{.}\NormalTok{NonceSize}\OperatorTok{())}
+\NormalTok{    rand}\OperatorTok{.}\NormalTok{Read}\OperatorTok{(}\NormalTok{nonce}\OperatorTok{)}
+    
+\NormalTok{    plaintext}\OperatorTok{,}\NormalTok{ \_ }\OperatorTok{:=}\NormalTok{ note}\OperatorTok{.}\NormalTok{Marshal}\OperatorTok{()}
+\NormalTok{    ciphertext }\OperatorTok{:=}\NormalTok{ aead}\OperatorTok{.}\NormalTok{Seal}\OperatorTok{(}\NormalTok{nonce}\OperatorTok{,}\NormalTok{ nonce}\OperatorTok{,}\NormalTok{ plaintext}\OperatorTok{,} \OtherTok{nil}\OperatorTok{)}
+    
+    \ControlFlowTok{return}\NormalTok{ ciphertext}\OperatorTok{,}\NormalTok{ ephemeralPubKey}\OperatorTok{,} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.2 HIGH: Nullifier Computation Lacks Domain
+Separation}\label{32-high-nullifier-computation-lacks-domain-separation}
+
+\textbf{Severity}: HIGH\\
+\textbf{Location}: \texttt{transaction.go:215-223}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ ComputeNullifier}\OperatorTok{(}\NormalTok{note }\OperatorTok{*}\NormalTok{Note}\OperatorTok{,}\NormalTok{ spendingKey }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \OperatorTok{[]}\DataTypeTok{byte} \OperatorTok{\{}
+\NormalTok{    h }\OperatorTok{:=}\NormalTok{ sha256}\OperatorTok{.}\NormalTok{New}\OperatorTok{()}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Address}\OperatorTok{)}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Value}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{())}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{AssetID}\OperatorTok{[:])}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Randomness}\OperatorTok{)}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{spendingKey}\OperatorTok{)}
+    \ControlFlowTok{return}\NormalTok{ h}\OperatorTok{.}\NormalTok{Sum}\OperatorTok{(}\OtherTok{nil}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  No domain separator in hash
+\item
+  Concatenation without length encoding allows collision attacks
+\item
+  SHA256 instead of Poseidon (less ZK-friendly)
+\end{itemize}
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ ComputeNullifier}\OperatorTok{(}\NormalTok{note }\OperatorTok{*}\NormalTok{Note}\OperatorTok{,}\NormalTok{ spendingKey }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \OperatorTok{[]}\DataTypeTok{byte} \OperatorTok{\{}
+\NormalTok{    h }\OperatorTok{:=}\NormalTok{ sha256}\OperatorTok{.}\NormalTok{New}\OperatorTok{()}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{(}\StringTok{"Lux{-}ZKVM{-}Nullifier{-}v1"}\OperatorTok{))}  \CommentTok{// Domain separator}
+    
+    \CommentTok{// Length{-}prefixed encoding}
+\NormalTok{    binary}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{h}\OperatorTok{,}\NormalTok{ binary}\OperatorTok{.}\NormalTok{BigEndian}\OperatorTok{,} \DataTypeTok{uint32}\OperatorTok{(}\BuiltInTok{len}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Address}\OperatorTok{)))}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Address}\OperatorTok{)}
+    
+\NormalTok{    binary}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{h}\OperatorTok{,}\NormalTok{ binary}\OperatorTok{.}\NormalTok{BigEndian}\OperatorTok{,} \DataTypeTok{uint32}\OperatorTok{(}\BuiltInTok{len}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Value}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{())))}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Value}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{())}
+    
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{AssetID}\OperatorTok{[:])}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{note}\OperatorTok{.}\NormalTok{Randomness}\OperatorTok{)}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{spendingKey}\OperatorTok{)}
+    
+    \ControlFlowTok{return}\NormalTok{ h}\OperatorTok{.}\NormalTok{Sum}\OperatorTok{(}\OtherTok{nil}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3.3 MEDIUM: Private Address Key
+Derivation}\label{33-medium-private-address-key-derivation}
+
+\textbf{Severity}: MEDIUM\\
+\textbf{Location}: \texttt{address\_manager.go:89-117}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{am }\OperatorTok{*}\NormalTok{AddressManager}\OperatorTok{)}\NormalTok{ GenerateAddress}\OperatorTok{()} \OperatorTok{(*}\NormalTok{PrivateAddress}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    spendingKey }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DecValTok{32}\OperatorTok{)}
+\NormalTok{    rand}\OperatorTok{.}\NormalTok{Read}\OperatorTok{(}\NormalTok{spendingKey}\OperatorTok{)}
+    
+    \CommentTok{// Derive viewing key from spending key}
+\NormalTok{    h }\OperatorTok{:=}\NormalTok{ sha256}\OperatorTok{.}\NormalTok{New}\OperatorTok{()}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{(}\StringTok{"viewing\_key"}\OperatorTok{))}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{spendingKey}\OperatorTok{)}
+\NormalTok{    viewingKey }\OperatorTok{:=}\NormalTok{ h}\OperatorTok{.}\NormalTok{Sum}\OperatorTok{(}\OtherTok{nil}\OperatorTok{)}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  No KDF (HKDF) for key derivation
+\item
+  Simple SHA256 hash is not a proper PRF
+\item
+  Missing HD wallet support (BIP32-like)
+\end{itemize}
+
+\textbf{Recommendation}: Use HKDF with proper info strings and add
+hierarchical derivation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Proof System Soundness}\label{4-proof-system-soundness}
+
+\subsubsection{4.1 CRITICAL: Merkle Tree Not Properly
+Implemented}\label{41-critical-merkle-tree-not-properly-implemented}
+
+\textbf{Severity}: CRITICAL\\
+\textbf{Location}: \texttt{state\_tree.go:67-89},
+\texttt{state\_tree.go:136-140}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{st }\OperatorTok{*}\NormalTok{StateTree}\OperatorTok{)}\NormalTok{ ComputeRoot}\OperatorTok{()} \OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// In production, this would compute the actual Merkle tree root}
+    \CommentTok{// For now, we compute a simple hash of all changes}
+\NormalTok{    h }\OperatorTok{:=}\NormalTok{ sha256}\OperatorTok{.}\NormalTok{New}\OperatorTok{()}
+\NormalTok{    h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{st}\OperatorTok{.}\NormalTok{currentRoot}\OperatorTok{)}
+    \ControlFlowTok{for}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ add }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ st}\OperatorTok{.}\NormalTok{pendingAdds }\OperatorTok{\{}
+\NormalTok{        h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{add}\OperatorTok{)}
+    \OperatorTok{\}}
+    \ControlFlowTok{for}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ remove }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ st}\OperatorTok{.}\NormalTok{pendingRemoves }\OperatorTok{\{}
+\NormalTok{        h}\OperatorTok{.}\NormalTok{Write}\OperatorTok{(}\NormalTok{remove}\OperatorTok{)}
+    \OperatorTok{\}}
+    \ControlFlowTok{return}\NormalTok{ h}\OperatorTok{.}\NormalTok{Sum}\OperatorTok{(}\OtherTok{nil}\OperatorTok{),} \OtherTok{nil}
+\OperatorTok{\}}
+
+\KeywordTok{func} \OperatorTok{(}\NormalTok{st }\OperatorTok{*}\NormalTok{StateTree}\OperatorTok{)}\NormalTok{ VerifyMerkleProof}\OperatorTok{(}\NormalTok{commitment }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ proof }\OperatorTok{[][]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ root }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \DataTypeTok{bool} \OperatorTok{\{}
+    \CommentTok{// In production, this would verify the actual Merkle proof}
+    \CommentTok{// For now, return true if proof has correct length}
+    \ControlFlowTok{return} \BuiltInTok{len}\OperatorTok{(}\NormalTok{proof}\OperatorTok{)} \OperatorTok{==}\NormalTok{ st}\OperatorTok{.}\NormalTok{treeHeight  }\CommentTok{// ALWAYS TRUE WITH CORRECT LENGTH}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}:
+
+\begin{itemize}
+\tightlist
+\item
+  State root is not a proper Merkle root
+\item
+  Merkle proofs are not verified
+\item
+  Anyone can forge inclusion/exclusion proofs
+\end{itemize}
+
+\textbf{Recommendation}: Implement proper sparse Merkle tree with
+Poseidon hash.
+
+\subsubsection{4.2 HIGH: Public Input Validation is
+Insufficient}\label{42-high-public-input-validation-is-insufficient}
+
+\textbf{Severity}: HIGH\\
+\textbf{Location}: \texttt{proof\_verifier.go:201-236}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{pv }\OperatorTok{*}\NormalTok{ProofVerifier}\OperatorTok{)}\NormalTok{ verifyPublicInputs}\OperatorTok{(}\NormalTok{tx }\OperatorTok{*}\NormalTok{Transaction}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// Verify nullifiers are included in public inputs}
+    \ControlFlowTok{for}\NormalTok{ i}\OperatorTok{,}\NormalTok{ nullifier }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ tx}\OperatorTok{.}\NormalTok{Nullifiers }\OperatorTok{\{}
+        \ControlFlowTok{if}\NormalTok{ i }\OperatorTok{\textgreater{}=} \BuiltInTok{len}\OperatorTok{(}\NormalTok{tx}\OperatorTok{.}\NormalTok{Proof}\OperatorTok{.}\NormalTok{PublicInputs}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"missing public input for nullifier"}\OperatorTok{)}
+        \OperatorTok{\}}
+        \CommentTok{// Only checks length, not actual value!}
+        \ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{tx}\OperatorTok{.}\NormalTok{Proof}\OperatorTok{.}\NormalTok{PublicInputs}\OperatorTok{[}\NormalTok{i}\OperatorTok{])} \OperatorTok{!=} \BuiltInTok{len}\OperatorTok{(}\NormalTok{nullifier}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"public input mismatch for nullifier"}\OperatorTok{)}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  Only checks length, not content
+\item
+  Attacker can substitute different nullifiers
+\item
+  No cryptographic binding between proof and public inputs
+\end{itemize}
+
+\textbf{Recommendation}: Use bytes.Equal for value comparison.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. GPU Acceleration
+Analysis}\label{5-gpu-acceleration-analysis}
+
+\subsubsection{5.1 MLX Implementation
+Status}\label{51-mlx-implementation-status}
+
+\textbf{Location}: \texttt{accel/accel\_mlx.go}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{a }\OperatorTok{*}\NormalTok{MLXAccelerator}\OperatorTok{)}\NormalTok{ NTT}\OperatorTok{(}\NormalTok{input }\OperatorTok{[]}\NormalTok{FieldElement}\OperatorTok{,}\NormalTok{ config NTTConfig}\OperatorTok{)} \OperatorTok{([]}\NormalTok{FieldElement}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// For production NTT, the luxcpp/fhe Metal kernels provide optimized NTT}
+    \CommentTok{// This path uses GPU memory management while delegating to optimized Go NTT}
+    \ControlFlowTok{return}\NormalTok{ a}\OperatorTok{.}\NormalTok{goFallback}\OperatorTok{.}\NormalTok{NTT}\OperatorTok{(}\NormalTok{input}\OperatorTok{,}\NormalTok{ config}\OperatorTok{)}  \CommentTok{// Falls back to Go}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Status}: GPU acceleration partially implemented; most operations
+fall back to Go.
+
+\subsubsection{5.2 MEDIUM: GPU Memory Not Explicitly
+Freed}\label{52-medium-gpu-memory-not-explicitly-freed}
+
+\textbf{Severity}: MEDIUM\\
+\textbf{Location}: \texttt{accel/accel\_mlx.go:289-302}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{a }\OperatorTok{*}\NormalTok{MLXAccelerator}\OperatorTok{)}\NormalTok{ FHEAdd}\OperatorTok{(}\NormalTok{x}\OperatorTok{,}\NormalTok{ y }\OperatorTok{*}\NormalTok{Ciphertext}\OperatorTok{)} \OperatorTok{(*}\NormalTok{Ciphertext}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    xArr }\OperatorTok{:=}\NormalTok{ gpu}\OperatorTok{.}\NormalTok{ArrayFromSlice}\OperatorTok{(}\NormalTok{xData}\OperatorTok{,} \OperatorTok{[]}\DataTypeTok{int}\OperatorTok{\{}\NormalTok{n}\OperatorTok{\},}\NormalTok{ gpu}\OperatorTok{.}\NormalTok{Float64}\OperatorTok{)}
+\NormalTok{    yArr }\OperatorTok{:=}\NormalTok{ gpu}\OperatorTok{.}\NormalTok{ArrayFromSlice}\OperatorTok{(}\NormalTok{yData}\OperatorTok{,} \OperatorTok{[]}\DataTypeTok{int}\OperatorTok{\{}\NormalTok{n}\OperatorTok{\},}\NormalTok{ gpu}\OperatorTok{.}\NormalTok{Float64}\OperatorTok{)}
+\NormalTok{    result }\OperatorTok{:=}\NormalTok{ gpu}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\NormalTok{xArr}\OperatorTok{,}\NormalTok{ yArr}\OperatorTok{)}
+\NormalTok{    gpu}\OperatorTok{.}\NormalTok{Eval}\OperatorTok{(}\NormalTok{result}\OperatorTok{)}
+\NormalTok{    gpu}\OperatorTok{.}\NormalTok{Synchronize}\OperatorTok{()}
+    \CommentTok{// No explicit memory release}
+    \ControlFlowTok{return}\NormalTok{ a}\OperatorTok{.}\NormalTok{goFallback}\OperatorTok{.}\NormalTok{FHEAdd}\OperatorTok{(}\NormalTok{x}\OperatorTok{,}\NormalTok{ y}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation}: Add explicit GPU memory cleanup in deferred
+functions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Verifier Contract
+Security}\label{6-verifier-contract-security}
+
+\subsubsection{6.1 Transaction Verification
+Flow}\label{61-transaction-verification-flow}
+
+\textbf{Location}: \texttt{vm.go:434-456}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{vm }\OperatorTok{*}\NormalTok{VM}\OperatorTok{)}\NormalTok{ verifyTransaction}\OperatorTok{(}\NormalTok{tx }\OperatorTok{*}\NormalTok{Transaction}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// Check nullifiers aren\textquotesingle{}t already spent}
+    \ControlFlowTok{for}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ nullifier }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ tx}\OperatorTok{.}\NormalTok{Nullifiers }\OperatorTok{\{}
+        \ControlFlowTok{if}\NormalTok{ vm}\OperatorTok{.}\NormalTok{nullifierDB}\OperatorTok{.}\NormalTok{IsNullifierSpent}\OperatorTok{(}\NormalTok{nullifier}\OperatorTok{)} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"nullifier already spent"}\OperatorTok{)}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    
+    \CommentTok{// Verify ZK proof}
+    \ControlFlowTok{if}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ vm}\OperatorTok{.}\NormalTok{proofVerifier}\OperatorTok{.}\NormalTok{VerifyTransactionProof}\OperatorTok{(}\NormalTok{tx}\OperatorTok{);}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ fmt}\OperatorTok{.}\NormalTok{Errorf}\OperatorTok{(}\StringTok{"proof verification failed: \%w"}\OperatorTok{,}\NormalTok{ err}\OperatorTok{)}
+    \OperatorTok{\}}
+    
+    \CommentTok{// Verify FHE operations if enabled}
+    \ControlFlowTok{if}\NormalTok{ vm}\OperatorTok{.}\NormalTok{config}\OperatorTok{.}\NormalTok{EnableFHE }\OperatorTok{\&\&}\NormalTok{ tx}\OperatorTok{.}\NormalTok{HasFHEOperations}\OperatorTok{()} \OperatorTok{\{}
+        \ControlFlowTok{if}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ vm}\OperatorTok{.}\NormalTok{fheProcessor}\OperatorTok{.}\NormalTok{VerifyFHEOperations}\OperatorTok{(}\NormalTok{tx}\OperatorTok{);}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ fmt}\OperatorTok{.}\NormalTok{Errorf}\OperatorTok{(}\StringTok{"FHE verification failed: \%w"}\OperatorTok{,}\NormalTok{ err}\OperatorTok{)}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    \ControlFlowTok{return} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Double-spend check happens before proof verification;
+should be atomic.
+
+\subsubsection{6.2 Block Verification}\label{62-block-verification}
+
+\textbf{Location}: \texttt{block.go:100-163}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{b }\OperatorTok{*}\NormalTok{Block}\OperatorTok{)}\NormalTok{ Verify}\OperatorTok{(}\NormalTok{ctx context}\OperatorTok{.}\NormalTok{Context}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// Basic validation}
+    \ControlFlowTok{if}\NormalTok{ b}\OperatorTok{.}\NormalTok{BlockHeight }\OperatorTok{==} \DecValTok{0} \OperatorTok{\&\&}\NormalTok{ b}\OperatorTok{.}\NormalTok{ParentID\_ }\OperatorTok{!=}\NormalTok{ ids}\OperatorTok{.}\NormalTok{Empty }\OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errInvalidBlock}
+    \OperatorTok{\}}
+    
+    \CommentTok{// Verify timestamp}
+    \ControlFlowTok{if}\NormalTok{ b}\OperatorTok{.}\NormalTok{BlockTimestamp }\OperatorTok{\textgreater{}}\NormalTok{ time}\OperatorTok{.}\NormalTok{Now}\OperatorTok{().}\NormalTok{Unix}\OperatorTok{()+}\NormalTok{maxClockSkew }\OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errFutureBlock}
+    \OperatorTok{\}}
+    \CommentTok{// ...}
+    \CommentTok{// Verify state root}
+\NormalTok{    expectedRoot}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ b}\OperatorTok{.}\NormalTok{vm}\OperatorTok{.}\NormalTok{computeStateRoot}\OperatorTok{(}\NormalTok{b}\OperatorTok{.}\NormalTok{Txs}\OperatorTok{)}
+    \ControlFlowTok{if} \OperatorTok{!}\NormalTok{bytes}\OperatorTok{.}\NormalTok{Equal}\OperatorTok{(}\NormalTok{b}\OperatorTok{.}\NormalTok{StateRoot}\OperatorTok{,}\NormalTok{ expectedRoot}\OperatorTok{)} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ errInvalidStateRoot}
+    \OperatorTok{\}}
+    \ControlFlowTok{return} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issues}:
+
+\begin{itemize}
+\tightlist
+\item
+  State root computed AFTER transaction verification (should be atomic)
+\item
+  No check for duplicate transactions in block
+\item
+  No check for max block size
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Information Leakage
+Analysis}\label{7-information-leakage-analysis}
+
+\subsubsection{7.1 MEDIUM: Timing Side Channels in Proof
+Verification}\label{71-medium-timing-side-channels-in-proof-verification}
+
+\textbf{Severity}: MEDIUM\\
+\textbf{Location}: \texttt{proof\_verifier.go:134-136}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Simulate proof verification time}
+\NormalTok{time}\OperatorTok{.}\NormalTok{Sleep}\OperatorTok{(}\DecValTok{10} \OperatorTok{*}\NormalTok{ time}\OperatorTok{.}\NormalTok{Millisecond}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Fixed sleep doesn\textquotesingle t mask actual
+verification time differences.
+
+\subsubsection{7.2 LOW: Transaction Metadata Not
+Encrypted}\label{72-low-transaction-metadata-not-encrypted}
+
+\textbf{Severity}: LOW\\
+\textbf{Location}: \texttt{transaction.go:48-50}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ Transaction }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    Fee        }\DataTypeTok{uint64}          \StringTok{\textasciigrave{}json:"fee"\textasciigrave{}}
+\NormalTok{    Expiry     }\DataTypeTok{uint64}          \StringTok{\textasciigrave{}json:"expiry"\textasciigrave{}}          \CommentTok{// Block height}
+\NormalTok{    Memo       }\OperatorTok{[]}\DataTypeTok{byte}          \StringTok{\textasciigrave{}json:"memo,omitempty"\textasciigrave{}}  \CommentTok{// Encrypted memo}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Fee and expiry are public, enabling transaction graph
+analysis.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Test Coverage Analysis}\label{8-test-coverage-analysis}
+
+\textbf{Location}: \texttt{vm\_test.go}, \texttt{fhe/fhe\_test.go}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Test File & Coverage \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+VM Initialization & \texttt{vm\_test.go} & Basic \\
+Shielded Tx & \texttt{vm\_test.go} & Minimal \\
+FHE Operations & \texttt{fhe/fhe\_test.go} & Good \\
+Threshold Decryption & - & Missing \\
+Proof Verification & - & Missing \\
+GPU Acceleration & - & Minimal \\
+\end{longtable}
+}
+
+\textbf{Critical Missing Tests}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Actual cryptographic proof verification
+\item
+  Threshold decryption protocol
+\item
+  Double-spend prevention
+\item
+  Merkle proof verification
+\item
+  Note encryption/decryption
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. 2025 Recommendations}\label{9-2025-recommendations}
+
+\subsubsection{Immediate (P0 - Critical)}\label{immediate-p0---critical}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Implement Real Proof Verification}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Integrate gnark or bellman for Groth16
+  \item
+    Add BLS12-381 pairing precompile calls
+  \item
+    Validate trusted setup parameters
+  \end{itemize}
+\item
+  \textbf{Implement Proper Note Encryption}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Use ChaCha20-Poly1305 or AES-GCM-SIV
+  \item
+    Implement ECDH key exchange
+  \item
+    Add encryption proofs (zkPoK)
+  \end{itemize}
+\item
+  \textbf{Implement Sparse Merkle Tree}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Use Poseidon hash for ZK-friendliness
+  \item
+    Add proper inclusion/exclusion proofs
+  \item
+    Store tree efficiently on disk
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Short-term (P1 - High)}\label{short-term-p1---high}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{Strengthen Nullifier System}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add domain separation
+  \item
+    Use length-prefixed encoding
+  \item
+    Consider Poseidon hash for nullifiers
+  \end{itemize}
+\item
+  \textbf{Add Ciphertext Validity Checks}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implement noise budget tracking
+  \item
+    Add level compatibility checks
+  \item
+    Validate ciphertext freshness
+  \end{itemize}
+\item
+  \textbf{Complete GPU Acceleration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implement actual NTT Metal kernels
+  \item
+    Add MSM CUDA support
+  \item
+    Benchmark and optimize
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Medium-term (P2 - Medium)}\label{medium-term-p2---medium}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  \textbf{Add STARK Support}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Transparent setup (no trusted ceremony)
+  \item
+    Consider FRI-based proofs
+  \item
+    Evaluate Cairo for circuit DSL
+  \end{itemize}
+\item
+  \textbf{Implement Threshold FHE Timeout}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add session timeouts
+  \item
+    Limit concurrent sessions
+  \item
+    Clean up stale sessions
+  \end{itemize}
+\item
+  \textbf{Add Comprehensive Testing}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Fuzzing for proof verification
+  \item
+    Integration tests for threshold
+  \item
+    Benchmark suite for GPU ops
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Long-term (P3 - Low)}\label{long-term-p3---low}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\item
+  \textbf{Post-Quantum Considerations}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Evaluate lattice-based ZK proofs
+  \item
+    Consider hybrid approach
+  \item
+    Plan migration path
+  \end{itemize}
+\item
+  \textbf{Privacy Enhancements}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Encrypted memos
+  \item
+    Stealth addresses
+  \item
+    Mixer integration
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix A: File Reference}\label{appendix-a-file-reference}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+File & Lines & Purpose & Risk \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{vm.go} & 559 & Main VM implementation & Medium \\
+\texttt{proof\_verifier.go} & 296 & ZK proof verification & Critical \\
+\texttt{transaction.go} & 286 & Transaction types & High \\
+\texttt{state\_tree.go} & 149 & Merkle tree (stub) & Critical \\
+\texttt{nullifier\_db.go} & 304 & Nullifier tracking & Medium \\
+\texttt{utxo\_db.go} & 335 & UTXO management & Medium \\
+\texttt{address\_manager.go} & 301 & Private addresses & High \\
+\texttt{fhe/processor.go} & 401 & FHE computation & Medium \\
+\texttt{fhe/operations.go} & 492 & FHE operations & Medium \\
+\texttt{fhe/threshold.go} & 458 & Threshold decryption & High \\
+\texttt{fhe/protocol.go} & 443 & FHE protocol & Medium \\
+\texttt{fhe/types.go} & 259 & FHE type defs & Low \\
+\texttt{accel/accel\_mlx.go} & 399 & GPU acceleration & Medium \\
+\texttt{accel/types.go} & 189 & Accelerator types & Low \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix B: Security
+Checklist}\label{appendix-b-security-checklist}
+
+\subsubsection{Proof System Security}\label{proof-system-security}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Groth16 pairing verification implemented
+\item[$\square$]
+  PLONK polynomial commitment verified
+\item[$\square$]
+  Bulletproofs range proof verified
+\item[$\square$]
+  Trusted setup validated
+\item[$\square$]
+  Subgroup checks on curve points
+\item[$\square$]
+  Proof malleability prevented
+\end{itemize}
+
+\subsubsection{FHE Security}\label{fhe-security}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Noise budget tracked
+\item[$\square$]
+  Ciphertext validity verified
+\item[$\square$]
+  Threshold shares authenticated
+\item[$\square$]
+  Key shares securely distributed
+\item[$\square$]
+  Bootstrapping implemented
+\end{itemize}
+
+\subsubsection{Privacy Security}\label{privacy-security}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Notes properly encrypted
+\item[$\square$]
+  Nullifiers cryptographically sound
+\item[$\square$]
+  Viewing keys isolated
+\item[$\square$]
+  Spending keys protected
+\item[$\square$]
+  No timing leaks
+\end{itemize}
+
+\subsubsection{State Security}\label{state-security}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Merkle tree properly implemented
+\item[$\square$]
+  Inclusion proofs verified
+\item[$\square$]
+  Exclusion proofs verified
+\item[$\square$]
+  State root computation atomic
+\item[$\square$]
+  Double-spend prevented
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Report Generated}: 2025-12-30T18:45:00Z\\
+\textbf{Audit Duration}: Comprehensive code review\\
+\textbf{Next Audit Recommended}: Q1 2026 or after major changes
+
+\end{document}

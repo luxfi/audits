@@ -1,0 +1,921 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{ThresholdVM (T-Chain) Security Audit
+Report}\label{thresholdvm-t-chain-security-audit-report}
+
+\textbf{Date}: 2025-12-30 \textbf{Scope}:
+\texttt{\textasciitilde{}/work/lux/node/vms/thresholdvm/}
+\textbf{Auditor}: Claude (Automated Security Review)
+\textbf{Classification}: Internal Security Assessment
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+ThresholdVM implements a threshold FHE (Fully Homomorphic Encryption)
+and MPC (Multi-Party Computation) chain for the Lux blockchain
+ecosystem. The implementation supports multiple cryptographic protocols
+including LSS, CGGMP21/CMP, BLS, FROST, EdDSA, and Ringtail
+(post-quantum).
+
+\subsubsection{\texorpdfstring{Security Posture:
+\textbf{MODERATE}}{Security Posture: MODERATE}}\label{security-posture-moderate}
+
+The codebase demonstrates sound cryptographic design with proper
+protocol implementations. However, several areas require attention
+before production deployment.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Risk Level & Issues Found \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+FHE Operations & Medium & 3 \\
+DKG Protocol & Medium & 2 \\
+Threshold Signatures & Low & 1 \\
+Secret Sharing & Low & 1 \\
+Permit System & Medium & 2 \\
+Relayer & High & 3 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. FHE Operations Audit}\label{1-fhe-operations-audit}
+
+\subsubsection{1.1 Scheme
+Implementation}\label{11-scheme-implementation}
+
+\textbf{Findings}:
+
+The implementation uses CKKS (Cheon-Kim-Kim-Song) scheme exclusively via
+the lattice library\textquotesingle s E2S (Encryption-to-Share)
+multiparty protocol.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/integration.go}
+\KeywordTok{type}\NormalTok{ ThresholdFHEIntegration }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    params    lattice}\OperatorTok{.}\NormalTok{Parameters}
+\NormalTok{    evaluator e2s}\OperatorTok{.}\NormalTok{Evaluator}
+\NormalTok{    threshold }\DataTypeTok{int}  \CommentTok{// default: 67}
+\NormalTok{    total     }\DataTypeTok{int}  \CommentTok{// default: 100}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Observation}: TFHE and BGV schemes mentioned in audit scope are
+NOT implemented. Only CKKS is present.
+
+\textbf{FINDING-FHE-001} (Medium): Missing TFHE/BGV Support
+
+\begin{itemize}
+\tightlist
+\item
+  The audit scope specified TFHE, CKKS, and BGV schemes
+\item
+  Only CKKS is implemented
+\item
+  \textbf{Risk}: Limited FHE flexibility; TFHE preferred for boolean
+  circuits
+\item
+  \textbf{Recommendation}: Document supported schemes clearly; consider
+  TFHE for binary operations
+\end{itemize}
+
+\subsubsection{1.2 GPU Acceleration}\label{12-gpu-acceleration}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/gpu\_fhe.go}
+\KeywordTok{const} \OperatorTok{(}
+\NormalTok{    gpuMinN        }\OperatorTok{=} \DecValTok{8192}   \CommentTok{// Minimum ring degree for GPU}
+\NormalTok{    gpuBatchThresh }\OperatorTok{=} \DecValTok{64}     \CommentTok{// Minimum polynomials for GPU batching}
+\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{FINDING-FHE-002} (Low): Hardcoded GPU Thresholds
+
+\begin{itemize}
+\tightlist
+\item
+  Batch thresholds are compile-time constants
+\item
+  Different hardware may have different optimal crossover points
+\item
+  \textbf{Recommendation}: Make thresholds configurable via genesis or
+  runtime config
+\end{itemize}
+
+\subsubsection{1.3 NTT Implementation}\label{13-ntt-implementation}
+
+\textbf{FINDING-FHE-003} (Medium): NTT Cache Unbounded Growth
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/gpu\_fhe.go}
+\KeywordTok{type}\NormalTok{ GPUFHEAccelerator }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    nttContexts }\KeywordTok{map}\OperatorTok{[}\DataTypeTok{uint64}\OperatorTok{]*}\NormalTok{NTTContext  }\CommentTok{// Unbounded cache}
+\NormalTok{    mu          sync}\OperatorTok{.}\NormalTok{RWMutex}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  NTT contexts cached by
+  \texttt{(N\ \textless{}\textless{}\ 32)\ \textbar{}\ logN} key
+\item
+  No eviction policy or size limit
+\item
+  \textbf{Risk}: Memory exhaustion with varied parameters
+\item
+  \textbf{Recommendation}: Add LRU eviction or fixed-size cache
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. DKG Protocol Audit}\label{2-dkg-protocol-audit}
+
+\subsubsection{2.1 Protocol Flow}\label{21-protocol-flow}
+
+The DKG implements a two-phase commit-share protocol:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/lifecycle.go}
+\KeywordTok{type}\NormalTok{ DKGState }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    CeremonyID   }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}
+\NormalTok{    Phase        DKGPhase  }\CommentTok{// Commit, Share, Complete, Failed}
+\NormalTok{    CommitPhase  time}\OperatorTok{.}\NormalTok{Time}
+\NormalTok{    SharePhase   time}\OperatorTok{.}\NormalTok{Time}
+\NormalTok{    Timeout      time}\OperatorTok{.}\NormalTok{Duration}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{FINDING-DKG-001} (Medium): Timeout Race Condition
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/lifecycle.go {-} ProcessDKGMessage}
+\ControlFlowTok{if}\NormalTok{ time}\OperatorTok{.}\NormalTok{Now}\OperatorTok{().}\NormalTok{After}\OperatorTok{(}\NormalTok{dkg}\OperatorTok{.}\NormalTok{SharePhase}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\NormalTok{dkg}\OperatorTok{.}\NormalTok{Timeout}\OperatorTok{))} \OperatorTok{\{}
+\NormalTok{    l}\OperatorTok{.}\NormalTok{failDKG}\OperatorTok{(}\NormalTok{dkg}\OperatorTok{.}\NormalTok{CeremonyID}\OperatorTok{,} \StringTok{"share phase timeout"}\OperatorTok{)}
+    \ControlFlowTok{return}\NormalTok{ fmt}\OperatorTok{.}\NormalTok{Errorf}\OperatorTok{(}\StringTok{"share phase timeout"}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Timeout check is not atomic with state transition
+\item
+  Concurrent goroutines may process messages after timeout
+\item
+  \textbf{Risk}: Inconsistent DKG state across nodes
+\item
+  \textbf{Recommendation}: Use atomic state transitions with
+  compare-and-swap
+\end{itemize}
+
+\subsubsection{2.2 Commit Phase
+Security}\label{22-commit-phase-security}
+
+\textbf{FINDING-DKG-002} (Medium): Missing Commitment Binding
+Verification
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/lifecycle.go}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{l }\OperatorTok{*}\NormalTok{LifecycleManager}\OperatorTok{)}\NormalTok{ ProcessDKGCommit}\OperatorTok{(}\NormalTok{ceremonyID }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}\OperatorTok{,}
+\NormalTok{    participant ids}\OperatorTok{.}\NormalTok{NodeID}\OperatorTok{,}\NormalTok{ commitment }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// Commitment stored without cryptographic binding verification}
+\NormalTok{    dkg}\OperatorTok{.}\NormalTok{Commitments}\OperatorTok{[}\NormalTok{participant}\OperatorTok{]} \OperatorTok{=}\NormalTok{ commitment}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Commitments are stored without verifying cryptographic binding
+\item
+  No Pedersen commitment verification present
+\item
+  \textbf{Risk}: Malicious participant could substitute commitment
+\item
+  \textbf{Recommendation}: Implement Feldman VSS or Pedersen commitment
+  verification
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Threshold Signatures
+Audit}\label{3-threshold-signatures-audit}
+
+\subsubsection{3.1 Supported Protocols}\label{31-supported-protocols}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Protocol & Implementation & Security Level \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+LSS (Lux Secret Sharing) & \texttt{protocols.go:LSSHandler} & 128-bit \\
+CGGMP21/CMP & \texttt{protocols.go:CGGMP21Handler} & 128-bit \\
+BLS & \texttt{protocols.go:BLSHandler} & 128-bit \\
+FROST & \texttt{executor.go} & 128-bit \\
+Ringtail & \texttt{protocols.go:RingtailHandler} & Post-quantum \\
+\end{longtable}
+}
+
+\textbf{FINDING-SIG-001} (Low): Inconsistent Error Handling in Protocol
+Handlers
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// protocols.go}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{h }\OperatorTok{*}\NormalTok{CGGMP21Handler}\OperatorTok{)}\NormalTok{ Sign}\OperatorTok{(}\NormalTok{keyShare KeyShare}\OperatorTok{,}\NormalTok{ message }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \OperatorTok{(}\NormalTok{Signature}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// Some paths return nil error with empty signature}
+    \ControlFlowTok{if}\NormalTok{ session }\OperatorTok{==} \OtherTok{nil} \OperatorTok{\{}
+        \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,} \OtherTok{nil}  \CommentTok{// Should return explicit error}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Some error paths return \texttt{(nil,\ nil)} instead of explicit error
+\item
+  \textbf{Risk}: Silent failures in signing operations
+\item
+  \textbf{Recommendation}: Always return explicit errors on failure
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Secret Sharing Audit}\label{4-secret-sharing-audit}
+
+\subsubsection{4.1 Shamir\textquotesingle s Secret
+Sharing}\label{41-shamirs-secret-sharing}
+
+The LSS (Lux Secret Sharing) extends Shamir\textquotesingle s scheme:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// protocols.go}
+\KeywordTok{type}\NormalTok{ LSSHandler }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    threshold }\DataTypeTok{int}
+\NormalTok{    total     }\DataTypeTok{int}
+\NormalTok{    curve     elliptic}\OperatorTok{.}\NormalTok{Curve}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{FINDING-SS-001} (Low): Threshold Parameter Validation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// protocols.go}
+\KeywordTok{func}\NormalTok{ NewLSSHandler}\OperatorTok{(}\NormalTok{t}\OperatorTok{,}\NormalTok{ n }\DataTypeTok{int}\OperatorTok{)} \OperatorTok{(*}\NormalTok{LSSHandler}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ t }\OperatorTok{\textgreater{}}\NormalTok{ n }\OperatorTok{\{}
+        \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,}\NormalTok{ errors}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\StringTok{"threshold exceeds total"}\OperatorTok{)}
+    \OperatorTok{\}}
+    \CommentTok{// Missing: t \textgreater{} 0, n \textgreater{} 0, t \textgreater{}= 1 checks}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Edge cases for \texttt{t=0} or \texttt{n=0} not explicitly validated
+\item
+  \textbf{Risk}: Invalid configuration could produce weak shares
+\item
+  \textbf{Recommendation}: Add explicit bounds validation:
+  \texttt{1\ \textless{}=\ t\ \textless{}=\ n}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Permit System Audit}\label{5-permit-system-audit}
+
+\subsubsection{5.1 Permit Structure}\label{51-permit-structure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/registry.go}
+\KeywordTok{type}\NormalTok{ Permit }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    Handle    }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}      \CommentTok{// Ciphertext handle}
+\NormalTok{    Grantee   common}\OperatorTok{.}\NormalTok{Address}
+\NormalTok{    Ops       }\DataTypeTok{uint8}         \CommentTok{// Bitmask: Decrypt|Reencrypt|Compute|Transfer}
+\NormalTok{    Expiry    }\DataTypeTok{uint64}        \CommentTok{// Block number}
+\NormalTok{    Signature }\OperatorTok{[]}\DataTypeTok{byte}        \CommentTok{// Owner signature}
+\OperatorTok{\}}
+
+\KeywordTok{const} \OperatorTok{(}
+\NormalTok{    PermitOpDecrypt   }\OperatorTok{=} \DecValTok{1} \OperatorTok{\textless{}\textless{}} \DecValTok{0}
+\NormalTok{    PermitOpReencrypt }\OperatorTok{=} \DecValTok{1} \OperatorTok{\textless{}\textless{}} \DecValTok{1}
+\NormalTok{    PermitOpCompute   }\OperatorTok{=} \DecValTok{1} \OperatorTok{\textless{}\textless{}} \DecValTok{2}
+\NormalTok{    PermitOpTransfer  }\OperatorTok{=} \DecValTok{1} \OperatorTok{\textless{}\textless{}} \DecValTok{3}
+\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{FINDING-PERMIT-001} (Medium): Permit Revocation Race
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/registry.go}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{r }\OperatorTok{*}\NormalTok{Registry}\OperatorTok{)}\NormalTok{ RevokePermit}\OperatorTok{(}\NormalTok{handle }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ grantee common}\OperatorTok{.}\NormalTok{Address}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+\NormalTok{    key }\OperatorTok{:=}\NormalTok{ permitKey}\OperatorTok{(}\NormalTok{handle}\OperatorTok{,}\NormalTok{ grantee}\OperatorTok{)}
+    \ControlFlowTok{return}\NormalTok{ r}\OperatorTok{.}\NormalTok{db}\OperatorTok{.}\NormalTok{Delete}\OperatorTok{(}\NormalTok{key}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  No versioning or sequence numbers on permits
+\item
+  Revocation is immediate deletion
+\item
+  \textbf{Risk}: Race between revocation and in-flight operations using
+  permit
+\item
+  \textbf{Recommendation}: Add permit nonces and check in-flight
+  operations
+\end{itemize}
+
+\subsubsection{5.2 Replay Attack
+Surface}\label{52-replay-attack-surface}
+
+\textbf{FINDING-PERMIT-002} (Medium): Cross-Chain Permit Replay
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/registry.go}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{r }\OperatorTok{*}\NormalTok{Registry}\OperatorTok{)}\NormalTok{ VerifyPermit}\OperatorTok{(}\NormalTok{permit }\OperatorTok{*}\NormalTok{Permit}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// Verification does not include chain ID}
+\NormalTok{    signer}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ RecoverSigner}\OperatorTok{(}\NormalTok{permitHash}\OperatorTok{(}\NormalTok{permit}\OperatorTok{),}\NormalTok{ permit}\OperatorTok{.}\NormalTok{Signature}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Permit signature does not bind to chain ID
+\item
+  Same permit valid on mainnet and testnet
+\item
+  \textbf{Risk}: Cross-chain replay attacks
+\item
+  \textbf{Recommendation}: Include \texttt{chainID} in permit signature
+  domain separator
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Relayer Audit}\label{6-relayer-audit}
+
+\subsubsection{6.1 Architecture}\label{61-architecture}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/relayer.go}
+\KeywordTok{type}\NormalTok{ Relayer }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    requestQueue }\KeywordTok{chan}\NormalTok{ DecryptRequest}
+\NormalTok{    resultChan   }\KeywordTok{chan}\NormalTok{ DecryptResult}
+\NormalTok{    warpSigner   warp}\OperatorTok{.}\NormalTok{Signer}
+\NormalTok{    decryptor    }\OperatorTok{*}\NormalTok{ThresholdDecryptor}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{FINDING-RELAY-001} (High): Unbounded Request Queue
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/relayer.go}
+\KeywordTok{func}\NormalTok{ NewRelayer}\OperatorTok{(}\NormalTok{config RelayerConfig}\OperatorTok{)} \OperatorTok{*}\NormalTok{Relayer }\OperatorTok{\{}
+    \ControlFlowTok{return} \OperatorTok{\&}\NormalTok{Relayer}\OperatorTok{\{}
+\NormalTok{        requestQueue}\OperatorTok{:} \BuiltInTok{make}\OperatorTok{(}\KeywordTok{chan}\NormalTok{ DecryptRequest}\OperatorTok{,} \DecValTok{10000}\OperatorTok{),}  \CommentTok{// Fixed buffer}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  10,000 request buffer is hardcoded
+\item
+  No backpressure mechanism to source chains
+\item
+  \textbf{Risk}: Memory exhaustion under load; DoS vector
+\item
+  \textbf{Recommendation}: Implement adaptive backpressure; rate limit
+  by source
+\end{itemize}
+
+\subsubsection{6.2 Warp Message Signing}\label{62-warp-message-signing}
+
+\textbf{FINDING-RELAY-002} (High): Missing Message Validation Before
+Signing
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/relayer.go}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{r }\OperatorTok{*}\NormalTok{Relayer}\OperatorTok{)}\NormalTok{ sendFulfillment}\OperatorTok{(}\NormalTok{result DecryptResult}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+\NormalTok{    payload }\OperatorTok{:=}\NormalTok{ result}\OperatorTok{.}\NormalTok{Marshal}\OperatorTok{()}
+\NormalTok{    signedMsg}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ r}\OperatorTok{.}\NormalTok{warpSigner}\OperatorTok{.}\NormalTok{Sign}\OperatorTok{(}\NormalTok{payload}\OperatorTok{)}
+    \CommentTok{// Signs without validating result came from valid session}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Results are signed without verifying originating session validity
+\item
+  \textbf{Risk}: Attacker could inject arbitrary results for signing
+\item
+  \textbf{Recommendation}: Validate session ID and participant set
+  before signing
+\end{itemize}
+
+\subsubsection{6.3 Cross-Chain Delivery}\label{63-cross-chain-delivery}
+
+\textbf{FINDING-RELAY-003} (High): No Delivery Confirmation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/relayer.go}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{r }\OperatorTok{*}\NormalTok{Relayer}\OperatorTok{)}\NormalTok{ deliverResult}\OperatorTok{(}\NormalTok{destChain ids}\OperatorTok{.}\NormalTok{ID}\OperatorTok{,}\NormalTok{ signedMsg }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ r}\OperatorTok{.}\NormalTok{sender}\OperatorTok{.}\NormalTok{Send}\OperatorTok{(}\NormalTok{destChain}\OperatorTok{,}\NormalTok{ signedMsg}\OperatorTok{)}
+    \CommentTok{// No confirmation or retry logic}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Fire-and-forget delivery without confirmation
+\item
+  No retry mechanism for failed deliveries
+\item
+  \textbf{Risk}: Lost decryption results; stuck user funds
+\item
+  \textbf{Recommendation}: Implement delivery confirmation with
+  exponential backoff retry
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Security Check Results}\label{7-security-check-results}
+
+\subsubsection{7.1 Key Share Compromise
+Resistance}\label{71-key-share-compromise-resistance}
+
+\textbf{Status}: PARTIAL
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Control & Implemented & Notes \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Share encryption at rest & Yes & Database-level encryption \\
+Share isolation in memory & Partial & Shares cleared after use, but not
+zeroed \\
+Share refresh protocol & Yes & \texttt{RefreshKey} operation present \\
+Proactive security & No & No automatic refresh scheduling \\
+\end{longtable}
+}
+
+\textbf{Recommendation}: Implement automatic proactive share refresh
+every epoch.
+
+\subsubsection{7.2 Decryption Oracle
+Attacks}\label{72-decryption-oracle-attacks}
+
+\textbf{Status}: ADEQUATE
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/integration.go}
+\KeywordTok{type}\NormalTok{ DecryptionSession }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    Handle      }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}
+\NormalTok{    Requester   common}\OperatorTok{.}\NormalTok{Address}
+\NormalTok{    Shares      }\KeywordTok{map}\OperatorTok{[}\NormalTok{ids}\OperatorTok{.}\NormalTok{NodeID}\OperatorTok{][]}\DataTypeTok{byte}
+\NormalTok{    StartTime   time}\OperatorTok{.}\NormalTok{Time}
+\NormalTok{    Completed   }\DataTypeTok{bool}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Decryption requires valid permit verification
+\item
+  Rate limiting via quota system in \texttt{vm.go}
+\item
+  Session binding prevents share reuse
+\end{itemize}
+
+\textbf{Remaining Risk}: High-frequency authorized decryptions could
+leak information via timing analysis.
+
+\subsubsection{7.3 Side-Channel Leakage in FHE
+Ops}\label{73-side-channel-leakage-in-fhe-ops}
+
+\textbf{Status}: PARTIAL
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// fhe/gpu\_fhe.go {-} NTT operations}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{t }\OperatorTok{*}\NormalTok{GPUNumberTheoreticTransformer}\OperatorTok{)}\NormalTok{ Forward}\OperatorTok{(}\NormalTok{p ring}\OperatorTok{.}\NormalTok{Poly}\OperatorTok{,}\NormalTok{ out ring}\OperatorTok{.}\NormalTok{Poly}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// GPU timing may leak polynomial structure}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Vector & Mitigation & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Timing (CPU) & Constant-time libraries & Yes \\
+Timing (GPU) & No & \textbf{MISSING} \\
+Power analysis & N/A (server) & N/A \\
+Cache attacks & No specific mitigation & \textbf{MISSING} \\
+\end{longtable}
+}
+
+\textbf{Recommendation}: Add GPU timing noise injection; use
+constant-time NTT kernels.
+
+\subsubsection{7.4 DKG Manipulation}\label{74-dkg-manipulation}
+
+\textbf{Status}: PARTIAL
+
+\begin{itemize}
+\tightlist
+\item
+  Commitment phase implemented
+\item
+  Missing: Zero-knowledge proofs for share correctness
+\item
+  Missing: Complaint mechanism for invalid shares
+\end{itemize}
+
+\textbf{Recommendation}: Implement Feldman VSS with ZK proofs for share
+verification.
+
+\subsubsection{7.5 Replay Attacks on
+Permits}\label{75-replay-attacks-on-permits}
+
+\textbf{Status}: NEEDS ATTENTION
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Attack Vector & Mitigation & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Same-chain replay & Block expiry & Yes \\
+Cross-chain replay & Chain ID binding & \textbf{MISSING} \\
+Time-based replay & Expiry enforcement & Yes \\
+Nonce reuse & Permit nonces & \textbf{MISSING} \\
+\end{longtable}
+}
+
+\textbf{Recommendation}: Add chain ID to permit domain separator;
+implement nonce tracking.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Code Quality
+Observations}\label{8-code-quality-observations}
+
+\subsubsection{8.1 Positive Patterns}\label{81-positive-patterns}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Clean Interface Abstraction}: \texttt{ProtocolHandler},
+  \texttt{KeyShare}, \texttt{Signature} interfaces
+\item
+  \textbf{Explicit Error Types}: Domain-specific error types for
+  debugging
+\item
+  \textbf{Mutex Discipline}: Consistent lock ordering in lifecycle
+  manager
+\item
+  \textbf{Deferred Callbacks}: Avoids mutex deadlock on callbacks
+\end{enumerate}
+
+\subsubsection{8.2 Areas for
+Improvement}\label{82-areas-for-improvement}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Magic Numbers}: GPU thresholds, timeouts hardcoded
+\item
+  \textbf{Incomplete Validation}: Edge cases in parameter validation
+\item
+  \textbf{Missing Metrics}: No observability for security events
+\item
+  \textbf{Documentation}: Protocol security assumptions not documented
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. 2025 Recommendations}\label{9-2025-recommendations}
+
+\subsubsection{Critical (Address Before
+Mainnet)}\label{critical-address-before-mainnet}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+ID & Finding & Effort & Priority \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+RELAY-001 & Unbounded request queue & Medium & P0 \\
+RELAY-002 & Missing message validation & Low & P0 \\
+RELAY-003 & No delivery confirmation & Medium & P0 \\
+PERMIT-002 & Cross-chain replay & Low & P0 \\
+\end{longtable}
+}
+
+\subsubsection{High Priority (Q1 2025)}\label{high-priority-q1-2025}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+ID & Finding & Effort & Priority \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DKG-001 & Timeout race condition & Medium & P1 \\
+DKG-002 & Missing commitment binding & High & P1 \\
+PERMIT-001 & Permit revocation race & Medium & P1 \\
+FHE-003 & NTT cache unbounded & Low & P1 \\
+\end{longtable}
+}
+
+\subsubsection{Medium Priority (Q2 2025)}\label{medium-priority-q2-2025}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+ID & Finding & Effort & Priority \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+FHE-001 & Missing TFHE/BGV & High & P2 \\
+FHE-002 & Hardcoded GPU thresholds & Low & P2 \\
+SIG-001 & Inconsistent error handling & Low & P2 \\
+SS-001 & Threshold validation & Low & P2 \\
+\end{longtable}
+}
+
+\subsubsection{Architectural
+Recommendations}\label{architectural-recommendations}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Proactive Share Refresh}: Implement automatic key share
+  refresh every epoch to limit exposure window from compromised shares.
+\item
+  \textbf{Observability}: Add metrics for:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    DKG ceremony success/failure rates
+  \item
+    Decryption latency percentiles
+  \item
+    Permit verification failures
+  \item
+    Relayer queue depth
+  \end{itemize}
+\item
+  \textbf{Rate Limiting}: Implement per-address rate limits for:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Decryption requests
+  \item
+    Permit creation
+  \item
+    DKG ceremony initiation
+  \end{itemize}
+\item
+  \textbf{Formal Verification}: Consider formal verification of:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Secret sharing correctness
+  \item
+    Threshold signature security proofs
+  \item
+    FHE parameter selection
+  \end{itemize}
+\item
+  \textbf{Post-Quantum Migration Path}: Document migration strategy from
+  classical to post-quantum threshold schemes using Ringtail.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Files Reviewed}\label{10-files-reviewed}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Lines & Coverage \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{vm.go} & 1621 & Full \\
+\texttt{protocols.go} & 591 & Full \\
+\texttt{executor.go} & 503 & Full \\
+\texttt{fhe/integration.go} & \textasciitilde400 & Full \\
+\texttt{fhe/lifecycle.go} & 1005 & Full \\
+\texttt{fhe/registry.go} & 612 & Full \\
+\texttt{fhe/relayer.go} & 708 & Full \\
+\texttt{fhe/rpc.go} & 758 & Full \\
+\texttt{fhe/warp\_payloads.go} & 605 & Full \\
+\texttt{fhe/gpu\_fhe.go} & 437 & Full \\
+\texttt{fhe/handler.go} & \textasciitilde200 & Full \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Conclusion}\label{11-conclusion}
+
+ThresholdVM demonstrates competent cryptographic engineering with sound
+protocol choices. The primary concerns are in the relayer subsystem,
+which requires hardening before production deployment. The permit system
+needs chain ID binding to prevent cross-chain replay attacks.
+
+\textbf{Recommended Actions}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Address all P0 findings before testnet deployment
+\item
+  Engage external cryptographic audit for DKG and threshold signature
+  implementations
+\item
+  Implement comprehensive observability before mainnet
+\item
+  Document security assumptions and threat model
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Report generated: 2025-12-30} \emph{Next review recommended:
+2025-03-31 (Q1 2025)}
+
+\end{document}

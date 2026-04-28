@@ -1,0 +1,929 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Warp Cross-Chain Messaging Protocol Security
+Audit}\label{warp-cross-chain-messaging-protocol-security-audit}
+
+\textbf{Date}: 2025-12-30\\
+\textbf{Auditor}: Claude (CTO Mode)\\
+\textbf{Scope}: Lux Warp Interchain Messaging Protocol\\
+\textbf{Files Reviewed}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{/Users/z/work/lux/node/vms/platformvm/warp/} (full package)
+\item
+  \texttt{/Users/z/work/lux/evm/warp/} (full package)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Warp protocol provides cross-chain messaging between Lux subnets
+using BLS aggregate signatures verified against the P-Chain validator
+set. The implementation is \textbf{generally sound} with proper replay
+protection and quorum verification. However, several security
+considerations and improvement opportunities were identified.
+
+\textbf{Overall Risk Assessment}: \textbf{MEDIUM}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Risk Level & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Replay Attacks & LOW & Mitigated \\
+Signature Forgery & LOW & Properly implemented \\
+Weight Manipulation & LOW & Safe arithmetic \\
+Message Ordering & INFORMATIONAL & By design \\
+Finality Assumptions & MEDIUM & Requires P-Chain sync \\
+Post-Quantum (Ringtail) & HIGH & Placeholder implementation \\
+ML-KEM Encryption & HIGH & Placeholder implementation \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Protocol Security
+Analysis}\label{1-protocol-security-analysis}
+
+\subsubsection{1.1 Message Format
+(unsigned\_message.go)}\label{11-message-format-unsigned_messagego}
+
+\textbf{Structure}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ UnsignedMessage }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    NetworkID     }\DataTypeTok{uint32}    \CommentTok{// Replay protection across networks}
+\NormalTok{    SourceChainID ids}\OperatorTok{.}\NormalTok{ID    }\CommentTok{// 32{-}byte chain identifier}
+\NormalTok{    Payload       }\OperatorTok{[]}\DataTypeTok{byte}    \CommentTok{// Application{-}specific data}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{{[}GOOD{]} Network ID Replay Protection}: The
+  \texttt{NetworkID} field prevents cross-network replay attacks (e.g.,
+  testnet messages replayed on mainnet).
+\item
+  \textbf{{[}GOOD{]} Source Chain Binding}: The \texttt{SourceChainID}
+  ensures a chain can only produce messages claiming to originate from
+  itself. The signer enforces this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// signer.go:44{-}46}
+\ControlFlowTok{if}\NormalTok{ msg}\OperatorTok{.}\NormalTok{SourceChainID }\OperatorTok{!=}\NormalTok{ s}\OperatorTok{.}\NormalTok{chainID }\OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,}\NormalTok{ ErrWrongSourceChainID}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{{[}GOOD{]} Deterministic Serialization}: Uses codec-based
+  serialization with fixed \texttt{CodecVersion\ =\ 0}.
+\item
+  \textbf{{[}INFORMATIONAL{]} Message ID Derivation}: Message ID is
+  computed as \texttt{hashing.ComputeHash256Array(bytes)}, providing a
+  unique identifier.
+\end{enumerate}
+
+\subsubsection{1.2 BLS Signature Aggregation
+(signature.go)}\label{12-bls-signature-aggregation-signaturego}
+
+\textbf{BitSetSignature Structure}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ BitSetSignature }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    Signers   }\OperatorTok{[]}\DataTypeTok{byte}                 \CommentTok{// Bitset of participating validators}
+\NormalTok{    Signature }\OperatorTok{[}\NormalTok{bls}\OperatorTok{.}\NormalTok{SignatureLen}\OperatorTok{]}\DataTypeTok{byte} \CommentTok{// 96{-}byte BLS aggregate signature}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{{[}GOOD{]} Bitset Validation}: The implementation correctly
+  rejects padded bitsets:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// signature.go:68{-}71}
+\NormalTok{signerIndices }\OperatorTok{:=}\NormalTok{ set}\OperatorTok{.}\NormalTok{BitsFromBytes}\OperatorTok{(}\NormalTok{s}\OperatorTok{.}\NormalTok{Signers}\OperatorTok{)}
+\ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{signerIndices}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{())} \OperatorTok{!=} \BuiltInTok{len}\OperatorTok{(}\NormalTok{s}\OperatorTok{.}\NormalTok{Signers}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{return} \DecValTok{0}\OperatorTok{,}\NormalTok{ ErrInvalidBitSet}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+  This prevents attackers from crafting equivalent bitsets with
+  different representations.
+\item
+  \textbf{{[}GOOD{]} Safe Weight Arithmetic}: Uses \texttt{big.Int} for
+  quorum calculations to prevent overflow:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// signature.go:149{-}154}
+\NormalTok{scaledTotalWeight }\OperatorTok{:=} \BuiltInTok{new}\OperatorTok{(}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}\OperatorTok{).}\NormalTok{SetUint64}\OperatorTok{(}\NormalTok{totalWeight}\OperatorTok{)}
+\NormalTok{scaledTotalWeight}\OperatorTok{.}\NormalTok{Mul}\OperatorTok{(}\NormalTok{scaledTotalWeight}\OperatorTok{,} \BuiltInTok{new}\OperatorTok{(}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}\OperatorTok{).}\NormalTok{SetUint64}\OperatorTok{(}\NormalTok{quorumNum}\OperatorTok{))}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{{[}GOOD{]} Standard BLS Aggregation}: Uses
+  \texttt{github.com/luxfi/crypto/bls} for signature aggregation and
+  verification.
+\end{enumerate}
+
+\subsubsection{1.3 Validator Set Management
+(validator.go)}\label{13-validator-set-management-validatorgo}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{{[}GOOD{]} Canonical Ordering}: Validators are sorted by BLS
+  public key bytes, ensuring deterministic ordering:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// validator.go:62{-}64}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{v }\OperatorTok{*}\NormalTok{Validator}\OperatorTok{)}\NormalTok{ Compare}\OperatorTok{(}\NormalTok{o }\OperatorTok{*}\NormalTok{Validator}\OperatorTok{)} \DataTypeTok{int} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ bytes}\OperatorTok{.}\NormalTok{Compare}\OperatorTok{(}\NormalTok{v}\OperatorTok{.}\NormalTok{PublicKeyBytes}\OperatorTok{,}\NormalTok{ o}\OperatorTok{.}\NormalTok{PublicKeyBytes}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{{[}GOOD{]} Weight Overflow Protection}: Uses safe addition:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// validator.go:173{-}181}
+\NormalTok{weight}\OperatorTok{,}\NormalTok{ err }\OperatorTok{=}\NormalTok{ math}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\NormalTok{weight}\OperatorTok{,}\NormalTok{ vdr}\OperatorTok{.}\NormalTok{Weight}\OperatorTok{)}
+\ControlFlowTok{if}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+    \ControlFlowTok{return} \DecValTok{0}\OperatorTok{,}\NormalTok{ fmt}\OperatorTok{.}\NormalTok{Errorf}\OperatorTok{(}\StringTok{"\%w: \%w"}\OperatorTok{,}\NormalTok{ ErrWeightOverflow}\OperatorTok{,}\NormalTok{ err}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{{[}GOOD{]} Public Key Deduplication}: Validators with
+  duplicate BLS keys are merged:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// validator.go:116{-}123}
+\ControlFlowTok{if}\NormalTok{ existingVdr}\OperatorTok{,}\NormalTok{ exists }\OperatorTok{:=}\NormalTok{ pkToValidator}\OperatorTok{[}\NormalTok{pkKey}\OperatorTok{];}\NormalTok{ exists }\OperatorTok{\{}
+\NormalTok{    existingVdr}\OperatorTok{.}\NormalTok{Weight}\OperatorTok{,}\NormalTok{ err }\OperatorTok{=}\NormalTok{ math}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\NormalTok{existingVdr}\OperatorTok{.}\NormalTok{Weight}\OperatorTok{,}\NormalTok{ vdr}\OperatorTok{.}\NormalTok{Weight}\OperatorTok{)}
+\NormalTok{    existingVdr}\OperatorTok{.}\NormalTok{NodeIDs }\OperatorTok{=} \BuiltInTok{append}\OperatorTok{(}\NormalTok{existingVdr}\OperatorTok{.}\NormalTok{NodeIDs}\OperatorTok{,}\NormalTok{ vdr}\OperatorTok{.}\NormalTok{NodeID}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{{[}GOOD{]} Caching with Granite Awareness}: Post-Granite
+  validator sets are cached to improve performance.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Attack Vector Analysis}\label{2-attack-vector-analysis}
+
+\subsubsection{2.1 Replay Attacks}\label{21-replay-attacks}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Attack Vector & Mitigation & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Cross-network replay & \texttt{NetworkID} field in message &
+MITIGATED \\
+Cross-chain replay & \texttt{SourceChainID} field & MITIGATED \\
+Same-chain replay & Application-level nonce (Teleport) & MITIGATED \\
+Historical replay & P-Chain height context & MITIGATED \\
+\end{longtable}
+}
+
+\textbf{Teleport Nonce}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// teleport.go:64}
+\NormalTok{Nonce }\DataTypeTok{uint64} \StringTok{\textasciigrave{}serialize:"true"\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+The Teleport layer adds explicit nonces for application-level replay
+protection.
+
+\subsubsection{2.2 Signature Forgery}\label{22-signature-forgery}
+
+\textbf{Attack}: Forge a valid aggregate signature without sufficient
+stake.
+
+\textbf{Mitigations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  BLS signature verification uses aggregated public keys matching the
+  bitset
+\item
+  Individual signatures are verified before aggregation
+  (aggregator.go:102-107)
+\item
+  Quorum weight is verified against total validator weight
+\end{enumerate}
+
+\textbf{Status}: MITIGATED
+
+\subsubsection{2.3 Weight Manipulation}\label{23-weight-manipulation}
+
+\textbf{Attack}: Manipulate validator weights to bypass quorum
+requirements.
+
+\textbf{Mitigations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Validator weights are fetched from P-Chain state at a specific height
+\item
+  Safe arithmetic prevents overflow/underflow
+\item
+  \texttt{big.Int} comparison ensures correct quorum calculation
+\end{enumerate}
+
+\textbf{Status}: MITIGATED
+
+\subsubsection{2.4 Rogue Public Key
+Attack}\label{24-rogue-public-key-attack}
+
+\textbf{Attack}: Register a malicious BLS public key that allows forging
+aggregate signatures.
+
+\textbf{Mitigation}: The P-Chain requires proof of possession (PoP) for
+BLS keys during validator registration.
+
+\textbf{Status}: MITIGATED (via P-Chain)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Security Concerns}\label{3-security-concerns}
+
+\subsubsection{3.1 HIGH: Placeholder Post-Quantum
+Implementation}\label{31-high-placeholder-post-quantum-implementation}
+
+\textbf{Location}: \texttt{signature.go:440-496},
+\texttt{signature.go:503-566}
+
+\textbf{Issue}: The ML-KEM and AES-GCM implementations are placeholder
+code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// signature.go:440{-}441}
+\CommentTok{// }\AlertTok{TODO}\CommentTok{: Connect to actual ML{-}KEM implementation from}
+\CommentTok{// github.com/cloudflare/circl/kem/mlkem/mlkem768}
+\end{Highlighting}
+\end{Shaded}
+
+The current implementation:
+
+\begin{itemize}
+\tightlist
+\item
+  Uses XOR instead of actual AES-GCM encryption
+\item
+  Embeds the "shared secret" in the ciphertext (defeats purpose)
+\item
+  Generates deterministic "random" bytes
+\end{itemize}
+
+\textbf{Risk}: \textbf{CRITICAL} if deployed. Any encrypted payloads
+would be trivially decryptable.
+
+\textbf{Recommendation}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Complete ML-KEM integration with \texttt{cloudflare/circl} or
+  \texttt{luxfi/crypto/mlkem}
+\item
+  Use \texttt{crypto/aes} and \texttt{crypto/cipher} for AES-256-GCM
+\item
+  Use \texttt{crypto/rand} for nonce generation
+\end{enumerate}
+
+\subsubsection{3.2 HIGH: Ringtail Signature Verification is Structural
+Only}\label{32-high-ringtail-signature-verification-is-structural-only}
+
+\textbf{Location}: \texttt{signature.go:792-837}
+
+\textbf{Issue}: When \texttt{SchemeRingtail} is not registered,
+verification falls back to structural checks only:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// signature.go:828{-}837}
+\KeywordTok{func}\NormalTok{ verifyRingtailStructural}\OperatorTok{(}\NormalTok{publicKey }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ message }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ signature }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \DataTypeTok{bool} \OperatorTok{\{}
+    \CommentTok{// }\AlertTok{WARNING}\CommentTok{: This does NOT perform actual lattice verification.}
+    \ControlFlowTok{return} \BuiltInTok{len}\OperatorTok{(}\NormalTok{signature}\OperatorTok{)} \OperatorTok{\textgreater{}=} \DecValTok{64} \OperatorTok{\&\&} \BuiltInTok{len}\OperatorTok{(}\NormalTok{publicKey}\OperatorTok{)} \OperatorTok{\textgreater{}=} \DecValTok{32} \OperatorTok{\&\&} \BuiltInTok{len}\OperatorTok{(}\NormalTok{message}\OperatorTok{)} \OperatorTok{\textgreater{}} \DecValTok{0}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+This means ANY 64+ byte value passes as a valid Ringtail signature.
+
+\textbf{Risk}: \textbf{CRITICAL} if Ringtail signatures are accepted
+without proper scheme registration.
+
+\textbf{Recommendation}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Fail hard if \texttt{SchemeRingtail} is not registered rather than
+  falling back
+\item
+  Add explicit panic or error for unregistered scheme in production
+\item
+  Add integration tests that verify actual cryptographic verification
+\end{enumerate}
+
+\subsubsection{3.3 MEDIUM: Ringtail Key Aggregation is
+XOR-based}\label{33-medium-ringtail-key-aggregation-is-xor-based}
+
+\textbf{Location}: \texttt{signature.go:773-788}
+
+\textbf{Issue}: Ringtail public key aggregation uses XOR, not proper
+lattice arithmetic:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// signature.go:780{-}785}
+\ControlFlowTok{for}\NormalTok{ i }\OperatorTok{:=} \DecValTok{1}\OperatorTok{;}\NormalTok{ i }\OperatorTok{\textless{}} \BuiltInTok{len}\OperatorTok{(}\NormalTok{publicKeys}\OperatorTok{);}\NormalTok{ i}\OperatorTok{++} \OperatorTok{\{}
+    \ControlFlowTok{for}\NormalTok{ j }\OperatorTok{:=} \DecValTok{0}\OperatorTok{;}\NormalTok{ j }\OperatorTok{\textless{}}\NormalTok{ keyLen}\OperatorTok{;}\NormalTok{ j}\OperatorTok{++} \OperatorTok{\{}
+\NormalTok{        aggregated}\OperatorTok{[}\NormalTok{j}\OperatorTok{]} \OperatorTok{\^{}=}\NormalTok{ publicKeys}\OperatorTok{[}\NormalTok{i}\OperatorTok{][}\NormalTok{j}\OperatorTok{]}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Lattice-based key aggregation requires matrix operations modulo q, not
+bitwise XOR.
+
+\textbf{Risk}: Threshold signature verification will fail or be
+insecure.
+
+\textbf{Recommendation}: Implement proper MLWE-based key aggregation.
+
+\subsubsection{3.4 MEDIUM: P-Chain Synchronization
+Dependency}\label{34-medium-p-chain-synchronization-dependency}
+
+\textbf{Location}: \texttt{validator.go:294-323}
+
+\textbf{Issue}: Message verification depends on P-Chain height for
+validator sets. Nodes with stale P-Chain state may:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Reject valid messages (validator set not yet known)
+\item
+  Accept invalid messages (using outdated validator set)
+\end{enumerate}
+
+\textbf{Mitigation}: The implementation includes caching post-Granite,
+but the fundamental dependency remains.
+
+\textbf{Recommendation}: Document finality assumptions and P-Chain sync
+requirements.
+
+\subsubsection{3.5 LOW: Signature Aggregation Race
+Condition}\label{35-low-signature-aggregation-race-condition}
+
+\textbf{Location}: \texttt{aggregator.go:82-137} (evm/warp)
+
+\textbf{Issue}: Signature collection uses concurrent goroutines without
+explicit cancellation on quorum achievement:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// aggregator.go:85{-}110}
+\ControlFlowTok{for}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ v }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ validators }\OperatorTok{\{}
+\NormalTok{    wg}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\DecValTok{1}\OperatorTok{)}
+    \ControlFlowTok{go} \KeywordTok{func}\OperatorTok{(}\NormalTok{validator }\OperatorTok{*}\NormalTok{ValidatorInfo}\OperatorTok{)} \OperatorTok{\{} \OperatorTok{...} \OperatorTok{\}(}\NormalTok{v}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+All validators are queried even after quorum is reached.
+
+\textbf{Recommendation}: Add early termination when quorum weight is
+achieved.
+
+\subsubsection{3.6 LOW: Message Cache
+Size}\label{36-low-message-cache-size}
+
+\textbf{Location}: \texttt{backend.go:30}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{messageCacheSize }\OperatorTok{=} \DecValTok{500}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Fixed cache size may be insufficient for high-throughput
+subnets.
+
+\textbf{Recommendation}: Make cache size configurable.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Teleporter Integration
+Review}\label{4-teleporter-integration-review}
+
+\subsubsection{4.1 Message Types}\label{41-message-types}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{const} \OperatorTok{(}
+\NormalTok{    TeleportTransfer TeleportType }\OperatorTok{=} \OtherTok{iota}  \CommentTok{// Asset transfer}
+\NormalTok{    TeleportSwap                          }\CommentTok{// Cross{-}chain swap}
+\NormalTok{    TeleportLock                          }\CommentTok{// Lock assets}
+\NormalTok{    TeleportUnlock                        }\CommentTok{// Unlock assets}
+\NormalTok{    TeleportAttest                        }\CommentTok{// Attestation}
+\NormalTok{    TeleportGovernance                    }\CommentTok{// Governance}
+\NormalTok{    TeleportPrivate                       }\CommentTok{// Encrypted transfer}
+\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{{[}GOOD{]}} Nonce field prevents replay within message type
+\item
+  \textbf{{[}GOOD{]}} Explicit source/destination chain IDs
+\item
+  \textbf{{[}CONCERN{]}} \texttt{TeleportPrivate} relies on placeholder
+  ML-KEM encryption
+\end{enumerate}
+
+\subsubsection{4.2 Validation}\label{42-validation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// teleport.go:141{-}155}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{t }\OperatorTok{*}\NormalTok{TeleportMessage}\OperatorTok{)}\NormalTok{ Validate}\OperatorTok{()} \DataTypeTok{error} \OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ t}\OperatorTok{.}\NormalTok{Version }\OperatorTok{!=}\NormalTok{ TeleportVersion }\OperatorTok{\{} \OperatorTok{...} \OperatorTok{\}}
+    \ControlFlowTok{if}\NormalTok{ t}\OperatorTok{.}\NormalTok{MessageType }\OperatorTok{\textgreater{}}\NormalTok{ TeleportPrivate }\OperatorTok{\{} \OperatorTok{...} \OperatorTok{\}}
+    \ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{t}\OperatorTok{.}\NormalTok{Payload}\OperatorTok{)} \OperatorTok{==} \DecValTok{0} \OperatorTok{\{} \OperatorTok{...} \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{{[}GOOD{]}} Version check enables protocol upgrades
+\item
+  \textbf{{[}GOOD{]}} Bounds check on message type
+\item
+  \textbf{{[}GOOD{]}} Empty payload rejection
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Recommendations}\label{5-recommendations}
+
+\subsubsection{5.1 Critical (Must Fix Before
+Production)}\label{51-critical-must-fix-before-production}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Complete ML-KEM Implementation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Integrate with \texttt{cloudflare/circl/kem/mlkem/mlkem768}
+  \item
+    Use proper AES-256-GCM from \texttt{crypto/aes} and
+    \texttt{crypto/cipher}
+  \item
+    Use \texttt{crypto/rand} for secure random generation
+  \end{itemize}
+\item
+  \textbf{Complete Ringtail Integration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Require \texttt{SchemeRingtail} to be registered before accepting
+    Ringtail signatures
+  \item
+    Implement proper MLWE-based key aggregation
+  \item
+    Add integration tests with actual \texttt{github.com/luxfi/ringtail}
+    library
+  \end{itemize}
+\item
+  \textbf{Remove Placeholder Fallbacks}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{verifyRingtailStructural} should return \texttt{false} or
+    panic in production
+  \item
+    All TODOs in cryptographic code should be resolved
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{5.2 High Priority}\label{52-high-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{Add Signature Aggregation Timeout}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Early termination when quorum achieved
+  \item
+    Configurable timeout per-validator
+  \end{itemize}
+\item
+  \textbf{Configurable Cache Sizes}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Message cache size
+  \item
+    Signature cache size
+  \item
+    Validator set cache size
+  \end{itemize}
+\item
+  \textbf{Enhanced Logging and Metrics}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Track signature collection success/failure rates
+  \item
+    Monitor P-Chain sync lag
+  \item
+    Alert on quorum failures
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{5.3 Medium Priority}\label{53-medium-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  \textbf{Document Finality Assumptions}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    P-Chain height requirements
+  \item
+    Message propagation delays
+  \item
+    Validator set change handling
+  \end{itemize}
+\item
+  \textbf{Add Rate Limiting}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Signature request rate limits per validator
+  \item
+    Message verification rate limits
+  \end{itemize}
+\item
+  \textbf{Implement Message Expiration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Optional TTL for messages
+  \item
+    Automatic cleanup of expired messages
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{5.4 Low Priority}\label{54-low-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  \textbf{Code Quality}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add fuzz tests for message parsing
+  \item
+    Add property-based tests for bitset operations
+  \item
+    Consider formal verification for critical paths
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. 2025 Improvements (Warp
+1.5)}\label{6-2025-improvements-warp-15}
+
+\subsubsection{6.1 Quantum-Safe
+Migration}\label{61-quantum-safe-migration}
+
+The codebase shows preparation for post-quantum security:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Feature & Status & Notes \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+RingtailSignature & Placeholder & LWE-based threshold signatures \\
+HybridBLSRTSignature & Implemented & BLS + Ringtail hybrid \\
+EncryptedWarpPayload & Placeholder & ML-KEM + AES-256-GCM \\
+Validator RingtailPubKey & Field added & Ready for RT keys \\
+\end{longtable}
+}
+
+\subsubsection{6.2 Recommended Migration
+Path}\label{62-recommended-migration-path}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Phase 1 (Current)}: BLS-only signatures
+  (\texttt{BitSetSignature})
+\item
+  \textbf{Phase 2 (Q1 2025)}: Complete Ringtail integration, enable
+  hybrid mode
+\item
+  \textbf{Phase 3 (Q2 2025)}: Deprecate BLS-only, require hybrid
+\item
+  \textbf{Phase 4 (Q4 2025)}: Ringtail-only recommended for new
+  deployments
+\end{enumerate}
+
+\subsubsection{6.3 Signature Type
+Selection}\label{63-signature-type-selection}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// teleport.go:297{-}299}
+\KeywordTok{func}\NormalTok{ RecommendedSignatureType}\OperatorTok{()}\NormalTok{ SignatureType }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ SigTypeRingtail}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The code defaults to recommending Ringtail, but this should only be
+enabled after completing the implementation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Conclusion}\label{7-conclusion}
+
+The Warp protocol provides a solid foundation for cross-chain messaging
+with proper replay protection, quorum verification, and deterministic
+ordering. The BLS signature implementation is sound.
+
+\textbf{Critical issues} exist in the post-quantum (Warp 1.5) code
+paths:
+
+\begin{itemize}
+\tightlist
+\item
+  ML-KEM encryption is placeholder XOR
+\item
+  Ringtail verification falls back to structural-only checks
+\item
+  Ringtail key aggregation is incorrect
+\end{itemize}
+
+These issues are acceptable for development but \textbf{must be resolved
+before any production use} of Warp 1.5 features.
+
+\textbf{Recommendations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Do not enable \texttt{RingtailSignature} or
+  \texttt{EncryptedWarpPayload} until implementations are complete
+\item
+  Add feature flags to explicitly disable post-quantum features
+\item
+  Complete integration with \texttt{cloudflare/circl} and
+  \texttt{luxfi/ringtail}
+\item
+  Add comprehensive integration tests for all signature types
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix A: Files Reviewed}\label{appendix-a-files-reviewed}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Lines & Purpose \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{node/vms/platformvm/warp/message.go} & 57 & Signed message
+wrapper \\
+\texttt{node/vms/platformvm/warp/unsigned\_message.go} & 75 & Unsigned
+message format \\
+\texttt{node/vms/platformvm/warp/signature.go} & 845 & BLS, Ringtail,
+Hybrid signatures \\
+\texttt{node/vms/platformvm/warp/validator.go} & 324 & Validator set
+management \\
+\texttt{node/vms/platformvm/warp/signer.go} & 57 & Local signing \\
+\texttt{node/vms/platformvm/warp/teleport.go} & 318 & Higher-level
+cross-chain \\
+\texttt{evm/warp/aggregator.go} & 223 & Signature aggregation \\
+\texttt{evm/warp/backend.go} & 224 & Message storage and signing \\
+\texttt{evm/warp/verifier\_backend.go} & 109 & Message verification \\
+\texttt{evm/warp/service.go} & 130 & RPC API \\
+\end{longtable}
+}
+
+\subsection{Appendix B: Test Coverage}\label{appendix-b-test-coverage}
+
+The codebase includes comprehensive tests:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{hybrid\_signature\_test.go}: 692 lines of hybrid signature
+  tests
+\item
+  \texttt{signature\_test.go}: BLS signature tests
+\item
+  \texttt{validator\_test.go}: Validator set tests
+\item
+  \texttt{message\_test.go}: Message serialization tests
+\item
+  \texttt{teleport\_test.go}: Teleport protocol tests
+\end{itemize}
+
+Test coverage appears adequate for classical (BLS) code paths.
+Post-quantum tests verify structure but not cryptographic correctness
+(by design, given placeholder status).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{End of Audit Report}
+
+\end{document}

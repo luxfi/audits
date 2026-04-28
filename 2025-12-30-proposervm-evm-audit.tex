@@ -1,0 +1,828 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{ProposerVM and EVM Integration
+Audit}\label{proposervm-and-evm-integration-audit}
+
+\textbf{Date}: 2025-12-30\\
+\textbf{Auditor}: CTO Agent\\
+\textbf{Scope}:
+\texttt{\textasciitilde{}/work/lux/node/vms/proposervm/},
+\texttt{\textasciitilde{}/work/lux/evm/}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This audit examines the ProposerVM wrapper and EVM integration for the
+Lux blockchain. The implementation follows sound architectural
+principles with proper separation of concerns. Several security
+considerations and potential improvements are identified.
+
+\textbf{Risk Assessment}: LOW-MEDIUM
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Risk Level & Notes \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ProposerVM Block Timing & LOW & Well-designed windowing system \\
+Proposer Selection & LOW & Cryptographically sound sampling \\
+State Sync & MEDIUM & Complex multi-party protocol \\
+Precompiles & LOW & Standard patterns with proper gas accounting \\
+LP181 Epoching & LOW & Clean epoch transition logic \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. ProposerVM Analysis}\label{1-proposervm-analysis}
+
+\subsubsection{1.1 Block Timing and
+Windowing}\label{11-block-timing-and-windowing}
+
+\textbf{Files}: \texttt{proposer/windower.go}, \texttt{vm.go}
+
+\textbf{Design}:
+
+\begin{itemize}
+\tightlist
+\item
+  Window duration: 5 seconds per slot
+\item
+  Max verify windows: 6 (30 seconds)
+\item
+  Max build windows: 60 (5 minutes)
+\item
+  Max look-ahead slots: 720 (1 hour)
+\end{itemize}
+
+\textbf{Security Observations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Time Skew Protection} (GOOD)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{const}\NormalTok{ maxSkew }\OperatorTok{=} \DecValTok{10} \OperatorTok{*}\NormalTok{ time}\OperatorTok{.}\NormalTok{Second}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Blocks more than 10 seconds in the future are rejected
+  \item
+    Prevents time manipulation attacks
+  \end{itemize}
+\item
+  \textbf{Minimum Block Delay} (GOOD)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DefaultMinBlockDelay }\OperatorTok{=}\NormalTok{ time}\OperatorTok{.}\NormalTok{Second}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Prevents rapid block spam
+  \item
+    Configurable per network
+  \end{itemize}
+\item
+  \textbf{Monotonic Timestamp Enforcement} (GOOD)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ childTimestamp}\OperatorTok{.}\NormalTok{Before}\OperatorTok{(}\NormalTok{parentTimestamp}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ errTimeNotMonotonic}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\textbf{Potential Issues}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{P-Chain Height Dependency} (LOW RISK)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Block validation depends on P-Chain height being available
+  \item
+    During bootstrapping, P-Chain may lag behind
+  \item
+    Mitigated: Returns \texttt{(time.Time\{\},\ false,\ nil)} allowing
+    graceful degradation
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{1.2 Proposer Selection}\label{12-proposer-selection}
+
+\textbf{Files}: \texttt{proposer/windower.go},
+\texttt{proposer/validators.go}
+
+\textbf{Algorithm}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Fetch validator set from P-Chain at specified height
+\item
+  Sort validators by NodeID (canonical ordering)
+\item
+  Use MT19937\_64 PRNG seeded with
+  \texttt{chainSource\ \^{}\ blockHeight\ \^{}\ reversedSlot}
+\item
+  Sample weighted validators without replacement
+\end{enumerate}
+
+\textbf{Security Observations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Deterministic Sampling} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Uses Mersenne Twister with deterministic seed
+  \item
+    All validators agree on proposer for any slot
+  \item
+    Slot reversal prevents seed collision between height/slot
+    combinations
+  \end{itemize}
+\item
+  \textbf{Weight-Based Selection} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Validators selected proportional to stake weight
+  \item
+    Uses \texttt{sampler.NewDeterministicWeightedWithoutReplacement}
+  \end{itemize}
+\item
+  \textbf{Empty Validator Set Handling} (GOOD)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{validators}\OperatorTok{)} \OperatorTok{==} \DecValTok{0} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ids}\OperatorTok{.}\NormalTok{EmptyNodeID}\OperatorTok{,}\NormalTok{ ErrAnyoneCanPropose}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    When no validators, anyone can propose unsigned blocks
+  \item
+    Prevents chain halt during validator set transitions
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Potential Issue}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Validator Grinding} (LOW RISK)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Seed includes only
+    \texttt{chainSource\ \^{}\ blockHeight\ \^{}\ slot}
+  \item
+    An attacker controlling timing could potentially wait for favorable
+    slots
+  \item
+    Mitigated: Weight-based selection means most slots go to high-stake
+    validators
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{1.3 Quantum Finality
+Integration}\label{13-quantum-finality-integration}
+
+\textbf{Files}: \texttt{config.go}, \texttt{block.go}
+
+\textbf{Implementation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ QuantumFinalityVerifier }\KeywordTok{interface} \OperatorTok{\{}
+\NormalTok{    RequireQuantumParent}\OperatorTok{(}\NormalTok{parentID ids}\OperatorTok{.}\NormalTok{ID}\OperatorTok{,}\NormalTok{ parentHeight }\DataTypeTok{uint64}\OperatorTok{)} \DataTypeTok{error}
+\NormalTok{    IsQuantumSafeOnly}\OperatorTok{()} \DataTypeTok{bool}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Security Observations} (GOOD):
+
+\begin{itemize}
+\tightlist
+\item
+  Optional verifier for P/Q (post-quantum) finality
+\item
+  When enabled, blocks MUST build on quantum-finalized ancestors
+\item
+  Enforced at both verification and build time
+\item
+  Uses BLS + Ringtail dual finality proofs
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. EVM Integration}\label{2-evm-integration}
+
+\subsubsection{2.1 State Sync}\label{21-state-sync}
+
+\textbf{Files}: \texttt{sync/statesync/state\_syncer.go}
+
+\textbf{Design}:
+
+\begin{itemize}
+\tightlist
+\item
+  Parallel trie syncing with segment splitting
+\item
+  Code syncer runs asynchronously
+\item
+  Maximum 8 concurrent workers
+\item
+  Segment threshold: 500,000 leaves
+\end{itemize}
+
+\textbf{Security Observations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{State Verification} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Syncs against root hash commitment
+  \item
+    Validates each trie segment against Merkle proofs
+  \end{itemize}
+\item
+  \textbf{Progress Tracking} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Persistent queue survives restarts
+  \item
+    \texttt{clearIfRootDoesNotMatch} prevents stale state corruption
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Potential Issues}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{State Sync Poisoning} (MEDIUM RISK)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Malicious peers could serve incorrect state
+  \item
+    Mitigated: Hash verification against committed root
+  \item
+    Consider: Peer reputation scoring for repeated failures
+  \end{itemize}
+\item
+  \textbf{Memory Pressure} (LOW RISK)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Large state tries could exhaust memory
+  \item
+    Mitigated: Segmentation and worker limits
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{2.2 Block Building}\label{22-block-building}
+
+\textbf{Files}: \texttt{plugin/evm/vm.go}
+
+\textbf{Security Observations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Block Timestamp Validation} (GOOD)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maxFutureBlockTime }\OperatorTok{=} \DecValTok{10} \OperatorTok{*}\NormalTok{ time}\OperatorTok{.}\NormalTok{Second}
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Consistent with ProposerVM skew limit
+  \end{itemize}
+\item
+  \textbf{Transaction Pool Security} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Configurable price limits and bump percentages
+  \item
+    Local transactions can be prioritized
+  \item
+    Account slots prevent single-account DoS
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{2.3 Precompiles}\label{23-precompiles}
+
+\textbf{Files}: \texttt{precompile/contracts/}
+
+\textbf{Available Precompiles}:
+
+\begin{itemize}
+\tightlist
+\item
+  DeployerAllowList
+\item
+  FeeManager
+\item
+  NativeMinter
+\item
+  RewardManager
+\item
+  TxAllowList
+\item
+  Warp
+\end{itemize}
+
+\paragraph{Warp Precompile Analysis}\label{warp-precompile-analysis}
+
+\textbf{File}: \texttt{precompile/contracts/warp/contract.go}
+
+\textbf{Gas Costs}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GetVerifiedWarpMessageBaseCost }\OperatorTok{=} \DecValTok{2}
+\NormalTok{GetBlockchainIDGasCost         }\OperatorTok{=} \DecValTok{2}
+\NormalTok{AddWarpMessageGasCost          }\OperatorTok{=} \DecValTok{20\_000}
+\NormalTok{SendWarpMessageGasCost         }\OperatorTok{=}\NormalTok{ LogGas }\OperatorTok{+} \DecValTok{3}\OperatorTok{*}\NormalTok{LogTopicGas }\OperatorTok{+}\NormalTok{ AddWarpMessageGasCost }\OperatorTok{+}\NormalTok{ WriteGasCostPerSlot}
+\NormalTok{GasCostPerWarpSigner           }\OperatorTok{=} \DecValTok{500}
+\NormalTok{GasCostPerSignatureVerification }\OperatorTok{=} \DecValTok{200\_000}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Security Observations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Gas Accounting} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Base cost + per-byte cost for payload
+  \item
+    Overflow protection:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{payloadGas}\OperatorTok{,}\NormalTok{ overflow }\OperatorTok{:=}\NormalTok{ math}\OperatorTok{.}\NormalTok{SafeMul}\OperatorTok{(}\NormalTok{SendWarpMessageGasCostPerByte}\OperatorTok{,} \DataTypeTok{uint64}\OperatorTok{(}\BuiltInTok{len}\OperatorTok{(}\NormalTok{input}\OperatorTok{)))}
+\ControlFlowTok{if}\NormalTok{ overflow }\OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,} \DecValTok{0}\OperatorTok{,}\NormalTok{ vm}\OperatorTok{.}\NormalTok{ErrOutOfGas}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+  \end{itemize}
+\item
+  \textbf{Read-Only Protection} (GOOD)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ readOnly }\OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,}\NormalTok{ remainingGas}\OperatorTok{,}\NormalTok{ vm}\OperatorTok{.}\NormalTok{ErrWriteProtection}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Message Verification} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Uses predicate storage slots for pre-verified messages
+  \item
+    Signature verification cost: 200,000 gas
+  \end{itemize}
+\end{enumerate}
+
+\textbf{Potential Issues}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Gas Price Oracle} (LOW RISK)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Conservative overestimate for message storage
+  \item
+    May need tuning based on actual usage patterns
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. LP181 Epoching}\label{3-lp181-epoching}
+
+\textbf{Files}: \texttt{lp181/epoch.go}
+
+\textbf{Implementation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ NewEpoch}\OperatorTok{(}
+\NormalTok{    upgrades upgrade}\OperatorTok{.}\NormalTok{Config}\OperatorTok{,}
+\NormalTok{    parentPChainHeight }\DataTypeTok{uint64}\OperatorTok{,}
+\NormalTok{    parentEpoch block}\OperatorTok{.}\NormalTok{Epoch}\OperatorTok{,}
+\NormalTok{    parentTimestamp time}\OperatorTok{.}\NormalTok{Time}\OperatorTok{,}
+\NormalTok{    childTimestamp time}\OperatorTok{.}\NormalTok{Time}\OperatorTok{,}
+\OperatorTok{)}\NormalTok{ block}\OperatorTok{.}\NormalTok{Epoch}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Epoch Transition Logic}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Not activated before Granite: returns empty epoch
+\item
+  First epoch: uses parent P-Chain height as reference
+\item
+  Epoch sealed when parent issued after epoch end time
+\item
+  New epoch starts with incremented number
+\end{enumerate}
+
+\textbf{Security Observations}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Clean Transition} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Epoch changes are deterministic
+  \item
+    Based on timestamp comparison against epoch end time
+  \end{itemize}
+\item
+  \textbf{P-Chain Height Locking} (GOOD)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Each epoch locks to a specific P-Chain height
+  \item
+    Prevents validator set manipulation during epoch
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Security
+Recommendations}\label{4-security-recommendations}
+
+\subsubsection{HIGH Priority}\label{high-priority}
+
+None identified.
+
+\subsubsection{MEDIUM Priority}\label{medium-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{State Sync Peer Reputation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implement peer scoring for state sync reliability
+  \item
+    Ban peers that consistently provide incorrect proofs
+  \item
+    Location: \texttt{sync/statesync/}
+  \end{itemize}
+\item
+  \textbf{Proposer Slot Analysis}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add monitoring for proposer slot utilization
+  \item
+    Detect potential grinding attempts
+  \item
+    Location: \texttt{proposervm/proposer/}
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{LOW Priority}\label{low-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Timestamp Drift Monitoring}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add metrics for block timestamp vs local time drift
+  \item
+    Alert on persistent drift patterns
+  \item
+    Location: \texttt{proposervm/vm.go}
+  \end{itemize}
+\item
+  \textbf{Epoch Transition Events}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Emit events on epoch transitions for monitoring
+  \item
+    Location: \texttt{proposervm/lp181/}
+  \end{itemize}
+\item
+  \textbf{Gas Cost Calibration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Profile warp message costs against actual execution
+  \item
+    Consider dynamic adjustment based on network load
+  \item
+    Location: \texttt{precompile/contracts/warp/}
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Code Quality
+Observations}\label{5-code-quality-observations}
+
+\subsubsection{Positive Patterns}\label{positive-patterns}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Interface Segregation}: Clean separation between ProposerVM
+  wrapper and inner VM
+\item
+  \textbf{Error Handling}: Explicit error types with wrapped context
+\item
+  \textbf{Logging}: Comprehensive debug logging with structured fields
+\item
+  \textbf{Testing}: Extensive test coverage including byzantine
+  scenarios
+\end{enumerate}
+
+\subsubsection{Areas for Improvement}\label{areas-for-improvement}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Documentation}: Some complex algorithms lack inline comments
+\item
+  \textbf{Backup Files}: Multiple \texttt{.bak} files should be cleaned
+  up:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{vm\_test.go.bak} through \texttt{vm\_test.go.bak7}
+  \item
+    \texttt{blockchain\_snapshot\_test.go.bak}
+  \end{itemize}
+\item
+  \textbf{Debug Logging}: Production debug log file creation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ os}\OperatorTok{.}\NormalTok{OpenFile}\OperatorTok{(}\StringTok{"/tmp/evm{-}debug.log"}\OperatorTok{,} \OperatorTok{...)}
+\end{Highlighting}
+\end{Shaded}
+
+  Should be gated by debug flag or removed.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Architecture Summary}\label{6-architecture-summary}
+
+\begin{verbatim}
+                    ┌─────────────────────────────────┐
+                    │         Consensus Engine         │
+                    │    (Quasar / Snow Protocol)      │
+                    └────────────────┬────────────────┘
+                                     │
+                    ┌────────────────▼────────────────┐
+                    │          ProposerVM              │
+                    │  ┌────────────────────────────┐ │
+                    │  │  Block Timing & Windowing  │ │
+                    │  │  Proposer Selection (PRNG) │ │
+                    │  │  LP181 Epoching            │ │
+                    │  │  P/Q Finality Verification │ │
+                    │  └────────────────────────────┘ │
+                    └────────────────┬────────────────┘
+                                     │
+                    ┌────────────────▼────────────────┐
+                    │            EVM Plugin            │
+                    │  ┌────────────────────────────┐ │
+                    │  │  Block Building/Validation │ │
+                    │  │  State Management          │ │
+                    │  │  Transaction Pool          │ │
+                    │  │  Precompiles (Warp, etc)   │ │
+                    │  │  State Sync Client/Server  │ │
+                    │  └────────────────────────────┘ │
+                    └─────────────────────────────────┘
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Conclusion}\label{7-conclusion}
+
+The ProposerVM and EVM integration demonstrates solid engineering
+practices with appropriate security measures. The windowing and proposer
+selection mechanisms are cryptographically sound. State sync follows
+established patterns with proper verification.
+
+Key strengths:
+
+\begin{itemize}
+\tightlist
+\item
+  Deterministic proposer selection prevents coordination attacks
+\item
+  Quantum finality integration provides forward security path
+\item
+  LP181 epoching enables clean validator set transitions
+\item
+  Gas accounting prevents DoS on precompiles
+\end{itemize}
+
+Areas requiring attention:
+
+\begin{itemize}
+\tightlist
+\item
+  State sync peer reputation for improved resilience
+\item
+  Debug logging cleanup for production readiness
+\item
+  Monitoring infrastructure for operational security
+\end{itemize}
+
+\textbf{Overall Assessment}: The codebase is production-ready with the
+noted recommendations for improved operational security.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Audit completed: 2025-12-30}
+
+\end{document}

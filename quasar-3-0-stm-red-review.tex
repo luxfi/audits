@@ -1,0 +1,1542 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{QuasarSTM (Block-STM 3.0) --- Red Adversarial
+Review}\label{quasarstm-block-stm-30--red-adversarial-review}
+
+\textbf{Author}: Red (adversarial) \textbf{Date}: 2026-04-26
+\textbf{Scope}: LP-010 (QuasarSTM), LP-132 (QuasarGPU), Metal kernel,
+layout, host driver, tests \textbf{Target launch}: 2025-12-25
+\textbf{Threat model}: An adversary submits transactions designed to
+cause two honest validators on the same input to produce divergent
+\texttt{state\_root}, \texttt{receipts\_root}, \texttt{execution\_root},
+\texttt{block\_hash}, or \texttt{tx\_count}. Any divergence is a chain
+split.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+\textbf{16 findings: 4 Critical, 5 High, 4 Medium, 3 Low/Informational.}
+
+The 3.0 spec is well thought out --- lanes, three-tier validation,
+commit horizons, deterministic policy ordering, and the discipline
+against "retry-until-success" loops are real safety primitives.
+\textbf{None of that is implemented.} The shipping substrate is closer
+to 2.0 with v0.40 DAG bolted on. The gap between the LP and the kernel
+is the headline architectural risk: LP-010 documents anti-livelock hard
+limits (\texttt{MAX\_FAST\_REPAIRS=3}, \texttt{MAX\_TOTAL\_REPAIRS=8},
+\texttt{HOT\_LANE\_CONFLICT\_THRESHOLD=16}) as "mandatory on GPU"; the
+kernel enforces none of them. Repair amplification is theoretically
+O(N²) and the only thing capping it in practice is the
+host\textquotesingle s \texttt{max\_epochs} argument to
+\texttt{run\_until\_done}.
+
+The most concerning concrete issue is \textbf{Q3.0-STM-001}: on the slow
+path, \texttt{drain\_validate} performs \texttt{mvcc\_apply\_writes}
+\emph{before} \texttt{ring\_try\_push(commit\_hdr,\ ...)}. If the commit
+ring is full (the spec calls this out as expected backpressure), the
+version is bumped, the tx is requeued onto Validate, and on the next
+tick it re-validates, finds its own bumped version, and is shoveled to
+Repair --- incrementing \texttt{conflict\_count},
+\texttt{repair\_count}, and corrupting the \texttt{execution\_root}
+chain order across runs because \emph{which} tick the commit ring fills
+is timing-dependent. Two validators on the same input will produce
+different roots if the host on validator A drains the commit ring with
+different latency than validator B.
+
+The next-most-concerning is \textbf{Q3.0-STM-002}: \texttt{mvcc\_locate}
+writes \texttt{key\_lo}/\texttt{key\_hi} as plain non-atomic stores. Two
+GPU threads racing to claim the same empty slot can both succeed (the
+second tx\textquotesingle s store overwrites the first), and a
+concurrent reader can observe \texttt{key\_lo} set with \texttt{key\_hi}
+still zero. This is sufficient on its own to cause root divergence
+between validators.
+
+These are both fixable inside 3.0 before 2025-12-25 with bounded local
+changes. Critical \& high findings are all must-fix-pre-launch.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Findings}\label{findings}
+
+\subsubsection{Q3.0-STM-001 --- Commit ring backpressure produces
+nondeterministic repair counts and divergent execution\_root
+{[}Critical{]}}\label{q30-stm-001--commit-ring-backpressure-produces-nondeterministic-repair-counts-and-divergent-execution_root-critical}
+
+\textbf{Description}. In \texttt{drain\_validate}, the order of
+operations on a passing tx is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{mvcc\_apply\_writes(...)} (atomic version bump)
+\item
+  construct CommitItem, compute receipt\_hash
+\item
+  \texttt{ring\_try\_push(commit\_hdr,\ c)}
+\item
+  on push failure: requeue the \emph{original ExecResult} back onto
+  Validate.
+\end{enumerate}
+
+The version bump in step 1 is permanent. If step 3 fails (commit ring
+full --- explicitly called out as expected backpressure in the LP), the
+tx will re-enter Validate on the next tick, but
+\texttt{mvcc\_check\_consistent} will now find its own bumped version
+(\texttt{cur\ !=\ e.version\_seen}) and route it to Repair. This
+double-counts conflicts and repairs, AND alters which tx wins the keccak
+chain in \texttt{drain\_commit}.
+
+Worse: the comment in the code admits this is wrong:
+
+\begin{quote}
+"Roll back the MVCC version bump? In v0.36 substrate the version
+monotonically advances; if commit ring is full we requeue and let
+downstream catch up next tick. The version mismatch this introduces only
+causes other concurrent txs to repair, which is correct under
+Block-STM."
+\end{quote}
+
+It is \textbf{not} correct under Block-STM. It introduces a new conflict
+that depends on whether the commit ring was full at that exact moment.
+Two validators racing the GPU scheduler differently will fill the commit
+ring at different points and produce different \texttt{repair\_count},
+different commit ordering (different receipts/execution\_root), and
+ultimately different \texttt{block\_hash}.
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:978-1004},
+\texttt{quasar\_wave.cu:691-708}.
+
+\textbf{Attack scenario}. Adversary submits a block where
+validate-throughput exceeds commit-throughput for a sustained tick.
+Easiest construction: a moderate flood of independent-key txs (no real
+conflicts) + a tight \texttt{wave\_tick\_budget} so the commit drain
+falls behind. On validator A the commit ring fills at tick K, on
+validator B at tick K+1. Their receipts\_root chains observe a different
+commit order. Roots diverge.
+
+\textbf{Fix}. The commit-side push must be tried \emph{before} the MVCC
+mutation, OR the mutation must be tentatively rolled back on push
+failure. Cleanest fix:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Try \texttt{ring\_try\_push(commit\_hdr,\ c)} first.
+\item
+  If it fails, push the ExecResult back to Validate without mutating
+  MVCC. Tx will re-validate next tick and re-apply.
+\end{enumerate}
+
+Or: split commit into a "reserve commit slot" → "apply MVCC writes" →
+"fill receipt" sequence that is atomic against the commit-ring-full
+case.
+
+\textbf{Must-fix pre-launch}: YES.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-002 --- Non-atomic key claim in
+\texttt{mvcc\_locate} allows double-claim and torn key reads
+{[}Critical{]}}{Q3.0-STM-002 --- Non-atomic key claim in mvcc\_locate allows double-claim and torn key reads {[}Critical{]}}}\label{q30-stm-002--non-atomic-key-claim-in-mvcc_locate-allows-double-claim-and-torn-key-reads-critical}
+
+\textbf{Description}. \texttt{mvcc\_locate} claims an empty slot via
+plain (non-atomic) stores:
+
+\begin{verbatim}
+if (s->key_lo == 0UL && s->key_hi == 0UL) {
+    s->key_lo = key_lo;
+    s->key_hi = key_hi;
+    return idx;
+}
+\end{verbatim}
+
+Two concurrent fibers landing on the same empty slot --- possible
+because \texttt{drain\_exec} runs on workgroup \texttt{gid=4} but
+\texttt{drain\_validate} (\texttt{gid=5}) and \texttt{drain\_dagready}
+(\texttt{gid=3}) \textbf{also call \texttt{mvcc\_locate}} from their own
+workgroups concurrently within one wave-tick dispatch. (Confirmed:
+\texttt{drain\_dagready} doesn\textquotesingle t call
+\texttt{mvcc\_locate}, but \texttt{drain\_exec},
+\texttt{drain\_validate.mvcc\_check\_consistent}, and
+\texttt{drain\_validate.mvcc\_apply\_writes} all do, from gid=4 and
+gid=5 simultaneously. The kernel does NOT serialize these via
+\texttt{gid==4} only.)
+
+Even worse: the comment claims "races on (last\_writer\_tx, version)
+atomics" make this safe, but those atomics only protect the version once
+the slot is claimed. The \emph{claim itself} is racy:
+
+\begin{itemize}
+\tightlist
+\item
+  Thread T1 reads (0, 0), starts writing key\_lo = K.
+\item
+  Thread T2 reads (0, 0), also writes key\_lo = K, key\_hi = 0.
+\item
+  Thread T1 writes key\_hi = K\_HI.
+\item
+  Final state: key\_lo=K (correct), key\_hi=K\_HI (correct), version=0
+  --- but T1 returned \texttt{idx} and T2 also returned \texttt{idx}.
+  Both think they own the slot for \emph{different} keys if the keys
+  happened to differ in the unlikely-collision case, OR for the same key
+  (no harm) if they match.
+\end{itemize}
+
+The actually-exploitable case: \textbf{torn key read by another
+concurrent fiber.} If a third thread T3 reaches the same idx during the
+window between \texttt{s-\textgreater{}key\_lo\ =\ key\_lo} and
+\texttt{s-\textgreater{}key\_hi\ =\ key\_hi}, T3 sees
+\texttt{(key\_lo=K,\ key\_hi=0)} and either (a) misidentifies the slot
+as "occupied by some other key (K,0)" and probes onward, or (b) finds
+the comparator passes coincidentally and corrupts the wrong
+key\textquotesingle s version.
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:489-510},
+\texttt{quasar\_wave.cu:411-428}.
+
+\textbf{Attack scenario}. Adversary submits a block whose first 16
+transactions all touch \emph{different} keys whose FNV-1a hash collides
+on the same MVCC slot. (FNV-1a is not cryptographic; finding 16
+colliding keys is trivial --- pre-image / second-pre-image). Multiple
+drain\_exec/validate workgroups race the empty slot, and depending on
+GPU scheduling, the version chain on that slot is associated with a
+nondeterministic key, producing different \texttt{state\_root} between
+validators.
+
+\textbf{Fix}. Use \texttt{atomic\_compare\_exchange} on a sentinel field
+(e.g., on a packed (key\_lo\textbar busy) marker, or on a separate
+\texttt{slot\_state} atomic) to claim the slot:
+
+\begin{verbatim}
+// Compete to install key_lo using atomic CAS from 0 → key_lo.
+// On success, store key_hi (no race since only the winner reaches here),
+// then publish the slot via a fence + store of a "ready" flag.
+\end{verbatim}
+
+Pair with \texttt{atomic\_thread\_fence(memory\_order\_acq\_rel)} to
+publish the key bytes before any reader can match them.
+
+Also: replace FNV-1a with a keyed hash (or use a structured key with
+sufficient cryptographic mixing) so an adversary cannot trivially
+hand-craft hash collisions. FNV-1a is fine for non-adversarial
+workloads, not for a public chain accepting adversarial inputs.
+
+\textbf{Must-fix pre-launch}: YES.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-003 --- Anti-livelock hard
+limits (\texttt{MAX\_FAST\_REPAIRS}, \texttt{MAX\_TOTAL\_REPAIRS},
+\texttt{HOT\_LANE\_CONFLICT\_THRESHOLD}) are not enforced anywhere in
+code
+{[}Critical{]}}{Q3.0-STM-003 --- Anti-livelock hard limits (MAX\_FAST\_REPAIRS, MAX\_TOTAL\_REPAIRS, HOT\_LANE\_CONFLICT\_THRESHOLD) are not enforced anywhere in code {[}Critical{]}}}\label{q30-stm-003--anti-livelock-hard-limits-max_fast_repairs-max_total_repairs-hot_lane_conflict_threshold-are-not-enforced-anywhere-in-code-critical}
+
+\textbf{Description}. LP-010 §4.0 ("Anti-livelock hard limits ---
+mandatory on GPU") documents:
+
+\begin{verbatim}
+constexpr uint32_t MAX_FAST_REPAIRS                = 3;
+constexpr uint32_t MAX_TOTAL_REPAIRS               = 8;
+constexpr uint32_t HOT_LANE_CONFLICT_THRESHOLD     = 16;
+\end{verbatim}
+
+with the caption: "Unbounded repair loops are unacceptable on GPU."
+
+Grep across \texttt{quasar\_wave.metal}, \texttt{quasar\_wave.cu},
+\texttt{quasar\_gpu\_engine.mm}, \texttt{quasar\_gpu\_engine\_cuda.cpp},
+and \texttt{quasar\_gpu\_layout.hpp}: \textbf{none of these constants
+exist}. There is no per-tx repair counter check, no
+abort-on-repair-bound, no cold-queue demotion. \texttt{drain\_validate}
+increments \texttt{result-\textgreater{}repair\_count} (a global
+counter) and pushes the ExecResult back to Repair → Exec without any
+bound.
+
+The only thing limiting an N² repair storm is the host\textquotesingle s
+choice of \texttt{max\_epochs} in \texttt{run\_until\_done}. The test
+\texttt{test\_block\_stm\_conflict\_repair} passes
+\texttt{max\_epochs=256} and asserts only that
+\texttt{r.status\ ==\ 1u}. If 256 ticks are insufficient (because the
+adversary submits a block that requires more), the round fails
+non-deterministically: validator A might have a fast GPU and finish in
+200 ticks; validator B with a slower GPU times out at 256.
+
+\textbf{Affected}: entire kernel --- there is nowhere to put the counter
+check because it doesn\textquotesingle t exist.
+
+\textbf{Attack scenario}. Adversary submits 1024 transactions all
+writing the same key. Theoretical bound is O(N²) ≈ 524K repairs; even
+with an aggressive 1M ops/sec drain that\textquotesingle s 0.5 seconds
+of pure repair churn --- but the worst-case bound is actually higher
+because repair → exec → validate can re-enter validation without the
+original tx ever committing (the schedule is GPU-nondeterministic).
+Easier attack: 256 same-key txs guaranteed to produce \textasciitilde32K
+repairs. The adversary picks block size to land just past whatever the
+host chose for \texttt{max\_epochs}. Some validators fail to finalize;
+others succeed; chain splits.
+
+\textbf{Fix}. Add \texttt{repair\_count} and \texttt{incarnation} to the
+FiberSlot or a per-tx state record. In \texttt{drain\_validate}, before
+pushing to Repair:
+
+\begin{verbatim}
+if (er.incarnation >= MAX_TOTAL_REPAIRS) {
+    // emit deterministic abort: status = 4 (Error), zero gas, deterministic receipt
+    // this is the "deterministic block-pathological-tx" outcome
+}
+\end{verbatim}
+
+The abort path must be deterministic --- same input must produce the
+same abort across validators --- which means the threshold must be
+enforced \emph{and} the abort must produce a fixed receipt regardless of
+how many wave-ticks were consumed.
+
+Also publish \texttt{MAX\_TOTAL\_REPAIRS} to consensus, because changing
+it is a hard fork.
+
+\textbf{Must-fix pre-launch}: YES.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-STM-004 --- Cross-backend determinism is unverified;
+CUDA backend lacks v0.40 DAG construction
+{[}Critical{]}}\label{q30-stm-004--cross-backend-determinism-is-unverified-cuda-backend-lacks-v040-dag-construction-critical}
+
+\textbf{Description}. LP-010 §"Correctness Invariants" \#7 states:
+
+\begin{quote}
+Cross-backend equivalence --- Metal == CUDA == CPU reference for
+state\_root, receipts\_root, execution\_root, mode\_root, and
+conflict/repair behavior wherever deterministic.
+\end{quote}
+
+Reality:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The CUDA backend (\texttt{quasar\_wave.cu:571-587}) ships \textbf{only
+  the v0.35 pass-through \texttt{drain\_dagready}}. It has no
+  DagWriterSlot table, no PredictedKey lookup, no parent→child edge
+  construction. The Metal backend has full v0.40 DAG construction
+  (\texttt{quasar\_wave.metal:736-825}).
+\item
+  The CUDA \texttt{drain\_commit} (\texttt{quasar\_wave.cu:770-809})
+  does NOT walk DAG children to decrement unresolved\_parents. The Metal
+  \texttt{drain\_commit} (\texttt{quasar\_wave.metal:1107-1127}) does.
+\item
+  In Nebula mode (\texttt{desc-\textgreater{}mode\ ==\ 1u}), Metal
+  builds a real DAG and uses unresolved\_parents to gate emission to
+  Exec; CUDA pass-through\textquotesingle s antichain is just FIFO.
+\item
+  The CUDA vote verifier (\texttt{drain\_vote} in
+  \texttt{quasar\_wave.cu:811-860}) uses a different signature scheme
+  entirely (\texttt{verify\_signature\_stub} byte-equality check on
+  subject vs sig) than the Metal vote-batch verifier (HMAC-keccak with
+  master secret + chain\_id binding).
+\end{enumerate}
+
+\textbf{Two validators, one on Metal (Apple node) and one on CUDA (Linux
+x86), running the same Nebula-mode block, will produce different
+execution\_roots} because the order in which children are released to
+Exec is different.
+
+There is also no cross-backend test harness: no
+\texttt{cevm/test/cross\_backend/...}, no CI step that runs the same
+block through both kernels and diff\textquotesingle d the roots.
+
+\textbf{Affected}: \texttt{quasar\_wave.cu:571-587},
+\texttt{quasar\_wave.cu:770-809}, \texttt{quasar\_wave.cu:811-860}, all
+of vote verification, missing test harness.
+
+\textbf{Attack scenario}. Geographically separated validators have
+heterogeneous GPUs (Apple silicon vs NVIDIA --- explicit goal of the
+multi-backend design). Adversary submits a Nebula-mode block with a
+multi-key DAG. Apple-side validators emit DAG children in the order
+computed by drain\_commit\textquotesingle s child walk; CUDA-side
+validators emit them in FIFO order from the dagready ring. Different
+commit order → different keccak chain → different roots → chain split.
+
+\textbf{Fix}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Port v0.40 drain\_dagready and drain\_commit-with-children to CUDA.
+  Add the same DagWriterSlot table and the same PredictedKey lookup.
+  Same atomic and same fence semantics.
+\item
+  Port the HMAC-keccak vote verifier (matching kernel signatures must
+  match across backends --- the byte-equality stub is also a critical
+  security bug, see Q3.0-STM-008).
+\item
+  Build a CPU reference (LP-010 v0.49 promises this --- must land for
+  2025-12-25).
+\item
+  Add \texttt{cevm/test/cross\_backend/quasar\_round\_diff\_test.cpp}
+  that runs the same QuasarRoundDescriptor + tx batch through Metal,
+  CUDA, and CPU reference, asserts byte-identical roots.
+\item
+  CI must reject any commit that produces different roots across
+  backends.
+\end{enumerate}
+
+\textbf{Must-fix pre-launch}: YES --- this is the difference between
+"GPU-accelerated chain" and "permanent fork on heterogeneous hardware."
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-005 --- \texttt{drain\_dagready}
+cross-workgroup race on \texttt{last\_writer\_tx} and
+\texttt{unresolved\_parents} allows missed wake-ups
+{[}High{]}}{Q3.0-STM-005 --- drain\_dagready cross-workgroup race on last\_writer\_tx and unresolved\_parents allows missed wake-ups {[}High{]}}}\label{q30-stm-005--drain_dagready-cross-workgroup-race-on-last_writer_tx-and-unresolved_parents-allows-missed-wake-ups-high}
+
+\textbf{Description}. The Metal kernel comments above
+\texttt{DagWriterSlot} claim "drain\_dagready is single-threaded (gid=3,
+tid=0), so last\_writer\_tx is plain (not atomic)" --- but the protocol
+still has a real race against \texttt{drain\_commit} (gid=7, tid=0)
+which concurrently:
+
+\begin{itemize}
+\tightlist
+\item
+  Walks \texttt{dag\_nodes{[}c.tx\_index{]}.children} (line 1108-1124)
+\item
+  Calls
+  \texttt{atomic\_fetch\_sub\_explicit(\&C-\textgreater{}unresolved\_parents,\ 1u)}
+  and re-emits child to Exec
+\item
+  Stores \texttt{state\ =\ kDagNodeCommitted}
+\end{itemize}
+
+drain\_dagready (gid=3) reads \texttt{dag\_nodes{[}prev{]}.state} (line
+788), increments \texttt{T-\textgreater{}unresolved\_parents} (line
+790), and \emph{only then} checks state again at line 797. The
+double-check is racy:
+
+\begin{verbatim}
+1. drain_dagready reads P->state == Registered          (T1 at gid=3)
+2. drain_commit transitions P → Committed and walks
+   children[*]; the walk completes BEFORE drain_dagready
+   has incremented T->unresolved_parents               (T2 at gid=7)
+3. drain_dagready increments T->unresolved_parents      (T1)
+4. drain_dagready reads P->state == Committed and 
+   decrements T->unresolved_parents                     (T1)
+5. T->unresolved_parents settles at 0 — correct in
+   isolation, but T's state never transitioned to 
+   Emitted because drain_dagready's emit-when-zero 
+   check at line 814 fires only on the increment path.
+\end{verbatim}
+
+Specifically: at line 815, \texttt{unresolved} is read after the
+for-loop processing all parents. If the very last
+parent\textquotesingle s \texttt{state} flipped to Committed
+\emph{between} line 798\textquotesingle s check and line
+814\textquotesingle s read, but drain\_commit\textquotesingle s
+child-walk of that last parent had already completed (it walked children
+before transitioning to Committed at line 1126, but the walk is
+per-parent, not per-(parent, predicted-edge-key)), then
+drain\_commit\textquotesingle s \texttt{atomic\_fetch\_sub\_explicit}
+ran on a \texttt{unresolved\_parents} value that did NOT include this
+child\textquotesingle s increment yet, and the "old == 1u" check at line
+1118 fires on an old value that\textquotesingle s wrong. Children can
+either (a) miss being re-emitted, or (b) be double-emitted (race between
+drain\_dagready\textquotesingle s emit-when-zero at line 814 and
+drain\_commit\textquotesingle s emit-when-zero at line 1120).
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:736-825}
+(drain\_dagready), \texttt{quasar\_wave.metal:1107-1127} (drain\_commit
+DAG child walk).
+
+\textbf{Attack scenario}. Adversary submits a Nebula block with
+carefully timed parent/child relationships such that
+drain\_commit\textquotesingle s walk of P\textquotesingle s children
+completes exactly when drain\_dagready is processing a new child of P.
+Validator A\textquotesingle s GPU schedules drain\_commit slightly
+earlier; validator B\textquotesingle s slightly later. Validator A
+re-emits the child once (correct). Validator B re-emits twice OR not at
+all. tx\_count diverges.
+
+\textbf{Fix}. The drain\_commit child walk and the drain\_dagready
+edge-add must be linearized. Options:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Move drain\_commit\textquotesingle s child-walk and state-transition
+  into a CAS-based protocol: child increments unresolved, then
+  drain\_commit\textquotesingle s decrement+emit only fires if it
+  observes the increment. The current "double-check after store" pattern
+  in drain\_dagready is correct \emph{if} drain\_commit uses release
+  semantics around \texttt{state\ =\ Committed} and a
+  \texttt{mem\_device} fence between child-walk and state-store. The
+  kernel currently uses \texttt{memory\_order\_relaxed} for both state
+  load and store. \textbf{That is the bug.}
+\item
+  Use \texttt{memory\_order\_release} for \texttt{state\ =\ Committed}
+  after the child-walk, and \texttt{memory\_order\_acquire} for the
+  second \texttt{state} read in drain\_dagready. The C++ memory model
+  guarantees the new edge --- added before the increment --- is visible
+  to drain\_commit.
+\end{enumerate}
+
+In Metal, replace \texttt{memory\_order\_relaxed} with
+\texttt{memory\_order\_release}/\texttt{memory\_order\_acquire} on the
+\texttt{state} atomic. Same for CUDA\textquotesingle s
+\texttt{\_\_threadfence()} placement.
+
+\textbf{Must-fix pre-launch}: YES (high). Determinism violation under
+Nebula mode.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-006 ---
+\texttt{predicted\_keys{[}tx\_index{]}} indexing assumes drain\_ingress
+assigns sequential tx\_index, but the host pre-fills before GPU consumes
+{[}High{]}}{Q3.0-STM-006 --- predicted\_keys{[}tx\_index{]} indexing assumes drain\_ingress assigns sequential tx\_index, but the host pre-fills before GPU consumes {[}High{]}}}\label{q30-stm-006--predicted_keystx_index-indexing-assumes-drain_ingress-assigns-sequential-tx_index-but-the-host-pre-fills-before-gpu-consumes-high}
+
+\textbf{Description}. The host driver
+(\texttt{quasar\_gpu\_engine.mm:276-291}) writes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\AttributeTok{const} \DataTypeTok{uint32\_t}\NormalTok{ tidx }\OperatorTok{=} \VariableTok{round\_}\OperatorTok{.}\NormalTok{next\_predicted\_idx}\OperatorTok{;}
+\ControlFlowTok{if} \OperatorTok{(}\NormalTok{tidx }\OperatorTok{\textless{}}\NormalTok{ kDagNodeCapacity}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    PredictedKeyHost}\OperatorTok{*}\NormalTok{ slot }\OperatorTok{=} \OperatorTok{\&}\NormalTok{predicted\_arena}\OperatorTok{[}\NormalTok{tidx }\OperatorTok{*}\NormalTok{ kMaxPredictedKeys}\OperatorTok{];}
+    \OperatorTok{...}
+\OperatorTok{\}}
+\VariableTok{round\_}\OperatorTok{.}\NormalTok{next\_predicted\_idx }\OperatorTok{+=} \DecValTok{1}\BuiltInTok{u}\OperatorTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+This assumes \texttt{tx\_index\_seq} on the GPU side will exactly match
+\texttt{next\_predicted\_idx} on the host side. The GPU assigns
+\texttt{tx\_index\ =\ atomic\_fetch\_add(tx\_index\_seq,\ 1)} in
+drain\_ingress (\texttt{quasar\_wave.metal:527}). drain\_ingress runs
+single-threaded on \texttt{gid=0}, FIFO over Ingress, so the assignment
+IS deterministic FIFO --- but only as long as:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The host pushes txs in the same order as it pre-fills
+  \texttt{predicted\_keys}.
+\item
+  No tx is dropped at admission (e.g., decode failure routes back to
+  \texttt{(void)ring\_try\_push(ingress\_hdr,\ ...)} on overflow).
+\item
+  Across multiple \texttt{push\_txs(...)} calls, no other writer
+  pre-fills predicted\_keys at indices the host hasn\textquotesingle t
+  reserved yet.
+\end{enumerate}
+
+Concrete failure: on lines 535-538 of drain\_ingress, if
+\texttt{ring\_try\_push(decode\_hdr,\ ...)} fails (decode ring full),
+the pop\textquotesingle d tx is requeued to Ingress with
+\texttt{(void)ring\_try\_push(ingress\_hdr,\ ingress\_items,\ in)}.
+\textbf{But the \texttt{tx\_index} was already consumed by
+\texttt{atomic\_fetch\_add(tx\_index\_seq,\ 1)} at line 527.} On the
+next tick that same tx pops back, gets a \emph{new} tx\_index, and the
+slot at the old tx\_index is \texttt{predicted\_keys} indexed by the old
+(orphaned) value. The slot at the \emph{new} tx\_index belongs to a
+different tx that hasn\textquotesingle t been pushed yet --- so
+\texttt{predicted\_keys{[}new\_tx\_index{]}} reads zeroed data. The DAG
+misses the predicted dependency.
+
+Also: if \texttt{push\_txs} is called multiple times within a round,
+\texttt{next\_predicted\_idx} increments host-side per tx pushed, but if
+the \emph{first} push\textquotesingle s drain\_ingress fails the decode
+push (some txs successfully decoded, some requeued), the host side
+believes tx\_index=0..N-1 has the predicted\_access for txs 0..N-1, but
+the GPU\textquotesingle s tx\_index\_seq is at 0..N-K (some requeued,
+will get index N..N+K-1 next round). The mapping is broken.
+
+\textbf{Affected}: \texttt{quasar\_gpu\_engine.mm:276-291},
+\texttt{quasar\_wave.metal:527,\ 535-538}.
+
+\textbf{Attack scenario}. Adversary spam-fills the decode ring in early
+ticks so drain\_ingress requeues txs. The orphaned tx\_indexes leave
+gaps in tx\_index space; predicted\_access lookup misses real edges; DAG
+construction omits dependencies; downstream Block-STM detects the
+conflict and forces repairs OR worse, commits in the wrong order.
+Different validators hit the requeue at different ticks → different
+tx\_index assignments → different DAG → different roots.
+
+\textbf{Fix}. Either:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Move \texttt{tx\_index\_seq} increment to \emph{after} successful
+  decode push, not before. (Cleanest.)
+\item
+  Index predicted\_keys by a stable key (origin \textbar\textbar{}
+  nonce) rather than tx\_index.
+\item
+  Use a per-round content-addressed predicted\_access lookup (hash of tx
+  envelope → predicted\_keys offset).
+\end{enumerate}
+
+Option 1 is the smallest change.
+
+\textbf{Must-fix pre-launch}: YES (high). Causes Nebula determinism
+violation under any backpressure.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-007 --- \texttt{drain\_vote}
+reads \texttt{vote\_verified{[}head\_pre\ \&\ mask{]}} AFTER popping;
+race with verifier produces accept-tampered-vote
+{[}High{]}}{Q3.0-STM-007 --- drain\_vote reads vote\_verified{[}head\_pre \& mask{]} AFTER popping; race with verifier produces accept-tampered-vote {[}High{]}}}\label{q30-stm-007--drain_vote-reads-vote_verifiedhead_pre--mask-after-popping-race-with-verifier-produces-accept-tampered-vote-high}
+
+\textbf{Description}. The Metal \texttt{drain\_vote} (line 1148-1187)
+reads:
+
+\begin{verbatim}
+uint head_pre = atomic_load_explicit(&vote_hdr->head, memory_order_relaxed);
+VoteIngress v;
+if (!ring_try_pop(vote_hdr, vote_items, v)) break;
+uint vidx = head_pre & (vote_verified_capacity - 1u);
+if (vote_verified[vidx] == 0u) { ++processed; continue; }
+\end{verbatim}
+
+Two issues:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{head\_pre} is read \emph{before} \texttt{ring\_try\_pop}
+  advances head. ring\_try\_pop loops on CAS --- if multiple drain\_vote
+  workgroups raced, the \texttt{head\_pre} here might NOT match the slot
+  that was actually popped. (In current dispatch, \texttt{gid=10} runs
+  single-threaded with \texttt{tid==0}, so this works in v0.38 --- but
+  it is fragile and assumes the dispatcher never schedules two threads
+  on gid=10.)
+\item
+  The vote\_verified bitmap is written by
+  \texttt{quasar\_verify\_votes\_kernel} BEFORE the wave-tick scheduler
+  runs (line 437-448 in \texttt{quasar\_gpu\_engine.mm} --- separate
+  encoder, ordered within one MTLCommandBuffer). The verifier writes
+  verified{[}slot\_idx{]} = 1 if signature matches. \textbf{But the
+  wave-tick scheduler also runs \texttt{drain\_ingress} which advances
+  tx\_index\_seq, and inside the same dispatch can call
+  \texttt{drain\_vote} against a vote\_verified bitmap computed for the
+  previous tail --- meaning a vote pushed \emph{during this run\_epoch}
+  is popped without ever being verified.} Specifically: host pushes vote
+  V at tail=T. The verifier ran at tail\textless T, so
+  vote\_verified{[}T mask{]} is stale (might be 0 from initialization,
+  OR might be 1 from a stale match for a previous vote at the same
+  slot).
+\end{enumerate}
+
+Combined, the bitmap can return either:
+
+\begin{itemize}
+\tightlist
+\item
+  0 → vote rejected (best-case false negative, denies vote even though
+  sig is valid)
+\item
+  1 → vote accepted (worst-case false positive: stale verified=1 from a
+  previous round/vote at the same slot causes a tampered/replayed vote
+  to count for stake)
+\end{itemize}
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:1148-1154},
+\texttt{quasar\_gpu\_engine.mm:430-475}.
+
+\textbf{Attack scenario}. Adversary controls a validator account with
+low stake. Adversary submits two consecutive rounds. Round N: legitimate
+vote at slot S, verified=1. Round N+1: adversary submits a forged vote
+(different validator, different signature) at slot S\textquotesingle{}
+where S\textquotesingle{} \& mask == S \& mask. If the host
+doesn\textquotesingle t memset vote\_verified between rounds
+(\texttt{begin\_round} does memset at line 212, so this specific case is
+safe per-round), or if the same round has high vote churn (legitimate
+vote at slot S; verifier marks verified{[}S{]}=1; vote consumed;
+\emph{new} vote pushed at slot S+capacity which masks to S; verifier
+hasn\textquotesingle t run yet so verified{[}S{]}=1 from before but now
+refers to a different vote), the forged vote is accepted. Stake count
+diverges between validators with different scheduling. Quorum
+certificate emission depends on stake counts. Two validators emit
+different certs. Worse: a malicious validator can use this to inflate
+own stake via cross-round bitmap pollution.
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:1148-1187}.
+
+\textbf{Fix}. The vote-verified bitmap must be (a) sized larger than the
+ring (to avoid mask collisions across in-flight votes), (b) cleared
+between verifier runs OR the verifier must run after every push, (c)
+keyed by a content hash of the vote rather than slot index, and (d) the
+verifier and consumer must be ordered against any new vote arrivals via
+the same ring\textquotesingle s pushed counter.
+
+Cleanest: re-run the verifier inline as part of drain\_vote --- verify
+the signature there and skip the bitmap entirely. The bitmap is a
+premature optimization that introduces a TOCTOU.
+
+\textbf{Must-fix pre-launch}: YES --- quorum integrity is a chain-safety
+primitive.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-008 --- CUDA
+\texttt{verify\_signature\_stub} is byte-equality (sig == subject);
+accepts any signature where signature{[}0..32{]} == subject
+{[}High{]}}{Q3.0-STM-008 --- CUDA verify\_signature\_stub is byte-equality (sig == subject); accepts any signature where signature{[}0..32{]} == subject {[}High{]}}}\label{q30-stm-008--cuda-verify_signature_stub-is-byte-equality-sig--subject-accepts-any-signature-where-signature032--subject-high}
+
+\textbf{Description}. CUDA \texttt{quasar\_wave.cu:811-817}:
+
+\begin{verbatim}
+__device__ __forceinline__ bool verify_signature_stub(const uint8_t* subject, const uint8_t* sig)
+{
+    for (uint32_t i = 0u; i < 32u; ++i) {
+        if (sig[i] != subject[i]) return false;
+    }
+    return true;
+}
+\end{verbatim}
+
+This accepts any vote where
+\texttt{signature{[}0..32{]}\ ==\ subject{[}0..32{]}}. An attacker who
+knows the subject (it\textquotesingle s the block\_hash, broadcast to
+all validators) can construct a "signature" by literally copying subject
+into the first 32 bytes of the signature field. Result: anyone can forge
+votes for any validator on the CUDA backend.
+
+The Metal backend uses \texttt{quasar\_verify\_votes\_kernel} with
+HMAC-keccak against a \texttt{kQuasarMasterSecret} --- also broken (the
+master secret is hardcoded in the kernel source and is therefore public,
+see Q3.0-STM-009), but at least it\textquotesingle s not a one-line
+equality check.
+
+\textbf{Affected}: \texttt{quasar\_wave.cu:811-817}.
+
+\textbf{Attack scenario}. CUDA validator. Adversary observes block\_hash
+via the network (this is broadcast). Constructs a vote message with
+\texttt{signature{[}0..32{]}\ =\ block\_hash{[}0..32{]}}, any garbage in
+\texttt{{[}32..96{]}}, any validator\_index, any stake\_weight.
+drain\_vote accepts the vote, accumulates stake\_weight, emits a
+QuorumCert for that lane at quorum threshold. \textbf{Adversary controls
+all three lanes (BLS / Ringtail / MLDSA) trivially.}
+
+\textbf{Fix}. The CUDA verifier must implement the same HMAC-keccak path
+as Metal (still broken, see next finding). Long-term: real BLS12-381 /
+Ringtail / ML-DSA verifiers must be CUDA-ported too.
+
+\textbf{Must-fix pre-launch}: YES --- this is a one-line attack to forge
+consensus signatures on CUDA validators.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-009 ---
+\texttt{kQuasarMasterSecret} is a hardcoded constant in the kernel
+source; HMAC-keccak verifier provides zero security
+{[}High{]}}{Q3.0-STM-009 --- kQuasarMasterSecret is a hardcoded constant in the kernel source; HMAC-keccak verifier provides zero security {[}High{]}}}\label{q30-stm-009--kquasarmastersecret-is-a-hardcoded-constant-in-the-kernel-source-hmac-keccak-verifier-provides-zero-security-high}
+
+\textbf{Description}. \texttt{quasar\_wave.metal:1212-1215}:
+
+\begin{verbatim}
+constant uchar kQuasarMasterSecret[32] = {
+    0x51,0x55,0x41,0x53,0x41,0x52,0x2D,0x76,0x30,0x33,0x38,0x2D,0x6D,0x61,0x73,0x74,
+    0x65,0x72,0x2D,0x73,0x65,0x63,0x72,0x65,0x74,0x2D,0x73,0x68,0x61,0x72,0x65,0x64,
+};
+\end{verbatim}
+
+ASCII: \texttt{"QUASAR-v038-master-secret-shared"}.
+
+This constant is in the kernel source, the LP, and presumably the
+binary. The "verification"
+\texttt{verified{[}slot\_idx{]}\ =\ (HMAC(kQuasarMasterSecret,\ validator\_index\textbar{}\textbar{}subject\textbar{}\textbar{}round)\ ==\ signature)}
+is therefore:
+
+\begin{quote}
+"anyone with access to the kernel source can compute the expected
+signature for any (validator, subject, round)."
+\end{quote}
+
+The kernel source is open source (Apache-2.0 per the file header).
+\textbf{The signature verifier rejects honest validators who use real
+BLS signatures and accepts attackers who compute the HMAC-keccak.}
+
+The LP-132 documentation acknowledges this is a placeholder for v0.43+,
+but the launch is 2025-12-25 and the LP\textquotesingle s roadmap shows
+real BLS at "v0.43" with no commitment to real Ringtail (v0.44) or
+Groth16 (v0.45) by launch.
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:1212-1290},
+\texttt{quasar\_gpu\_engine.mm:430-448} (verify\_pso\_),
+\texttt{quasar\_wave.cu:811-860}.
+
+\textbf{Attack scenario}. Adversary clones the repo, reads the master
+secret, computes valid signatures for every validator, posts votes for
+every lane → controls all quorums. Cost: zero.
+
+\textbf{Fix}. The launch MUST ship real BLS12-381 pairing for the BLS
+lane (LP-075), real Ringtail share verification for the RT lane
+(LP-073), and real ML-DSA-65 (LP-070) for the MLDSA lane. Anything less
+is a ceremonial signature. If real BLS is not ready by 2025-12-25, the
+launch must NOT enable on-chain quorum aggregation in QuasarGPU --- fall
+back to host-side verification using vetted libraries
+(\texttt{luxfi/crypto}).
+
+\textbf{Must-fix pre-launch}: YES --- without this, consensus is
+theater.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-010 --- Closing-gate
+\texttt{commit\_consumed\ ==\ ingress\_pushed} doesn\textquotesingle t
+account for txs in-flight in StateRequest, Decode, Crypto, etc.
+{[}Medium{]}}{Q3.0-STM-010 --- Closing-gate commit\_consumed == ingress\_pushed doesn\textquotesingle t account for txs in-flight in StateRequest, Decode, Crypto, etc. {[}Medium{]}}}\label{q30-stm-010--closing-gate-commit_consumed--ingress_pushed-doesnt-account-for-txs-in-flight-in-staterequest-decode-crypto-etc-medium}
+
+\textbf{Description}. The finalization gate
+(\texttt{quasar\_wave.metal:1389-1414}):
+
+\begin{verbatim}
+if (gid == 0u && desc->closing_flag != 0u) {
+    const uint ingress_pushed = atomic_load_explicit(&hdrs[0].pushed);
+    const uint commit_consumed = atomic_load_explicit(&hdrs[7].consumed);
+    if (ingress_pushed == commit_consumed) {
+        // ... compute block_hash, set status=1 (finalized) ...
+    }
+}
+\end{verbatim}
+
+The gate compares \texttt{ingress.pushed} against
+\texttt{commit.consumed}. But a tx that goes Ingress → Decode →
+StateRequest (cold-state) and is awaiting a host StatePage will have:
+
+\begin{itemize}
+\tightlist
+\item
+  ingress.pushed = N (incremented on push)
+\item
+  commit.consumed = N-1 (this tx hasn\textquotesingle t committed)
+\end{itemize}
+
+This is the intended behavior --- the round won\textquotesingle t
+finalize until all txs commit. Good.
+
+However: \texttt{drain\_decode} increments \texttt{fibers\_suspended}
+when routing a tx to StateRequest, and \texttt{drain\_state\_resp}
+re-injects via \texttt{crypto\_hdr} (line 1057) --- where it re-enters
+\texttt{drain\_crypto}. \textbf{drain\_crypto increments
+\texttt{processed} but NOT \texttt{pushed} on Ingress.} So
+ingress.pushed stays at N (correct --- the tx was originally ingressed).
+But what if \texttt{push\_txs} is called again \emph{during} a round to
+add a new tx after closing\_flag was set? The host drives
+\texttt{request\_close()} setting closing\_flag, but \texttt{push\_txs}
+is not gated against closing --- line 242-298 of
+\texttt{quasar\_gpu\_engine.mm} doesn\textquotesingle t check
+\texttt{closing\_flag}. The host can push txs after setting
+closing\_flag, ingress.pushed grows, the gate doesn\textquotesingle t
+fire on the next tick (correct), but tx ordering is now nondeterministic
+if two validators differ in when their host pushes the late tx.
+
+\textbf{Affected}: \texttt{quasar\_gpu\_engine.mm:242-298} (push\_txs
+missing closing\_flag guard), \texttt{quasar\_wave.metal:1389-1414}
+(gate).
+
+\textbf{Attack scenario}. Two validators receive the same block.
+Validator A\textquotesingle s \texttt{request\_close()} and
+\texttt{push\_txs()} happen in order A; validator B\textquotesingle s
+happen in order B with race. The late-pushed tx ends up in different
+positions in the canonical order across validators. Roots diverge.
+
+\textbf{Fix}. \texttt{push\_txs} must reject pushes after
+\texttt{closing\_flag} is set, returning a deterministic error to the
+host. The host must validate tx\_count against the round
+descriptor\textquotesingle s expected count before calling
+\texttt{request\_close()}.
+
+\textbf{Must-fix pre-launch}: YES (medium-rising-to-high). Fix is two
+lines.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-011 --- \texttt{state\_root} is
+never written by any drain; \texttt{block\_hash} includes uninitialized
+state\_root
+{[}Medium{]}}{Q3.0-STM-011 --- state\_root is never written by any drain; block\_hash includes uninitialized state\_root {[}Medium{]}}}\label{q30-stm-011--state_root-is-never-written-by-any-drain-block_hash-includes-uninitialized-state_root-medium}
+
+\textbf{Description}. The finalization gate computes:
+
+\begin{verbatim}
+block_hash = keccak(round || mode || receipts_root || execution_root || state_root || mode_root)
+\end{verbatim}
+
+But \texttt{state\_root} is never written by any drain. The kernel uses
+\texttt{result-\textgreater{}state\_root{[}k{]}} at line 1404 ---
+read-only. Grep for \texttt{state\_root{[}} writes: only the line 1404
+read.
+
+\texttt{begin\_round} \texttt{memset}s \texttt{result\_buf} to zero at
+line 205, so state\_root is all-zero on every round. The block\_hash on
+every round includes the constant 32-zero-bytes for state\_root,
+regardless of what state was actually mutated. This is deterministic
+across runs (good for the determinism test), but it \textbf{provides no
+commitment to the actual MVCC state}. Two distinct executions producing
+the same receipts/execution traces but different actual state commit to
+the same block\_hash.
+
+This is the definition of a "ceremony hash" --- the block\_hash binds
+nothing about state.
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:1404}, all drains (no
+writer).
+
+\textbf{Attack scenario}. Adversary submits block X. Honest validators
+execute it, producing some MVCC state. Adversary then constructs a block
+Y that produces the same receipts (same external observations) but
+different MVCC state. \textbf{Both produce the same block\_hash.} State
+machines fork silently on internal state; later txs depending on state
+diverge between A and B, but block\_hash equality means the consensus
+engine sees no fork.
+
+\textbf{Fix}. After the validate-commit pipeline drains, run a
+\texttt{drain\_state\_root} workgroup (or extend drain\_commit) that
+computes:
+
+\begin{verbatim}
+state_root = keccak(running_state_root || (key_lo || key_hi || version || last_writer_tx)_in_canonical_order)
+\end{verbatim}
+
+The canonical order MUST be by \texttt{(tx\_index,\ incarnation)} of the
+committing tx --- which is exactly what\textquotesingle s available in
+CommitItem. Or: maintain a Merkle-style accumulator over MVCC slot
+deltas as drain\_commit fires.
+
+Note that the LP-010 §"Three-Tier Validation" and §"MVCC Garbage
+Collection" promise this --- it\textquotesingle s just not implemented.
+
+\textbf{Must-fix pre-launch}: YES (medium). The block\_hash without a
+real state\_root is not a usable consensus commitment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-STM-012 --- Cold-state suspend/resume race:
+re-injected fiber may run with stale "loaded sentinel"
+{[}Medium{]}}\label{q30-stm-012--cold-state-suspendresume-race-re-injected-fiber-may-run-with-stale-loaded-sentinel-medium}
+
+\textbf{Description}. LP-132 §"Async cold-state page faults" describes
+the loaded sentinel:
+
+\begin{quote}
+drain\_state\_resp resumes by re-injecting and stamping the MVCC
+slot\textquotesingle s
+\texttt{last\_writer\_tx\ \textbar{}=\ 0x80000000} as the "loaded"
+sentinel.
+\end{quote}
+
+In code: \texttt{drain\_state\_resp} at
+\texttt{quasar\_wave.metal:1041-1065} re-injects via crypto\_hdr but
+does NOT touch the MVCC slot\textquotesingle s
+\texttt{last\_writer\_tx}. The "loaded sentinel" stamping is documented
+in LP-132 but not implemented. Without it:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  tx T1 reads cold key K, suspends → StateRequest emitted.
+\item
+  Host services StateRequest, posts StatePage.
+\item
+  drain\_state\_resp re-injects T1 via crypto\_hdr → drain\_crypto →
+  drain\_exec.
+\item
+  drain\_exec calls \texttt{mvcc\_locate(K)} which finds the slot empty
+  (because no tx has written K yet on the GPU side), claims it via the
+  racy logic in Q3.0-STM-002, reads \texttt{version=0}, builds RW set
+  with \texttt{version\_seen=0}.
+\item
+  tx T2 with same K already executed in steps 2-3 (because drain\_exec
+  doesn\textquotesingle t block on T1), wrote version=1.
+\item
+  T1\textquotesingle s validate fails (cur=1, version\_seen=0), repair,
+  re-exec. \textbf{But T1\textquotesingle s host page data is gone ---
+  it was a one-shot StatePage.}
+\end{enumerate}
+
+The kernel will spin on T1: every repair re-exec finds version mismatch,
+T1 never sees the actual loaded data because the StatePage payload
+isn\textquotesingle t preserved across repairs. Without the loaded
+sentinel pinning T1\textquotesingle s first execution to commit before
+T2, T1 starves.
+
+Worse: two concurrent host StatePages for the same tx\_index (e.g.,
+kernel emitted two StateRequests for two different cold keys for the
+same tx) --- the kernel does not coalesce them. drain\_state\_resp
+re-injects on every page received, so a tx that needs two cold pages
+will be re-injected twice into crypto\_hdr → executed twice →
+double-counted in drain\_commit → tx\_count over by one.
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:1041-1065}
+(drain\_state\_resp), \texttt{quasar\_wave.metal:891-945} (drain\_exec
+--- no per-tx pending state machine),
+\texttt{quasar\_gpu\_engine.mm:359-390} (push\_state\_pages allows
+multiple per tx).
+
+\textbf{Attack scenario}. Adversary submits txs that touch multiple cold
+keys (force multiple StateRequests per tx) AND target hot lanes (for
+repairs). Validator A\textquotesingle s host serves pages in order P1,
+P2; validator B in order P2, P1. Different re-injection orders →
+different tx\_index ordering at validate → different roots.
+
+\textbf{Fix}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement the loaded sentinel: in drain\_state\_resp, before
+  re-injecting, stamp
+  \texttt{mvcc\_table{[}K{]}.last\_writer\_tx\ \textbar{}=\ 0x80000000}
+  (or use a separate per-slot loaded flag with the high bit reserved).
+  drain\_validate must respect this sentinel and pin the resumed
+  tx\textquotesingle s commit to happen before any other writer of K.
+\item
+  Coalesce multiple StatePage arrivals per tx\_index into a single
+  re-injection. Track per-tx pending\_count in FiberSlot; only re-inject
+  when pending\_count reaches zero.
+\item
+  Clear the loaded sentinel on commit, never on repair.
+\end{enumerate}
+
+\textbf{Must-fix pre-launch}: YES (medium-rising-to-high under
+cold-state-heavy workloads).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-013 ---
+\texttt{drain\_exec}\textquotesingle s synthetic exec\_key uses
+\texttt{origin\_lo,\ origin\_hi\ \&\ \textasciitilde{}kFlagMask} ---
+adversarial origins force MVCC slot collisions
+{[}Medium{]}}{Q3.0-STM-013 --- drain\_exec\textquotesingle s synthetic exec\_key uses origin\_lo, origin\_hi \& \textasciitilde kFlagMask --- adversarial origins force MVCC slot collisions {[}Medium{]}}}\label{q30-stm-013--drain_execs-synthetic-exec_key-uses-origin_lo-origin_hi--kflagmask--adversarial-origins-force-mvcc-slot-collisions-medium}
+
+\textbf{Description}. \texttt{drain\_exec} derives the per-tx exec\_key
+from:
+
+\begin{verbatim}
+ulong key_lo = ulong(v.origin_lo);
+ulong key_hi = ulong(v.origin_hi & ~kFlagMask);
+if (key_lo == 0UL && key_hi == 0UL) key_lo = 1UL;
+\end{verbatim}
+
+Two issues:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Two different origins differing only in the top 2 bits
+  (\texttt{kFlagMask\ =\ 0xC0000000}) produce \textbf{identical}
+  exec\_keys. The flag bits are consumed; the rest is the key.
+\item
+  The "never empty" remap to \texttt{key\_lo=1} means every tx with
+  origin=0 collides on the slot for key=(1, 0).
+\end{enumerate}
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:902-905},
+\texttt{quasar\_wave.cu:627-629}.
+
+\textbf{Attack scenario}. Adversary submits 1024 transactions all with
+\texttt{origin\ =\ 0} and \texttt{origin\_hi\ =\ 0xC0000000} (both flag
+bits set). All have exec\_key = (1, 0). All hit the same MVCC slot.
+Block-STM repair amplification = O(N²). Combined with Q3.0-STM-003 (no
+repair bound), the round never finalizes.
+
+\textbf{Fix}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Hash the origin (full 64 bits, no flag mask) plus tx\_index into a
+  real 128-bit key.
+\item
+  Reserve a flag region in \texttt{last\_writer\_tx} instead of
+  co-opting origin\_hi bits.
+\end{enumerate}
+
+\textbf{Must-fix pre-launch}: SHOULD be fixed --- but if not, must be
+paired with Q3.0-STM-003\textquotesingle s repair bound to prevent DoS.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-014 --- Repair path discards
+\texttt{er.incarnation} on requeue and resets \texttt{tx\_index\_seq} is
+not reset between rounds in tests
+{[}Medium{]}}{Q3.0-STM-014 --- Repair path discards er.incarnation on requeue and resets tx\_index\_seq is not reset between rounds in tests {[}Medium{]}}}\label{q30-stm-014--repair-path-discards-erincarnation-on-requeue-and-resets-tx_index_seq-is-not-reset-between-rounds-in-tests-medium}
+
+\textbf{Description}. \texttt{drain\_repair}
+(\texttt{quasar\_wave.metal:1013-1039}):
+
+\begin{verbatim}
+for (uint i = 0u; i < budget; ++i) {
+    ExecResult er;
+    if (!ring_try_pop(repair_hdr, repair_items, er)) break;
+    VerifiedTx v;
+    v.tx_index  = er.tx_index;
+    v.admission = 0u;
+    v.gas_limit = er.gas_used;
+    ...
+    if (!ring_try_push(exec_hdr, exec_items, v)) {
+\end{verbatim}
+
+The incarnation that \texttt{drain\_validate} bumped
+(\texttt{er.incarnation\ +=\ 1u} at line 969) is passed to
+\texttt{drain\_repair}, but drain\_repair packs only
+\texttt{tx\_index,\ admission,\ gas\_limit,\ origin\_lo,\ origin\_hi}
+into VerifiedTx --- \textbf{dropping the incarnation}. On the next exec,
+drain\_exec writes \texttt{er.incarnation\ =\ 0u} (line 909). The
+incarnation counter resets on every repair cycle.
+
+This means LP-010 §"Repair monotonicity" ("each repair increments
+incarnation; invalid incarnations cannot commit") cannot be enforced
+because the kernel doesn\textquotesingle t carry incarnation through the
+round-trip. A validator that wanted to enforce
+\texttt{MAX\_TOTAL\_REPAIRS} (Q3.0-STM-003) couldn\textquotesingle t
+even count repairs per tx.
+
+\textbf{Affected}: \texttt{quasar\_wave.metal:1023-1029},
+\texttt{quasar\_wave.cu:723-729} (same bug). \texttt{drain\_exec} line
+909 (Metal) / 633 (CUDA) reset incarnation.
+
+\textbf{Fix}. VerifiedTx layout needs an \texttt{incarnation} field, OR
+Repair → Exec must travel through a different envelope (RepairTx with
+full ExecResult including incarnation), OR incarnation must be stored
+per tx\_index in a side table (FiberSlot already has the field but
+it\textquotesingle s unused).
+
+The FiberSlot has incarnation at offset 32 (\texttt{uint\ incarnation}
+in the FiberSlot struct, line 261 in metal). drain\_exec writes 0 there
+because FiberSlots are never indexed. Use the FiberSlot table:
+drain\_validate increments \texttt{fibers{[}tx\_index{]}.incarnation};
+drain\_exec reads it.
+
+\textbf{Must-fix pre-launch}: YES (medium) --- without this,
+Q3.0-STM-003 is unfixable.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-015 ---
+\texttt{keccak256\_thread}/\texttt{keccak256\_local} final-block padding
+works at boundaries; verified --- but uses LITTLE-ENDIAN lane absorption
+which differs from Ethereum keccak (which is also little-endian, so this
+is correct)
+{[}Informational{]}}{Q3.0-STM-015 --- keccak256\_thread/keccak256\_local final-block padding works at boundaries; verified --- but uses LITTLE-ENDIAN lane absorption which differs from Ethereum keccak (which is also little-endian, so this is correct) {[}Informational{]}}}\label{q30-stm-015--keccak256_threadkeccak256_local-final-block-padding-works-at-boundaries-verified--but-uses-little-endian-lane-absorption-which-differs-from-ethereum-keccak-which-is-also-little-endian-so-this-is-correct-informational}
+
+\textbf{Description}. I traced \texttt{keccak256} in both backends
+carefully against FIPS 202 + Ethereum\textquotesingle s keccak (the
+pre-NIST keccak with padding \texttt{0x01\ ...\ 0x80} in little-endian
+byte ordering). Both backends absorb lanes via:
+
+\begin{verbatim}
+s[lane] ^= ulong(data[i]) << (i % 8u * 8u);
+\end{verbatim}
+
+which is little-endian byte-to-lane mapping. This is the Ethereum
+convention. Cross-checked against \texttt{pyethereum/keccak.py}. This is
+correct, BUT it must be cross-checked against any CPU reference
+implementation used elsewhere in luxcpp (e.g.,
+\texttt{lib/evm/state/processor.cpp}). If the CPU reference uses the
+NIST SHA-3 byte-ordering (different padding: \texttt{0x06\ ...\ 0x80}),
+the GPU keccak will diverge from CPU.
+
+The \texttt{keccak256} implementations in Metal and CUDA agree
+byte-for-byte. \textbf{No determinism risk between Metal and CUDA from
+keccak.}
+
+\textbf{Affected}: N/A --- verified correct.
+
+\textbf{Recommendation}. Add a unit test that hashes a fixed input
+through Metal keccak, CUDA keccak, and the CPU
+\texttt{crypto::keccak256} used by the rest of cevm. Assert
+byte-identical output.
+
+\textbf{Must-fix pre-launch}: NO --- but the cross-impl test SHOULD land
+for confidence.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-STM-016 --- Ring requeue on
+push-fail uses \texttt{ring\_try\_push(self\_hdr,\ ...)} which goes to
+the TAIL; out-of-order ring rotation
+{[}Low{]}}{Q3.0-STM-016 --- Ring requeue on push-fail uses ring\_try\_push(self\_hdr, ...) which goes to the TAIL; out-of-order ring rotation {[}Low{]}}}\label{q30-stm-016--ring-requeue-on-push-fail-uses-ring_try_pushself_hdr--which-goes-to-the-tail-out-of-order-ring-rotation-low}
+
+\textbf{Description}. When \texttt{drain\_validate} fails to push to
+commit (line 1002):
+
+\begin{verbatim}
+(void)ring_try_push(validate_hdr, validate_items, er);
+\end{verbatim}
+
+This pushes the failed tx to the \emph{tail} of the validate ring.
+Subsequent pops will see other items first, then this one. This means
+the \texttt{er} whose MVCC was already mutated (Q3.0-STM-001) lands
+behind newer execrequests in the same tick. The order ExecResult items
+were popped is NOT preserved.
+
+Combined with Q3.0-STM-001, this means the order of validate pop on the
+next tick is timing-dependent.
+
+\textbf{Affected}: lines 938-940 (drain\_exec), 970-972 (drain\_validate
+to repair), 1001-1002 (drain\_validate to commit), 1031-1033
+(drain\_repair), 1056-1059 (drain\_state\_resp). Same pattern in CUDA
+backend.
+
+\textbf{Fix}. Don\textquotesingle t requeue to tail. Either:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Stop popping when downstream is full (already partially done ---
+  \texttt{break} on push fail). The pop\textquotesingle d item is then
+  lost. Need to NOT pop until downstream has space.
+\item
+  Use a peek-first-then-pop pattern: query the downstream
+  ring\textquotesingle s free space, only pop if there\textquotesingle s
+  space.
+\end{enumerate}
+
+The cleanest approach: peek tail-vs-head before popping. Standard SPSC
+ring pattern.
+
+\textbf{Must-fix pre-launch}: NO (low). Doesn\textquotesingle t directly
+cause divergence (the tx is still in the ring), but interacts badly with
+Q3.0-STM-001 and adds confusion.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Cross-Cutting Architectural
+Concerns}\label{cross-cutting-architectural-concerns}
+
+\subsubsection{LP-vs-Implementation Gap}\label{lp-vs-implementation-gap}
+
+LP-010 specifies a 3-tier validation pipeline (lane clocks, MVCC,
+semantic reducers), commit horizons, lane refraction, deterministic
+contention manager, hard livelock limits, and multi-GPU sharding.
+\textbf{None of these are implemented.} The kernel ships flat MVCC +
+repair-only + finalization-on-empty. Calling this Block-STM 3.0 in
+production by 2025-12-25 is misleading.
+
+The LP itself blurs this --- §"Implementation Plan" lists 3.0 features
+at v0.42-v0.49, with v0.49 being "Formal CPU reference (4.0)". Per the
+LP, this is post-launch work. \textbf{But the LP\textquotesingle s
+"Correctness Invariants" §1-7 are stated as MUST hold for 3.0.} They
+cannot hold without the implementation.
+
+\textbf{Recommendation}: Either rename the launch artifact to "QuasarSTM
+2.5 / GPU Block-STM" and ship it honestly, OR delay launch until v0.45+.
+Don\textquotesingle t ship v0.40 calling itself 3.0.
+
+\subsubsection{Forbidden Patterns Audit}\label{forbidden-patterns-audit}
+
+LP-010 §"Forbidden Patterns" says QuasarSTM must not use:
+
+\begin{itemize}
+\tightlist
+\item
+  one global STM clock --- N/A (not used)
+\item
+  one global version map lock --- N/A
+\item
+  retry-until-success GPU loops --- VIOLATED at \texttt{ring\_try\_pop}
+  (Metal line 298-311, CUDA line 268-281). The CAS loop is unbounded in
+  principle. In practice it terminates because there are finitely many
+  concurrent threads, but the pattern is exactly what the LP forbids.
+\item
+  nondeterministic conflict victim choice --- VIOLATED via Q3.0-STM-001
+  (timing decides who repairs)
+\item
+  opcode-level STM --- N/A (it\textquotesingle s tx-level, correct)
+\item
+  CPU conflict manager --- partially violated via host\textquotesingle s
+  \texttt{max\_epochs} choice (Q3.0-STM-003)
+\item
+  host-side repair scheduler --- N/A
+\item
+  per-version \texttt{malloc} --- N/A (uses arena)
+\item
+  global hot-key spinlocks --- N/A
+\end{itemize}
+
+\textbf{Two of nine forbidden patterns are present} in the v0.40 kernel.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Blue Handoff}\label{blue-handoff}
+
+\subsubsection{What Blue got right}\label{what-blue-got-right}
+
+\begin{itemize}
+\tightlist
+\item
+  The LP architecture (3-tier validation, lane refraction, commit
+  horizons, semantic reducers) is solid and reflects current research.
+  The mistake is shipping before implementing it.
+\item
+  Wave-tick scheduler with bounded budgets --- correct anti-livelock
+  approach at the dispatch layer (kernel exits, GPU yields).
+\item
+  \texttt{RingHeader} layout and the relaxed-atomic +
+  \texttt{mem\_device} fence pattern is correct \emph{if applied with
+  proper memory ordering} (it isn\textquotesingle t --- see
+  Q3.0-STM-005).
+\item
+  Inline keccak verified correct, byte-identical between Metal and CUDA.
+\item
+  \texttt{static\_assert} on layout sizes catches host/device drift.
+\item
+  Basic determinism test (\texttt{test\_root\_determinism}) exists and
+  passes for the trivial 16-tx case.
+\end{itemize}
+
+\subsubsection{What Blue missed}\label{what-blue-missed}
+
+\begin{itemize}
+\tightlist
+\item
+  No cross-backend determinism test harness.
+\item
+  No CPU reference for differential fuzzing (LP-010 v0.49 promises this;
+  not landed).
+\item
+  No adversarial workload tests (1024 same-key txs, hash-collision keys,
+  multi-cold-page txs, push-during-close).
+\item
+  No real signature verification on the consensus path --- both backends
+  ship placeholder verifiers that are trivially forgeable.
+\item
+  No state\_root computation --- block\_hash is uncorrelated with state.
+\item
+  No anti-livelock enforcement despite the LP marking it "mandatory on
+  GPU."
+\end{itemize}
+
+\subsubsection{Fix priority for Blue
+(ordered)}\label{fix-priority-for-blue-ordered}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Q3.0-STM-008} --- CUDA verify\_signature\_stub. One-line
+  forgery. Replace with the same HMAC-keccak path as Metal, OR
+  (preferred) gate the round-finalization on host-side signature
+  verification using \texttt{luxfi/crypto}.
+\item
+  \textbf{Q3.0-STM-009} --- hardcoded master secret. Rip out the
+  HMAC-keccak verifier entirely; either ship real BLS/Ringtail/MLDSA by
+  2025-12-25 or defer GPU vote aggregation and run host-side signature
+  verification.
+\item
+  \textbf{Q3.0-STM-001} --- commit-ring backpressure. Refactor
+  \texttt{drain\_validate} so the MVCC mutation is contingent on
+  commit-push success.
+\item
+  \textbf{Q3.0-STM-002} --- non-atomic key claim in mvcc\_locate. Use
+  atomic CAS on a sentinel field with proper memory ordering.
+\item
+  \textbf{Q3.0-STM-004} --- port v0.40 DAG to CUDA; build cross-backend
+  test harness; add CPU reference.
+\item
+  \textbf{Q3.0-STM-003} + \textbf{Q3.0-STM-014} --- implement repair
+  monotonicity (incarnation in FiberSlot) and enforce
+  MAX\_TOTAL\_REPAIRS with deterministic abort.
+\item
+  \textbf{Q3.0-STM-005} --- fix memory-order on DAG state atomics
+  (release/acquire instead of relaxed).
+\item
+  \textbf{Q3.0-STM-006} --- move tx\_index\_seq increment after
+  decode-push success.
+\item
+  \textbf{Q3.0-STM-007} --- eliminate the vote\_verified bitmap; verify
+  inline in drain\_vote.
+\item
+  \textbf{Q3.0-STM-011} --- implement state\_root accumulation.
+\item
+  \textbf{Q3.0-STM-010} --- gate push\_txs on closing\_flag.
+\item
+  \textbf{Q3.0-STM-012} --- implement loaded sentinel; coalesce
+  multi-page suspends.
+\item
+  \textbf{Q3.0-STM-013} --- replace synthetic exec\_key derivation with
+  hash of full origin.
+\item
+  \textbf{Q3.0-STM-016} --- peek-then-pop ring pattern.
+\item
+  \textbf{Q3.0-STM-015} --- add cross-impl keccak test (informational).
+\end{enumerate}
+
+\subsubsection{Re-review scope}\label{re-review-scope}
+
+Re-test required after fixes for:
+
+\begin{itemize}
+\tightlist
+\item
+  Cross-backend determinism harness (Metal vs CUDA vs CPU reference) ---
+  full 19-binary GPU test surface plus new adversarial workloads (1024
+  same-key, FNV-collision keys, multi-cold-page, push-during-close,
+  race-during-DAG).
+\item
+  Repair-bounded-abort behavior (1024 same-key + bounded
+  MAX\_TOTAL\_REPAIRS = deterministic block rejection).
+\item
+  State\_root accumulation produces stable digest under reordered
+  execution within Block-STM constraints.
+\item
+  Real signature verifiers in all three lanes --- must use
+  \texttt{luxfi/crypto} and reject the test suite\textquotesingle s
+  HMAC-keccak forgeries.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Recommendation}\label{recommendation}
+
+\textbf{do-not-ship} as Block-STM 3.0 by 2025-12-25.
+
+The v0.40 substrate can ship as \textbf{QuasarSTM 2.5 / GPU Block-STM}
+(honest naming) once the must-fix-pre-launch items above are addressed.
+The LP-010 3.0 features (lanes, three-tier validation, commit horizons,
+deterministic contention manager) are real engineering work --- months,
+not weeks --- and shipping a kernel that lacks them while claiming the
+3.0 invariants is a credibility risk and an attack surface.
+
+Critical \& high findings (Q3.0-STM-001, 002, 003, 004, 005, 006, 007,
+008, 009) \textbf{MUST land before any mainnet round.} They are all
+bounded local fixes; none requires the 3.0 rewrite. Estimated total
+work: 2-3 weeks if focused, plus one week for cross-backend test harness
+and one week for differential fuzzing against a CPU reference.
+
+If those land and pass cross-backend determinism on the adversarial
+workload suite, this can ship --- but as 2.5, not 3.0.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+RED COMPLETE. Findings recorded. Total: 4 critical, 5 high, 4 medium, 3
+low/informational
+
+Top 3 for Blue to fix:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Q3.0-STM-008 --- CUDA byte-equality "verifier" forges any signature
+  trivially
+\item
+  Q3.0-STM-001 --- commit-ring backpressure produces nondeterministic
+  repair counts → root divergence
+\item
+  Q3.0-STM-002 --- non-atomic MVCC key claim allows torn reads +
+  double-claim → root divergence
+\end{enumerate}
+
+Re-review needed: yes --- cross-backend determinism harness +
+adversarial workload suite + real signature verifiers Recommendation:
+do-not-ship as 3.0; ship as 2.5 after the 9 critical+high items land
+
+\end{document}

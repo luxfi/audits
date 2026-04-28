@@ -1,0 +1,547 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Blockchain 2025 Roadmap}\label{lux-blockchain-2025-roadmap}
+
+\textbf{Compiled}: December 30, 2025 \textbf{Based on}: 15 comprehensive
+audits across all infrastructure components \textbf{Overall Assessment}:
+Architecture Grade B+ \textbar{} Security Risk MEDIUM-HIGH
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Lux 11-chain blockchain ecosystem demonstrates \textbf{strong
+architectural foundations} with \textbf{significant implementation gaps}
+requiring immediate attention. Core chains (P, C, X) are
+production-ready. Advanced chains (Q, T, Z, B) require 3-6 months of
+development before mainnet deployment.
+
+\subsubsection{Key Metrics}\label{key-metrics}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Category & Critical & High & Medium & Low & Total \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Consensus & 3 & 3 & 6 & 3 & 15 \\
+Network & 1 & 0 & 3 & 2 & 6 \\
+Database & 0 & 0 & 2 & 0 & 2 \\
+Crypto & 1 & 1 & 1 & 1 & 4 \\
+VMs & 6 & 10 & 14 & 12 & 42 \\
+Contracts & 0 & 3 & 7 & 12 & 22 \\
+Protocols & 2 & 2 & 5 & 0 & 9 \\
+\textbf{TOTAL} & \textbf{17} & \textbf{42} & \textbf{58} & \textbf{47} &
+\textbf{164} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Q1 2025: Foundation Completion
+(Jan-Mar)}\label{q1-2025-foundation-completion-jan-mar}
+
+\subsubsection{P0 - Critical Security Fixes (Week
+1-4)}\label{p0---critical-security-fixes-week-1-4}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Issue & Component & Effort & Owner \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Fix Ringtail global state mutation & Consensus & 2 days & Core \\
+Remove test key fallback in PQ engine & Consensus & 1 day & Core \\
+Implement DAG conflict detection & Consensus & 3 days & Core \\
+Replace XOR with AES-GCM in Warp 1.5 & Warp & 2 days & Core \\
+Add ReentrancyGuard to Bridge.sol & Contracts & 1 day & Contracts \\
+Add ReentrancyGuard to AMMV2Router.sol & Contracts & 1 day &
+Contracts \\
+Set MinSources=2 for oracle & Oracle & 1 day & DeFi \\
+Implement TWAP for liquidations & DexVM & 3 days & DeFi \\
+\end{longtable}
+}
+
+\subsubsection{P1 - High Priority (Week
+5-12)}\label{p1---high-priority-week-5-12}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Issue & Component & Effort & Owner \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Complete threshold signature verification & Consensus & 1 week & Core \\
+Add deterministic tip selection & Chain Engine & 3 days & Core \\
+Implement bounded channel for validator sync & Consensus & 2 days &
+Core \\
+Fix memory exhaustion in IP tracker & Network & 3 days & Network \\
+Complete Chainlink integration (remove simulation) & Oracle & 1 week &
+DeFi \\
+Implement circuit breaker for perpetuals & DexVM & 3 days & DeFi \\
+Add timelock to ChainFeeRegistryV3 & Contracts & 2 days & Contracts \\
+\end{longtable}
+}
+
+\subsubsection{Deliverables}\label{deliverables}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  All 17 critical issues resolved
+\item[$\square$]
+  External security audit initiated
+\item[$\square$]
+  Bug bounty program launched (\$500K pool)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Q2 2025: Chain Completion
+(Apr-Jun)}\label{q2-2025-chain-completion-apr-jun}
+
+\subsubsection{BridgeVM (B-Chain) - 16-20 weeks
+total}\label{bridgevm-b-chain---16-20-weeks-total}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Task & Status & Effort \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Integrate threshold CMP keygen from luxfi/threshold & TODO & 3 weeks \\
+Implement actual MPC signing & TODO & 2 weeks \\
+Add signature verification & TODO & 1 week \\
+Implement delivery confirmation & TODO & 1 week \\
+\end{longtable}
+}
+
+\subsubsection{ZKVM (Z-Chain) - 20-24 weeks
+total}\label{zkvm-z-chain---20-24-weeks-total}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Task & Status & Effort \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Integrate gnark for Groth16/PLONK & TODO & 4 weeks \\
+Implement sparse Merkle tree with Poseidon & TODO & 2 weeks \\
+Add ChaCha20-Poly1305 note encryption & TODO & 1 week \\
+Complete trusted setup ceremony & TODO & 2 weeks \\
+GPU acceleration (Metal NTT/MSM) & TODO & 4 weeks \\
+\end{longtable}
+}
+
+\subsubsection{ThresholdVM (T-Chain) - 12-16 weeks
+remaining}\label{thresholdvm-t-chain---12-16-weeks-remaining}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Task & Status & Effort \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Fix unbounded relayer queue (DoS) & TODO & 2 days \\
+Add session validation to relayer & TODO & 3 days \\
+Implement retry with confirmation & TODO & 1 week \\
+Add chain ID to permits & TODO & 2 days \\
+Implement TFHE and BGV schemes & TODO & 4 weeks \\
+\end{longtable}
+}
+
+\subsubsection{QuantumVM (Q-Chain) - 8-12 weeks
+remaining}\label{quantumvm-q-chain---8-12-weeks-remaining}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Task & Status & Effort \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Add state persistence & TODO & 2 weeks \\
+Complete Ringtail threshold signing & TODO & 3 weeks \\
+Implement epoch rotation & TODO & 1 week \\
+\end{longtable}
+}
+
+\subsubsection{Deliverables}\label{deliverables-1}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  BridgeVM production-ready
+\item[$\square$]
+  ThresholdVM production-ready
+\item[$\square$]
+  ZKVM alpha release
+\item[$\square$]
+  QuantumVM production-ready
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Q3 2025: Integration \& Hardening
+(Jul-Sep)}\label{q3-2025-integration--hardening-jul-sep}
+
+\subsubsection{Post-Quantum Migration}\label{post-quantum-migration}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Milestone & Target \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ML-KEM integration in Warp & July \\
+Ringtail consensus activation & August \\
+PQ TLS preparation & September \\
+\end{longtable}
+}
+
+\subsubsection{Performance \&
+Scalability}\label{performance--scalability}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Target & Current & Goal \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Block processing & 550K/sec & 1M/sec \\
+Order matching & 1.2M/sec & 2M/sec \\
+Warp messages & N/A & 10K/sec \\
+State sync & 8 workers & 16 workers \\
+\end{longtable}
+}
+
+\subsubsection{Testing \& Validation}\label{testing--validation}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Load testing at 10x expected capacity
+\item[$\square$]
+  Chaos engineering (network partitions, node failures)
+\item[$\square$]
+  Formal verification of critical contracts
+\item[$\square$]
+  Comprehensive fuzzing (consensus, crypto, VMs)
+\end{itemize}
+
+\subsubsection{Deliverables}\label{deliverables-2}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  ZKVM production-ready
+\item[$\square$]
+  All chains integrated with Warp 2.0
+\item[$\square$]
+  Performance targets achieved
+\item[$\square$]
+  Chaos engineering validation passed
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Q4 2025: Production Launch
+(Oct-Dec)}\label{q4-2025-production-launch-oct-dec}
+
+\subsubsection{Phased Activation}\label{phased-activation}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Phase & Chains & Timeline \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Phase 1 & P, C, X (Core) & October \\
+Phase 2 & Q, T, B (Infrastructure) & November \\
+Phase 3 & D, G, K (Applications) & December \\
+Phase 4 & A, Z (Advanced) & Q1 2026 \\
+\end{longtable}
+}
+
+\subsubsection{Operational Readiness}\label{operational-readiness}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  24/7 monitoring and alerting
+\item[$\square$]
+  Incident response procedures
+\item[$\square$]
+  Runbooks for all failure modes
+\item[$\square$]
+  Geographic node distribution (5+ regions)
+\end{itemize}
+
+\subsubsection{Security Milestones}\label{security-milestones}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  External audit (all chains)
+\item[$\square$]
+  Penetration testing (network, API)
+\item[$\square$]
+  Bug bounty escalation (\$1M+ pool)
+\item[$\square$]
+  SOC 2 Type II preparation
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Security Investment
+Summary}\label{security-investment-summary}
+
+\subsubsection{Immediate (Q1 2025)}\label{immediate-q1-2025}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Item & Cost \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+External security audit & \$200K \\
+Formal verification (critical paths) & \$150K \\
+Bug bounty program & \$100K \\
+\textbf{Subtotal} & \textbf{\$450K} \\
+\end{longtable}
+}
+
+\subsubsection{Ongoing (Q2-Q4 2025)}\label{ongoing-q2-q4-2025}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Item & Cost \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Security team (2 FTE) & \$600K \\
+Quarterly pen testing & \$200K \\
+Security monitoring tools & \$100K \\
+Training and certifications & \$50K \\
+\textbf{Subtotal} & \textbf{\$950K} \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{\textbf{Total 2025 Security Investment:
+\$1.4M}}{Total 2025 Security Investment: \$1.4M}}\label{total-2025-security-investment-14m}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Production Readiness
+Matrix}\label{production-readiness-matrix}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Chain & Current & Q1 Target & Q2 Target & Production \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P-Chain (Platform) & 95\% & 98\% & 100\% & ✅ Q4 \\
+C-Chain (EVM) & 95\% & 98\% & 100\% & ✅ Q4 \\
+X-Chain (Exchange) & 95\% & 98\% & 100\% & ✅ Q4 \\
+Q-Chain (Quantum) & 80\% & 90\% & 100\% & ✅ Q4 \\
+T-Chain (Threshold) & 85\% & 95\% & 100\% & ✅ Q4 \\
+B-Chain (Bridge) & 75\% & 85\% & 100\% & ✅ Q4 \\
+D-Chain (DEX) & 80\% & 90\% & 100\% & ✅ Q4 \\
+G-Chain (Graph) & 60\% & 75\% & 90\% & Q1 2026 \\
+K-Chain (Key) & 65\% & 80\% & 95\% & Q1 2026 \\
+A-Chain (Attest) & 55\% & 70\% & 85\% & Q1 2026 \\
+Z-Chain (ZK) & 70\% & 80\% & 95\% & Q1 2026 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Risk Register}\label{risk-register}
+
+\subsubsection{Critical Risks}\label{critical-risks}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Risk & Probability & Impact & Mitigation \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+PQ crypto implementation delays & Medium & High & Parallel development
+tracks \\
+External audit findings & High & Medium & Pre-audit internal review \\
+Performance under load & Medium & High & Early load testing \\
+Key personnel dependencies & Medium & Medium & Documentation,
+cross-training \\
+\end{longtable}
+}
+
+\subsubsection{Contingency Plans}\label{contingency-plans}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{If ZKVM delayed}: Launch without Z-Chain, add Q2 2026
+\item
+  \textbf{If audit critical findings}: 4-week remediation sprint
+\item
+  \textbf{If performance issues}: Horizontal scaling, chain sharding
+\item
+  \textbf{If PQ crypto gaps}: Delay Warp 1.5, use classical path
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Audit Reports Index}\label{audit-reports-index}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Report & Location & Findings \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Consensus & \texttt{/audits/2025-12-30-consensus-audit.md} & 3C, 3H,
+6M \\
+Network & \texttt{/audits/2025-12-30-network-audit.md} & 1H, 3M, 2L \\
+Database & \texttt{/audits/2025-12-30-database-audit.md} & 2M \\
+Crypto & \texttt{/audits/2025-12-30-crypto-audit.md} & 1C, 1H, 1M \\
+PlatformVM & \texttt{/audits/2025-12-30-platformvm-audit.md} & 0C, low
+risk \\
+DexVM & \texttt{/audits/2025-12-30-dexvm-audit.md} & 2C, 3H, 4M \\
+ThresholdVM & \texttt{/audits/2025-12-30-thresholdvm-audit.md} & 3H, 5M,
+4L \\
+ZKVM & \texttt{/audits/2025-12-30-zkvm-audit.md} & 4C, 10H \\
+Other VMs & \texttt{/audits/2025-12-30-other-vms-audit.md} & 6C, 10H,
+14M \\
+ProposerVM/EVM & \texttt{/audits/2025-12-30-proposervm-evm-audit.md} &
+Low risk \\
+Contracts & \texttt{/audits/2025-12-30-contracts-audit.md} & 3H, 7M,
+12L \\
+Warp Protocol & \texttt{/audits/2025-12-30-warp-audit.md} & 2C (PQ
+path) \\
+Oracle Protocol & \texttt{/audits/2025-12-30-oracle-protocol-audit.md} &
+2H, 5M \\
+Architecture & \texttt{/audits/2025-12-30-architecture-review.md} &
+Grade B+ \\
+Final Security &
+\texttt{/security/2025-12-30-final-security-analysis.md} & 17C, 42H
+total \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Approval \& Sign-off}\label{approval--sign-off}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Role & Name & Date & Signature \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CTO & & & \\
+Security Lead & & & \\
+Engineering Lead & & & \\
+Product Lead & & & \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Generated by comprehensive audit swarm - December 30, 2025}
+
+\end{document}

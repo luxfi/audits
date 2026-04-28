@@ -1,0 +1,905 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Consensus Security and Architecture
+Audit}\label{lux-consensus-security-and-architecture-audit}
+
+\textbf{Date:} 2025-12-30\\
+\textbf{Auditor:} Claude Opus 4.5\\
+\textbf{Scope:} \texttt{\textasciitilde{}/work/lux/consensus/} and
+\texttt{\textasciitilde{}/work/lux/node/consensus/}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Lux consensus architecture implements a sophisticated multi-protocol
+system combining classical BLS signatures with post-quantum Ringtail
+threshold signatures. The implementation is well-structured with proper
+concurrency controls, but several security and performance issues
+require attention.
+
+\subsubsection{\texorpdfstring{Overall Assessment: \textbf{MODERATE
+RISK}}{Overall Assessment: MODERATE RISK}}\label{overall-assessment-moderate-risk}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Rating & Key Concerns \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Security & B+ & Stub cryptography in production paths, quorum validation
+gaps \\
+Concurrency & A- & Good mutex usage, minor race potential in async
+paths \\
+BFT Compliance & B & 69\% threshold adequate, but threshold checks
+incomplete \\
+Performance & B+ & Efficient pooling, parallel execution; some
+bottlenecks \\
+Post-Quantum & C+ & Ringtail stub implementation needs production
+crypto \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Component-by-Component
+Findings}\label{component-by-component-findings}
+
+\subsubsection{\texorpdfstring{1. Chain Engine
+(\texttt{consensus/engine/chain/})}{1. Chain Engine (consensus/engine/chain/)}}\label{1-chain-engine-consensusenginechain}
+
+\textbf{Purpose:} Linear blockchain consensus using Lux protocols
+(Photon -\textgreater{} Wave -\textgreater{} Focus)
+
+\textbf{Architecture:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Transitive} wraps \texttt{ChainConsensus} with mutex-protected
+  state
+\item
+  Per-block \texttt{LuxConsensus} instances track voting
+\item
+  Chain tips tracked in map for preference selection
+\end{itemize}
+
+\textbf{Strengths:}
+
+\begin{itemize}
+\tightlist
+\item
+  Proper RWMutex usage prevents data races
+\item
+  Clean separation between engine and consensus logic
+\item
+  Context-aware cancellation in Start/Stop lifecycle
+\end{itemize}
+
+\textbf{Issues:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Severity & Issue & Location & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+MEDIUM & Preference non-determinism & \texttt{consensus.go:169} &
+\texttt{for\ tip\ :=\ range\ c.tips} iterates map in random order;
+non-deterministic preference selection \\
+LOW & Missing block validation & \texttt{consensus.go:63} &
+\texttt{AddBlock} does not verify block linkage to existing chain \\
+LOW & No rejection path & \texttt{consensus.go:122-125} & Only
+acceptance is tracked; no explicit rejection logic \\
+\end{longtable}
+}
+
+\textbf{Code Sample - Non-deterministic tip selection:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// consensus/engine/chain/consensus.go:169}
+\ControlFlowTok{for}\NormalTok{ tip }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ c}\OperatorTok{.}\NormalTok{tips }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ tip  }\CommentTok{// Random order {-} first iteration wins}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{2. DAG Engine
+(\texttt{consensus/engine/dag/})}{2. DAG Engine (consensus/engine/dag/)}}\label{2-dag-engine-consensusenginedag}
+
+\textbf{Purpose:} DAG-based parallel consensus using Photon
+-\textgreater{} Wave -\textgreater{} Prism protocols
+
+\textbf{Architecture:}
+
+\begin{itemize}
+\tightlist
+\item
+  Vertex-based DAG with parent-child relationships
+\item
+  Frontier tracking for new vertex attachment
+\item
+  Conflict resolution via Prism DAG refraction
+\end{itemize}
+
+\textbf{Strengths:}
+
+\begin{itemize}
+\tightlist
+\item
+  Topological ordering in child processing
+\item
+  Proper parent linkage verification
+\item
+  Conflict resolution mechanism present
+\end{itemize}
+
+\textbf{Issues:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Severity & Issue & Location & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIGH & Incomplete conflict detection & \texttt{consensus.go:277-285} &
+\texttt{GetConflicting} returns empty slice - no actual conflict
+detection \\
+MEDIUM & Orphan handling gap & \texttt{consensus.go:74} & Missing parent
+returns error but doesn\textquotesingle t handle orphan vertices \\
+LOW & Memory leak potential & \texttt{consensus.go:65} & Vertices never
+removed from map after acceptance/rejection \\
+\end{longtable}
+}
+
+\textbf{Code Sample - Missing conflict detection:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// consensus/engine/dag/consensus.go:277{-}285}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{d }\OperatorTok{*}\NormalTok{DAGConsensus}\OperatorTok{)}\NormalTok{ GetConflicting}\OperatorTok{(}\NormalTok{ctx context}\OperatorTok{.}\NormalTok{Context}\OperatorTok{,}\NormalTok{ vertex }\OperatorTok{*}\NormalTok{Vertex}\OperatorTok{)} \OperatorTok{[]*}\NormalTok{Vertex }\OperatorTok{\{}
+\NormalTok{    conflicting }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{([]*}\NormalTok{Vertex}\OperatorTok{,} \DecValTok{0}\OperatorTok{)}
+    \CommentTok{// }\AlertTok{TODO}\CommentTok{: Implement conflict detection logic  \textless{}{-}{-} CRITICAL }\AlertTok{TODO}
+    \ControlFlowTok{return}\NormalTok{ conflicting}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{3. PQ Engine
+(\texttt{consensus/engine/pq/})}{3. PQ Engine (consensus/engine/pq/)}}\label{3-pq-engine-consensusenginepq}
+
+\textbf{Purpose:} Post-quantum consensus combining classical and
+quantum-resistant mechanisms
+
+\textbf{Architecture:}
+
+\begin{itemize}
+\tightlist
+\item
+  Wraps Quasar BLS engine
+\item
+  Dual certificate generation (BLS + PQ)
+\item
+  In-memory vertex store
+\end{itemize}
+
+\textbf{Issues:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Severity & Issue & Location & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CRITICAL & Stub cryptography & \texttt{engine.go:56} & Health check
+returns \texttt{"healthy":\ true} unconditionally \\
+HIGH & Test key fallback & \texttt{consensus.go:166-177} & Production
+code falls back to \texttt{GenerateTestKeys()} \\
+MEDIUM & Unbounded finality channel & \texttt{consensus.go:189-201} &
+Silent drop on channel full without logging \\
+\end{longtable}
+}
+
+\textbf{Code Sample - Test key fallback in production:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// consensus/engine/pq/consensus.go:166{-}177}
+\OperatorTok{\}} \ControlFlowTok{else} \OperatorTok{\{}
+    \CommentTok{// Fallback to test keys if not initialized}
+\NormalTok{    blsKey}\OperatorTok{,}\NormalTok{ pqKey }\OperatorTok{:=}\NormalTok{ GenerateTestKeys}\OperatorTok{()}
+\NormalTok{    testGen }\OperatorTok{:=}\NormalTok{ NewCertificateGenerator}\OperatorTok{(}\NormalTok{blsKey}\OperatorTok{,}\NormalTok{ pqKey}\OperatorTok{)}
+    \CommentTok{// ... uses test keys for real certificates}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{4. Quasar Protocol
+(\texttt{consensus/protocol/quasar/})}{4. Quasar Protocol (consensus/protocol/quasar/)}}\label{4-quasar-protocol-consensusprotocolquasar}
+
+\textbf{Purpose:} Hybrid BLS + Ringtail threshold signing for
+quantum-safe consensus
+
+\textbf{Architecture:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Hybrid} struct manages dual threshold signing
+\item
+  Epoch-based Ringtail key rotation (10-minute minimum)
+\item
+  Parallel BLS and Ringtail signing paths
+\item
+  Object pooling for hot paths
+\end{itemize}
+
+\textbf{Strengths:}
+
+\begin{itemize}
+\tightlist
+\item
+  Excellent memory management with sync.Pool
+\item
+  Rate-limited key rotation prevents excessive DKG
+\item
+  Context-aware cancellation throughout
+\item
+  Well-documented 2-round Ringtail protocol
+\end{itemize}
+
+\textbf{Issues:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Severity & Issue & Location & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIGH & Threshold share verification bypass & \texttt{quasar.go:461-462}
+& \texttt{IsThreshold} signatures return \texttt{true} without
+verification \\
+MEDIUM & Aggregator nil check race & \texttt{quasar.go:497} &
+\texttt{h.blsAggregator} nil checked outside lock \\
+MEDIUM & Validator set mutation risk & \texttt{core.go:497-521} &
+Validator set update modifies active flag during iteration \\
+LOW & Session ID overflow & \texttt{epoch.go:98} & uint64 sessionID
+never wraps (acceptable for 351T years) \\
+\end{longtable}
+}
+
+\textbf{Code Sample - Threshold verification bypass:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// consensus/protocol/quasar/quasar.go:461{-}462}
+\ControlFlowTok{if}\NormalTok{ sig}\OperatorTok{.}\NormalTok{IsThreshold }\OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{true} \CommentTok{// Shares verified during aggregation  \textless{}{-}{-} NO VERIFICATION}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{5. Ringtail Signatures
+(\texttt{node/consensus/quasar/ringtail.go})}{5. Ringtail Signatures (node/consensus/quasar/ringtail.go)}}\label{5-ringtail-signatures-nodeconsensusquasarringtailgo}
+
+\textbf{Purpose:} Post-quantum threshold signatures using lattice
+cryptography
+
+\textbf{Architecture:}
+
+\begin{itemize}
+\tightlist
+\item
+  Ring-LWE based threshold scheme
+\item
+  2-round signing protocol (commitment + signature)
+\item
+  Parallel execution across parties
+\item
+  Lagrange interpolation for share combination
+\end{itemize}
+
+\textbf{Strengths:}
+
+\begin{itemize}
+\tightlist
+\item
+  Proper lattice parameter initialization
+\item
+  Parallel Round1/Round2 execution
+\item
+  MAC verification for commitment integrity
+\item
+  Clean serialization with length prefixes
+\end{itemize}
+
+\textbf{Issues:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Severity & Issue & Location & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CRITICAL & Global state mutation & \texttt{ringtail.go:110-111} &
+\texttt{sign.K} and \texttt{sign.Threshold} are package-global
+variables \\
+HIGH & DKG single-point-of-failure & \texttt{ringtail.go:180} & Dealer
+key generated locally, not distributed \\
+MEDIUM & Lock ordering risk & \texttt{ringtail.go:371-385} & Lock
+released then re-acquired in \texttt{SyncValidators} \\
+LOW & Party ID collision & \texttt{ringtail.go:162-166} & Sequential
+party IDs from 0; validator ordering matters \\
+\end{longtable}
+}
+
+\textbf{Code Sample - Global state mutation:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// node/consensus/quasar/ringtail.go:110{-}111}
+\CommentTok{// Set global config in sign package}
+\NormalTok{sign}\OperatorTok{.}\NormalTok{K }\OperatorTok{=}\NormalTok{ config}\OperatorTok{.}\NormalTok{NumParties}
+\NormalTok{sign}\OperatorTok{.}\NormalTok{Threshold }\OperatorTok{=}\NormalTok{ config}\OperatorTok{.}\NormalTok{Threshold}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{6. Node Quasar
+(\texttt{node/consensus/quasar/quasar.go})}{6. Node Quasar (node/consensus/quasar/quasar.go)}}\label{6-node-quasar-nodeconsensusquasarquasargo}
+
+\textbf{Purpose:} Production Quasar implementation binding P-Chain and
+Q-Chain
+
+\textbf{Architecture:}
+
+\begin{itemize}
+\tightlist
+\item
+  Parallel BLS + Ringtail with async upgrade
+\item
+  P/Q enforcement mode for quantum-safe-only chains
+\item
+  Validator synchronization between BLS and Ringtail
+\end{itemize}
+
+\textbf{Strengths:}
+
+\begin{itemize}
+\tightlist
+\item
+  Async Ringtail does not block BLS finality
+\item
+  Proper quorum calculation with configurable numerator/denominator
+\item
+  Genesis block handling for quantum-safe mode
+\item
+  Comprehensive stats and introspection
+\end{itemize}
+
+\textbf{Issues:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Severity & Issue & Location & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+HIGH & BLS finality without Ringtail & \texttt{quasar.go:428-446} &
+Finality emitted before Ringtail completes \\
+MEDIUM & Goroutine leak on shutdown & \texttt{quasar.go:358-408} & Async
+Ringtail goroutine may outlive Quasar \\
+MEDIUM & Channel race in WaitForQuantumFinality &
+\texttt{quasar.go:864-876} & Finality may arrive between check and
+subscribe \\
+LOW & Bitset allocation in loop & \texttt{quasar.go:494-498} &
+Append-based bitset growth is inefficient \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Race Condition Analysis}\label{race-condition-analysis}
+
+\subsubsection{Confirmed Safe}\label{confirmed-safe}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Chain/DAG consensus state:} Protected by RWMutex
+\item
+  \textbf{Hybrid signature pools:} sync.Pool is concurrent-safe
+\item
+  \textbf{Epoch manager:} Consistent lock/unlock patterns
+\end{enumerate}
+
+\subsubsection{Potential Races}\label{potential-races}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Issue & Risk \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Quasar core.go:497 & Validator map mutation during BLS finality & LOW \\
+Ringtail SyncValidators & Lock gap allows intermediate state visibility
+& MEDIUM \\
+Node Quasar async upgrade & Finality map access from goroutine & LOW
+(mutex protected) \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{BFT Fault Tolerance
+Analysis}\label{bft-fault-tolerance-analysis}
+
+\subsubsection{Threshold Configuration}\label{threshold-configuration}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Environment & K & Alpha & Fault Tolerance \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Mainnet & 21 & 69\% & \textasciitilde30\% Byzantine \\
+Testnet & 11 & 69\% & \textasciitilde30\% Byzantine \\
+Local & 5 & 69\% & \textasciitilde30\% Byzantine \\
+Single & 1 & 100\% & 0\% (POA mode) \\
+\end{longtable}
+}
+
+\subsubsection{Quorum Validation}\label{quorum-validation}
+
+\textbf{Issue:} The 69\% threshold provides \textasciitilde30\%
+Byzantine fault tolerance, which is below the classical 33\% BFT
+threshold.
+
+\textbf{Rationale:} The Lux whitepaper argues that probabilistic
+finality with 69\% provides practical security with faster finality.
+However, this should be documented as a design tradeoff.
+
+\subsubsection{Critical Gaps}\label{critical-gaps}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{No weight-based quorum in DAG:} Vertex acceptance ignores
+  validator weights
+\item
+  \textbf{Ringtail threshold separate from BLS:} Different thresholds
+  may cause finality divergence
+\item
+  \textbf{No slashing integration:} Byzantine behavior not penalized in
+  consensus layer
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Performance Analysis}\label{performance-analysis}
+
+\subsubsection{Bottlenecks}\label{bottlenecks}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Issue & Impact \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Ringtail DKG & Full key regeneration on validator change & High latency
+on set changes \\
+Map iteration & Non-deterministic ordering & Inconsistent behavior \\
+Object allocation & Some paths allocate per-operation & GC pressure \\
+\end{longtable}
+}
+
+\subsubsection{Optimizations Present}\label{optimizations-present}
+
+\begin{itemize}
+\tightlist
+\item
+  sync.Pool for HybridSignature, BLS slices, public key slices
+\item
+  Parallel Round1/Round2 execution
+\item
+  Rate-limited epoch rotation (10-minute minimum)
+\end{itemize}
+
+\subsubsection{Recommendations}\label{recommendations}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Pre-allocate bitsets to max validator count
+\item
+  Use sorted slice instead of map for deterministic iteration
+\item
+  Consider batch DKG for multiple validator additions
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Security Vulnerabilities
+Summary}\label{security-vulnerabilities-summary}
+
+\subsubsection{Critical (Requires Immediate
+Fix)}\label{critical-requires-immediate-fix}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+ID & Component & Issue \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+C1 & Ringtail & Global state mutation via
+\texttt{sign.K}/\texttt{sign.Threshold} \\
+C2 & PQ Engine & Test key fallback in production path \\
+C3 & DAG Engine & No conflict detection implementation \\
+\end{longtable}
+}
+
+\subsubsection{High (Fix Before
+Production)}\label{high-fix-before-production}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+ID & Component & Issue \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+H1 & Quasar & Threshold signature verification bypassed \\
+H2 & Ringtail & Centralized DKG dealer key generation \\
+H3 & Node Quasar & BLS finality emitted before Ringtail \\
+\end{longtable}
+}
+
+\subsubsection{Medium (Should Fix)}\label{medium-should-fix}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+ID & Component & Issue \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+M1 & Chain Engine & Non-deterministic preference selection \\
+M2 & Ringtail & Lock ordering in SyncValidators \\
+M3 & Quasar core & Validator mutation during signing \\
+M4 & PQ Engine & Silent channel drop \\
+M5 & Node Quasar & Goroutine leak on shutdown \\
+M6 & Node Quasar & Channel race in WaitForQuantumFinality \\
+\end{longtable}
+}
+
+\subsubsection{Low (Nice to Fix)}\label{low-nice-to-fix}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+ID & Component & Issue \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+L1 & Chain Engine & Missing block validation \\
+L2 & DAG Engine & Memory leak - vertices never cleaned \\
+L3 & Node Quasar & Inefficient bitset allocation \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2025 Recommendations}\label{2025-recommendations}
+
+\subsubsection{Immediate Actions (Q1
+2025)}\label{immediate-actions-q1-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Replace stub Ringtail with production lattice crypto}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Remove test key fallback paths
+  \item
+    Implement distributed DKG (not single dealer)
+  \item
+    Move \texttt{sign.K}/\texttt{sign.Threshold} to instance state
+  \end{itemize}
+\item
+  \textbf{Implement conflict detection in DAG}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Define conflict semantics (double-spend, state conflicts)
+  \item
+    Integrate with UTXO tracking or state trie
+  \end{itemize}
+\item
+  \textbf{Add threshold signature verification}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Verify BLS shares before aggregation
+  \item
+    Add Ringtail signature verification in hot path
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Medium-Term (Q2 2025)}\label{medium-term-q2-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{Deterministic map iteration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Replace \texttt{map{[}ids.ID{]}} with sorted slice for tips/frontier
+  \item
+    Use consistent ordering for validator selection
+  \end{itemize}
+\item
+  \textbf{Goroutine lifecycle management}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add context propagation to async Ringtail
+  \item
+    Implement graceful shutdown with timeout
+  \end{itemize}
+\item
+  \textbf{Weight-based DAG consensus}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Integrate validator weights into vertex acceptance
+  \item
+    Align DAG thresholds with chain thresholds
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Long-Term (H2 2025)}\label{long-term-h2-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  \textbf{Slashing integration}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Detect and penalize equivocation
+  \item
+    Report Byzantine behavior to staking contract
+  \end{itemize}
+\item
+  \textbf{Formal verification}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Model check BFT properties with TLA+
+  \item
+    Verify liveness and safety bounds
+  \end{itemize}
+\item
+  \textbf{Hardware security module support}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    HSM integration for BLS key storage
+  \item
+    TPM attestation for validator identity
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix: Audited Files}\label{appendix-audited-files}
+
+\subsubsection{consensus/ (Main Consensus
+Package)}\label{consensus-main-consensus-package}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{engine/chain/engine.go}
+\item
+  \texttt{engine/chain/consensus.go}
+\item
+  \texttt{engine/dag/engine.go}
+\item
+  \texttt{engine/dag/consensus.go}
+\item
+  \texttt{engine/pq/engine.go}
+\item
+  \texttt{engine/pq/consensus.go}
+\item
+  \texttt{engine/lux\_consensus.go}
+\item
+  \texttt{protocol/quasar/quasar.go}
+\item
+  \texttt{protocol/quasar/core.go}
+\item
+  \texttt{protocol/quasar/epoch.go}
+\item
+  \texttt{protocol/quasar/ringtail.go}
+\item
+  \texttt{protocol/wave/wave.go}
+\item
+  \texttt{protocol/focus/focus.go}
+\item
+  \texttt{config/config.go}
+\end{itemize}
+
+\subsubsection{node/consensus/ (Node
+Integration)}\label{nodeconsensus-node-integration}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{quasar/quasar.go}
+\item
+  \texttt{quasar/ringtail.go}
+\item
+  \texttt{quasar/types.go}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Audit Report}
+
+\emph{This audit was conducted through static code analysis. Dynamic
+testing and fuzzing are recommended for comprehensive security
+validation.}
+
+\end{document}
