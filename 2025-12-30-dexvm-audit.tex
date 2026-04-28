@@ -1,0 +1,884 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{DexVM (D-Chain) Security Audit
+Report}\label{dexvm-d-chain-security-audit-report}
+
+\textbf{Date}: 2025-12-30\\
+\textbf{Auditor}: Claude Code (CTO Mode)\\
+\textbf{Scope}: \texttt{/Users/z/work/lux/node/vms/dexvm/}\\
+\textbf{Commit}: 66d514d2b7 (main branch)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+DexVM implements a comprehensive decentralized exchange with central
+limit order book (CLOB), perpetual futures, AMM liquidity pools, and MEV
+protection. The architecture follows sound design principles but
+contains several security vulnerabilities requiring immediate attention.
+
+\subsubsection{Risk Summary}\label{risk-summary}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Count & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Critical & 2 & Integer overflow, oracle manipulation \\
+High & 3 & Liquidation cascades, flash loan vectors, self-trade
+bypass \\
+Medium & 4 & State consistency, fee manipulation, referral abuse, ADL
+gaming \\
+Low & 3 & Gas optimization, event emission, documentation \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Component Analysis}\label{component-analysis}
+
+\subsubsection{\texorpdfstring{1. Orderbook
+(\texttt{orderbook/orderbook.go},
+\texttt{orderbook\_advanced.go})}{1. Orderbook (orderbook/orderbook.go, orderbook\_advanced.go)}}\label{1-orderbook-orderbookorderbookgo-orderbook_advancedgo}
+
+\textbf{Architecture}: Price-time priority CLOB with FIFO matching
+within price levels.
+
+\paragraph{Findings}\label{findings}
+
+\textbf{{[}CRITICAL{]} Integer Overflow in Price/Quantity Calculations}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// orderbook.go:170}
+\NormalTok{fill}\OperatorTok{.}\NormalTok{Value }\OperatorTok{=}\NormalTok{ matchQty }\OperatorTok{*}\NormalTok{ order}\OperatorTok{.}\NormalTok{Price}
+\end{Highlighting}
+\end{Shaded}
+
+No overflow check on \texttt{uint64} multiplication. A malicious order
+with \texttt{Price\ =\ 2\^{}32} and \texttt{matchQty\ =\ 2\^{}32} causes
+silent overflow.
+
+\textbf{Recommendation}: Use \texttt{math/big} or checked arithmetic:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ safeMul}\OperatorTok{(}\NormalTok{a}\OperatorTok{,}\NormalTok{ b }\DataTypeTok{uint64}\OperatorTok{)} \OperatorTok{(}\DataTypeTok{uint64}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ a }\OperatorTok{\textgreater{}} \DecValTok{0} \OperatorTok{\&\&}\NormalTok{ b }\OperatorTok{\textgreater{}}\NormalTok{ math}\OperatorTok{.}\NormalTok{MaxUint64}\OperatorTok{/}\NormalTok{a }\OperatorTok{\{}
+        \ControlFlowTok{return} \DecValTok{0}\OperatorTok{,}\NormalTok{ ErrOverflow}
+    \OperatorTok{\}}
+    \ControlFlowTok{return}\NormalTok{ a }\OperatorTok{*}\NormalTok{ b}\OperatorTok{,} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{{[}HIGH{]} Self-Trade Prevention Bypass}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// orderbook.go:155}
+\ControlFlowTok{if}\NormalTok{ order}\OperatorTok{.}\NormalTok{Owner }\OperatorTok{==}\NormalTok{ oppositeOrder}\OperatorTok{.}\NormalTok{Owner }\OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ ob}\OperatorTok{.}\NormalTok{selfTradePrevention }\OperatorTok{\{}
+        \ControlFlowTok{continue} \CommentTok{// Skip self{-}trade}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Owner comparison uses direct equality. An attacker with multiple
+addresses can:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Place large limit orders on both sides
+\item
+  Execute trades to manipulate last price
+\item
+  Affect mark price and trigger liquidations
+\end{enumerate}
+
+\textbf{Recommendation}: Implement account-level linking or require
+KYC-bound trader IDs for self-trade prevention.
+
+\textbf{{[}MEDIUM{]} Hidden Order Information Leakage}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// orderbook\_advanced.go:45}
+\KeywordTok{type}\NormalTok{ HiddenOrder }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    VisibleQuantity }\DataTypeTok{uint64}
+\NormalTok{    TotalQuantity   }\DataTypeTok{uint64}  \CommentTok{// Stored in plaintext}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Total quantity stored in state. Validators or state-reading contracts
+can extract hidden order sizes.
+
+\textbf{Recommendation}: Use commitment scheme for hidden portions or
+encrypt with user\textquotesingle s public key.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{2. Matching Engine
+(\texttt{orderbook/orderbook.go:matchOrder})}{2. Matching Engine (orderbook/orderbook.go:matchOrder)}}\label{2-matching-engine-orderbookorderbookgomatchorder}
+
+\textbf{Architecture}: Synchronous matching on order placement.
+
+\paragraph{Findings}\label{findings-1}
+
+\textbf{{[}MEDIUM{]} Partial Fill State Consistency}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// orderbook.go:180{-}185}
+\NormalTok{oppositeOrder}\OperatorTok{.}\NormalTok{RemainingQty }\OperatorTok{{-}=}\NormalTok{ matchQty}
+\ControlFlowTok{if}\NormalTok{ oppositeOrder}\OperatorTok{.}\NormalTok{RemainingQty }\OperatorTok{==} \DecValTok{0} \OperatorTok{\{}
+\NormalTok{    pl}\OperatorTok{.}\NormalTok{Remove}\OperatorTok{(}\NormalTok{oppositeOrder}\OperatorTok{.}\NormalTok{ID}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+No transaction boundary around multi-order matching. A panic mid-match
+leaves inconsistent state.
+
+\textbf{Recommendation}: Implement batch state updates with rollback
+capability:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{ob }\OperatorTok{*}\NormalTok{OrderBook}\OperatorTok{)}\NormalTok{ matchOrder}\OperatorTok{(}\NormalTok{order }\OperatorTok{*}\NormalTok{Order}\OperatorTok{)} \OperatorTok{([]}\NormalTok{Fill}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    batch }\OperatorTok{:=}\NormalTok{ ob}\OperatorTok{.}\NormalTok{state}\OperatorTok{.}\NormalTok{NewBatch}\OperatorTok{()}
+    \ControlFlowTok{defer}\NormalTok{ batch}\OperatorTok{.}\NormalTok{Rollback}\OperatorTok{()}
+    \CommentTok{// ... matching logic ...}
+    \ControlFlowTok{return}\NormalTok{ fills}\OperatorTok{,}\NormalTok{ batch}\OperatorTok{.}\NormalTok{Commit}\OperatorTok{()}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{3. Perpetuals Engine
+(\texttt{perpetuals/engine.go},
+\texttt{types.go})}{3. Perpetuals Engine (perpetuals/engine.go, types.go)}}\label{3-perpetuals-engine-perpetualsenginego-typesgo}
+
+\textbf{Architecture}: Cross/isolated margin with tiered leverage up to
+1001x.
+
+\paragraph{Findings}\label{findings-2}
+
+\textbf{{[}CRITICAL{]} Oracle Manipulation via Last Price}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// engine.go:89}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{o }\OperatorTok{*}\NormalTok{DefaultPriceOracle}\OperatorTok{)}\NormalTok{ GetMarkPrice}\OperatorTok{(}\NormalTok{market }\DataTypeTok{string}\OperatorTok{)} \OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ o}\OperatorTok{.}\NormalTok{prices}\OperatorTok{[}\NormalTok{market}\OperatorTok{]} \CommentTok{// Set from last trade}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Mark price derived from last traded price. Attack vector:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker places large short position
+\item
+  Executes wash trade at manipulated low price
+\item
+  Mark price drops, triggering liquidations of longs
+\item
+  Attacker profits from liquidation cascade
+\end{enumerate}
+
+\textbf{Recommendation}: Implement TWAP oracle with external price
+feeds:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ TWAPOracle }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    observations }\OperatorTok{[]}\NormalTok{PriceObservation}
+\NormalTok{    windowSize   time}\OperatorTok{.}\NormalTok{Duration}
+\OperatorTok{\}}
+
+\KeywordTok{func} \OperatorTok{(}\NormalTok{o }\OperatorTok{*}\NormalTok{TWAPOracle}\OperatorTok{)}\NormalTok{ GetMarkPrice}\OperatorTok{(}\NormalTok{market }\DataTypeTok{string}\OperatorTok{)} \OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int }\OperatorTok{\{}
+    \CommentTok{// Use time{-}weighted average over 30+ minutes}
+    \CommentTok{// Combine with Chainlink/Pyth external feeds}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{{[}HIGH{]} Liquidation Cascade Risk}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// engine.go:250}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{e }\OperatorTok{*}\NormalTok{Engine}\OperatorTok{)}\NormalTok{ CheckLiquidations}\OperatorTok{()} \OperatorTok{[]}\NormalTok{LiquidationEvent }\OperatorTok{\{}
+    \ControlFlowTok{for}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ pos }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ e}\OperatorTok{.}\NormalTok{positions }\OperatorTok{\{}
+        \ControlFlowTok{if}\NormalTok{ e}\OperatorTok{.}\NormalTok{isLiquidatable}\OperatorTok{(}\NormalTok{pos}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{            events }\OperatorTok{=} \BuiltInTok{append}\OperatorTok{(}\NormalTok{events}\OperatorTok{,}\NormalTok{ e}\OperatorTok{.}\NormalTok{liquidate}\OperatorTok{(}\NormalTok{pos}\OperatorTok{))}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    \ControlFlowTok{return}\NormalTok{ events}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+No circuit breakers or rate limiting. A price crash triggers mass
+liquidations in single block, causing:
+
+\begin{itemize}
+\tightlist
+\item
+  Insurance fund depletion
+\item
+  ADL activation affecting profitable traders
+\item
+  Market spiral
+\end{itemize}
+
+\textbf{Recommendation}: Implement progressive liquidation with delays:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{const} \OperatorTok{(}
+\NormalTok{    MaxLiquidationsPerBlock }\OperatorTok{=} \DecValTok{100}
+\NormalTok{    LiquidationCooldown     }\OperatorTok{=} \DecValTok{5} \OperatorTok{*}\NormalTok{ time}\OperatorTok{.}\NormalTok{Second}
+\OperatorTok{)}
+
+\KeywordTok{func} \OperatorTok{(}\NormalTok{e }\OperatorTok{*}\NormalTok{Engine}\OperatorTok{)}\NormalTok{ CheckLiquidations}\OperatorTok{()} \OperatorTok{[]}\NormalTok{LiquidationEvent }\OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ time}\OperatorTok{.}\NormalTok{Since}\OperatorTok{(}\NormalTok{e}\OperatorTok{.}\NormalTok{lastLiquidationBatch}\OperatorTok{)} \OperatorTok{\textless{}}\NormalTok{ LiquidationCooldown }\OperatorTok{\{}
+        \ControlFlowTok{return} \OtherTok{nil}
+    \OperatorTok{\}}
+    \CommentTok{// Limit liquidations per block}
+    \CommentTok{// Prioritize by margin ratio (worst first)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{{[}MEDIUM{]} Leverage Tier Boundary Gaming}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// tiers.go:20{-}30}
+\KeywordTok{var}\NormalTok{ leverageTiers }\OperatorTok{=} \OperatorTok{[]}\NormalTok{LeverageTier}\OperatorTok{\{}
+    \OperatorTok{\{}\NormalTok{MaxNotional}\OperatorTok{:} \DecValTok{10\_000}\OperatorTok{,}\NormalTok{ MaxLeverage}\OperatorTok{:} \DecValTok{1001}\OperatorTok{\},}
+    \OperatorTok{\{}\NormalTok{MaxNotional}\OperatorTok{:} \DecValTok{50\_000}\OperatorTok{,}\NormalTok{ MaxLeverage}\OperatorTok{:} \DecValTok{500}\OperatorTok{\},}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Position sizing at tier boundaries allows leverage arbitrage:
+
+\begin{itemize}
+\tightlist
+\item
+  Open \$9,999 position at 1001x leverage
+\item
+  Close partially, reopen to maintain high leverage
+\item
+  Repeat to accumulate oversized exposure
+\end{itemize}
+
+\textbf{Recommendation}: Apply leverage limits to aggregate account
+exposure, not individual positions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{4. Liquidity Pools
+(\texttt{liquidity/pool.go})}{4. Liquidity Pools (liquidity/pool.go)}}\label{4-liquidity-pools-liquiditypoolgo}
+
+\textbf{Architecture}: Constant product AMM with slippage protection.
+
+\paragraph{Findings}\label{findings-3}
+
+\textbf{{[}HIGH{]} Flash Loan Attack Vector}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// pool.go:85}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{p }\OperatorTok{*}\NormalTok{Pool}\OperatorTok{)}\NormalTok{ Swap}\OperatorTok{(}\NormalTok{amountIn }\DataTypeTok{uint64}\OperatorTok{,}\NormalTok{ tokenIn }\DataTypeTok{string}\OperatorTok{,}\NormalTok{ minAmountOut }\DataTypeTok{uint64}\OperatorTok{)} \OperatorTok{(}\DataTypeTok{uint64}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// No flash loan guard}
+\NormalTok{    amountOut }\OperatorTok{:=}\NormalTok{ p}\OperatorTok{.}\NormalTok{calculateSwapOutput}\OperatorTok{(}\NormalTok{amountIn}\OperatorTok{,}\NormalTok{ tokenIn}\OperatorTok{)}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+No reentrancy guard or same-block manipulation protection. Attack:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Flash loan large amount of token A
+\item
+  Swap A→B, moving price significantly
+\item
+  Trigger liquidations/stop orders at manipulated price
+\item
+  Swap B→A (lower slippage due to larger pool)
+\item
+  Repay flash loan with profit
+\end{enumerate}
+
+\textbf{Recommendation}: Implement per-block price limits and reentrancy
+guards:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ Pool }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    lastBlockNumber }\DataTypeTok{uint64}
+\NormalTok{    lastBlockPrice  }\OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}
+\NormalTok{    maxPriceChange  }\OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int }\CommentTok{// e.g., 5\%}
+\NormalTok{    mutex           sync}\OperatorTok{.}\NormalTok{Mutex}
+\OperatorTok{\}}
+
+\KeywordTok{func} \OperatorTok{(}\NormalTok{p }\OperatorTok{*}\NormalTok{Pool}\OperatorTok{)}\NormalTok{ Swap}\OperatorTok{(...)} \OperatorTok{(}\DataTypeTok{uint64}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    p}\OperatorTok{.}\NormalTok{mutex}\OperatorTok{.}\NormalTok{Lock}\OperatorTok{()}
+    \ControlFlowTok{defer}\NormalTok{ p}\OperatorTok{.}\NormalTok{mutex}\OperatorTok{.}\NormalTok{Unlock}\OperatorTok{()}
+    
+    \ControlFlowTok{if}\NormalTok{ p}\OperatorTok{.}\NormalTok{currentBlock }\OperatorTok{==}\NormalTok{ p}\OperatorTok{.}\NormalTok{lastBlockNumber }\OperatorTok{\{}
+\NormalTok{        priceChange }\OperatorTok{:=}\NormalTok{ p}\OperatorTok{.}\NormalTok{calculatePriceChange}\OperatorTok{()}
+        \ControlFlowTok{if}\NormalTok{ priceChange}\OperatorTok{.}\NormalTok{Cmp}\OperatorTok{(}\NormalTok{p}\OperatorTok{.}\NormalTok{maxPriceChange}\OperatorTok{)} \OperatorTok{\textgreater{}} \DecValTok{0} \OperatorTok{\{}
+            \ControlFlowTok{return} \DecValTok{0}\OperatorTok{,}\NormalTok{ ErrPriceImpactTooHigh}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{{[}LOW{]} Rounding Direction Inconsistency}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// pool.go:70}
+\NormalTok{amountOut }\OperatorTok{=} \OperatorTok{(}\NormalTok{reserveOut }\OperatorTok{*}\NormalTok{ amountIn}\OperatorTok{)} \OperatorTok{/} \OperatorTok{(}\NormalTok{reserveIn }\OperatorTok{+}\NormalTok{ amountIn}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Always rounds down (favors pool). Should explicitly document this is
+intentional for pool protection.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{5. MEV Protection
+(\texttt{mev/commit\_reveal.go})}{5. MEV Protection (mev/commit\_reveal.go)}}\label{5-mev-protection-mevcommit_revealgo}
+
+\textbf{Architecture}: Commit-reveal scheme with 2-second minimum delay.
+
+\paragraph{Findings}\label{findings-4}
+
+\textbf{{[}MEDIUM{]} Commit Fee Front-Running}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// commit\_reveal.go:45}
+\KeywordTok{type}\NormalTok{ Commitment }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    Hash      }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}
+\NormalTok{    Timestamp time}\OperatorTok{.}\NormalTok{Time}
+    \CommentTok{// No fee snapshot}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Fee rates can change between commit and reveal. Validators can:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  See commitment hash
+\item
+  Raise fees before reveal
+\item
+  Profit from higher fees or force order cancellation
+\end{enumerate}
+
+\textbf{Recommendation}: Lock fee rate at commitment time:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ Commitment }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    Hash         }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}
+\NormalTok{    Timestamp    time}\OperatorTok{.}\NormalTok{Time}
+\NormalTok{    LockedFeeRate }\OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{{[}LOW{]} Reveal Delay Gaming}
+
+5-minute maximum reveal window may be too long. Attackers can wait for
+favorable price movements within window.
+
+\textbf{Recommendation}: Reduce to 1-minute maximum or implement
+randomized reveal blocks.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{6. Settlement \& State
+(\texttt{state/state.go},
+\texttt{vm.go})}{6. Settlement \& State (state/state.go, vm.go)}}\label{6-settlement--state-statestatego-vmgo}
+
+\textbf{Architecture}: Block-driven deterministic execution.
+
+\paragraph{Findings}\label{findings-5}
+
+\textbf{{[}MEDIUM{]} State Root Verification Gap}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// vm.go:125}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{vm }\OperatorTok{*}\NormalTok{VM}\OperatorTok{)}\NormalTok{ ProcessBlock}\OperatorTok{(}\NormalTok{blk }\OperatorTok{*}\NormalTok{Block}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \ControlFlowTok{for}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ tx }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ blk}\OperatorTok{.}\NormalTok{Transactions }\OperatorTok{\{}
+        \ControlFlowTok{if}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ vm}\OperatorTok{.}\NormalTok{executeTx}\OperatorTok{(}\NormalTok{tx}\OperatorTok{);}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+            \ControlFlowTok{return}\NormalTok{ err}
+        \OperatorTok{\}}
+    \OperatorTok{\}}
+    \CommentTok{// No explicit state root commitment}
+    \ControlFlowTok{return} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+No Merkle state root in block header for light client verification.
+
+\textbf{Recommendation}: Add state root commitment:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ BlockHeader }\KeywordTok{struct} \OperatorTok{\{}
+    \CommentTok{// ...}
+\NormalTok{    StateRoot }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}
+\NormalTok{    OrderbookRoot }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}
+\NormalTok{    PositionsRoot }\OperatorTok{[}\DecValTok{32}\OperatorTok{]}\DataTypeTok{byte}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{7. Lending Protocol
+(\texttt{lending/engine.go})}{7. Lending Protocol (lending/engine.go)}}\label{7-lending-protocol-lendingenginego}
+
+\textbf{Architecture}: Jump rate interest model with health factor
+liquidations.
+
+\paragraph{Findings}\label{findings-6}
+
+\textbf{{[}MEDIUM{]} Interest Rate Manipulation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// engine.go:150}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{e }\OperatorTok{*}\NormalTok{LendingEngine}\OperatorTok{)}\NormalTok{ calculateInterestRate}\OperatorTok{(}\NormalTok{market }\OperatorTok{*}\NormalTok{Market}\OperatorTok{)} \OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int }\OperatorTok{\{}
+\NormalTok{    utilization }\OperatorTok{:=}\NormalTok{ market}\OperatorTok{.}\NormalTok{TotalBorrowed }\OperatorTok{/}\NormalTok{ market}\OperatorTok{.}\NormalTok{TotalSupplied}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Large suppliers can manipulate utilization by withdrawing/depositing in
+same block.
+
+\textbf{Recommendation}: Use TWAP for utilization calculation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{8. ADL System
+(\texttt{perpetuals/adl.go})}{8. ADL System (perpetuals/adl.go)}}\label{8-adl-system-perpetualsadlgo}
+
+\textbf{Architecture}: Ranks profitable positions for auto-deleveraging.
+
+\paragraph{Findings}\label{findings-7}
+
+\textbf{{[}MEDIUM{]} ADL Ranking Gamification}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// adl.go:35}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{a }\OperatorTok{*}\NormalTok{ADLEngine}\OperatorTok{)}\NormalTok{ rankPositions}\OperatorTok{()} \OperatorTok{[]*}\NormalTok{Position }\OperatorTok{\{}
+\NormalTok{    sort}\OperatorTok{.}\NormalTok{Slice}\OperatorTok{(}\NormalTok{positions}\OperatorTok{,} \KeywordTok{func}\OperatorTok{(}\NormalTok{i}\OperatorTok{,}\NormalTok{ j }\DataTypeTok{int}\OperatorTok{)} \DataTypeTok{bool} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ positions}\OperatorTok{[}\NormalTok{i}\OperatorTok{].}\NormalTok{PnL}\OperatorTok{.}\NormalTok{Cmp}\OperatorTok{(}\NormalTok{positions}\OperatorTok{[}\NormalTok{j}\OperatorTok{].}\NormalTok{PnL}\OperatorTok{)} \OperatorTok{\textgreater{}} \DecValTok{0}
+    \OperatorTok{\})}
+    \ControlFlowTok{return}\NormalTok{ positions}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Traders can split positions across addresses to reduce individual PnL
+ranking.
+
+\textbf{Recommendation}: Implement random selection with PnL-weighted
+probability rather than pure ranking.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{9. Referral System
+(\texttt{perpetuals/referral.go})}{9. Referral System (perpetuals/referral.go)}}\label{9-referral-system-perpetualsreferralgo}
+
+\textbf{Architecture}: 6-tier rebate system based on 30-day volume.
+
+\paragraph{Findings}\label{findings-8}
+
+\textbf{{[}MEDIUM{]} Referral Wash Trading}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// referral.go:55}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{r }\OperatorTok{*}\NormalTok{ReferralEngine}\OperatorTok{)}\NormalTok{ RecordVolume}\OperatorTok{(}\NormalTok{trader}\OperatorTok{,}\NormalTok{ referrer common}\OperatorTok{.}\NormalTok{Address}\OperatorTok{,}\NormalTok{ volume }\OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    r}\OperatorTok{.}\NormalTok{referrerVolume}\OperatorTok{[}\NormalTok{referrer}\OperatorTok{].}\NormalTok{Add}\OperatorTok{(}\NormalTok{r}\OperatorTok{.}\NormalTok{referrerVolume}\OperatorTok{[}\NormalTok{referrer}\OperatorTok{],}\NormalTok{ volume}\OperatorTok{)}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+No verification that trader ≠ referrer (via different addresses).
+Attackers can:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create trader/referrer address pair
+\item
+  Execute wash trades to accumulate volume
+\item
+  Collect rebates while paying minimal net fees
+\end{enumerate}
+
+\textbf{Recommendation}: Implement minimum holding periods, require
+stake for referral eligibility, or add wash trade detection.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Security Recommendations for
+2025}\label{security-recommendations-for-2025}
+
+\subsubsection{Immediate Actions (Q1
+2025)}\label{immediate-actions-q1-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Implement Checked Arithmetic}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Replace all \texttt{uint64} arithmetic with overflow-checked
+    functions
+  \item
+    Use \texttt{math/big} for price calculations
+  \item
+    Add fuzz testing for edge cases
+  \end{itemize}
+\item
+  \textbf{Deploy TWAP Oracle}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Minimum 30-minute window
+  \item
+    Multiple price sources (Chainlink, Pyth, internal CLOB)
+  \item
+    Deviation circuit breakers (halt trading if sources diverge
+    \textgreater5\%)
+  \end{itemize}
+\item
+  \textbf{Add Circuit Breakers}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Max liquidations per block: 100
+  \item
+    Max price change per block: 5\%
+  \item
+    Cooldown periods after large liquidations
+  \end{itemize}
+\item
+  \textbf{Flash Loan Guards}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Per-block price impact limits
+  \item
+    Reentrancy mutex on all pool operations
+  \item
+    Same-block trade limits
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Medium-Term (Q2-Q3 2025)}\label{medium-term-q2-q3-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \textbf{State Root Commitments}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Merkleized orderbook state
+  \item
+    Light client verification support
+  \item
+    Fraud proof infrastructure
+  \end{itemize}
+\item
+  \textbf{Enhanced MEV Protection}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Batch auctions (1-second intervals)
+  \item
+    Encrypted mempool (threshold decryption)
+  \item
+    MEV-share redistribution to traders
+  \end{itemize}
+\item
+  \textbf{Position Tracking Improvements}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Account-level aggregate leverage limits
+  \item
+    Cross-margin position linking
+  \item
+    Unified liquidation engine
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Long-Term (Q4 2025)}\label{long-term-q4-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{7}
+\item
+  \textbf{Formal Verification}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Invariant proofs for orderbook matching
+  \item
+    Liquidation logic verification
+  \item
+    Integer overflow absence proofs
+  \end{itemize}
+\item
+  \textbf{Economic Security Audits}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Game-theoretic analysis of incentives
+  \item
+    MEV extraction simulations
+  \item
+    Stress testing under extreme conditions
+  \end{itemize}
+\item
+  \textbf{Insurance Fund Governance}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    DAO-controlled parameters
+  \item
+    Reinsurance mechanisms
+  \item
+    ADL threshold governance
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Test Coverage Analysis}\label{test-coverage-analysis}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Component & Test File & Coverage & Gap \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Orderbook & \texttt{orderbook\_test.go} & \textasciitilde60\% & Missing
+overflow, edge cases \\
+Stop Engine & \texttt{stop\_engine\_test.go} & \textasciitilde70\% &
+Missing OCO edge cases \\
+Perpetuals & \texttt{engine\_test.go} & \textasciitilde50\% & Missing
+liquidation cascades \\
+ADL & \texttt{adl\_test.go} & \textasciitilde80\% & Good coverage \\
+Liquidity & \texttt{pool\_test.go} & \textasciitilde40\% & Missing flash
+loan scenarios \\
+MEV & \texttt{commit\_reveal\_test.go} & \textasciitilde65\% & Missing
+timing attacks \\
+\end{longtable}
+}
+
+\textbf{Recommendation}: Achieve 90\%+ coverage with focus on:
+
+\begin{itemize}
+\tightlist
+\item
+  Boundary conditions
+\item
+  Concurrent operations
+\item
+  Attack simulations
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Conclusion}\label{conclusion}
+
+DexVM demonstrates solid architectural foundations but requires
+hardening before production deployment. The critical integer overflow
+and oracle manipulation vulnerabilities must be addressed immediately.
+The tiered leverage system and MEV protection show thoughtful design but
+need edge case handling.
+
+Priority fix order:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Integer overflow (CRITICAL)
+\item
+  Oracle TWAP implementation (CRITICAL)
+\item
+  Flash loan guards (HIGH)
+\item
+  Liquidation circuit breakers (HIGH)
+\item
+  Self-trade prevention enhancement (HIGH)
+\end{enumerate}
+
+Estimated remediation effort: 4-6 weeks for critical/high issues.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Report generated by Claude Code (CTO Mode)}\\
+\emph{Audit methodology: Static analysis, pattern matching, attack
+vector enumeration}
+
+\end{document}

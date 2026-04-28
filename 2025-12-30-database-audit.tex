@@ -1,0 +1,888 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Database Layer Audit
+Report}\label{lux-database-layer-audit-report}
+
+\textbf{Date}: 2025-12-30 \textbf{Auditor}: Claude Code (Opus 4.5)
+\textbf{Scope}: \texttt{/Users/z/work/lux/node/internal/database/},
+\texttt{/Users/z/work/lux/node/x/merkledb/},
+\texttt{/Users/z/work/lux/node/x/blockdb/},
+\texttt{/Users/z/work/lux/node/x/archivedb/},
+\texttt{/Users/z/work/lux/node/cache/}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Lux database layer demonstrates sound engineering with multiple
+layers of crash recovery, checksumming, and concurrent access control.
+The architecture separates concerns effectively:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Risk Level & Key Finding \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+BadgerDB Integration & Low & Thin wrapper, delegates to
+\texttt{luxfi/database} \\
+PebbleDB Support & Low & Alternative backend, same interface \\
+MerkleDB & Medium & Complex but well-designed; rebuild on unclean
+shutdown \\
+BlockDB & Low & Strong crash recovery with checksums \\
+ArchiveDB & Low & Simple append-only design \\
+Caching & Medium & Size-based LRU; potential memory pressure under
+load \\
+\end{longtable}
+}
+
+\textbf{Overall Assessment}: Production-ready with minor recommendations
+for 2025.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. BadgerDB Integration}\label{1-badgerdb-integration}
+
+\subsubsection{Implementation}\label{implementation}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location}:
+  \texttt{/Users/z/work/lux/node/internal/database/factory/factory.go}
+\item
+  \textbf{Design}: Thin wrapper around
+  \texttt{github.com/luxfi/database/factory.New}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ New}\OperatorTok{(}\NormalTok{name }\DataTypeTok{string}\OperatorTok{,}\NormalTok{ path }\DataTypeTok{string}\OperatorTok{,}\NormalTok{ readOnly }\DataTypeTok{bool}\OperatorTok{,}\NormalTok{ config }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}
+\NormalTok{    gatherer metrics}\OperatorTok{.}\NormalTok{MultiGatherer}\OperatorTok{,}\NormalTok{ logger log}\OperatorTok{.}\NormalTok{Logger}\OperatorTok{,}
+\NormalTok{    metricsPrefix }\DataTypeTok{string}\OperatorTok{,}\NormalTok{ meterDBRegName }\DataTypeTok{string}\OperatorTok{)} \OperatorTok{(}\NormalTok{database}\OperatorTok{.}\NormalTok{Database}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ factory}\OperatorTok{.}\NormalTok{New}\OperatorTok{(}\NormalTok{name}\OperatorTok{,}\NormalTok{ path}\OperatorTok{,}\NormalTok{ readOnly}\OperatorTok{,}\NormalTok{ config}\OperatorTok{,}\NormalTok{ gatherer}\OperatorTok{,}\NormalTok{ logger}\OperatorTok{,}\NormalTok{ metricsPrefix}\OperatorTok{,}\NormalTok{ meterDBRegName}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Findings}\label{findings}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Data Corruption Risk}: LOW - BadgerDB handles its own crash
+  recovery internally
+\item
+  \textbf{Batch Capacity}: Constants in \texttt{common.go} suggest
+  awareness of write amplification
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{const} \OperatorTok{(}
+\NormalTok{    BatchCapacityCap }\OperatorTok{=} \DecValTok{128} \OperatorTok{*}\NormalTok{ units}\OperatorTok{.}\NormalTok{MiB  }\CommentTok{// Maximum batch size}
+\NormalTok{    BatchCapacityMin }\OperatorTok{=} \DecValTok{1} \OperatorTok{*}\NormalTok{ units}\OperatorTok{.}\NormalTok{MiB    }\CommentTok{// Minimum batch size}
+\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Recommendations}\label{recommendations}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Consider exposing BadgerDB\textquotesingle s value log GC tuning for
+  long-running nodes
+\item
+  Add metrics for LSM compaction pressure
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. PebbleDB Support}\label{2-pebbledb-support}
+
+\subsubsection{Implementation}\label{implementation-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Available as \texttt{"pebbledb"} option in factory
+\item
+  Same \texttt{database.Database} interface as BadgerDB
+\end{itemize}
+
+\subsubsection{Findings}\label{findings-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Alternative Backend}: Provides choice for operators
+\item
+  \textbf{Interface Compliance}: Uses standard
+  \texttt{database.Database} interface
+\end{itemize}
+
+\subsubsection{Recommendations}\label{recommendations-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Document performance characteristics vs BadgerDB for operator guidance
+\item
+  Consider making PebbleDB the default (RocksDB lineage, battle-tested)
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. MerkleDB}\label{3-merkledb}
+
+\subsubsection{Implementation}\label{implementation-2}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location}: \texttt{/Users/z/work/lux/node/x/merkledb/}
+\item
+  \textbf{Design}: Radix trie with Merkle proofs, MVCC views
+\end{itemize}
+
+\subsubsection{Architecture}\label{architecture}
+
+\begin{verbatim}
+                    ┌─────────────────┐
+                    │     merkleDB    │
+                    │  (db.go:1400+)  │
+                    └────────┬────────┘
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+┌───────▼───────┐   ┌────────▼────────┐   ┌───────▼───────┐
+│intermediateDB │   │   valueNodeDB   │   │   onEvictCache│
+│ (write buffer)│   │   (LRU cache)   │   │   (FIFO)      │
+└───────────────┘   └─────────────────┘   └───────────────┘
+\end{verbatim}
+
+\subsubsection{Crash Recovery Mechanism}\label{crash-recovery-mechanism}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Marker key for clean shutdown detection}
+\NormalTok{cleanShutdownKey }\OperatorTok{=} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{(}\DataTypeTok{string}\OperatorTok{(}\NormalTok{metadataPrefix}\OperatorTok{)} \OperatorTok{+} \StringTok{"cleanShutdown"}\OperatorTok{)}
+\NormalTok{hadCleanShutdown }\OperatorTok{=} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{\{}\DecValTok{1}\OperatorTok{\}}
+\NormalTok{didNotHaveCleanShutdown }\OperatorTok{=} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{\{}\DecValTok{0}\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recovery Flow}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  On open: Check \texttt{cleanShutdownKey} value
+\item
+  If \texttt{didNotHaveCleanShutdown}: Call \texttt{rebuild()} to
+  reconstruct trie
+\item
+  Immediately write \texttt{didNotHaveCleanShutdown} marker
+\item
+  On clean close: Write \texttt{hadCleanShutdown} marker
+\end{enumerate}
+
+\subsubsection{Concurrency Model}\label{concurrency-model}
+
+\textbf{Dual Lock Pattern}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ merkleDB }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    lock       sync}\OperatorTok{.}\NormalTok{RWMutex  }\CommentTok{// Protects general state}
+\NormalTok{    commitLock sync}\OperatorTok{.}\NormalTok{RWMutex  }\CommentTok{// Prevents concurrent commits}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{View-Based MVCC}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{NewView()} creates isolated snapshots
+\item
+  Views share read access, commits serialize via \texttt{commitLock}
+\end{itemize}
+
+\subsubsection{Findings}\label{findings-2}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Area & Risk & Details \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Data Corruption & LOW & Rebuilds from raw key-values on crash \\
+Race Conditions & LOW & Proper dual-lock prevents concurrent commits \\
+Memory Usage & MEDIUM & Unbounded view accumulation possible \\
+Performance & GOOD & Write buffers, batch eviction \\
+\end{longtable}
+}
+
+\subsubsection{Critical Code Paths}\label{critical-code-paths}
+
+\textbf{Write Buffer Eviction} (\texttt{intermediate\_node\_db.go}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Fatal error handling {-} closes database on write failures}
+\ControlFlowTok{if}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ i}\OperatorTok{.}\NormalTok{evictToDisk}\OperatorTok{(}\NormalTok{evictionBatchSize}\OperatorTok{);}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,}\NormalTok{ err  }\CommentTok{// Propagates up, triggers shutdown}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Atomic Closed State} (\texttt{value\_node\_db.go}):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ valueNodeDB }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    closed atomic}\OperatorTok{.}\NormalTok{Bool  }\CommentTok{// Safe concurrent close detection}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Recommendations}\label{recommendations-2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add view lifecycle limits to prevent memory exhaustion
+\item
+  Consider background compaction for intermediate node DB
+\item
+  Add metrics for rebuild time on recovery
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. BlockDB}\label{4-blockdb}
+
+\subsubsection{Implementation}\label{implementation-3}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location}:
+  \texttt{/Users/z/work/lux/node/x/blockdb/database.go}
+\item
+  \textbf{Design}: Block storage with index file and data files
+\end{itemize}
+
+\subsubsection{Crash Recovery
+Mechanism}\label{crash-recovery-mechanism-1}
+
+\textbf{Index File Structure}:
+
+\begin{verbatim}
+┌──────────────────┬──────────────────┬─────────────────────┐
+│ Version Header   │ Block Index      │ Checksum            │
+│ (magic + version)│ (height->offset) │ (xxhash per block)  │
+└──────────────────┴──────────────────┴─────────────────────┘
+\end{verbatim}
+
+\textbf{Recovery Algorithm}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Validate index file header
+\item
+  If corrupted: Scan data files sequentially
+\item
+  Verify each block\textquotesingle s xxhash checksum
+\item
+  Rebuild index from valid blocks
+\item
+  Truncate at first corrupted block
+\end{enumerate}
+
+\subsubsection{Concurrency Model}\label{concurrency-model-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ Database }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    closeMu             sync}\OperatorTok{.}\NormalTok{RWMutex           }\CommentTok{// Close coordination}
+\NormalTok{    fileOpenMu          sync}\OperatorTok{.}\NormalTok{Mutex             }\CommentTok{// File handle management}
+\NormalTok{    blockHeights        atomic}\OperatorTok{.}\NormalTok{Pointer}\OperatorTok{[...]}    \CommentTok{// Lock{-}free height queries}
+\NormalTok{    nextDataWriteOffset atomic}\OperatorTok{.}\NormalTok{Uint64          }\CommentTok{// Lock{-}free offset tracking}
+\NormalTok{    headerWriteOccupied atomic}\OperatorTok{.}\NormalTok{Bool            }\CommentTok{// Single header writer}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Atomic Operations}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{blockHeights} uses atomic pointer swap for lock-free reads
+\item
+  \texttt{nextDataWriteOffset} enables concurrent write offset
+  calculation
+\item
+  \texttt{headerWriteOccupied} prevents concurrent header updates
+\end{itemize}
+
+\subsubsection{Compression}\label{compression}
+
+\begin{itemize}
+\tightlist
+\item
+  Uses zstd compression for block data
+\item
+  Configurable compression level
+\end{itemize}
+
+\subsubsection{Findings}\label{findings-3}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Area & Risk & Details \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Data Corruption & VERY LOW & xxhash checksums, recovery scan \\
+Race Conditions & LOW & Well-designed atomic/mutex hybrid \\
+Memory Usage & LOW & Streaming I/O, minimal buffering \\
+Performance & GOOD & Lock-free reads, batch writes \\
+\end{longtable}
+}
+
+\subsubsection{Test Coverage}\label{test-coverage}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{recovery\_test.go} covers various corruption scenarios
+\item
+  Tests include partial writes, truncated files, corrupted checksums
+\end{itemize}
+
+\subsubsection{Recommendations}\label{recommendations-3}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add periodic background checksum verification
+\item
+  Consider index file replication for faster recovery
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. ArchiveDB}\label{5-archivedb}
+
+\subsubsection{Implementation}\label{implementation-4}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location}: \texttt{/Users/z/work/lux/node/x/archivedb/db.go}
+\item
+  \textbf{Design}: Append-only height-indexed state changes
+\end{itemize}
+
+\subsubsection{Findings}\label{findings-4}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Simplest Component}: Thin wrapper for height-based queries
+\item
+  \textbf{No Complex Recovery}: Relies on underlying
+  database\textquotesingle s durability
+\item
+  \textbf{Risk Level}: LOW
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Caching Layer}\label{6-caching-layer}
+
+\subsubsection{Implementation}\label{implementation-5}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Location}: \texttt{/Users/z/work/lux/node/cache/}
+\end{itemize}
+
+\subsubsection{LRU Cache Types}\label{lru-cache-types}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Type & Location & Use Case \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{SizedLRU} & \texttt{lru/sized\_cache.go} & Size-based
+eviction \\
+\texttt{LRU} & \texttt{lru\_cache.go} & Count-based eviction \\
+\texttt{onEvictCache} & \texttt{merkledb/cache.go} & Callback on
+eviction \\
+\end{longtable}
+}
+
+\subsubsection{SizedLRU Implementation}\label{sizedlru-implementation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ SizedLRU}\OperatorTok{[}\NormalTok{K }\DataTypeTok{comparable}\OperatorTok{,}\NormalTok{ V }\DataTypeTok{any}\OperatorTok{]} \KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    lock        sync}\OperatorTok{.}\NormalTok{Mutex}
+\NormalTok{    elements    }\OperatorTok{*}\NormalTok{linked}\OperatorTok{.}\NormalTok{Hashmap}\OperatorTok{[}\NormalTok{K}\OperatorTok{,} \OperatorTok{*}\NormalTok{sizedElement}\OperatorTok{[}\NormalTok{V}\OperatorTok{]]}
+\NormalTok{    maxSize     }\DataTypeTok{int}
+\NormalTok{    currentSize }\DataTypeTok{int}
+\OperatorTok{\}}
+
+\KeywordTok{type}\NormalTok{ sizedElement}\OperatorTok{[}\NormalTok{V }\DataTypeTok{any}\OperatorTok{]} \KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    Value V}
+\NormalTok{    Size  }\DataTypeTok{int}  \CommentTok{// Stored size prevents recalculation inconsistencies}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Key Design Decision}: Size stored with element prevents
+inconsistencies if value is modified after insertion.
+
+\subsubsection{onEvictCache (MerkleDB)}\label{onevictcache-merkledb}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ onEvictCache}\OperatorTok{[}\NormalTok{K }\DataTypeTok{comparable}\OperatorTok{,}\NormalTok{ V }\DataTypeTok{any}\OperatorTok{]} \KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    lock       sync}\OperatorTok{.}\NormalTok{RWMutex}
+\NormalTok{    maxSize    }\DataTypeTok{int}
+\NormalTok{    fifo       }\OperatorTok{*}\NormalTok{linked}\OperatorTok{.}\NormalTok{Hashmap}\OperatorTok{[}\NormalTok{K}\OperatorTok{,}\NormalTok{ V}\OperatorTok{]}  \CommentTok{// FIFO for eviction order}
+\NormalTok{    onEviction }\KeywordTok{func}\OperatorTok{(}\NormalTok{K}\OperatorTok{,}\NormalTok{ V}\OperatorTok{)} \DataTypeTok{error}       \CommentTok{// Callback on evict}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{FIFO vs LRU}: Uses FIFO for eviction order, not LRU. This is
+intentional for write buffer semantics.
+
+\subsubsection{Findings}\label{findings-5}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Area & Risk & Details \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Memory Leaks & LOW & Proper size tracking, eviction callbacks \\
+Race Conditions & LOW & Mutex-protected operations \\
+Performance & MEDIUM & Lock contention possible under high load \\
+\end{longtable}
+}
+
+\subsubsection{Recommendations}\label{recommendations-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Consider sharded caches for reduced lock contention
+\item
+  Add cache hit/miss metrics for tuning
+\item
+  Evaluate ARC or 2Q algorithms for better hit rates
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Data Integrity Analysis}\label{data-integrity-analysis}
+
+\subsubsection{Defense in Depth}\label{defense-in-depth}
+
+\begin{verbatim}
+Layer 1: Application Checksums (xxhash in BlockDB)
+    │
+    ▼
+Layer 2: Clean Shutdown Markers (MerkleDB)
+    │
+    ▼
+Layer 3: Database Engine Recovery (BadgerDB/PebbleDB)
+    │
+    ▼
+Layer 4: Filesystem Journaling (ext4/APFS)
+\end{verbatim}
+
+\subsubsection{Corruption Scenarios
+Handled}\label{corruption-scenarios-handled}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Scenario & MerkleDB & BlockDB \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Process crash mid-write & Rebuild from raw KV & Checksum validation \\
+Partial block write & N/A & Truncate at corruption \\
+Index corruption & Rebuild trie & Scan data files \\
+Power failure & Rebuild from raw KV & Rebuild index \\
+\end{longtable}
+}
+
+\subsubsection{Gap Analysis}\label{gap-analysis}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Scenario & Current Handling & Risk \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Bit rot in cold data & Not detected & LOW (rare) \\
+Concurrent file access & Mutex protected & LOW \\
+Full disk & Propagates error & MEDIUM \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Performance Analysis}\label{performance-analysis}
+
+\subsubsection{Write Path}\label{write-path}
+
+\begin{verbatim}
+Application Write
+    │
+    ▼
+┌───────────────┐
+│ Write Buffer  │ ◄── Deferred disk writes
+│ (in-memory)   │
+└───────┬───────┘
+        │ Batch eviction
+        ▼
+┌───────────────┐
+│ BadgerDB/     │ ◄── LSM tree writes
+│ PebbleDB      │
+└───────────────┘
+\end{verbatim}
+
+\textbf{Optimizations}:
+
+\begin{itemize}
+\tightlist
+\item
+  Write buffers reduce disk I/O
+\item
+  Batch eviction amortizes write costs
+\item
+  Atomic operations reduce lock overhead
+\end{itemize}
+
+\subsubsection{Read Path}\label{read-path}
+
+\begin{verbatim}
+Application Read
+    │
+    ▼
+┌───────────────┐
+│ LRU Cache     │ ◄── O(1) lookup
+└───────┬───────┘
+        │ Miss
+        ▼
+┌───────────────┐
+│ Write Buffer  │ ◄── Check pending writes
+└───────┬───────┘
+        │ Miss
+        ▼
+┌───────────────┐
+│ Database      │ ◄── Disk read
+└───────────────┘
+\end{verbatim}
+
+\subsubsection{Bottlenecks}\label{bottlenecks}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Bottleneck & Mitigation \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+MerkleDB & Commit serialization & Expected (consistency) \\
+BlockDB & Single header writer & Batched updates \\
+Cache & Lock contention & Sharding (recommended) \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Security Concerns}\label{security-concerns}
+
+\subsubsection{Low Risk}\label{low-risk}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{No External Input}: Database layer receives validated data
+  from VM layer
+\item
+  \textbf{No Network Exposure}: Internal component, not directly
+  accessible
+\end{enumerate}
+
+\subsubsection{Moderate Risk}\label{moderate-risk}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Denial of Service}: Unbounded view creation could exhaust
+  memory
+\item
+  \textbf{Resource Exhaustion}: Large batch operations could pressure
+  memory
+\end{enumerate}
+
+\subsubsection{Recommendations}\label{recommendations-5}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add view count limits per database instance
+\item
+  Implement memory pressure backoff for batch operations
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2025 Recommendations}\label{2025-recommendations}
+
+\subsubsection{Priority 1:
+Observability}\label{priority-1-observability}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Add Prometheus metrics for cache hit rates
+\item[$\square$]
+  Add metrics for MerkleDB rebuild time
+\item[$\square$]
+  Add BlockDB checksum verification stats
+\end{itemize}
+
+\subsubsection{Priority 2: Performance}\label{priority-2-performance}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Evaluate sharded caches for high-throughput scenarios
+\item[$\square$]
+  Consider ARC/2Q cache replacement algorithms
+\item[$\square$]
+  Profile lock contention under production load
+\end{itemize}
+
+\subsubsection{Priority 3: Resilience}\label{priority-3-resilience}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Implement periodic background checksum verification for BlockDB
+\item[$\square$]
+  Add memory pressure detection and backoff
+\item[$\square$]
+  Consider index file replication for faster BlockDB recovery
+\end{itemize}
+
+\subsubsection{Priority 4:
+Documentation}\label{priority-4-documentation}
+
+\begin{itemize}
+\tightlist
+\item[$\square$]
+  Document BadgerDB vs PebbleDB performance characteristics
+\item[$\square$]
+  Add runbook for crash recovery scenarios
+\item[$\square$]
+  Document tuning parameters for different hardware profiles
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix A: File Inventory}\label{appendix-a-file-inventory}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Lines & Purpose \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{internal/database/factory/factory.go} & \textasciitilde30 &
+Database creation \\
+\texttt{internal/database/common.go} & \textasciitilde20 & Batch
+constants \\
+\texttt{x/merkledb/db.go} & \textasciitilde1400 & Core MerkleDB \\
+\texttt{x/merkledb/cache.go} & \textasciitilde150 & onEvictCache \\
+\texttt{x/merkledb/intermediate\_node\_db.go} & \textasciitilde250 &
+Write buffer \\
+\texttt{x/merkledb/value\_node\_db.go} & \textasciitilde200 & Value
+storage \\
+\texttt{x/blockdb/database.go} & \textasciitilde1200 & Block storage \\
+\texttt{x/archivedb/db.go} & \textasciitilde200 & Archive storage \\
+\texttt{cache/lru/sized\_cache.go} & \textasciitilde150 & Size-based
+LRU \\
+\texttt{cache/lru\_cache.go} & \textasciitilde100 & Basic LRU \\
+\end{longtable}
+}
+
+\subsection{Appendix B: Key Constants}\label{appendix-b-key-constants}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Batch capacity management}
+\NormalTok{BatchCapacityCap }\OperatorTok{=} \DecValTok{128} \OperatorTok{*}\NormalTok{ units}\OperatorTok{.}\NormalTok{MiB}
+\NormalTok{BatchCapacityMin }\OperatorTok{=} \DecValTok{1} \OperatorTok{*}\NormalTok{ units}\OperatorTok{.}\NormalTok{MiB}
+
+\CommentTok{// MerkleDB markers}
+\NormalTok{cleanShutdownKey }\OperatorTok{=} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{(}\NormalTok{metadataPrefix }\OperatorTok{+} \StringTok{"cleanShutdown"}\OperatorTok{)}
+\NormalTok{hadCleanShutdown }\OperatorTok{=} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{\{}\DecValTok{1}\OperatorTok{\}}
+\NormalTok{didNotHaveCleanShutdown }\OperatorTok{=} \OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{\{}\DecValTok{0}\OperatorTok{\}}
+
+\CommentTok{// BlockDB}
+\NormalTok{indexFileVersion }\OperatorTok{=} \DecValTok{1}
+\NormalTok{dataFileVersion }\OperatorTok{=} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Audit Report}
+
+\end{document}

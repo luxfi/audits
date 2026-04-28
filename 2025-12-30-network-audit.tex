@@ -1,0 +1,666 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Network Layer Security
+Audit}\label{lux-network-layer-security-audit}
+
+\textbf{Date:} 2025-12-30\\
+\textbf{Scope:} \texttt{/Users/z/work/lux/node/network/}\\
+\textbf{Auditor:} Automated Security Review\\
+\textbf{Severity Scale:} Critical \textgreater{} High \textgreater{}
+Medium \textgreater{} Low \textgreater{} Informational
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Lux network layer implements a robust P2P networking stack with
+multiple layers of defense against common network attacks. The codebase
+demonstrates security-conscious design with:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{TLS 1.3 enforcement} with certificate-based node
+  authentication
+\item
+  \textbf{Multi-layered throttling} (connection, bandwidth, CPU, disk,
+  message bytes)
+\item
+  \textbf{Sybil-resistant resource allocation} weighted by validator
+  stake
+\item
+  \textbf{Bloom filter-based peer discovery} to reduce gossip overhead
+\end{itemize}
+
+However, several areas warrant attention for hardening against
+sophisticated attacks.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Attack Surface Analysis}\label{attack-surface-analysis}
+
+\subsubsection{1. P2P Protocol Layer}\label{1-p2p-protocol-layer}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Risk Level & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Peer Discovery & Medium & Bloom filter gossip with salt rotation \\
+Connection Management & Low & Validator-weighted connection limits \\
+Message Routing & Low & Handshake-gated message handling \\
+\end{longtable}
+}
+
+\subsubsection{2. TLS Security Layer}\label{2-tls-security-layer}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Risk Level & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Certificate Validation & Low & Custom validation via
+\texttt{ValidateCertificate()} \\
+Key Types & Low & ECDSA P-256 and RSA supported \\
+Protocol Version & Low & TLS 1.3 minimum enforced \\
+\end{longtable}
+}
+
+\subsubsection{3. Throttling Layer}\label{3-throttling-layer}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Risk Level & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Inbound Connection & Low & IP-based cooldown with per-IP limits \\
+Bandwidth & Low & Token bucket per-node with validator weighting \\
+Message Bytes & Medium & Stake-weighted allocation pools \\
+CPU/Disk & Low & System resource tracking per-peer \\
+\end{longtable}
+}
+
+\subsubsection{4. NAT Traversal Layer}\label{4-nat-traversal-layer}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Component & Risk Level & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+IP Resolution & Medium & Signed IP claims with timestamp validation \\
+Proxy Protocol & Medium & Optional PROXY protocol support \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Security Vulnerabilities
+Found}\label{security-vulnerabilities-found}
+
+\subsubsection{HIGH: Potential Memory Exhaustion via Tracked
+IPs}\label{high-potential-memory-exhaustion-via-tracked-ips}
+
+\textbf{Location:} \texttt{network/ip\_tracker.go:353-366}
+
+\textbf{Issue:} When a node receives IP updates for tracked validators,
+each update allocates memory for the \texttt{trackedNode} struct. The
+bloom filter has a \texttt{maxIPEntriesPerNode\ =\ 2} limit, but a
+malicious validator could potentially send many different IPs within the
+bloom reset window.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{i }\OperatorTok{*}\NormalTok{ipTracker}\OperatorTok{)}\NormalTok{ addIP}\OperatorTok{(}\NormalTok{ip }\OperatorTok{*}\NormalTok{ips}\OperatorTok{.}\NormalTok{ClaimedIPPort}\OperatorTok{)} \OperatorTok{(}\DataTypeTok{int}\OperatorTok{,} \OperatorTok{*}\NormalTok{trackedNode}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    node}\OperatorTok{,}\NormalTok{ ok }\OperatorTok{:=}\NormalTok{ i}\OperatorTok{.}\NormalTok{tracked}\OperatorTok{[}\NormalTok{ip}\OperatorTok{.}\NormalTok{NodeID}\OperatorTok{]}
+    \ControlFlowTok{if} \OperatorTok{!}\NormalTok{ok }\OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ untrackedTimestamp}\OperatorTok{,} \OtherTok{nil}  \CommentTok{// Good: only tracks known validators}
+    \OperatorTok{\}}
+    \CommentTok{// ... IP update logic}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Mitigation:} The code already filters untracked nodes, but
+consider adding explicit rate limiting on IP updates per node.
+
+\textbf{Severity:} High\\
+\textbf{Status:} Partially Mitigated
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM: Clock Skew Tolerance for Signature
+Replay}\label{medium-clock-skew-tolerance-for-signature-replay}
+
+\textbf{Location:} \texttt{network/peer/peer.go:1023-1024}
+
+\textbf{Issue:} IP signatures are validated against
+\texttt{maxTimestamp\ =\ localTime.Add(p.MaxClockDifference)}. The
+default \texttt{MaxClockDifference} allows signatures with future
+timestamps, which could enable replay attacks if an attacker obtains a
+valid signature.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maxTimestamp }\OperatorTok{:=}\NormalTok{ localTime}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\NormalTok{p}\OperatorTok{.}\NormalTok{MaxClockDifference}\OperatorTok{)}
+\ControlFlowTok{if}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ p}\OperatorTok{.}\NormalTok{ip}\OperatorTok{.}\NormalTok{Verify}\OperatorTok{(}\NormalTok{p}\OperatorTok{.}\NormalTok{cert}\OperatorTok{,}\NormalTok{ maxTimestamp}\OperatorTok{);}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Also enforce a minimum timestamp (not too old)
+\item
+  Consider shorter \texttt{MaxClockDifference} windows
+\item
+  Track seen signatures to prevent replay
+\end{enumerate}
+
+\textbf{Severity:} Medium\\
+\textbf{Status:} Not Mitigated
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM: Unbounded Bloom Filter Growth During Validator
+Churn}\label{medium-unbounded-bloom-filter-growth-during-validator-churn}
+
+\textbf{Location:} \texttt{network/ip\_tracker.go:514-541}
+
+\textbf{Issue:} The bloom filter grows based on validator set size.
+During high validator churn, the filter may not reset quickly enough,
+leading to increased false positive rates.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{i }\OperatorTok{*}\NormalTok{ipTracker}\OperatorTok{)}\NormalTok{ updateMostRecentTrackedIP}\OperatorTok{(}\NormalTok{node }\OperatorTok{*}\NormalTok{trackedNode}\OperatorTok{,}\NormalTok{ ip }\OperatorTok{*}\NormalTok{ips}\OperatorTok{.}\NormalTok{ClaimedIPPort}\OperatorTok{)} \OperatorTok{\{}
+    \CommentTok{// ...}
+    \ControlFlowTok{if}\NormalTok{ count }\OperatorTok{:=}\NormalTok{ i}\OperatorTok{.}\NormalTok{bloom}\OperatorTok{.}\NormalTok{Count}\OperatorTok{();}\NormalTok{ count }\OperatorTok{\textgreater{}=}\NormalTok{ i}\OperatorTok{.}\NormalTok{maxBloomCount }\OperatorTok{\{}
+        \ControlFlowTok{if}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ i}\OperatorTok{.}\NormalTok{resetBloom}\OperatorTok{();}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+            \CommentTok{// Error logged but continues operation}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Add configurable bloom filter reset frequency
+independent of size thresholds.
+
+\textbf{Severity:} Medium\\
+\textbf{Status:} Partially Mitigated (manual reset exists)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM: Potential Goroutine Leak in Dial Retry
+Loop}\label{medium-potential-goroutine-leak-in-dial-retry-loop}
+
+\textbf{Location:} \texttt{network/network.go:1005-1129}
+
+\textbf{Issue:} The \texttt{dial()} function spawns goroutines for
+connection attempts. If \texttt{trackedIPs} entries are not properly
+cleaned up when validators leave the set, goroutines may accumulate.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{n }\OperatorTok{*}\NormalTok{network}\OperatorTok{)}\NormalTok{ dial}\OperatorTok{(}\NormalTok{nodeID ids}\OperatorTok{.}\NormalTok{NodeID}\OperatorTok{,}\NormalTok{ ip }\OperatorTok{*}\NormalTok{trackedIP}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{go} \KeywordTok{func}\OperatorTok{()} \OperatorTok{\{}
+\NormalTok{        n}\OperatorTok{.}\NormalTok{metrics}\OperatorTok{.}\NormalTok{numTracked}\OperatorTok{.}\NormalTok{Inc}\OperatorTok{()}
+        \ControlFlowTok{defer}\NormalTok{ n}\OperatorTok{.}\NormalTok{metrics}\OperatorTok{.}\NormalTok{numTracked}\OperatorTok{.}\NormalTok{Dec}\OperatorTok{()}
+
+        \ControlFlowTok{for} \OperatorTok{\{}
+            \CommentTok{// Check if we still want connection...}
+            \ControlFlowTok{if} \OperatorTok{!}\NormalTok{n}\OperatorTok{.}\NormalTok{ipTracker}\OperatorTok{.}\NormalTok{WantsConnection}\OperatorTok{(}\NormalTok{nodeID}\OperatorTok{)} \OperatorTok{\{}
+                \CommentTok{// Cleanup and return}
+            \OperatorTok{\}}
+            \CommentTok{// ... connection logic}
+        \OperatorTok{\}}
+    \OperatorTok{\}()}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Mitigation:} The code does check \texttt{WantsConnection()} on
+each iteration, but relies on the timer delay which could be up to
+\texttt{MaxReconnectDelay}.
+
+\textbf{Severity:} Medium\\
+\textbf{Status:} Partially Mitigated
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{LOW: Connection Upgrade Throttler Race
+Condition}\label{low-connection-upgrade-throttler-race-condition}
+
+\textbf{Location:}
+\texttt{network/throttling/inbound\_conn\_upgrade\_throttler.go:121-130}
+
+\textbf{Issue:} The comment acknowledges a potential race condition
+allowing \texttt{MaxRecentConnsUpgraded+1} upgrades.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{select} \OperatorTok{\{}
+\ControlFlowTok{case}\NormalTok{ n}\OperatorTok{.}\NormalTok{recentIPsAndTimes }\OperatorTok{\textless{}{-}}\NormalTok{ ipAndTime}\OperatorTok{\{...\}:}
+\NormalTok{    n}\OperatorTok{.}\NormalTok{recentIPs}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\NormalTok{addr}\OperatorTok{)}
+    \ControlFlowTok{return} \OtherTok{true}
+\ControlFlowTok{default}\OperatorTok{:}
+    \ControlFlowTok{return} \OtherTok{false}  \CommentTok{// Channel full {-} race condition possible}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Severity:} Low (documented and acceptable)\\
+\textbf{Status:} Acknowledged
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{LOW: No Rate Limit on Handshake
+Messages}\label{low-no-rate-limit-on-handshake-messages}
+
+\textbf{Location:} \texttt{network/peer/peer.go:843-1092}
+
+\textbf{Issue:} After connection establishment, a peer could send
+multiple handshake messages before being disconnected. The check
+\texttt{p.gotHandshake.Get()} prevents duplicate processing but the
+message is still parsed.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{p }\OperatorTok{*}\NormalTok{peer}\OperatorTok{)}\NormalTok{ handleHandshake}\OperatorTok{(}\NormalTok{msg }\OperatorTok{*}\NormalTok{p2p}\OperatorTok{.}\NormalTok{Handshake}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if}\NormalTok{ p}\OperatorTok{.}\NormalTok{gotHandshake}\OperatorTok{.}\NormalTok{Get}\OperatorTok{()} \OperatorTok{\{}
+\NormalTok{        p}\OperatorTok{.}\NormalTok{Log}\OperatorTok{.}\NormalTok{Debug}\OperatorTok{(}\NormalTok{malformedMessageLog}\OperatorTok{,} \OperatorTok{...)}
+\NormalTok{        p}\OperatorTok{.}\NormalTok{StartClose}\OperatorTok{()}
+        \ControlFlowTok{return}
+    \OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Severity:} Low\\
+\textbf{Status:} Mitigated (connection closed on duplicate)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{INFORMATIONAL: TLS InsecureSkipVerify
+Usage}\label{informational-tls-insecureskipverify-usage}
+
+\textbf{Location:} \texttt{network/peer/tls\_config.go:43}
+
+\textbf{Issue:} TLS config uses \texttt{InsecureSkipVerify:\ true}. This
+is documented as intentional (peer authentication via public key, not
+CA), but requires careful review.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{return} \OperatorTok{\&}\NormalTok{tls}\OperatorTok{.}\NormalTok{Config}\OperatorTok{\{}
+    \CommentTok{// ...}
+\NormalTok{    InsecureSkipVerify}\OperatorTok{:} \OtherTok{true}\OperatorTok{,} \CommentTok{//\#nosec G402}
+\NormalTok{    VerifyConnection}\OperatorTok{:}\NormalTok{   ValidateCertificate}\OperatorTok{,}  \CommentTok{// Custom validation}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Status:} Intentional Design (documented, audited by Quantstamp)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Performance Concerns}\label{performance-concerns}
+
+\subsubsection{1. Lock Contention in Message
+Throttler}\label{1-lock-contention-in-message-throttler}
+
+\textbf{Location:}
+\texttt{network/throttling/inbound\_msg\_byte\_throttler.go:96}
+
+\textbf{Concern:} The single mutex protecting \texttt{waitingToAcquire}
+may become a bottleneck under high message load.
+
+\textbf{Recommendation:} Consider sharding by nodeID or using lock-free
+data structures.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2. Bloom Filter Reset During
+Traffic}\label{2-bloom-filter-reset-during-traffic}
+
+\textbf{Location:} \texttt{network/ip\_tracker.go:547-598}
+
+\textbf{Concern:} \texttt{ResetBloom()} holds the write lock while
+iterating all tracked nodes, which could cause brief latency spikes.
+
+\textbf{Recommendation:} Consider double-buffering or incremental reset
+strategies.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{3. Validator Weight Calculation
+Per-Message}\label{3-validator-weight-calculation-per-message}
+
+\textbf{Location:}
+\texttt{network/throttling/inbound\_msg\_byte\_throttler.go:133-143}
+
+\textbf{Concern:} Each throttler Acquire() call computes validator
+weight by calling \texttt{TotalWeight()}.
+
+\textbf{Recommendation:} Cache total weight with periodic refresh.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2025 Recommendations}\label{2025-recommendations}
+
+\subsubsection{Critical Priority}\label{critical-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Implement IP Signature Replay Protection}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Track recent signature hashes per node
+  \item
+    Reject signatures seen within a configurable window
+  \item
+    Consider monotonic timestamp enforcement
+  \end{itemize}
+\item
+  \textbf{Add Explicit Resource Limits}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Maximum goroutines per tracked validator
+  \item
+    Maximum pending connection attempts globally
+  \item
+    Maximum message queue depth per peer
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{High Priority}\label{high-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\item
+  \textbf{Enhanced Eclipse Attack Resistance}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Require diverse IP ranges in peer selection
+  \item
+    Implement subnet diversity scoring
+  \item
+    Add geographic diversity checks for critical validators
+  \end{itemize}
+\item
+  \textbf{Post-Quantum TLS Preparation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Evaluate hybrid TLS with ML-KEM
+  \item
+    Plan migration path for certificate infrastructure
+  \item
+    Consider quantum-safe signature schemes for IP signing
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Medium Priority}\label{medium-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  \textbf{Improve Observability}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add metrics for throttler rejection rates by reason
+  \item
+    Track peer connection duration distributions
+  \item
+    Monitor bloom filter false positive rates
+  \end{itemize}
+\item
+  \textbf{Connection Hardening}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implement connection slot reservations for critical peers
+  \item
+    Add backpressure mechanisms for gossip propagation
+  \item
+    Consider adaptive throttling based on network conditions
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Low Priority}\label{low-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  \textbf{Code Cleanup}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Remove unused \texttt{noInboundMsgThrottler} variant
+  \item
+    Consolidate duplicate logging patterns
+  \item
+    Add fuzz testing for message parsing
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Positive Security
+Findings}\label{positive-security-findings}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Sybil-Resistant Design}: Validator stake-weighted resource
+  allocation prevents non-validators from consuming disproportionate
+  resources.
+\item
+  \textbf{Defense in Depth}: Multiple throttling layers (connection,
+  message, bandwidth, CPU, disk) provide redundant protection.
+\item
+  \textbf{Proper TLS Usage}: TLS 1.3 with mutual authentication provides
+  strong transport security.
+\item
+  \textbf{BLS Signature Verification}: Post-handshake BLS signature
+  validation ensures validator identity.
+\item
+  \textbf{Graceful Degradation}: Health checks detect and report
+  connectivity issues.
+\item
+  \textbf{Clean Shutdown}: Connection close handlers properly cleanup
+  resources.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Files Reviewed}\label{files-reviewed}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Lines & Purpose \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{network.go} & 1474 & Main network orchestration \\
+\texttt{config.go} & 188 & Network configuration \\
+\texttt{ip\_tracker.go} & 667 & Validator IP tracking \\
+\texttt{peer/peer.go} & 1237 & Peer connection handling \\
+\texttt{peer/tls\_config.go} & 76 & TLS configuration \\
+\texttt{peer/upgrader.go} & 86 & Connection upgrade \\
+\texttt{peer/message\_queue.go} & 306 & Message queuing \\
+\texttt{throttling/inbound\_msg\_throttler.go} & 176 & Inbound
+throttling \\
+\texttt{throttling/inbound\_msg\_byte\_throttler.go} & 345 & Byte-level
+throttling \\
+\texttt{throttling/bandwidth\_throttler.go} & 166 & Bandwidth
+limiting \\
+\texttt{throttling/outbound\_msg\_throttler.go} & 221 & Outbound
+throttling \\
+\texttt{throttling/inbound\_conn\_upgrade\_throttler.go} & 160 &
+Connection throttling \\
+\texttt{dialer/dialer.go} & 79 & Outbound connection \\
+\texttt{no\_ingress\_conn\_alert.go} & 42 & Health check \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Conclusion}\label{conclusion}
+
+The Lux network layer demonstrates mature security practices with
+comprehensive throttling, proper TLS usage, and stake-weighted resource
+allocation. The identified vulnerabilities are largely medium or low
+severity, with most having partial mitigations in place.
+
+\textbf{Overall Security Rating:} B+ (Good with room for improvement)
+
+\textbf{Priority Actions:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement replay protection for IP signatures
+\item
+  Add explicit resource caps for tracked connections
+\item
+  Prepare post-quantum migration path
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{This audit is based on static code analysis. Dynamic testing and
+penetration testing are recommended for comprehensive security
+validation.}
+
+\end{document}
