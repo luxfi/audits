@@ -1,0 +1,977 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Gas Optimization and DoS Attack Vector
+Audit}\label{gas-optimization-and-dos-attack-vector-audit}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This audit analyzes the Lux Standard contracts for gas optimization
+opportunities and Denial of Service (DoS) attack vectors. Several
+critical and high-severity issues were identified, primarily involving
+unbounded loops that iterate over user-controlled array sizes.
+
+\textbf{Risk Summary:}
+
+\begin{itemize}
+\tightlist
+\item
+  Critical: 4 issues
+\item
+  High: 5 issues
+\item
+  Medium: 8 issues
+\item
+  Low/Informational: 6 issues
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Critical Severity}\label{critical-severity}
+
+\subsubsection{\texorpdfstring{C-01: Unbounded Loop in
+\texttt{Bond.getActiveBonds()}}{C-01: Unbounded Loop in Bond.getActiveBonds()}}\label{c-01-unbounded-loop-in-bondgetactivebonds}
+
+\textbf{File:} \texttt{/contracts/treasury/Bond.sol} (Lines 227-240)
+
+\textbf{Description:} The \texttt{getActiveBonds()} function iterates
+twice over all bonds ever created, without any bounds:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function getActiveBonds() external view returns (uint256[] memory ids) \{}
+\NormalTok{    uint256 count = 0;}
+\NormalTok{    for (uint256 i = 0; i \textless{} nextBondId; i++) \{      // First loop}
+\NormalTok{        if (bonds[i].active) count++;}
+\NormalTok{    \}}
+
+\NormalTok{    ids = new uint256[](count);}
+\NormalTok{    uint256 j = 0;}
+\NormalTok{    for (uint256 i = 0; i \textless{} nextBondId; i++) \{      // Second loop}
+\NormalTok{        if (bonds[i].active) \{}
+\NormalTok{            ids[j++] = i;}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Vector:}
+
+\begin{itemize}
+\tightlist
+\item
+  An attacker with owner privileges (or compromised owner) can create
+  thousands of bonds
+\item
+  Even if bonds are closed, they remain in storage and must be iterated
+\item
+  Each iteration performs an SLOAD (\textasciitilde2100 gas cold,
+  \textasciitilde100 gas warm)
+\item
+  With 1000 bonds: \textasciitilde2.1M gas minimum, potentially
+  exceeding block gas limit
+\end{itemize}
+
+\textbf{Impact:} Complete DoS of view function; any off-chain
+integrations relying on this function will fail
+
+\textbf{Recommendation:}
+
+\begin{itemize}
+\tightlist
+\item
+  Maintain a separate array of active bond IDs
+\item
+  Implement pagination:
+  \texttt{getActiveBonds(uint256\ offset,\ uint256\ limit)}
+\item
+  Use an EnumerableSet for active bonds
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{C-02: Unbounded Loop in
+\texttt{ProtocolLiquidity.claimAll()}}{C-02: Unbounded Loop in ProtocolLiquidity.claimAll()}}\label{c-02-unbounded-loop-in-protocolliquidityclaimall}
+
+\textbf{File:} \texttt{/contracts/treasury/ProtocolLiquidity.sol} (Lines
+360-376)
+
+\textbf{Description:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function claimAll() external nonReentrant \{}
+\NormalTok{    uint256 total = 0;}
+\NormalTok{    uint256 count = userPositionCount[msg.sender];}
+
+\NormalTok{    for (uint256 i = 0; i \textless{} count; i++) \{           // Unbounded loop}
+\NormalTok{        VestingPosition storage pos = positions[msg.sender][i];}
+\NormalTok{        uint256 claimable = \_claimable(pos);}
+\NormalTok{        if (claimable \textgreater{} 0) \{}
+\NormalTok{            pos.claimed += claimable;               // SSTORE per position}
+\NormalTok{            total += claimable;}
+\NormalTok{            emit Claimed(msg.sender, i, claimable); // Event per position}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Vector:}
+
+\begin{itemize}
+\tightlist
+\item
+  User creates many small positions via \texttt{bondLP()} or
+  \texttt{depositSingleSided()}
+\item
+  Each iteration: \textasciitilde5000 gas (SLOAD) + \textasciitilde20000
+  gas (SSTORE if claimable) + \textasciitilde2000 gas (event)
+\item
+  200 positions = \textasciitilde5.4M gas, exceeding most block gas
+  limits
+\item
+  User\textquotesingle s funds become permanently locked as
+  \texttt{claimAll()} always fails
+\end{itemize}
+
+\textbf{Impact:} Permanent fund lockup for affected users
+
+\textbf{Recommendation:}
+
+\begin{itemize}
+\tightlist
+\item
+  Implement batch claiming with pagination:
+  \texttt{claimBatch(uint256{[}{]}\ calldata\ positionIds)}
+\item
+  Add maximum positions per user limit
+\item
+  Allow individual position claims (already exists via
+  \texttt{claim(positionId)})
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{C-03: Unbounded Loop in
+\texttt{LiquidBond.claimAll()}}{C-03: Unbounded Loop in LiquidBond.claimAll()}}\label{c-03-unbounded-loop-in-liquidbondclaimall}
+
+\textbf{File:} \texttt{/contracts/treasury/LiquidBond.sol} (Lines
+333-350)
+
+\textbf{Description:} Identical vulnerability pattern to C-02:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function claimAll() external nonReentrant \{}
+\NormalTok{    Purchase[] storage purchases = userPurchases[msg.sender];}
+\NormalTok{    uint256 totalClaimable = 0;}
+
+\NormalTok{    for (uint256 i = 0; i \textless{} purchases.length; i++) \{  // Unbounded}
+\NormalTok{        uint256 claimable = \_claimable(purchases[i]);}
+\NormalTok{        if (claimable \textgreater{} 0) \{}
+\NormalTok{            purchases[i].ashaClaimed += claimable;     // SSTORE}
+\NormalTok{            totalClaimable += claimable;}
+\NormalTok{            emit Claimed(msg.sender, i, claimable);}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Vector:} Same as C-02
+
+\textbf{Impact:} Permanent fund lockup
+
+\textbf{Recommendation:} Same as C-02
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{C-04: Unbounded Loop in
+\texttt{LiquidBond.getClaimable()}}{C-04: Unbounded Loop in LiquidBond.getClaimable()}}\label{c-04-unbounded-loop-in-liquidbondgetclaimable}
+
+\textbf{File:} \texttt{/contracts/treasury/LiquidBond.sol} (Lines
+520-529)
+
+\textbf{Description:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function getClaimable(address user) external view returns (uint256) \{}
+\NormalTok{    Purchase[] storage purchases = userPurchases[user];}
+\NormalTok{    uint256 total = 0;}
+
+\NormalTok{    for (uint256 i = 0; i \textless{} purchases.length; i++) \{}
+\NormalTok{        total += \_claimable(purchases[i]);}
+\NormalTok{    \}}
+\NormalTok{    return total;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} DoS of view function for users with many positions
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{High Severity}\label{high-severity}
+
+\subsubsection{\texorpdfstring{H-01: Unbounded Loop in
+\texttt{GaugeController.updateWeights()}}{H-01: Unbounded Loop in GaugeController.updateWeights()}}\label{h-01-unbounded-loop-in-gaugecontrollerupdateweights}
+
+\textbf{File:} \texttt{/contracts/governance/GaugeController.sol} (Lines
+230-257)
+
+\textbf{Description:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function updateWeights() external \{}
+\NormalTok{    require(block.timestamp \textgreater{}= lastWeightUpdate + WEEK, "Too soon");}
+
+\NormalTok{    uint256 newTotalWeight = 0;}
+
+\NormalTok{    for (uint256 i = 1; i \textless{} gauges.length; i++) \{      // Unbounded}
+\NormalTok{        int256 delta = pendingWeightChanges[i];}
+\NormalTok{        if (delta != 0) \{}
+\NormalTok{            // ... update logic with multiple SSTOREs}
+\NormalTok{        \}}
+\NormalTok{        newTotalWeight += gaugeWeights[i];}
+\NormalTok{    \}}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Vector:}
+
+\begin{itemize}
+\tightlist
+\item
+  Admin creates many gauges over time
+\item
+  With 500+ gauges, \texttt{updateWeights()} may exceed gas limit
+\item
+  Weekly weight updates become impossible, breaking governance
+\end{itemize}
+
+\textbf{Impact:} Governance mechanism failure
+
+\textbf{Recommendation:}
+
+\begin{itemize}
+\tightlist
+\item
+  Implement batch updates:
+  \texttt{updateWeights(uint256\ startIdx,\ uint256\ endIdx)}
+\item
+  Limit maximum gauges or use lazy evaluation
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{H-02: Unbounded Loop in
+\texttt{GaugeController.getAllWeights()}}{H-02: Unbounded Loop in GaugeController.getAllWeights()}}\label{h-02-unbounded-loop-in-gaugecontrollergetallweights}
+
+\textbf{File:} \texttt{/contracts/governance/GaugeController.sol} (Lines
+278-285)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function getAllWeights() external view returns (uint256[] memory weights) \{}
+\NormalTok{    weights = new uint256[](gauges.length);}
+\NormalTok{    for (uint256 i = 0; i \textless{} gauges.length; i++) \{}
+\NormalTok{        if (totalWeight \textgreater{} 0) \{}
+\NormalTok{            weights[i] = (gaugeWeights[i] * BPS) / totalWeight;}
+\NormalTok{        \}}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} DoS of view function
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{H-03: Unbounded Loop in
+\texttt{GaugeController.voteMultiple()}}{H-03: Unbounded Loop in GaugeController.voteMultiple()}}\label{h-03-unbounded-loop-in-gaugecontrollervotemultiple}
+
+\textbf{File:} \texttt{/contracts/governance/GaugeController.sol} (Lines
+195-227)
+
+\textbf{Description:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function voteMultiple(}
+\NormalTok{    uint256[] calldata gaugeIds\_,}
+\NormalTok{    uint256[] calldata weights}
+\NormalTok{) external nonReentrant \{}
+\NormalTok{    require(gaugeIds\_.length == weights.length, "Length mismatch");}
+\NormalTok{    // ...}
+\NormalTok{    for (uint256 i = 0; i \textless{} gaugeIds\_.length; i++) \{}
+\NormalTok{        // Multiple SSTOREs per iteration}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Vector:}
+
+\begin{itemize}
+\tightlist
+\item
+  Malicious caller passes extremely large arrays
+\item
+  Transaction fails with out-of-gas
+\item
+  No explicit limit on array length
+\end{itemize}
+
+\textbf{Impact:} Gas griefing, potential DoS
+
+\textbf{Recommendation:} Add maximum array length check
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{H-04: Unbounded Loop in
+\texttt{ProtocolLiquidity.totalClaimable()}}{H-04: Unbounded Loop in ProtocolLiquidity.totalClaimable()}}\label{h-04-unbounded-loop-in-protocolliquiditytotalclaimable}
+
+\textbf{File:} \texttt{/contracts/treasury/ProtocolLiquidity.sol} (Lines
+392-397)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function totalClaimable(address user) external view returns (uint256 total) \{}
+\NormalTok{    uint256 count = userPositionCount[user];}
+\NormalTok{    for (uint256 i = 0; i \textless{} count; i++) \{}
+\NormalTok{        total += \_claimable(positions[user][i]);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} DoS of view function for users with many positions
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{H-05: Unbounded Loop in
+\texttt{ProtocolLiquidity.getStats()}}{H-05: Unbounded Loop in ProtocolLiquidity.getStats()}}\label{h-05-unbounded-loop-in-protocolliquiditygetstats}
+
+\textbf{File:} \texttt{/contracts/treasury/ProtocolLiquidity.sol} (Lines
+422-437)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function getStats() external view returns (...) \{}
+\NormalTok{    // ...}
+\NormalTok{    for (uint256 i = 0; i \textless{} nextPoolId; i++) \{}
+\NormalTok{        if (pools[i].active) activePools++;}
+\NormalTok{    \}}
+\NormalTok{    for (uint256 i = 0; i \textless{} nextSingleSidedId; i++) \{}
+\NormalTok{        if (singleSided[i].active) activeSingleSided++;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} DoS of view function as pools grow
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Medium Severity}\label{medium-severity}
+
+\subsubsection{\texorpdfstring{M-01: Unbounded Loop in
+\texttt{GenesisNFTs.luxLockedForAddress()}}{M-01: Unbounded Loop in GenesisNFTs.luxLockedForAddress()}}\label{m-01-unbounded-loop-in-genesisnftsluxlockedforaddress}
+
+\textbf{File:} \texttt{/contracts/nft/GenesisNFTs.sol} (Lines 520-526)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function luxLockedForAddress(address holder) external view returns (uint256 total) \{}
+\NormalTok{    uint256 balance = balanceOf(holder);}
+\NormalTok{    for (uint256 i = 0; i \textless{} balance; i++) \{}
+\NormalTok{        uint256 tokenId = tokenOfOwnerByIndex(holder, i);  // Gas{-}heavy enumeration}
+\NormalTok{        total += tokenMeta[tokenId].luxLocked;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} DoS for whale addresses with many NFTs
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-02: Unbounded Loop in
+\texttt{GenesisNFTs.migrateTokens()}}{M-02: Unbounded Loop in GenesisNFTs.migrateTokens()}}\label{m-02-unbounded-loop-in-genesisnftsmigratetokens}
+
+\textbf{File:} \texttt{/contracts/nft/GenesisNFTs.sol} (Lines 347-383)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function migrateTokens(}
+\NormalTok{    address[] calldata holders,}
+\NormalTok{    // ... many arrays}
+\NormalTok{) external onlyRole(MINTER\_ROLE) \{}
+\NormalTok{    // ...}
+\NormalTok{    for (uint256 i = 0; i \textless{} len; i++) \{}
+\NormalTok{        \_migrateToken(...);  // Heavy operation with multiple SSTOREs}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Migration may fail if batch is too large
+
+\textbf{Recommendation:} Add explicit batch size limit (e.g., 50 tokens
+per tx)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-03: Unbounded Loop in
+\texttt{Streams.createStreamBatch()}}{M-03: Unbounded Loop in Streams.createStreamBatch()}}\label{m-03-unbounded-loop-in-streamscreatestreambatch}
+
+\textbf{File:} \texttt{/contracts/streaming/Streams.sol} (Lines 184-191)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function createStreamBatch(}
+\NormalTok{    CreateParams[] calldata params}
+\NormalTok{) external nonReentrant whenNotPaused returns (uint256[] memory streamIds) \{}
+\NormalTok{    streamIds = new uint256[](params.length);}
+\NormalTok{    for (uint256 i = 0; i \textless{} params.length; i++) \{}
+\NormalTok{        streamIds[i] = \_createStream(params[i]);  // Token transfer + NFT mint}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Transaction failure for large batches
+
+\textbf{Recommendation:} Limit batch size to 20-50 streams
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-04: Unbounded Loop in
+\texttt{Streams.withdrawBatch()}}{M-04: Unbounded Loop in Streams.withdrawBatch()}}\label{m-04-unbounded-loop-in-streamswithdrawbatch}
+
+\textbf{File:} \texttt{/contracts/streaming/Streams.sol} (Lines 283-307)
+
+Similar pattern - no limit on \texttt{streamIds.length}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-05: Unbounded Loop in
+\texttt{BatchSender.send()}}{M-05: Unbounded Loop in BatchSender.send()}}\label{m-05-unbounded-loop-in-batchsendersend}
+
+\textbf{File:} \texttt{/contracts/perps/peripherals/BatchSender.sol}
+(Lines 42-50)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_send(}
+\NormalTok{    IERC20 \_token,}
+\NormalTok{    address[] memory \_accounts,}
+\NormalTok{    uint256[] memory \_amounts,}
+\NormalTok{    uint256 \_typeId}
+\NormalTok{) private \{}
+\NormalTok{    for (uint256 i = 0; i \textless{} \_accounts.length; i++) \{}
+\NormalTok{        \_token.transferFrom(msg.sender, \_accounts[i], \_amounts[i]);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Transaction failure for large batches; no explicit
+limit
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-06: Unbounded Loop in
+\texttt{RewardRouter.batchStakeLPXForAccount()}}{M-06: Unbounded Loop in RewardRouter.batchStakeLPXForAccount()}}\label{m-06-unbounded-loop-in-rewardrouterbatchstakelpxforaccount}
+
+\textbf{File:} \texttt{/contracts/perps/staking/RewardRouter.sol} (Lines
+133-138)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function batchStakeLPXForAccount(}
+\NormalTok{    address[] memory \_accounts,}
+\NormalTok{    uint256[] memory \_amounts}
+\NormalTok{) external nonReentrant onlyGov \{}
+\NormalTok{    for (uint256 i = 0; i \textless{} \_accounts.length; i++) \{}
+\NormalTok{        \_stakeLPX(msg.sender, \_accounts[i], \_lpx, \_amounts[i]);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Transaction failure for large batches
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-07: Unbounded Loop in
+\texttt{RewardRouter.batchCompoundForAccounts()}}{M-07: Unbounded Loop in RewardRouter.batchCompoundForAccounts()}}\label{m-07-unbounded-loop-in-rewardrouterbatchcompoundforaccounts}
+
+\textbf{File:} \texttt{/contracts/perps/staking/RewardRouter.sol} (Lines
+307-311)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function batchCompoundForAccounts(address[] memory \_accounts) external nonReentrant onlyGov \{}
+\NormalTok{    for (uint256 i = 0; i \textless{} \_accounts.length; i++) \{}
+\NormalTok{        \_compound(\_accounts[i]);  // Multiple external calls per iteration}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Transaction failure for large batches
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-08: Unbounded Loop in
+\texttt{DIDRegistry.\_isController()}}{M-08: Unbounded Loop in DIDRegistry.\_isController()}}\label{m-08-unbounded-loop-in-didregistry_iscontroller}
+
+\textbf{File:} \texttt{/contracts/identity/DIDRegistry.sol} (Lines
+516-526)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_isController(bytes32 didHash, address account) internal view returns (bool) \{}
+\NormalTok{    DIDDocument storage doc = \_documents[didHash];}
+
+\NormalTok{    if (doc.controller == account) return true;}
+
+\NormalTok{    for (uint256 i = 0; i \textless{} doc.additionalControllers.length; i++) \{}
+\NormalTok{        if (doc.additionalControllers[i] == account) return true;}
+\NormalTok{    \}}
+
+\NormalTok{    return false;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Mitigating Factor:} Bounded by
+\texttt{MAX\_VERIFICATION\_METHODS\ =\ 20} \textbf{Impact:} Low -
+acceptable with current bounds
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Low / Informational}\label{low--informational}
+
+\subsubsection{L-01: Newton\textquotesingle s Method Iteration in
+StableSwap}\label{l-01-newtons-method-iteration-in-stableswap}
+
+\textbf{Files:} \texttt{/contracts/amm/StableSwap.sol} (Lines 655-674,
+708-720)
+
+The \texttt{\_getD()} and \texttt{\_getY()} functions iterate up to 255
+times for convergence. While bounded, this is gas-heavy
+(\textasciitilde50-100k gas per call).
+
+\textbf{Recommendation:} Consider caching D value when balances
+haven\textquotesingle t changed
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-02: Storage vs Memory Inefficiency in Multiple
+Functions}\label{l-02-storage-vs-memory-inefficiency-in-multiple-functions}
+
+\textbf{Examples:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Bond.sol} Line 130:
+  \texttt{BondConfig\ storage\ bond\ =\ bonds{[}bondId{]}} - good
+\item
+  \texttt{ProtocolLiquidity.sol} Line 265:
+  \texttt{PoolConfig\ storage\ pool\ =\ pools{[}poolId{]}} - good
+\end{itemize}
+
+Most contracts correctly use \texttt{storage} for frequently accessed
+structs.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-03: Multiple SLOADs in
+DAO.execute()}\label{l-03-multiple-sloads-in-daoexecute}
+
+\textbf{File:} \texttt{/contracts/governance/DAO.sol} (Lines 230-253)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function execute(uint256 proposalId) external payable nonReentrant \{}
+\NormalTok{    // ...}
+\NormalTok{    for (uint256 i = 0; i \textless{} proposal.targets.length; i++) \{}
+\NormalTok{        proposal.targets[i]    // SLOAD}
+\NormalTok{        proposal.values[i]     // SLOAD}
+\NormalTok{        proposal.calldatas[i]  // SLOAD}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Cache array lengths and consider caching arrays
+to memory for small proposals
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-04: Event Emission in
+Loops}\label{l-04-event-emission-in-loops}
+
+Multiple contracts emit events inside loops, adding \textasciitilde2000
+gas per emission:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{ProtocolLiquidity.claimAll()} - Line 370
+\item
+  \texttt{LiquidBond.claimAll()} - Line 342
+\item
+  \texttt{GaugeController.voteMultiple()} - Line 222
+\end{itemize}
+
+\textbf{Recommendation:} Emit single summary event after loop completion
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-05: Redundant Active Check in
+Bond.getActiveBonds()}\label{l-05-redundant-active-check-in-bondgetactivebonds}
+
+Both loops check \texttt{bonds{[}i{]}.active}, causing double SLOAD for
+each bond.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-06: Missing Batch Size
+Constants}\label{l-06-missing-batch-size-constants}
+
+No contracts define explicit \texttt{MAX\_BATCH\_SIZE} constants.
+
+\textbf{Recommendation:} Add constants like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 public constant MAX\_BATCH\_SIZE = 50;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{State Bloat Attack
+Vectors}\label{state-bloat-attack-vectors}
+
+\subsubsection{SB-01: Unlimited Position
+Creation}\label{sb-01-unlimited-position-creation}
+
+\textbf{Files:} \texttt{ProtocolLiquidity.sol}, \texttt{LiquidBond.sol}
+
+Users can create unlimited vesting positions with minimum amounts. Each
+position consumes storage slots:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{VestingPosition}: 4 slots (\textasciitilde80,000 gas to write)
+\item
+  \texttt{Purchase}: 7 slots (\textasciitilde140,000 gas to write)
+\end{itemize}
+
+\textbf{Attack Cost:} With small minimum bonds, attacker can bloat state
+cheaply.
+
+\textbf{Recommendation:}
+
+\begin{itemize}
+\tightlist
+\item
+  Enforce meaningful minimum deposit amounts
+\item
+  Limit positions per user
+\item
+  Consider position consolidation mechanism
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{SB-02: Unlimited Bond/Pool Creation
+(Admin)}\label{sb-02-unlimited-bondpool-creation-admin}
+
+\textbf{Files:} \texttt{Bond.sol}, \texttt{ProtocolLiquidity.sol}
+
+Compromised admin can create unlimited bonds/pools, bloating state and
+making iteration-based functions fail.
+
+\textbf{Recommendation:} Add maximum limits for total bonds/pools
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Gas Optimization
+Opportunities}\label{gas-optimization-opportunities}
+
+\subsubsection{GO-01: Pack Struct
+Fields}\label{go-01-pack-struct-fields}
+
+\textbf{File:} \texttt{Bond.sol} - \texttt{BondConfig} struct
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{struct BondConfig \{}
+\NormalTok{    address paymentToken;      // 20 bytes}
+\NormalTok{    uint256 targetRaise;       // 32 bytes {-} could be uint128}
+\NormalTok{    uint256 tokensToMint;      // 32 bytes {-} could be uint128}
+\NormalTok{    uint256 discount;          // 32 bytes {-} could be uint16 (basis points)}
+\NormalTok{    uint256 vestingPeriod;     // 32 bytes {-} could be uint32 (seconds)}
+\NormalTok{    uint256 startTime;         // 32 bytes {-} could be uint40}
+\NormalTok{    uint256 endTime;           // 32 bytes {-} could be uint40}
+\NormalTok{    uint256 minPurchase;       // 32 bytes {-} could be uint128}
+\NormalTok{    uint256 maxPurchase;       // 32 bytes {-} could be uint128}
+\NormalTok{    bool active;               // 1 byte}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Current:} 9 storage slots \textbf{Optimized:} Could fit in 4-5
+slots with proper packing
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{GO-02: Use Unchecked Math Where
+Safe}\label{go-02-use-unchecked-math-where-safe}
+
+\textbf{Example:} Loop counters with known bounds:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for (uint256 i = 0; i \textless{} length;) \{}
+\NormalTok{    // ...}
+\NormalTok{    unchecked \{ ++i; \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Saves \textasciitilde50 gas per iteration.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{GO-03: Cache Array
+Lengths}\label{go-03-cache-array-lengths}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Before}
+\NormalTok{for (uint256 i = 0; i \textless{} tokens.length; i++) \{ ... \}}
+
+\NormalTok{// After}
+\NormalTok{uint256 len = tokens.length;}
+\NormalTok{for (uint256 i = 0; i \textless{} len; i++) \{ ... \}}
+\end{Highlighting}
+\end{Shaded}
+
+Saves \textasciitilde3 gas per iteration.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Recommendations Summary}\label{recommendations-summary}
+
+\subsubsection{Immediate (Critical):}\label{immediate-critical}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add pagination to all \texttt{get*} view functions
+\item
+  Implement \texttt{claimBatch(uint256{[}{]}\ positionIds)} pattern
+\item
+  Add maximum limits to user positions
+\end{enumerate}
+
+\subsubsection{Short-term (High):}\label{short-term-high}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add \texttt{MAX\_BATCH\_SIZE} constants to all batch functions
+\item
+  Implement lazy weight calculation in GaugeController
+\item
+  Add explicit array length validation
+\end{enumerate}
+
+\subsubsection{Medium-term:}\label{medium-term}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Optimize struct packing for storage efficiency
+\item
+  Use unchecked math in bounded loops
+\item
+  Consider EnumerableSet for active items
+\item
+  Emit summary events instead of per-item events
+\end{enumerate}
+
+\subsubsection{Architecture:}\label{architecture}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Consider off-chain indexing for complex queries
+\item
+  Implement pull-over-push patterns where applicable
+\item
+  Add circuit breakers for gas-heavy operations
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix: Affected Functions by
+Contract}\label{appendix-affected-functions-by-contract}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Contract & Function & Severity & Issue \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Bond & getActiveBonds() & Critical & Unbounded double loop \\
+ProtocolLiquidity & claimAll() & Critical & Unbounded loop, state
+writes \\
+ProtocolLiquidity & totalClaimable() & High & Unbounded loop \\
+ProtocolLiquidity & getStats() & High & Double unbounded loop \\
+LiquidBond & claimAll() & Critical & Unbounded loop, state writes \\
+LiquidBond & getClaimable() & Critical & Unbounded loop \\
+GaugeController & updateWeights() & High & Unbounded loop, state
+writes \\
+GaugeController & getAllWeights() & High & Unbounded loop \\
+GaugeController & voteMultiple() & High & No batch limit \\
+GenesisNFTs & luxLockedForAddress() & Medium & Unbounded loop \\
+GenesisNFTs & migrateTokens() & Medium & No batch limit \\
+Streams & createStreamBatch() & Medium & No batch limit \\
+Streams & withdrawBatch() & Medium & No batch limit \\
+BatchSender & send() & Medium & No batch limit \\
+RewardRouter & batchStakeLPXForAccount() & Medium & No batch limit \\
+RewardRouter & batchCompoundForAccounts() & Medium & No batch limit \\
+DIDRegistry & \_isController() & Low & Bounded by MAX constant \\
+StableSwap & \_getD(), \_getY() & Low & 255 iteration
+Newton\textquotesingle s method \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Audit completed: 2025-01-30} \emph{Auditor: AI Security Analysis}
+\emph{Scope: Gas optimization and DoS vectors in /contracts/}
+
+\end{document}

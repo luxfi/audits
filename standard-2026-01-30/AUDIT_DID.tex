@@ -1,0 +1,1133 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Security Audit Report: DID
+Contracts}\label{security-audit-report-did-contracts}
+
+\textbf{Audited Contracts:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{contracts/did/Registry.sol}
+\item
+  \texttt{contracts/did/IdentityNFT.sol}
+\end{itemize}
+
+\textbf{Audit Date:} 2026-01-30 \textbf{Auditor:} Trail of Bits-level
+Review \textbf{Solidity Version:} \^{}0.8.31
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The DID (Decentralized Identifier) contracts implement a multi-chain
+identity registry with stake-based registration, NFT-bound ownership,
+and delegation capabilities. The audit identified \textbf{2 Critical},
+\textbf{4 High}, \textbf{5 Medium}, \textbf{4 Low}, and \textbf{6
+Informational} issues.
+
+\subsubsection{Findings Summary}\label{findings-summary}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Count & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Critical & 2 & Must Fix \\
+High & 4 & Must Fix \\
+Medium & 5 & Should Fix \\
+Low & 4 & Consider Fixing \\
+Informational & 6 & Best Practice \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Critical Issues}\label{critical-issues}
+
+\subsubsection{\texorpdfstring{C-01: Reentrancy in \texttt{unclaim()} -
+Stake Returned Before State
+Cleared}{C-01: Reentrancy in unclaim() - Stake Returned Before State Cleared}}\label{c-01-reentrancy-in-unclaim---stake-returned-before-state-cleared}
+
+\textbf{File:} \texttt{Registry.sol:251-272}
+
+\textbf{Description:} The \texttt{unclaim()} function transfers staked
+tokens to the caller before clearing state. If the staking token is a
+malicious ERC20 with a callback (e.g., ERC777), an attacker can re-enter
+and exploit inconsistent state.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function unclaim(string calldata did) external \{}
+\NormalTok{    \_requireOwner(did);}
+
+\NormalTok{    IdentityData storage data = \_data[did];}
+\NormalTok{    uint256 nftId = data.boundNft;}
+
+\NormalTok{    // VULNERABILITY: External call before state changes}
+\NormalTok{    if (data.stakedTokens \textgreater{} 0) \{}
+\NormalTok{        stakingToken.transfer(msg.sender, data.stakedTokens);  // \textless{}{-}{-} External call}
+\NormalTok{    \}}
+
+\NormalTok{    identityNft.burn(nftId);  // \textless{}{-}{-} Another external call}
+
+\NormalTok{    // State cleared AFTER external calls}
+\NormalTok{    delete \_owners[did];}
+\NormalTok{    delete tokenToDID[nftId];}
+\NormalTok{    delete \_data[did];}
+\NormalTok{    delete \_delegatees[did];}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Scenario:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker claims DID with malicious ERC777-like token as staking token
+\item
+  Attacker calls \texttt{unclaim()}
+\item
+  On \texttt{transfer()}, token triggers callback to attacker
+\item
+  Attacker re-enters via another function while
+  \texttt{\_owners{[}did{]}} still points to them
+\item
+  Attacker can manipulate data or double-spend
+\end{enumerate}
+
+\textbf{Recommendation:} Apply Checks-Effects-Interactions pattern:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function unclaim(string calldata did) external \{}
+\NormalTok{    \_requireOwner(did);}
+
+\NormalTok{    IdentityData storage data = \_data[did];}
+\NormalTok{    uint256 nftId = data.boundNft;}
+\NormalTok{    uint256 stakeToReturn = data.stakedTokens;}
+
+\NormalTok{    // Effects FIRST}
+\NormalTok{    delete \_owners[did];}
+\NormalTok{    delete tokenToDID[nftId];}
+\NormalTok{    delete \_data[did];}
+\NormalTok{    delete \_delegatees[did];}
+
+\NormalTok{    emit IdentityUnclaimed(did, nftId);}
+
+\NormalTok{    // Interactions LAST}
+\NormalTok{    identityNft.burn(nftId);}
+\NormalTok{    if (stakeToReturn \textgreater{} 0) \{}
+\NormalTok{        stakingToken.transfer(msg.sender, stakeToReturn);}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Also consider adding \texttt{ReentrancyGuard} from OpenZeppelin.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{C-02: NFT Transfer Desynchronizes DID
+Ownership}\label{c-02-nft-transfer-desynchronizes-did-ownership}
+
+\textbf{File:} \texttt{Registry.sol:229-230},
+\texttt{IdentityNFT.sol:64-69}
+
+\textbf{Description:} The \texttt{\_owners{[}did{]}} mapping in Registry
+and actual NFT ownership can become desynchronized. The NFT is
+transferable, but when transferred, the Registry\textquotesingle s
+\texttt{\_owners} mapping is not updated.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Registry stores owner separately}
+\NormalTok{\_owners[did] = params.owner;}
+
+\NormalTok{// IdentityNFT is a standard ERC721 {-} fully transferable}
+\NormalTok{\_safeMint(to, tokenId);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Scenario:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Alice claims \texttt{did:lux:alice}, becomes owner in both Registry
+  and NFT
+\item
+  Alice transfers NFT to Bob via standard ERC721 \texttt{transferFrom()}
+\item
+  Registry still shows \texttt{\_owners{[}"did:lux:alice"{]}\ =\ Alice}
+\item
+  Alice can still call \texttt{unclaim()}, \texttt{setKeys()}, etc. even
+  though Bob owns the NFT
+\item
+  Alice steals staked tokens; Bob loses NFT when Alice calls
+  \texttt{unclaim()}
+\end{enumerate}
+
+\textbf{Impact:} Complete identity theft, stake drainage, unauthorized
+identity modifications.
+
+\textbf{Recommendation:}
+
+Option A - Override NFT transfer to sync Registry:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// In IdentityNFT.sol}
+\NormalTok{function \_update(address to, uint256 tokenId, address auth) internal override returns (address) \{}
+\NormalTok{    address from = super.\_update(to, tokenId, auth);}
+\NormalTok{    if (from != address(0) \&\& to != address(0)) \{}
+\NormalTok{        // Notify registry of ownership change}
+\NormalTok{        IRegistry(registry).syncOwnership(tokenId, to);}
+\NormalTok{    \}}
+\NormalTok{    return from;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Option B - Make \texttt{\_requireOwner()} check NFT ownership:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_requireOwner(string memory did) internal view \{}
+\NormalTok{    IdentityData storage data = \_data[did];}
+\NormalTok{    address nftOwner = identityNft.ownerOf(data.boundNft);}
+\NormalTok{    if (nftOwner != msg.sender) revert Unauthorized();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Option B is simpler and recommended. The \texttt{\_owners} mapping can
+be deprecated in favor of NFT ownership as the source of truth.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{High Severity Issues}\label{high-severity-issues}
+
+\subsubsection{H-01: Missing Return Value Check on ERC20
+Transfers}\label{h-01-missing-return-value-check-on-erc20-transfers}
+
+\textbf{File:} \texttt{Registry.sol:224,\ 259,\ 320}
+
+\textbf{Description:} The contract calls \texttt{transferFrom()} and
+\texttt{transfer()} without checking return values. Some ERC20 tokens
+(USDT, BNB) return \texttt{false} instead of reverting on failure.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Line 224 {-} No return check}
+\NormalTok{stakingToken.transferFrom(msg.sender, address(this), params.stakeAmount);}
+
+\NormalTok{// Line 259 {-} No return check}
+\NormalTok{stakingToken.transfer(msg.sender, data.stakedTokens);}
+
+\NormalTok{// Line 320 {-} No return check}
+\NormalTok{stakingToken.transferFrom(msg.sender, address(this), amount);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Silent transfer failures leading to:
+
+\begin{itemize}
+\tightlist
+\item
+  Claims without actual stake being deposited
+\item
+  State inconsistency between recorded stake and actual balance
+\end{itemize}
+
+\textbf{Recommendation:} Use OpenZeppelin\textquotesingle s
+\texttt{SafeERC20}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{import \{SafeERC20\} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";}
+
+\NormalTok{using SafeERC20 for IERC20;}
+
+\NormalTok{// Then use:}
+\NormalTok{stakingToken.safeTransferFrom(msg.sender, address(this), params.stakeAmount);}
+\NormalTok{stakingToken.safeTransfer(msg.sender, data.stakedTokens);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-02: Delegation Data Not Cleared on Unclaim - Delegation
+Accounting
+Corruption}\label{h-02-delegation-data-not-cleared-on-unclaim---delegation-accounting-corruption}
+
+\textbf{File:} \texttt{Registry.sol:269}
+
+\textbf{Description:} The \texttt{unclaim()} function deletes
+\texttt{\_delegatees{[}did{]}} but does NOT clear the individual
+\texttt{delegations{[}did{]}{[}delegatee{]}} mappings. This leaves
+orphaned delegation records.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Line 269 {-} Only clears the array, not the mapping entries}
+\NormalTok{delete \_delegatees[did];}
+
+\NormalTok{// delegations[did][*] entries remain!}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:}
+
+\begin{itemize}
+\tightlist
+\item
+  If the same DID is later reclaimed, old delegation amounts may be
+  accessible
+\item
+  Corrupts delegation accounting for governance calculations
+\item
+  Could be exploited to resurrect old voting power
+\end{itemize}
+
+\textbf{Recommendation:} Clear delegation mappings before deleting the
+array:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{string[] memory dels = \_delegatees[did];}
+\NormalTok{for (uint256 i = 0; i \textless{} dels.length; i++) \{}
+\NormalTok{    delete delegations[did][dels[i]];}
+\NormalTok{\}}
+\NormalTok{delete \_delegatees[did];}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{H-03: Front-Running on \texttt{claim()} -
+Name
+Squatting}{H-03: Front-Running on claim() - Name Squatting}}\label{h-03-front-running-on-claim---name-squatting}
+
+\textbf{File:} \texttt{Registry.sol:205-245}
+
+\textbf{Description:} The \texttt{claim()} function is vulnerable to
+front-running. An attacker monitoring the mempool can see a pending
+claim transaction and submit their own with higher gas price to steal
+the desired name.
+
+\textbf{Attack Scenario:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Alice submits \texttt{claim("valuable\_name")}
+\item
+  Attacker sees transaction in mempool
+\item
+  Attacker submits same claim with higher gas price
+\item
+  Attacker\textquotesingle s transaction executes first, stealing the
+  name
+\item
+  Alice\textquotesingle s transaction reverts with
+  \texttt{IdentityNotAvailable}
+\end{enumerate}
+
+\textbf{Impact:} Valuable names can be systematically front-run and held
+for ransom.
+
+\textbf{Recommendation:} Implement commit-reveal scheme:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mapping(bytes32 =\textgreater{} uint256) public commitments;}
+
+\NormalTok{function commit(bytes32 commitment) external \{}
+\NormalTok{    commitments[commitment] = block.timestamp;}
+\NormalTok{\}}
+
+\NormalTok{function claim(ClaimParams calldata params, bytes32 secret) external \{}
+\NormalTok{    bytes32 commitment = keccak256(abi.encodePacked(params.name, params.owner, secret));}
+\NormalTok{    require(commitments[commitment] != 0, "No commitment");}
+\NormalTok{    require(block.timestamp \textgreater{}= commitments[commitment] + 1 minutes, "Too early");}
+\NormalTok{    require(block.timestamp \textless{}= commitments[commitment] + 24 hours, "Expired");}
+
+\NormalTok{    delete commitments[commitment];}
+\NormalTok{    // ... rest of claim logic}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{H-04: \texttt{\_validName()} Allows
+Confusable Characters - Homograph
+Attacks}{H-04: \_validName() Allows Confusable Characters - Homograph Attacks}}\label{h-04-_validname-allows-confusable-characters---homograph-attacks}
+
+\textbf{File:} \texttt{Registry.sol:435-448}
+
+\textbf{Description:} The name validation allows uppercase letters,
+enabling homograph attacks with visually similar names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bool valid = (c \textgreater{}= 0x30 \&\& c \textless{}= 0x39) ||  // 0{-}9}
+\NormalTok{            (c \textgreater{}= 0x41 \&\& c \textless{}= 0x5A) ||   // A{-}Z  \textless{}{-}{-} Uppercase allowed}
+\NormalTok{            (c \textgreater{}= 0x61 \&\& c \textless{}= 0x7A) ||   // a{-}z}
+\NormalTok{            (c == 0x5F);                   // \_}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Attack Scenario:}
+
+\begin{itemize}
+\tightlist
+\item
+  Attacker registers \texttt{ALICE} (all uppercase)
+\item
+  User thinks they\textquotesingle re interacting with \texttt{alice}
+\item
+  Two different DIDs: \texttt{did:lux:ALICE} vs \texttt{did:lux:alice}
+\item
+  Phishing and confusion attacks possible
+\end{itemize}
+
+Additional concerns:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\_} can be confused with \texttt{-} or space
+\item
+  \texttt{l} (lowercase L) vs \texttt{1} (one) vs \texttt{I} (uppercase
+  i)
+\item
+  \texttt{0} (zero) vs \texttt{O} (uppercase o)
+\end{itemize}
+
+\textbf{Recommendation:} Enforce lowercase-only names and normalize on
+storage:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_validName(string calldata name) internal pure returns (bool) \{}
+\NormalTok{    bytes memory b = bytes(name);}
+\NormalTok{    if (b.length == 0 || b.length \textgreater{} 63) return false;}
+
+\NormalTok{    for (uint256 i = 0; i \textless{} b.length; i++) \{}
+\NormalTok{        bytes1 c = b[i];}
+\NormalTok{        // Only lowercase and digits}
+\NormalTok{        bool valid = (c \textgreater{}= 0x30 \&\& c \textless{}= 0x39) ||  // 0{-}9}
+\NormalTok{                    (c \textgreater{}= 0x61 \&\& c \textless{}= 0x7A);      // a{-}z only}
+\NormalTok{        if (!valid) return false;}
+\NormalTok{    \}}
+\NormalTok{    return true;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Medium Severity Issues}\label{medium-severity-issues}
+
+\subsubsection{\texorpdfstring{M-01: \texttt{IdentityNFT.mint()} Uses
+\texttt{\_safeMint()} - Callback
+Risk}{M-01: IdentityNFT.mint() Uses \_safeMint() - Callback Risk}}\label{m-01-identitynftmint-uses-_safemint---callback-risk}
+
+\textbf{File:} \texttt{IdentityNFT.sol:68}
+
+\textbf{Description:} The \texttt{mint()} function uses
+\texttt{\_safeMint()} which calls \texttt{onERC721Received()} on the
+recipient if it\textquotesingle s a contract. This external call happens
+before the Registry completes its state updates in \texttt{claim()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// In IdentityNFT.mint()}
+\NormalTok{\_safeMint(to, tokenId);  // Calls external contract}
+
+\NormalTok{// Back in Registry.claim(), state updates happen AFTER mint returns}
+\NormalTok{\_owners[did] = params.owner;}
+\NormalTok{tokenToDID[nftId] = did;}
+\NormalTok{\_data[did] = IdentityData(\{...\});}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} A malicious recipient contract could re-enter the
+Registry during the callback with inconsistent state.
+
+\textbf{Recommendation:} Either use \texttt{\_mint()} instead of
+\texttt{\_safeMint()}, or ensure Registry state is set before calling
+\texttt{identityNft.mint()}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-02: No Stake Decrease Function - Locked Tokens Beyond
+Minimum}\label{m-02-no-stake-decrease-function---locked-tokens-beyond-minimum}
+
+\textbf{File:} \texttt{Registry.sol:317-327}
+
+\textbf{Description:} Users can only increase stake via
+\texttt{increaseStake()}. There is no mechanism to withdraw excess stake
+above the minimum requirement.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function increaseStake(string calldata did, uint256 amount) external \{}
+\NormalTok{    \_requireOwner(did);}
+\NormalTok{    stakingToken.transferFrom(msg.sender, address(this), amount);}
+\NormalTok{    IdentityData storage data = \_data[did];}
+\NormalTok{    data.stakedTokens += amount;}
+\NormalTok{    // ... no way to decrease}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Users who overstake (intentionally or accidentally) can
+only recover tokens by completely unclaiming their identity.
+
+\textbf{Recommendation:} Add \texttt{decreaseStake()} function with
+minimum stake enforcement:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function decreaseStake(string calldata did, uint256 amount) external \{}
+\NormalTok{    \_requireOwner(did);}
+\NormalTok{    IdentityData storage data = \_data[did];}
+
+\NormalTok{    // Extract name from DID for requirement calculation}
+\NormalTok{    uint256 minimum = stakeRequirement(...);}
+\NormalTok{    require(data.stakedTokens {-} amount \textgreater{}= minimum, "Below minimum");}
+
+\NormalTok{    data.stakedTokens {-}= amount;}
+\NormalTok{    stakingToken.transfer(msg.sender, amount);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-03: \texttt{\_delegatees} Array Can
+Grow Unbounded - DoS
+Vector}{M-03: \_delegatees Array Can Grow Unbounded - DoS Vector}}\label{m-03-_delegatees-array-can-grow-unbounded---dos-vector}
+
+\textbf{File:} \texttt{Registry.sol:101}
+
+\textbf{Description:} The \texttt{\_delegatees} array has no size limit.
+While there\textquotesingle s no \texttt{delegate()} function visible in
+the audited code, the struct and storage exist. If delegation is
+implemented, unbounded array growth could cause gas limit issues.
+
+\textbf{Impact:} Potential denial-of-service if delegation is added
+without bounds.
+
+\textbf{Recommendation:}
+
+\begin{itemize}
+\tightlist
+\item
+  Implement maximum delegatee limit (e.g., 100)
+\item
+  Use enumerable set pattern for O(1) removal
+\item
+  Consider removing unused delegation storage if not needed
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-04: Owner Can Change Pricing to Zero - Free Identity
+Claims}\label{m-04-owner-can-change-pricing-to-zero---free-identity-claims}
+
+\textbf{File:} \texttt{Registry.sol:410-422}
+
+\textbf{Description:} The \texttt{setPricing()} function allows setting
+prices to zero with no lower bound validation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function setPricing(}
+\NormalTok{    uint256 p1, uint256 p2, uint256 p3, uint256 p4, uint256 p5,}
+\NormalTok{    uint256 discountBps}
+\NormalTok{) external onlyOwner \{}
+\NormalTok{    require(discountBps \textless{}= 10000, "Invalid discount");}
+\NormalTok{    // No minimum price validation}
+\NormalTok{    price1Char = p1;  // Can be 0}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} Admin error or compromised owner could set prices to 0,
+enabling mass squatting of valuable names.
+
+\textbf{Recommendation:} Add minimum price validation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(p1 \textgreater{} 0 \&\& p2 \textgreater{} 0 \&\& p3 \textgreater{} 0 \&\& p4 \textgreater{} 0 \&\& p5 \textgreater{} 0, "Invalid price");}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{M-05: \texttt{records} Mapping Cleanup
+Missing on
+Unclaim}{M-05: records Mapping Cleanup Missing on Unclaim}}\label{m-05-records-mapping-cleanup-missing-on-unclaim}
+
+\textbf{File:} \texttt{Registry.sol:95,\ 266-268}
+
+\textbf{Description:} The \texttt{records{[}did{]}} mapping is not
+cleared when a DID is unclaimed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Line 95}
+\NormalTok{mapping(string =\textgreater{} mapping(string =\textgreater{} string)) public records;}
+
+\NormalTok{// Line 266{-}268 {-} records NOT deleted}
+\NormalTok{delete \_owners[did];}
+\NormalTok{delete tokenToDID[nftId];}
+\NormalTok{delete \_data[did];}
+\NormalTok{delete \_delegatees[did];}
+\NormalTok{// Missing: records[did] not cleared}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:}
+
+\begin{itemize}
+\tightlist
+\item
+  Old records persist and may be associated with a new owner if DID is
+  reclaimed
+\item
+  Privacy leak - old data remains accessible
+\item
+  Storage bloat
+\end{itemize}
+
+\textbf{Recommendation:} Note: Clearing a nested mapping is expensive.
+Consider:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Version number per DID to invalidate old records
+\item
+  Explicit key tracking for cleanup
+\item
+  Accept the limitation and document it
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Low Severity Issues}\label{low-severity-issues}
+
+\subsubsection{\texorpdfstring{L-01: Missing Events in
+\texttt{IdentityNFT}}{L-01: Missing Events in IdentityNFT}}\label{l-01-missing-events-in-identitynft}
+
+\textbf{File:} \texttt{IdentityNFT.sol:64-78}
+
+\textbf{Description:} The \texttt{mint()} and \texttt{burn()} functions
+don\textquotesingle t emit custom events. While ERC721 emits
+\texttt{Transfer} events, custom events would improve off-chain
+indexing.
+
+\textbf{Recommendation:} Add dedicated events:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{event IdentityMinted(address indexed to, uint256 indexed tokenId);}
+\NormalTok{event IdentityBurned(uint256 indexed tokenId);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{L-02: \texttt{IdentityNFT} Registry Can
+Be Set to Zero After Initial
+Setup}{L-02: IdentityNFT Registry Can Be Set to Zero After Initial Setup}}\label{l-02-identitynft-registry-can-be-set-to-zero-after-initial-setup}
+
+\textbf{File:} \texttt{IdentityNFT.sol:46-49}
+
+\textbf{Description:} The \texttt{setRegistry()} function validates
+against zero address, but can be called multiple times. Once set,
+changing the registry could break the system.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function setRegistry(address registry\_) external onlyOwner \{}
+\NormalTok{    if (registry\_ == address(0)) revert ZeroAddress();}
+\NormalTok{    registry = registry\_;  // Can be changed after deployment}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Make registry immutable after first set, or
+remove setter entirely:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function setRegistry(address registry\_) external onlyOwner \{}
+\NormalTok{    if (registry != address(0)) revert RegistryAlreadySet();}
+\NormalTok{    if (registry\_ == address(0)) revert ZeroAddress();}
+\NormalTok{    registry = registry\_;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-03: No Timelock on Admin
+Functions}\label{l-03-no-timelock-on-admin-functions}
+
+\textbf{File:} \texttt{Registry.sol:402-422}
+
+\textbf{Description:} Critical admin functions like \texttt{setChain()}
+and \texttt{setPricing()} execute immediately without timelock. Users
+have no warning before parameter changes.
+
+\textbf{Recommendation:} Implement timelock for sensitive operations or
+use OpenZeppelin\textquotesingle s TimelockController.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{L-04: \texttt{claim()} Allows
+Zero-Address
+Owner}{L-04: claim() Allows Zero-Address Owner}}\label{l-04-claim-allows-zero-address-owner}
+
+\textbf{File:} \texttt{Registry.sol:227}
+
+\textbf{Description:} The \texttt{params.owner} is not validated before
+minting NFT:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 nftId = identityNft.mint(params.owner);  // params.owner could be address(0)}
+\end{Highlighting}
+\end{Shaded}
+
+While \texttt{IdentityNFT.mint()} checks for zero address, the revert
+message would be confusing.
+
+\textbf{Recommendation:} Validate owner in Registry before calling mint:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (params.owner == address(0)) revert ZeroAddress();}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Informational / Gas
+Optimizations}\label{informational--gas-optimizations}
+
+\subsubsection{I-01: String Comparison Gas
+Optimization}\label{i-01-string-comparison-gas-optimization}
+
+\textbf{File:} \texttt{Registry.sol:210,\ 216,\ 219}
+
+\textbf{Description:} Multiple string operations use \texttt{bytes()}
+conversion. Consider caching:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Current {-} multiple conversions}
+\NormalTok{if (bytes(methods[params.chainId]).length == 0) revert InvalidChain(params.chainId);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Cache method once and reuse.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{I-02: Use Custom Errors
+Throughout}\label{i-02-use-custom-errors-throughout}
+
+\textbf{File:} \texttt{Registry.sol:414}
+
+\textbf{Description:} Mix of \texttt{require} with string and custom
+errors:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(discountBps \textless{}= 10000, "Invalid discount");  // String error}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Use custom error for consistency:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{error InvalidDiscount();}
+\NormalTok{if (discountBps \textgreater{} 10000) revert InvalidDiscount();}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{I-03: Consider \texttt{bytes32} for
+DIDs}{I-03: Consider bytes32 for DIDs}}\label{i-03-consider-bytes32-for-dids}
+
+\textbf{Description:} Storing DIDs as strings is expensive. For
+fixed-format DIDs, consider hashing to \texttt{bytes32}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mapping(bytes32 =\textgreater{} address) private \_owners;  // Hash of DID}
+
+\NormalTok{function \_didHash(string memory did) internal pure returns (bytes32) \{}
+\NormalTok{    return keccak256(bytes(did));}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{I-04: Unused \texttt{Delegation}
+Struct}{I-04: Unused Delegation Struct}}\label{i-04-unused-delegation-struct}
+
+\textbf{File:} \texttt{Registry.sol:64-67}
+
+\textbf{Description:} The \texttt{Delegation} struct is defined but only
+used in event parameter. The actual delegation storage uses separate
+mappings.
+
+\textbf{Recommendation:} Remove if unused, or restructure delegation
+storage to use the struct.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{I-05: Missing NatSpec
+Documentation}\label{i-05-missing-natspec-documentation}
+
+\textbf{File:} Both contracts
+
+\textbf{Description:} Several functions lack NatSpec documentation,
+particularly:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\_authorizeUpgrade()}
+\item
+  Internal functions
+\item
+  Event parameters
+\end{itemize}
+
+\textbf{Recommendation:} Add comprehensive NatSpec for all
+public/external functions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{I-06: Token Counter Could Use Unchecked
+Increment}\label{i-06-token-counter-could-use-unchecked-increment}
+
+\textbf{File:} \texttt{IdentityNFT.sol:67}
+
+\textbf{Description:} The token counter increment can use unchecked math
+since overflow is practically impossible:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Current}
+\NormalTok{uint256 tokenId = \_tokenIdCounter++;}
+
+\NormalTok{// Optimized}
+\NormalTok{uint256 tokenId;}
+\NormalTok{unchecked \{ tokenId = \_tokenIdCounter++; \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Upgrade Safety Analysis
+(UUPS)}\label{upgrade-safety-analysis-uups}
+
+\subsubsection{Storage Layout}\label{storage-layout}
+
+The Registry contract uses UUPS upgrade pattern correctly:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\_disableInitializers()} in constructor prevents
+  implementation initialization
+\item
+  \texttt{\_authorizeUpgrade()} restricted to owner
+\item
+  Inherits from OpenZeppelin upgradeable contracts
+\end{itemize}
+
+\textbf{Recommendations:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add storage gap for future upgrades:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256[50] private \_\_gap;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Document storage layout for upgrade safety
+\item
+  Consider adding upgrade timelock
+\end{enumerate}
+
+\subsubsection{Storage Collision Risk}\label{storage-collision-risk}
+
+Current storage order is safe, but new variables MUST be added at the
+end. Document variable positions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Slot 0: stakingToken (inherited)}
+\NormalTok{// Slot 1: identityNft}
+\NormalTok{// Slot 2: methods mapping}
+\NormalTok{// ... etc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Cross-Chain Security
+Considerations}\label{cross-chain-security-considerations}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Chain ID Spoofing:} The contract trusts
+  \texttt{params.chainId} input. On L2s or bridges, verify against
+  \texttt{block.chainid}.
+\item
+  \textbf{Replay Protection:} DIDs include chain-specific method
+  (did:lux:, did:zoo:), providing natural replay protection.
+\item
+  \textbf{Oracle Dependencies:} No external oracle dependencies found -
+  good.
+\item
+  \textbf{Bridge Interactions:} If DIDs are bridged, ensure ownership
+  proof travels with the message.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Recommendations Summary}\label{recommendations-summary}
+
+\subsubsection{Must Fix (Critical/High)}\label{must-fix-criticalhigh}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{C-01:} Apply CEI pattern in \texttt{unclaim()}, add
+  ReentrancyGuard
+\item
+  \textbf{C-02:} Derive ownership from NFT, not stored mapping
+\item
+  \textbf{H-01:} Use SafeERC20 for all token transfers
+\item
+  \textbf{H-02:} Clear delegation mappings on unclaim
+\item
+  \textbf{H-03:} Implement commit-reveal for claims
+\item
+  \textbf{H-04:} Normalize names to lowercase only
+\end{enumerate}
+
+\subsubsection{Should Fix (Medium)}\label{should-fix-medium}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{M-01:} Use \texttt{\_mint()} or reorder state updates
+\item
+  \textbf{M-02:} Add \texttt{decreaseStake()} function
+\item
+  \textbf{M-03:} Bound delegatee array size
+\item
+  \textbf{M-04:} Add minimum price validation
+\item
+  \textbf{M-05:} Handle records cleanup or version
+\end{enumerate}
+
+\subsubsection{Consider Fixing (Low)}\label{consider-fixing-low}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{L-01:} Add custom events for mint/burn
+\item
+  \textbf{L-02:} Make registry immutable after set
+\item
+  \textbf{L-03:} Add timelock for admin functions
+\item
+  \textbf{L-04:} Validate owner address in claim
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Test Vectors}\label{test-vectors}
+
+\subsubsection{C-01 Reentrancy Test}\label{c-01-reentrancy-test}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{contract MaliciousToken \{}
+\NormalTok{    Registry registry;}
+
+\NormalTok{    function transfer(address, uint256) external returns (bool) \{}
+\NormalTok{        // Re{-}enter while owner still set}
+\NormalTok{        registry.setKeys("did:lux:attacker", "evil", "evil");}
+\NormalTok{        return true;}
+\NormalTok{    \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{C-02 Ownership Desync
+Test}\label{c-02-ownership-desync-test}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function testOwnershipDesync() public \{}
+\NormalTok{    // Alice claims}
+\NormalTok{    registry.claim(params);}
+
+\NormalTok{    // Alice transfers NFT to Bob}
+\NormalTok{    identityNft.transferFrom(alice, bob, tokenId);}
+
+\NormalTok{    // Alice can still unclaim and steal stake}
+\NormalTok{    vm.prank(alice);}
+\NormalTok{    registry.unclaim("did:lux:alice");  // Should fail but doesn\textquotesingle{}t}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Audit Report}
+
+\end{document}

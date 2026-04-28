@@ -1,0 +1,1202 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Bridge Security Audit
+Report}\label{lux-bridge-security-audit-report}
+
+\textbf{Auditor}: Trail of Bits-Level Independent Review \textbf{Date}:
+2025-01-30 \textbf{Scope}: \texttt{/contracts/bridge/} directory
+\textbf{Severity Ratings}: Critical \textbar{} High \textbar{} Medium
+\textbar{} Low \textbar{} Informational
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This audit covers the Lux Bridge smart contract system, including
+cross-chain token bridging, MPC oracle signature verification, vault
+management, and yield strategy integration. The codebase contains
+multiple bridge implementations with varying security postures.
+
+\textbf{Overall Assessment}: The bridge system has several critical and
+high-severity vulnerabilities that require immediate attention before
+production deployment.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Severity & Count \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Critical & 4 \\
+High & 8 \\
+Medium & 12 \\
+Low & 9 \\
+Informational & 6 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Critical Findings}\label{critical-findings}
+
+\subsubsection{C-01: XChainVault Burn Proof Verification is Effectively
+Disabled}\label{c-01-xchainvault-burn-proof-verification-is-effectively-disabled}
+
+\textbf{File}: \texttt{/contracts/bridge/XChainVault.sol} (Lines
+304-312)
+
+\textbf{Description}: The \texttt{\_verifyBurnProof} function contains a
+critical vulnerability where burn proof verification is completely
+bypassed. The function returns \texttt{true} if any proof data is
+provided, regardless of content.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_verifyBurnProof(}
+\NormalTok{    bytes32 vaultId,}
+\NormalTok{    uint256 amount,}
+\NormalTok{    bytes calldata proof}
+\NormalTok{) private view returns (bool) \{}
+\NormalTok{    // Verify Warp message signature}
+\NormalTok{    // This would call the Warp precompile to verify the BLS signature}
+\NormalTok{    // For now, simplified verification}
+\NormalTok{    return proof.length \textgreater{} 0;  // CRITICAL: No actual verification!}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: An attacker can drain all vaulted tokens by providing
+any non-empty bytes as proof. Total loss of funds.
+
+\textbf{Recommendation}: Implement proper Warp precompile verification:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function \_verifyBurnProof(...) private view returns (bool) \{}
+\NormalTok{    (IWarp.WarpMessage memory message, bool valid) =}
+\NormalTok{        IWarp(WARP\_PRECOMPILE).getVerifiedWarpMessage(0);}
+\NormalTok{    if (!valid) return false;}
+\NormalTok{    // Decode and verify message content matches expected burn}
+\NormalTok{    return \_validateBurnMessage(message, vaultId, amount);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{C-02: ecrecover Without Zero Address
+Check}\label{c-02-ecrecover-without-zero-address-check}
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{/contracts/bridge/Bridge.sol} (Lines 319-328, legacy)
+\item
+  \texttt{/contracts/bridge/Teleport.sol} (Lines 271-273)
+\end{itemize}
+
+\textbf{Description}: The \texttt{recoverSigner} function uses raw
+\texttt{ecrecover} without checking for the zero address return value.
+When signature recovery fails, \texttt{ecrecover} returns
+\texttt{address(0)} rather than reverting.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function recoverSigner(bytes32 message\_, bytes memory sig\_) internal pure returns (address) \{}
+\NormalTok{    (uint8 v, bytes32 r, bytes32 s) = splitSignature(sig\_);}
+\NormalTok{    return ecrecover(message\_, v, r, s);  // May return address(0)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: If \texttt{MPCOracleAddrMap{[}address(0){]}} is ever
+set (intentionally or through upgrade mishap), arbitrary minting becomes
+possible. Additionally, malformed signatures could cause unexpected
+behavior.
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{address signer = ecrecover(message\_, v, r, s);}
+\NormalTok{require(signer != address(0), "Invalid signature");}
+\NormalTok{return signer;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{C-03: Chain ID Not Validated in Teleporter Message
+Signatures}\label{c-03-chain-id-not-validated-in-teleporter-message-signatures}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/Teleporter.sol} (Lines
+228-234)
+
+\textbf{Description}: The \texttt{mintDeposit}
+function\textquotesingle s message hash does not include the destination
+chain ID (Lux chain), only the source chain ID. This allows cross-chain
+replay attacks.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bytes32 messageHash = keccak256(abi.encodePacked(}
+\NormalTok{    "DEPOSIT",}
+\NormalTok{    srcChainId,        // Source chain}
+\NormalTok{    depositNonce,}
+\NormalTok{    recipient,}
+\NormalTok{    amount}
+\NormalTok{    // MISSING: block.chainid (destination chain)}
+\NormalTok{));}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: A valid signature for minting on one Lux fork/testnet
+can be replayed on another chain with the same contract address and
+nonce state.
+
+\textbf{Recommendation}: Include destination chain ID in message hash:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bytes32 messageHash = keccak256(abi.encodePacked(}
+\NormalTok{    "DEPOSIT",}
+\NormalTok{    srcChainId,}
+\NormalTok{    block.chainid,     // Destination chain}
+\NormalTok{    depositNonce,}
+\NormalTok{    recipient,}
+\NormalTok{    amount}
+\NormalTok{));}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{C-04: Withdraw Nonce Predictability Enables
+Front-Running}\label{c-04-withdraw-nonce-predictability-enables-front-running}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/Teleporter.sol} (Lines
+318-325)
+
+\textbf{Description}: The \texttt{burnForWithdraw} function generates
+withdraw nonces using predictable on-chain values:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{withdrawNonce = uint256(keccak256(abi.encodePacked(}
+\NormalTok{    block.timestamp,}
+\NormalTok{    msg.sender,}
+\NormalTok{    amount,}
+\NormalTok{    srcChainId,}
+\NormalTok{    block.number}
+\NormalTok{)));}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: An attacker can predict the nonce before transaction
+confirmation, potentially enabling:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Front-running to claim the withdrawal on the source chain before the
+  legitimate user
+\item
+  Denial of service by pre-processing the nonce
+\end{enumerate}
+
+\textbf{Recommendation}: Use a monotonically increasing counter:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{withdrawNonce = ++\_withdrawNonceCounter;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{High Severity Findings}\label{high-severity-findings}
+
+\subsubsection{H-01: Missing Reentrancy Protection in Legacy Bridge
+Contract}\label{h-01-missing-reentrancy-protection-in-legacy-bridge-contract}
+
+\textbf{File}: \texttt{/contracts/bridge/Teleport.sol} (Lines 197-246)
+
+\textbf{Description}: The \texttt{bridgeMintStealth} function lacks
+reentrancy protection despite minting tokens (which could trigger
+callbacks via hooks in some token implementations).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function bridgeMintStealth(...) public returns (address) \{  // No nonReentrant}
+\NormalTok{    // ... validation ...}
+\NormalTok{    varStruct.token.mint(payoutAddr, feeAmount);     // External call}
+\NormalTok{    varStruct.token.mint(varStruct.toTargetAddr, netAmount);  // External call}
+\NormalTok{    addMappingStealth(signedTXInfo);  // State update AFTER external calls}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: If the token implements ERC777 or has receive hooks, a
+malicious actor could reenter and potentially double-mint.
+
+\textbf{Recommendation}: Add \texttt{nonReentrant} modifier and follow
+checks-effects-interactions pattern.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-02: TeleportProposalBridge Allows Message Execution
+After
+Expiry}\label{h-02-teleportproposalbridge-allows-message-execution-after-expiry}
+
+\textbf{File}: \texttt{/contracts/bridge/TeleportProposalBridge.sol}
+(Lines 405-422)
+
+\textbf{Description}: The \texttt{executeMessage} function marks expired
+messages as executed before reverting:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (block.timestamp \textgreater{} message.timestamp + MESSAGE\_EXPIRY) \{}
+\NormalTok{    message.executed = true; // Mark as executed (expired)}
+\NormalTok{    emit MessageExpired(messageId);}
+\NormalTok{    revert MessageExpiredError();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: While the transaction reverts, the state change
+persists if this is called via a try/catch block, permanently blocking
+legitimate re-execution attempts.
+
+\textbf{Recommendation}: Do not modify state before reverting:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (block.timestamp \textgreater{} message.timestamp + MESSAGE\_EXPIRY) \{}
+\NormalTok{    revert MessageExpiredError();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-03: Unbounded MPC Oracle
+Set}\label{h-03-unbounded-mpc-oracle-set}
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{/contracts/bridge/Bridge.sol} (Lines 115-118)
+\item
+  \texttt{/contracts/bridge/teleport/Teleporter.sol} (Lines 404-416)
+\end{itemize}
+
+\textbf{Description}: MPC oracles can be added without bound and cannot
+be fully revoked (mapping entries persist as \texttt{false} rather than
+being deleted). There\textquotesingle s also no mechanism to enumerate
+or audit current oracles.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function setMPCOracle(address MPCO\_) public onlyAdmin \{}
+\NormalTok{    addMPCMapping(MPCO\_);  // Only sets to true, no way to enumerate or remove}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Stale or compromised oracle addresses may remain in mappings
+\item
+  No audit trail of oracle changes
+\item
+  Potential for validator collusion attacks if too many oracles are
+  added
+\end{enumerate}
+
+\textbf{Recommendation}: Implement bounded oracle set with enumeration:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{address[] public oracleList;}
+\NormalTok{uint256 public constant MAX\_ORACLES = 10;}
+\NormalTok{mapping(address =\textgreater{} uint256) public oracleIndex;}
+
+\NormalTok{function addOracle(address oracle) external onlyAdmin \{}
+\NormalTok{    require(oracleList.length \textless{} MAX\_ORACLES, "Max oracles");}
+\NormalTok{    require(!mpcOracles[oracle], "Already oracle");}
+\NormalTok{    oracleIndex[oracle] = oracleList.length;}
+\NormalTok{    oracleList.push(oracle);}
+\NormalTok{    mpcOracles[oracle] = true;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-04: ETHVault Withdrawal Allowance
+Bypass}\label{h-04-ethvault-withdrawal-allowance-bypass}
+
+\textbf{File}: \texttt{/contracts/bridge/ETHVault.sol} (Lines 47-61)
+
+\textbf{Description}: The withdrawal function has a typo in the error
+message and potentially allows withdrawal without sufficient allowance
+due to ordering:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function withdraw(uint256 amount\_, address receiver\_, address owner\_) external \{}
+\NormalTok{    require(amount\_ \textless{}= address(this).balance, "Insufficient balance");}
+\NormalTok{    if (msg.sender != owner\_) \{}
+\NormalTok{        uint256 allowed = allowance(owner\_, msg.sender);}
+\NormalTok{        require(allowed \textgreater{}= amount\_, "Invalid alowance");  // Typo, but functional}
+\NormalTok{    \}}
+\NormalTok{    \_burn(owner\_, amount\_);  // Burns shares}
+\NormalTok{    (bool success, ) = payable(receiver\_).call\{value: amount\_\}("");}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: The allowance is checked but not decremented for
+non-owner withdrawals, enabling unlimited withdrawals once any allowance
+is granted.
+
+\textbf{Recommendation}: Decrement allowance for non-owner:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (msg.sender != owner\_) \{}
+\NormalTok{    \_spendAllowance(owner\_, msg.sender, amount\_);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-05: LiquidVault Strategy Manipulation via
+Timestamp}\label{h-05-liquidvault-strategy-manipulation-via-timestamp}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/LiquidVault.sol}
+(Lines 187-214)
+
+\textbf{Description}: Strategy allocation and deallocation signatures
+include \texttt{block.timestamp}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bytes32 messageHash = keccak256(abi.encodePacked(}
+\NormalTok{    "ALLOCATE",}
+\NormalTok{    strategyIndex,}
+\NormalTok{    amount,}
+\NormalTok{    block.timestamp  // Timestamp dependency}
+\NormalTok{));}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: MPC oracle must sign messages with exact timestamp
+matching. This creates a race condition where valid signatures become
+invalid after the block containing them is mined. Miners can also
+manipulate timestamps within bounds.
+
+\textbf{Recommendation}: Use nonce-based signatures instead of
+timestamps:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bytes32 messageHash = keccak256(abi.encodePacked(}
+\NormalTok{    "ALLOCATE",}
+\NormalTok{    strategyIndex,}
+\NormalTok{    amount,}
+\NormalTok{    allocationNonce++}
+\NormalTok{));}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-06: YieldBridgeVault Missing Access Control on
+Harvest}\label{h-06-yieldbridgevault-missing-access-control-on-harvest}
+
+\textbf{File}: \texttt{/contracts/bridge/yield/YieldBridgeVault.sol}
+(Lines 216-236)
+
+\textbf{Description}: The \texttt{harvestYield} function is publicly
+callable without access control:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function harvestYield(address asset) external assetSupported(asset) returns (uint256 totalYield) \{}
+\NormalTok{    // No access control modifier}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Anyone can trigger harvests, potentially:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Front-running yield distribution for MEV extraction
+\item
+  Griefing by triggering unnecessary gas expenditure
+\item
+  Timing manipulation for arbitrage
+\end{enumerate}
+
+\textbf{Recommendation}: Add access control or keeper pattern:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function harvestYield(address asset) external onlyKeeper assetSupported(asset) \{...\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-07: Stale Backing Attestation
+Bypass}\label{h-07-stale-backing-attestation-bypass}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/Teleporter.sol} (Lines
+484-499)
+
+\textbf{Description}: The \texttt{\_checkBackingRatio} function silently
+bypasses backing verification when attestation is stale:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (block.timestamp {-} attestation.timestamp \textgreater{} 24 hours) \{}
+\NormalTok{    // Stale attestation, allow minting but log warning}
+\NormalTok{    // In production, might want stricter enforcement}
+\NormalTok{    return;  // SILENTLY ALLOWS UNBACKED MINTING}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: If MPC fails to update backing attestation for
+\textgreater24 hours, unlimited unbacked tokens can be minted, breaking
+the core invariant
+\texttt{totalMinted\ \textless{}=\ totalBackingOnSourceChain}.
+
+\textbf{Recommendation}: Revert on stale attestation in production:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (block.timestamp {-} attestation.timestamp \textgreater{} 24 hours) \{}
+\NormalTok{    revert StaleBackingAttestation();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-08: LiquidETH Yield Index Integer
+Overflow}\label{h-08-liquideth-yield-index-integer-overflow}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/LiquidETH.sol} (Lines
+303-314)
+
+\textbf{Description}: The yield index calculation can overflow in edge
+cases:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 yieldPerDebt = amount * 1e18 / totalDebt;}
+\NormalTok{yieldIndex += yieldPerDebt;  // Can overflow if many small yields accumulate}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: If \texttt{yieldIndex} overflows, all user debt
+calculations become incorrect, potentially allowing debt escape or
+incorrect liquidations.
+
+\textbf{Recommendation}: Use checked math with upper bound:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(yieldIndex + yieldPerDebt \textgreater{}= yieldIndex, "Yield index overflow");}
+\NormalTok{require(yieldIndex + yieldPerDebt \textless{} type(uint128).max, "Yield index too large");}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Medium Severity Findings}\label{medium-severity-findings}
+
+\subsubsection{M-01: Signature Malleability Not
+Prevented}\label{m-01-signature-malleability-not-prevented}
+
+\textbf{Files}: All contracts using raw ECDSA
+
+\textbf{Description}: The signature splitting functions
+don\textquotesingle t enforce low-S values, enabling signature
+malleability (two valid signatures for same message).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function splitSignature(bytes memory sig) internal pure returns (uint8 v, bytes32 r, bytes32 s) \{}
+\NormalTok{    // No check for s \textless{}= secp256k1n/2}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: While replay protection uses the full signature as key
+(mitigating direct replay), malleability can cause issues with off-chain
+systems expecting unique signatures.
+
+\textbf{Recommendation}: Use OpenZeppelin\textquotesingle s ECDSA
+library which enforces low-S.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-02: Bridge.sol Fee Rate
+Unbounded}\label{m-02-bridgesol-fee-rate-unbounded}
+
+\textbf{File}: \texttt{/contracts/bridge/Bridge.sol} (Lines 26, 87-93)
+
+\textbf{Description}: Fee rate can be set to any value without upper
+bound:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 public feeRate = 100; // 1\%}
+\NormalTok{// ...}
+\NormalTok{function setpayoutAddressess(address payoutAddress\_, uint256 feeRate\_) public onlyAdmin \{}
+\NormalTok{    payoutAddress = payoutAddress\_;}
+\NormalTok{    feeRate = feeRate\_;  // No upper bound check}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Admin can set 100\% fee, effectively stealing all
+bridge transfers.
+
+\textbf{Recommendation}: Add maximum fee cap:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(feeRate\_ \textless{}= 1000, "Fee exceeds 10\%");  // Max 10\%}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-03: Missing Zero Address
+Validation}\label{m-03-missing-zero-address-validation}
+
+\textbf{Files}: Multiple contracts
+
+\textbf{Locations}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Bridge.sol:setpayoutAddressess} - payoutAddress
+\item
+  \texttt{BridgeVault.sol:\_addNewERC20Vault} - asset validation only
+  checks not zero for vault
+\item
+  \texttt{XChainVault.sol:releaseFromVault} - recipient
+\end{itemize}
+
+\textbf{Impact}: Setting critical addresses to zero can lock funds or
+cause reverts.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-04: TeleportBridge.sol Missing Chain ID in Claim
+ID}\label{m-04-teleportbridgesol-missing-chain-id-in-claim-id}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/TeleportBridge.sol}
+(Lines 213-224)
+
+\textbf{Description}: The claim ID calculation doesn\textquotesingle t
+include \texttt{block.chainid}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{claimId = keccak256(abi.encode(}
+\NormalTok{    claim.burnTxHash,}
+\NormalTok{    claim.logIndex,}
+\NormalTok{    claim.token,}
+\NormalTok{    claim.amount,}
+\NormalTok{    claim.toChainId,}
+\NormalTok{    // Missing: block.chainid}
+\NormalTok{    // ...}
+\NormalTok{));}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Same claim ID on different chains with same bridge
+deployment could cause confusion in monitoring/accounting systems.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-05: BridgeVault Approve Max Pattern
+Risk}\label{m-05-bridgevault-approve-max-pattern-risk}
+
+\textbf{File}: \texttt{/contracts/bridge/BridgeVault.sol} (Lines 85)
+
+\textbf{Description}: Infinite approval to newly created vaults:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IERC20(asset\_).approve(newVaultAddress, type(uint256).max);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: If vault contract is compromised, infinite tokens can
+be drained.
+
+\textbf{Recommendation}: Use incremental approvals or approve only
+needed amounts.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-06: Teleporter Peg Check Uses Hardcoded
+Value}\label{m-06-teleporter-peg-check-uses-hardcoded-value}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/Teleporter.sol} (Lines
+449-453)
+
+\textbf{Description}: \texttt{getCurrentPeg()} returns hardcoded
+BASIS\_POINTS:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function getCurrentPeg() public view returns (uint256) \{}
+\NormalTok{    // In a real implementation, this would query a DEX oracle}
+\NormalTok{    // For now, we assume 1:1 peg}
+\NormalTok{    return BASIS\_POINTS;  // Always returns 10000}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Peg protection is ineffective. Bridge continues
+operating during de-peg events.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-07: LiquidVault Strategy Array Not Bounded on
+Iteration}\label{m-07-liquidvault-strategy-array-not-bounded-on-iteration}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/LiquidVault.sol}
+(Lines 262-267)
+
+\textbf{Description}: Harvest iterates all strategies without gas limit
+consideration:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for (uint256 i = 0; i \textless{} strategies.length; i++) \{}
+\NormalTok{    if (strategies[i].active) \{}
+\NormalTok{        IYieldStrategy(strategies[i].adapter).harvest();}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: With MAX\_STRATEGIES=10, if each harvest is
+gas-intensive, function could exceed block gas limit.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-08: ProposalBridge pendingMessageIds Array Grows
+Unbounded}\label{m-08-proposalbridge-pendingmessageids-array-grows-unbounded}
+
+\textbf{File}: \texttt{/contracts/bridge/TeleportProposalBridge.sol}
+(Lines 118, 378-380)
+
+\textbf{Description}: Messages are added to \texttt{pendingMessageIds}
+but never removed:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bytes32[] public pendingMessageIds;}
+\NormalTok{// ...}
+\NormalTok{pendingMessageIds.push(messageId);  // Only grows}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Over time, view functions iterating this array will
+exceed gas limits.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-09: Missing Events for Critical State
+Changes}\label{m-09-missing-events-for-critical-state-changes}
+
+\textbf{Files}: Multiple
+
+\textbf{Locations}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Bridge.sol:setWithdrawalEnabled} - no event
+\item
+  \texttt{ETHVault.sol} - no event for allowance changes
+\item
+  \texttt{LiquidVault.sol:setBufferBps} - has event but could be
+  front-run
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-10: Teleporter mintYield Missing Backing
+Check}\label{m-10-teleporter-mintyield-missing-backing-check}
+
+\textbf{File}: \texttt{/contracts/bridge/teleport/Teleporter.sol} (Lines
+260-293)
+
+\textbf{Description}: \texttt{mintYield} doesn\textquotesingle t call
+\texttt{\_checkBackingRatio}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function mintYield(...) external nonReentrant whenNotPaused \{}
+\NormalTok{    // No checkPeg modifier}
+\NormalTok{    // No \_checkBackingRatio call}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Yield minting could violate backing invariant during
+stress conditions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-11: LRC20B Burns From Arbitrary
+Accounts}\label{m-11-lrc20b-burns-from-arbitrary-accounts}
+
+\textbf{File}: \texttt{/contracts/bridge/LRC20B.sol} (Lines 82-89)
+
+\textbf{Description}: Admin can burn from any account without approval:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function bridgeBurn(address account, uint256 amount) public onlyAdmin returns (bool) \{}
+\NormalTok{    \_burn(account, amount);  // No approval check}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: While intended for bridge operations, this is a
+centralization risk. Admin can burn user tokens arbitrarily.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-12: YieldBridgeVault Strategy Weight
+Validation}\label{m-12-yieldbridgevault-strategy-weight-validation}
+
+\textbf{File}: \texttt{/contracts/bridge/yield/YieldBridgeVault.sol}
+(Lines 327-348)
+
+\textbf{Description}: Strategy weights aren\textquotesingle t validated
+to sum to 100\%:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(targetWeight \textless{}= BASIS\_POINTS, "YieldBridgeVault: invalid weight");}
+\NormalTok{// No check that sum of all weights == BASIS\_POINTS}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Under-allocated funds remain idle, over-allocated
+causes revert on rebalance.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Low Severity Findings}\label{low-severity-findings}
+
+\subsubsection{L-01: Floating Pragma}\label{l-01-floating-pragma}
+
+All contracts use \texttt{\^{}0.8.31} or similar. Pin to exact version
+for reproducible builds.
+
+\subsubsection{L-02: Missing NatSpec
+Documentation}\label{l-02-missing-natspec-documentation}
+
+Many functions lack @param and @return documentation.
+
+\subsubsection{L-03: Unused Imports}\label{l-03-unused-imports}
+
+\texttt{Bridge.sol} imports Strings twice (line 14, 17).
+
+\subsubsection{L-04: Magic Numbers}\label{l-04-magic-numbers}
+
+Fee calculations use raw numbers like \texttt{10\ **\ 4},
+\texttt{10\ **\ 18}. Define named constants.
+
+\subsubsection{L-05: Inconsistent
+Naming}\label{l-05-inconsistent-naming}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{setpayoutAddressess} (typo, should be
+  \texttt{setPayoutAddresses})
+\item
+  Mixed camelCase and snake\_case in parameters
+\end{itemize}
+
+\subsubsection{L-06: Shadow Variables}\label{l-06-shadow-variables}
+
+\texttt{TeleportVault.withdrawNonce} shadows state with parameter
+\texttt{\_withdrawNonce}.
+
+\subsubsection{L-07: State Variables
+Visibility}\label{l-07-state-variables-visibility}
+
+\texttt{withdrawalEnabled} in Bridge.sol lacks explicit visibility
+(defaults to internal).
+
+\subsubsection{L-08: Missing Return Value
+Check}\label{l-08-missing-return-value-check}
+
+ERC20 transfers in legacy Bridge.sol don\textquotesingle t use
+SafeERC20:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{IERC20(tokenAddr\_).transferFrom(msg.sender, address(vault), amount\_);}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{L-09: Gas Inefficient Storage
+Reads}\label{l-09-gas-inefficient-storage-reads}
+
+Multiple storage reads in loops without caching in memory.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Informational Findings}\label{informational-findings}
+
+\subsubsection{I-01: Consider Using EIP-712 Typed Signatures
+Everywhere}\label{i-01-consider-using-eip-712-typed-signatures-everywhere}
+
+TeleportBridge.sol uses EIP-712 properly. Extend this to all signature
+verification for better UX and replay protection.
+
+\subsubsection{I-02: Centralization
+Risks}\label{i-02-centralization-risks}
+
+\begin{itemize}
+\tightlist
+\item
+  Single admin can pause all operations
+\item
+  MPC oracle set controlled by admin
+\item
+  Fee rates controlled by admin
+\end{itemize}
+
+Consider timelock and multi-sig for admin functions.
+
+\subsubsection{I-03: Lack of Emergency
+Functions}\label{i-03-lack-of-emergency-functions}
+
+No circuit breaker for individual functions. Consider granular pause
+controls.
+
+\subsubsection{I-04: Missing Getter
+Functions}\label{i-04-missing-getter-functions}
+
+\begin{itemize}
+\tightlist
+\item
+  No way to enumerate all MPC oracles
+\item
+  No way to get all pending messages efficiently
+\end{itemize}
+
+\subsubsection{I-05: Upgrade Path Not
+Defined}\label{i-05-upgrade-path-not-defined}
+
+Contracts are not upgradeable. Plan migration path for critical fixes.
+
+\subsubsection{I-06: Test Coverage
+Unknown}\label{i-06-test-coverage-unknown}
+
+No test files visible in scope. Recommend \textgreater95\% coverage for
+bridge contracts.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Validator Collusion
+Analysis}\label{validator-collusion-analysis}
+
+The MPC-based bridge architecture relies on threshold signatures from
+validators. Analysis:
+
+\subsubsection{Attack Vectors}\label{attack-vectors}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Colluding Majority}: If threshold validators collude, they can
+  mint arbitrary tokens or sign fraudulent messages.
+\item
+  \textbf{Key Compromise}: Single validator key compromise allows
+  signing share, combined with social engineering of others.
+\item
+  \textbf{Slashing Absent}: No economic penalty for malicious signing.
+\end{enumerate}
+
+\subsubsection{Mitigations Observed}\label{mitigations-observed}
+
+\begin{itemize}
+\tightlist
+\item
+  Threshold requirement in TeleportProposalBridge
+\item
+  Role-based access control
+\item
+  Nonce-based replay protection
+\end{itemize}
+
+\subsubsection{Recommendations}\label{recommendations}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement validator bond/slash mechanism
+\item
+  Add time delays for large value transfers
+\item
+  Implement fraud proof system
+\item
+  Consider optimistic rollup pattern for additional security layer
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Double-Spend Scenario
+Analysis}\label{double-spend-scenario-analysis}
+
+\subsubsection{Identified Vectors}\label{identified-vectors}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Cross-Chain Race Condition}: Burn on Lux + claim on source
+  chain. If source chain release is faster than burn finality,
+  double-spend possible.
+\item
+  \textbf{Reorg Vulnerability}: Deep reorg on source chain after Lux
+  mint could result in double-spend.
+\item
+  \textbf{Nonce Prediction}: Predictable withdraw nonces (Teleporter)
+  enable front-running.
+\end{enumerate}
+
+\subsubsection{Mitigations Required}\label{mitigations-required}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Wait for sufficient block confirmations before minting
+\item
+  Implement challenge period for withdrawals
+\item
+  Use monotonic counters instead of hash-based nonces
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Recommendations Summary}\label{recommendations-summary}
+
+\subsubsection{Immediate Actions (Before
+Mainnet)}\label{immediate-actions-before-mainnet}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Fix XChainVault burn proof verification (C-01)
+\item
+  Add ecrecover zero address check (C-02)
+\item
+  Include destination chain ID in all signatures (C-03)
+\item
+  Replace predictable nonces with counters (C-04)
+\item
+  Add reentrancy guards to all state-modifying functions (H-01)
+\item
+  Fix ETHVault allowance handling (H-04)
+\item
+  Remove stale attestation bypass (H-07)
+\end{enumerate}
+
+\subsubsection{Short-Term (Next Release)}\label{short-term-next-release}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Implement bounded oracle management (H-03)
+\item
+  Add fee rate caps (M-02)
+\item
+  Implement proper peg oracle (M-06)
+\item
+  Add comprehensive events (M-09)
+\end{enumerate}
+
+\subsubsection{Long-Term}\label{long-term}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add economic security (validator staking/slashing)
+\item
+  Implement fraud proofs
+\item
+  Consider upgradeability pattern
+\item
+  Add formal verification for core invariants
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Files Reviewed}\label{files-reviewed}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+File & Lines & Critical & High & Medium & Low \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Bridge.sol & 582 & 1 & 1 & 2 & 3 \\
+Teleport.sol & 284 & 1 & 1 & 1 & 1 \\
+Teleporter.sol & 521 & 2 & 2 & 2 & 1 \\
+TeleportBridge.sol & 384 & 0 & 0 & 1 & 0 \\
+BridgeVault.sol & 221 & 0 & 0 & 1 & 0 \\
+XChainVault.sol & 358 & 1 & 0 & 0 & 0 \\
+TeleportVault.sol & 300 & 0 & 0 & 0 & 1 \\
+LiquidVault.sol & 432 & 0 & 2 & 1 & 1 \\
+ETHVault.sol & 62 & 0 & 1 & 0 & 0 \\
+LRC20B.sol & 97 & 0 & 0 & 1 & 0 \\
+LiquidETH.sol & 571 & 0 & 1 & 0 & 1 \\
+YieldBridgeVault.sol & 556 & 0 & 1 & 1 & 0 \\
+TeleportProposalBridge.sol & 586 & 0 & 1 & 2 & 1 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Audit Completed}: 2025-01-30 \textbf{Next Review Recommended}:
+After all critical/high issues addressed
+
+\end{document}

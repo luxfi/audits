@@ -1,0 +1,1523 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Quasar 3.0 --- F-Chain / FHE Red
+Review}\label{quasar-30--f-chain--fhe-red-review}
+
+\textbf{Scope}: LP-013 v2 (F-Chain), LP-066 (TFHE), LP-067 (Confidential
+ERC-20), LP-068 (Private Teleport), LP-019 (Threshold MPC for keygen),
+LP-134 (chain topology), and the corresponding Go reference
+(\texttt{lux/precompile/fhe}, \texttt{lux/fhe}).
+
+\textbf{Threat model (as stated)}: adversary controls one F-Chain
+validator with full GPU memory visibility, can submit chosen
+ciphertexts, can replay/splice messages, cannot break TFHE/Module-LWE.
+Goal: leak plaintext or forge state transitions.
+
+\textbf{Reviewer}: Red (adversarial security researcher). \textbf{Date}:
+2026-04-26. \textbf{Target launch}: 2025-12-25 (Quasar 3.0 production).
+\textbf{Verdict}: \textbf{DO-NOT-SHIP}. The deterministic-keygen, the
+unauthenticated \texttt{decrypt} precompile, the lack of
+FChainTFHE/FChainBootstrap real verifiers, and the absence of any actual
+GPU TFHE kernel mean F-Chain currently provides \textbf{no
+confidentiality} and \textbf{no soundness}. Several findings are
+showstoppers individually; together they trivially break every
+confidential ERC-20 balance and every private teleport.
+
+Numbering: \texttt{Q3.0-FHE-NNN}. Severity: Critical / High / Medium /
+Low / Info.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive summary}\label{executive-summary}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+\# & Title & Severity \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Q3.0-FHE-001 & Deterministic keygen → secret key derivable from a public
+string & \textbf{Critical} \\
+Q3.0-FHE-002 & \texttt{handleDecrypt} has no caller authorization → any
+handle decryptable by any contract & \textbf{Critical} \\
+Q3.0-FHE-003 & F-Chain cert lanes (\texttt{FChainTFHE},
+\texttt{FChainBootstrap}) have no real verifier --- they will inherit
+HMAC-keccak placeholder semantics & \textbf{Critical} \\
+Q3.0-FHE-004 & None of the GPU TFHE kernels in LP-013 (§Kernels v0.54)
+exist on disk & \textbf{Critical} \\
+Q3.0-FHE-005 & \texttt{tfheVerify} accepts any byte string that
+deserialises --- no input proof, no range check, no type binding &
+\textbf{Critical} \\
+Q3.0-FHE-006 & \texttt{performFHESealOutput} is a stub: concatenates
+pk\textbar ct, returns plaintext-equivalent & \textbf{Critical} \\
+Q3.0-FHE-007 & Block-STM treats ciphertexts as opaque bytes → ciphertext
+malleability inside an MVCC arena & \textbf{High} \\
+Q3.0-FHE-008 & Key-rotation race: two-phase rotation across
+\texttt{fchain\_fhe\_root} epochs has no fence; bisecting valid/invalid
+ciphertexts leaks the rotation boundary & \textbf{High} \\
+Q3.0-FHE-009 & M-Chain → F-Chain bootstrap-key handoff has no published
+correctness proof; \texttt{mchain\_ceremony\_root} only commits the
+share, not the equivalence to the new \texttt{fchain\_fhe\_root} &
+\textbf{High} \\
+Q3.0-FHE-010 & F-Chain validator subset → 1/3 corruption halts F-Chain
+at lower stake than 1/3 of total Lux & \textbf{High} \\
+Q3.0-FHE-011 & \texttt{fhe.decrypt(ciphertext,\ callbackAddress)}
+(LP-066) has no nonce: same handle returns same plaintext on repeated
+calls --- replay/oracle attacks & \textbf{High} \\
+Q3.0-FHE-012 & LP-067 §\texttt{transfer}: no encrypted-amount range
+proof tied to caller; underflow-revert leaks the comparison result of
+\texttt{amount\ \textgreater{}\ balance} & \textbf{High} \\
+Q3.0-FHE-013 & LP-067 transfer pattern (sender, receiver, gas) leaks
+even when amount is encrypted; no decoy injection & \textbf{High} \\
+Q3.0-FHE-014 & Apple M1/M2 share L2 between SM groups: TFHE bootstrap
+timing observable from a co-resident GPU workload & \textbf{Medium} \\
+Q3.0-FHE-015 & Three \texttt{external\_product} variants (RGSW × RLWE)
+listed without byte-identical correctness gate --- non-deterministic
+state root if validators pick different variants & \textbf{Medium} \\
+Q3.0-FHE-016 & TLWE noise budget is not tracked anywhere; an adversary
+can chain operations to exhaust noise → decryption-error oracle &
+\textbf{Medium} \\
+Q3.0-FHE-017 & Oblivious branching (\texttt{JUMPI} on encrypted
+condition) on \texttt{evm256} is not specified to evaluate both branches
+in constant SIMT time --- likely leaks branch-taken via warp divergence
+and L1 access pattern & \textbf{Medium} \\
+Q3.0-FHE-018 & LP-068 cross-chain replay protection uses
+\texttt{nullifier\ =\ Poseidon2(commitment\ ∥\ spending\_key\ ∥\ sourceChainID)}
+--- destination chain ID is \textbf{not} in the nullifier; bridge-loop
+replay is feasible & \textbf{Medium} \\
+Q3.0-FHE-019 & LP-067 storage layout:
+\texttt{\_balance{[}address{]}\ =\ ciphertext} per-account encrypted
+slot leaks first-time-write vs. update via SSTORE refund pattern (gas
+timing oracle) & \textbf{Medium} \\
+Q3.0-FHE-020 & Ciphertext handle is \texttt{keccak256(ct\_bytes)} ---
+bit-identical ciphertexts collide (two encryptions under the same key
+reuse handles in a deterministic-encryption scenario, common with
+deterministic seed) & \textbf{Low} \\
+Q3.0-FHE-021 & \texttt{tfheRandom} is keyed by user-supplied
+\texttt{seed\ uint64} → caller can predict every "random" ciphertext &
+\textbf{Low} \\
+Q3.0-FHE-022 & \texttt{tfheTrivialEncrypt} uses the encryptor instead of
+trivial encryption --- wastes noise budget and confuses the threat model
+(LP-013 says trivial constants are noiseless) & \textbf{Info} \\
+Q3.0-FHE-023 & LP-067 says transfer reverts when \texttt{sufficient} is
+false via underflow --- relies on observable revert, leaking
+\texttt{amount\ \textgreater{}\ balance} & (folded into 012) \\
+Q3.0-FHE-024 & No PASS evidence anywhere of the 21 GPU kernels claimed
+in LP-013 v1; CUDA mirror in v0.55 is also empty & \textbf{Info} \\
+Q3.0-FHE-025 & \texttt{evm256} interpreter does not exist in the tree;
+LP-013 §"Encrypted EVM (\texttt{evm256.metal})" is design-only &
+\textbf{Info} \\
+\end{longtable}
+}
+
+Severity totals: \textbf{6 Critical, 7 High, 6 Medium, 2 Low, 4 Info}
+(25 unique findings).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Findings}\label{findings}
+
+\subsubsection{Q3.0-FHE-001 --- Deterministic keygen leaks the secret
+key to anyone with source
+access}\label{q30-fhe-001--deterministic-keygen-leaks-the-secret-key-to-anyone-with-source-access}
+
+\textbf{Severity}: Critical.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{lux/precompile/fhe/fhe\_ops.go:29-60}
+\item
+  \texttt{lux/fhe/CLAUDE.md} (advertises this fix)
+\end{itemize}
+
+\textbf{Scenario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var}\NormalTok{ fheKeygenSeed }\OperatorTok{=}\NormalTok{ sha256}\OperatorTok{.}\NormalTok{Sum256}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{(}\StringTok{"LUX\_FHE\_KEYGEN\_v1"}\OperatorTok{))}
+\NormalTok{kg}\OperatorTok{,}\NormalTok{ \_ }\OperatorTok{:=}\NormalTok{ fhe}\OperatorTok{.}\NormalTok{NewKeyGeneratorFromSeed}\OperatorTok{(}\NormalTok{params}\OperatorTok{,}\NormalTok{ fheKeygenSeed}\OperatorTok{[:])}
+\NormalTok{secretKey}\OperatorTok{,}\NormalTok{ publicKey }\OperatorTok{=}\NormalTok{ kg}\OperatorTok{.}\NormalTok{GenKeyPair}\OperatorTok{()}
+\NormalTok{bsk }\OperatorTok{:=}\NormalTok{ kg}\OperatorTok{.}\NormalTok{GenBootstrapKey}\OperatorTok{(}\NormalTok{secretKey}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The seed is a public constant. Every node that runs the precompile
+derives the same \texttt{(sk,\ pk,\ bsk)}. \textbf{The "secret" key is
+universally derivable}, including by the public, not just by validators.
+This violates the LP-066 §Security claim "global secret key never exists
+in a single location" and the LP-013 §Security claim "only TEE-protected
+key holders can decrypt".
+
+\textbf{Attack}: an external observer reads any LP-067 confidential
+balance by running \texttt{decryptor.DecryptUint64(ct)} against the
+public-constant secret key. There is no attack --- there is no defence.
+
+\textbf{Genesis of the bug}: the prior red swarm (2026-04-13, finding
+C-03) flagged a different bug --- \texttt{crypto/rand} keygen made each
+validator\textquotesingle s keys diverge. The fix turned the security
+parameter into a public constant instead of using a real ceremony
+output.
+
+\textbf{Detectability}: zero --- there is no anomaly to monitor.
+Compromise is silent and total.
+
+\textbf{Crypto note}: this is not "FHE under a shared key with TEE
+custody"; it is "FHE under a key written in the source tree". The
+IND-CPA reduction fails immediately:
+\(\Pr[\mathcal{A}\text{ wins IND-CPA}] = 1\) for any \(\mathcal{A}\)
+that can read the constant.
+
+\textbf{Fix hint}: keys must come from a real ceremony. Either (a)
+M-Chain DKG output written into \texttt{fchain\_fhe\_root}, then
+validators load shares into TEE on boot and the public key is derived
+during the ceremony; or (b) HSM-backed thresholded keygen with
+KMS-stored shares (LP-019 §LSS resharing). The seed approach must be
+deleted, not parameterised.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-002 --- \texttt{handleDecrypt}
+is unauthenticated; any contract can decrypt any
+handle}{Q3.0-FHE-002 --- handleDecrypt is unauthenticated; any contract can decrypt any handle}}\label{q30-fhe-002--handledecrypt-is-unauthenticated-any-contract-can-decrypt-any-handle}
+
+\textbf{Severity}: Critical.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{lux/precompile/fhe/contract.go:873-886,\ 1294-1302}
+\end{itemize}
+
+\textbf{Scenario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{c }\OperatorTok{*}\NormalTok{FHEContract}\OperatorTok{)}\NormalTok{ handleDecrypt}\OperatorTok{(}\NormalTok{state contract}\OperatorTok{.}\NormalTok{AccessibleState}\OperatorTok{,}\NormalTok{ caller common}\OperatorTok{.}\NormalTok{Address}\OperatorTok{,}\NormalTok{ data }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ gas }\DataTypeTok{uint64}\OperatorTok{,}\NormalTok{ readOnly }\DataTypeTok{bool}\OperatorTok{)} \OperatorTok{(...,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    handle }\OperatorTok{:=}\NormalTok{ common}\OperatorTok{.}\NormalTok{BytesToHash}\OperatorTok{(}\NormalTok{data}\OperatorTok{[:}\DecValTok{32}\OperatorTok{])}
+\NormalTok{    result }\OperatorTok{:=}\NormalTok{ performFHEDecrypt}\OperatorTok{(}\NormalTok{state}\OperatorTok{.}\NormalTok{GetStateDB}\OperatorTok{(),}\NormalTok{ handle}\OperatorTok{,}\NormalTok{ caller}\OperatorTok{)}
+    \ControlFlowTok{return}\NormalTok{ result}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{(),}\NormalTok{ gas }\OperatorTok{{-}}\NormalTok{ GasDecryptRequest}\OperatorTok{,} \OtherTok{nil}
+\OperatorTok{\}}
+
+\KeywordTok{func}\NormalTok{ performFHEDecrypt}\OperatorTok{(}\NormalTok{stateDB contract}\OperatorTok{.}\NormalTok{StateDB}\OperatorTok{,}\NormalTok{ handle common}\OperatorTok{.}\NormalTok{Hash}\OperatorTok{,}\NormalTok{ caller common}\OperatorTok{.}\NormalTok{Address}\OperatorTok{)} \OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int }\OperatorTok{\{}
+\NormalTok{    ct}\OperatorTok{,}\NormalTok{ ctType}\OperatorTok{,}\NormalTok{ ok }\OperatorTok{:=}\NormalTok{ getCiphertext}\OperatorTok{(}\NormalTok{stateDB}\OperatorTok{,}\NormalTok{ handle}\OperatorTok{)}
+    \ControlFlowTok{if} \OperatorTok{!}\NormalTok{ok }\OperatorTok{\{} \ControlFlowTok{return}\NormalTok{ big}\OperatorTok{.}\NormalTok{NewInt}\OperatorTok{(}\DecValTok{0}\OperatorTok{)} \OperatorTok{\}}
+    \ControlFlowTok{return}\NormalTok{ tfheDecrypt}\OperatorTok{(}\NormalTok{ct}\OperatorTok{,}\NormalTok{ ctType}\OperatorTok{)}   \CommentTok{// no ACL, no permit, no callback gating}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{caller} argument is accepted but never consulted. Any
+EOA/contract that knows the handle (handles are observable in calldata,
+in events, and in state inspection) can call \texttt{decrypt} and get
+the plaintext returned in EVM return data. LP-066 §Decryption Protocol
+describes a t-of-n threshold decryption with TEE round-trips; the
+implementation does single-key decryption synchronously.
+
+\textbf{Attack}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Observe a confidential ERC-20 transfer\textquotesingle s resulting
+  \texttt{\_balance{[}victim{]}} handle from the SSTORE trace.
+\item
+  Craft a contract that calls \texttt{IFHE.decrypt(handle)}.
+\item
+  Read victim\textquotesingle s balance.
+\end{enumerate}
+
+\textbf{Combined with Q3.0-FHE-001}, the precompile
+isn\textquotesingle t even needed --- the caller can decrypt off-chain.
+But the precompile makes the leak callable from any other contract for
+free.
+
+\textbf{Fix hint}: enforce the FheOS ACL pattern
+(\texttt{0x0200...0081}) before decryption. The decryption interface
+should be split: (a) \texttt{requestDecrypt} emits an event, (b)
+off-chain threshold decryptors pick it up, (c) threshold-signed callback
+writes the plaintext into the requestor\textquotesingle s state slot via
+permit, (d) plaintext never appears in EVM return data.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-003 --- F-Chain cert lanes
+(\texttt{FChainTFHE}, \texttt{FChainBootstrap}) inherit HMAC-keccak
+placeholder
+verification}{Q3.0-FHE-003 --- F-Chain cert lanes (FChainTFHE, FChainBootstrap) inherit HMAC-keccak placeholder verification}}\label{q30-fhe-003--f-chain-cert-lanes-fchaintfhe-fchainbootstrap-inherit-hmac-keccak-placeholder-verification}
+
+\textbf{Severity}: Critical.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{LP-132} §\texttt{drain\_cert\_lane} v0.38 (lines 204-214 of
+  \texttt{LP-132-quasar-gpu-execution-adapter.md})
+\item
+  \texttt{LP-013} §"Cert lanes" (lines 162-168)
+\item
+  \texttt{LP-134} §\texttt{QuasarCertLane} registry (lines 114-130)
+  defines lanes 8 and 9
+\end{itemize}
+
+\textbf{Scenario}: LP-132 v0.38 explicitly admits that
+\texttt{verify\_bls\_aggregate}, \texttt{verify\_ringtail\_share}, and
+\texttt{verify\_mldsa\_groth16} are HMAC-keccak with a master secret.
+LP-132 roadmap promises real verifiers at v0.43, v0.44, v0.45.
+\textbf{No entry exists for FChainTFHE / FChainBootstrap real
+verifiers}. By the LP-013 v0.54 timeline (this LP), F-Chain ships with a
+"verifier" that has never been specified. The LP-132 statement
+"structured so the swap to real BLS / Ring-LWE / Groth16 is a single
+function pointer" does not even consider TFHE attestation, which is
+fundamentally a different proof system (proof-of-correct-bootstrap,
+e.g., zk-SNARK over a TFHE circuit).
+
+\textbf{Attack}: a single F-Chain validator submits a
+\texttt{FChainTFHE} artifact with arbitrary \texttt{circuit\_dag\_root}
+and arbitrary plaintext; the HMAC-keccak verifier accepts it because the
+validator knows the master secret. The \texttt{fchain\_fhe\_root} no
+longer commits to a circuit anyone can verify. Other validators accept
+the cert because the round descriptor binds the
+artifact\textquotesingle s \texttt{(artifact\_offset,\ artifact\_len)}
+indirection --- not the semantic content.
+
+\textbf{Detectability}: the LP-013 §Security claim "Replay protection:
+\texttt{fchain\_fhe\_root} binds every cert artifact to the exact
+circuit DAG + evaluation-key state" is \textbf{false} under HMAC-keccak:
+the verifier never inspects the circuit DAG, only the HMAC tag.
+
+\textbf{Fix hint}: this is the hardest finding. Real F-Chain attestation
+requires a SNARK over the TFHE circuit (e.g., verifiable FHE; Lux
+already has the \texttt{verifiable-fhe} research scaffold). For Dec 25,
+the only viable options are:
+
+\begin{itemize}
+\tightlist
+\item
+  (a) Run F-Chain inside a TEE with attestation through A-Chain
+  (\texttt{AChainAttest} lane), constraining trust to TEE compromise; or
+\item
+  (b) Restrict F-Chain to a permissioned validator set whose stake bond
+  is high enough to insure the entire confidential supply (and accept
+  that this is a non-cryptographic security argument). Option (a) ducks
+  the FHE soundness question by externalising it to TEE. Option (b)
+  ducks it by making the attack non-economic. Real verifiable FHE is a
+  6-12 month research integration, not a v0.54 patch.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-004 --- None of the LP-013 v0.54 GPU TFHE
+kernels exist on
+disk}\label{q30-fhe-004--none-of-the-lp-013-v054-gpu-tfhe-kernels-exist-on-disk}
+
+\textbf{Severity}: Critical.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-013 §"Kernels (current as of v0.54)" lists 9 kernels:
+  \texttt{tfhe\_bootstrap}, \texttt{blind\_rotate},
+  \texttt{blind\_rotate\_fused}, \texttt{external\_product} ×3,
+  \texttt{bsk\_prefetch}, \texttt{fhe\_gate}, \texttt{dag\_executor},
+  \texttt{evm256}, \texttt{tfhe\_keygen}, \texttt{tfhe\_keyswitch}.
+\item
+  Searches across \texttt{\textasciitilde{}/work/lux/cevm},
+  \texttt{\textasciitilde{}/work/lux/fhe},
+  \texttt{\textasciitilde{}/work/lux/precompile/fhe},
+  \texttt{\textasciitilde{}/work/lux/luxcpp} (does not exist), and the
+  broader tree return \textbf{no matches} for \texttt{tfhe\_bootstrap*},
+  \texttt{blind\_rotate*}, \texttt{external\_product*},
+  \texttt{drain\_fhe*}, \texttt{fchain\_fhe*}, \texttt{evm256*}. The
+  only \texttt{.metal} files on disk are vendored React Native SVG
+  filters in \texttt{node\_modules}.
+\end{itemize}
+
+\textbf{Implication}: LP-013 v2 is design-only. The Go TFHE reference in
+\texttt{lux/fhe} (CPU, \textasciitilde108 ms / bootstrap on M1) is the
+entirety of the FHE implementation. The 200 tx/s/GPU on H100 number in
+§"Performance targets" is purely aspirational.
+
+\textbf{Attack}: not an attack per se, but a deployment fraud risk:
+validators running v0.54 will fall back to CPU TFHE (the LP says GPU is
+required for the 500 ms block budget) --- block production halts under
+load. The 2026-04-12 fheCRDT audit benchmarked the Go reference at
+\textbf{0.24 LWW merges/sec} --- 1,375× slower than what LP-013
+promises.
+
+\textbf{Fix hint}: either ship the kernels (months of work --- porting
+OpenFHE\textquotesingle s \texttt{bootstrap} to Metal is non-trivial and
+the \texttt{cuFHE} reference is GPL) or remove the v0.54 milestone and
+admit F-Chain is CPU-bound until real GPU kernels land. \textbf{Do not}
+advertise GPU performance numbers in production docs until a kernel
+exists.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-005 --- \texttt{tfheVerify} is a
+deserialiser, not a
+verifier}{Q3.0-FHE-005 --- tfheVerify is a deserialiser, not a verifier}}\label{q30-fhe-005--tfheverify-is-a-deserialiser-not-a-verifier}
+
+\textbf{Severity}: Critical.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{lux/precompile/fhe/fhe\_ops.go:565-568}
+\item
+  LP-067 §Transfer step 1: "Caller submits an encrypted amount with a ZK
+  proof that the ciphertext encrypts a valid uint64."
+\end{itemize}
+
+\textbf{Scenario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ tfheVerify}\OperatorTok{(}\NormalTok{ct }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ fheType }\DataTypeTok{uint8}\OperatorTok{)} \DataTypeTok{bool} \OperatorTok{\{}
+    \CommentTok{// Basic validation {-} check ciphertext can be deserialized}
+    \ControlFlowTok{return}\NormalTok{ deserializeBitCiphertext}\OperatorTok{(}\NormalTok{ct}\OperatorTok{)} \OperatorTok{!=} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+There is no proof verification. There is no check that the ciphertext
+was created with the network public key. There is no check that the
+encrypted value lies in the claimed range (e.g.,
+\texttt{{[}0,\ 2\^{}64)} for \texttt{euint64}). There is no binding
+between ciphertext and caller (otherwise an adversary could re-submit
+someone else\textquotesingle s ciphertext as their own).
+
+\textbf{Attack chain (LP-067)}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary submits an encrypted transfer where the "amount" ciphertext
+  claims to encrypt 5 (small) but actually encrypts \(2^{64}-1\)
+  (giant).
+\item
+  \texttt{tfheVerify} accepts because deserialisation succeeds.
+\item
+  Contract computes \texttt{enc\_balance\_sender\ −\ enc\_amount}
+  homomorphically.
+\item
+  Adversary\textquotesingle s balance underflows to
+  \textasciitilde{}\(2^{64}\), granting near-infinite confidential token
+  balance.
+\item
+  Contract computes \texttt{enc\_balance\_receiver\ +\ enc\_amount} →
+  recipient\textquotesingle s balance also wraps; adversary collaborates
+  with a confederate recipient to launder the wrap-around value.
+\end{enumerate}
+
+LP-067 names \texttt{inputProof} in the function signature but the
+contract trivially passes whatever is supplied to \texttt{tfheVerify},
+which discards it.
+
+\textbf{Fix hint}: implement an actual zero-knowledge range proof
+(\texttt{R1CS} over the LWE encryption circuit, or simpler: a Sigma
+protocol proving the LWE sample\textquotesingle s plaintext is in
+\([0, 2^{n})\)). Bind the proof to caller via Fiat-Shamir over
+\texttt{(caller,\ ct,\ range,\ public\_key)}. Reject without proof.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-006 ---
+\texttt{performFHESealOutput} is a
+stub}{Q3.0-FHE-006 --- performFHESealOutput is a stub}}\label{q30-fhe-006--performfhesealoutput-is-a-stub}
+
+\textbf{Severity}: Critical.
+
+\textbf{Files}: \texttt{lux/precompile/fhe/fhe\_ops.go:596-606}.
+
+\textbf{Scenario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ tfheSealOutput}\OperatorTok{(}\NormalTok{ct}\OperatorTok{,}\NormalTok{ pk }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{,}\NormalTok{ fheType }\DataTypeTok{uint8}\OperatorTok{)} \OperatorTok{[]}\DataTypeTok{byte} \OperatorTok{\{}
+    \CommentTok{// Seal output for a specific public key}
+    \CommentTok{// In production, this would re{-}encrypt under the given public key}
+    \CommentTok{// For now, just return the ciphertext with a header}
+\NormalTok{    result }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \BuiltInTok{len}\OperatorTok{(}\NormalTok{ct}\OperatorTok{)+}\BuiltInTok{len}\OperatorTok{(}\NormalTok{pk}\OperatorTok{)+}\DecValTok{8}\OperatorTok{)}
+\NormalTok{    binary}\OperatorTok{.}\NormalTok{BigEndian}\OperatorTok{.}\NormalTok{PutUint32}\OperatorTok{(}\NormalTok{result}\OperatorTok{[}\DecValTok{0}\OperatorTok{:}\DecValTok{4}\OperatorTok{],} \DataTypeTok{uint32}\OperatorTok{(}\BuiltInTok{len}\OperatorTok{(}\NormalTok{pk}\OperatorTok{)))}
+\NormalTok{    binary}\OperatorTok{.}\NormalTok{BigEndian}\OperatorTok{.}\NormalTok{PutUint32}\OperatorTok{(}\NormalTok{result}\OperatorTok{[}\DecValTok{4}\OperatorTok{:}\DecValTok{8}\OperatorTok{],} \DataTypeTok{uint32}\OperatorTok{(}\BuiltInTok{len}\OperatorTok{(}\NormalTok{ct}\OperatorTok{)))}
+    \BuiltInTok{copy}\OperatorTok{(}\NormalTok{result}\OperatorTok{[}\DecValTok{8}\OperatorTok{:}\DecValTok{8}\OperatorTok{+}\BuiltInTok{len}\OperatorTok{(}\NormalTok{pk}\OperatorTok{)],}\NormalTok{ pk}\OperatorTok{)}
+    \BuiltInTok{copy}\OperatorTok{(}\NormalTok{result}\OperatorTok{[}\DecValTok{8}\OperatorTok{+}\BuiltInTok{len}\OperatorTok{(}\NormalTok{pk}\OperatorTok{):],}\NormalTok{ ct}\OperatorTok{)}
+    \ControlFlowTok{return}\NormalTok{ result}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The comment admits it. The "sealed" output is the original ciphertext
+plus the requested public key. Under Q3.0-FHE-001 the network secret key
+is public so the ciphertext is plaintext-equivalent; under any future
+key-ceremony fix, the "seal" is still pointless because no
+key-encapsulation has happened --- the recipient gets a ciphertext under
+the \textbf{network} key, not their own.
+
+\textbf{Attack}: trivial --- read the bytes after the header.
+
+\textbf{Fix hint}: implement HPKE (\texttt{0x0703} already exists in the
+precompile registry) over the recipient\textquotesingle s public key,
+encapsulating a fresh AES key that wraps a re-encryption of the
+plaintext. Or use proxy re-encryption. Either way: do not ship the stub.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-007 --- Block-STM reads ciphertexts as opaque
+bytes; concurrent fiber overwrites are not detected by the homomorphic
+circuit}\label{q30-fhe-007--block-stm-reads-ciphertexts-as-opaque-bytes-concurrent-fiber-overwrites-are-not-detected-by-the-homomorphic-circuit}
+
+\textbf{Severity}: High.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-013 §"Wave-tick co-residency" (lines 128-143)
+\item
+  LP-010 (QuasarSTM, MVCC arena)
+\end{itemize}
+
+\textbf{Scenario}: LP-013 explicitly says "Block-STM sees ciphertext as
+opaque bytes for serializability." The MVCC arena\textquotesingle s
+RW-set entry records a slot and a version. If two concurrent fibers both
+target the same encrypted slot:
+
+\begin{itemize}
+\tightlist
+\item
+  Fiber A: \texttt{SLOAD\ slot\ s\ →\ ct\_old}; computes
+  \texttt{ct\_new\ =\ fhe.add(ct\_old,\ x)}; writes back. Read entry:
+  \texttt{(s,\ v\_k)}. Write entry: \texttt{(s,\ v\_\{k+1\})}.
+\item
+  Fiber B (interleaved, before A\textquotesingle s write commits):
+  \texttt{SSTORE\ slot\ s\ ←\ ct\_evil} (where \texttt{ct\_evil} is a
+  chosen-ciphertext crafted by an adversary).
+\item
+  Fiber A\textquotesingle s write is detected as a conflict (Block-STM
+  repair) and re-runs with \texttt{ct\_evil} as \texttt{ct\_old}. The
+  homomorphic circuit happily computes \texttt{fhe.add(ct\_evil,\ x)} →
+  state slot now contains \texttt{ct\_evil\ +\ x}.
+\end{itemize}
+
+The homomorphic gate has no way to detect that \texttt{ct\_evil} is
+malformed (see Q3.0-FHE-005). Block-STM only enforces
+\emph{serialisability} of writes, not \emph{semantic validity} of
+ciphertexts.
+
+\textbf{Attack}: classic confidential ERC-20 "front-run with a rogue
+ciphertext" --- adversary submits a tx that writes \texttt{ct\_evil} (a
+ciphertext of a giant value crafted to cause a specific underflow when
+added to the victim\textquotesingle s balance). Block-STM serialises it
+before the victim\textquotesingle s transfer. Victim\textquotesingle s
+transfer then operates on \texttt{ct\_evil}, propagating the corruption
+into the victim\textquotesingle s balance.
+
+\textbf{Fix hint}: every encrypted SSTORE must validate the ciphertext
+via the range-proof gate from Q3.0-FHE-005 \emph{before} the MVCC slot
+accepts the write. The range proof must be tied to the writing caller,
+not the reader.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-008 --- Key-rotation race across
+\texttt{fchain\_fhe\_root} epochs has no
+fence}{Q3.0-FHE-008 --- Key-rotation race across fchain\_fhe\_root epochs has no fence}}\label{q30-fhe-008--key-rotation-race-across-fchain_fhe_root-epochs-has-no-fence}
+
+\textbf{Severity}: High.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-013 §"Key management" (lines 171-184)
+\end{itemize}
+
+\textbf{Scenario}: LP-013 says "key rotation is an M-Chain ceremony that
+emits a new \texttt{fchain\_fhe\_root}; F-Chain finalizes by accepting a
+Quasar round whose descriptor cites the new root." The spec does not
+define:
+
+\begin{itemize}
+\tightlist
+\item
+  The atomicity boundary (a single Quasar round, or a window?)
+\item
+  Whether txs in flight at rotation use old key or new key
+\item
+  What happens to ciphertexts under the old key after rotation
+  (re-encryption? grandfathering? deletion?)
+\end{itemize}
+
+\textbf{Attack (rotation oracle)}: an adversary submits two
+near-identical transfer ciphertexts \(ct_0\) (under old key) and
+\(ct_1\) (under new key) back-to-back. Whichever succeeds tells the
+adversary the rotation epoch boundary precisely. By repeating across
+many slots, the adversary builds a time series of rotation events ---
+useful for correlating off-chain TEE maintenance windows, validator
+restart patterns, and KMS rotation schedules.
+
+\textbf{Attack (split-brain)}: if some fibers in the same wave-tick use
+the old \texttt{fchain\_fhe\_root} and some use the new (because the
+descriptor was swapped mid-tick by a malicious miner submitting two
+competing descriptors), the resulting state root is non-deterministic
+across validators. Either a \texttt{repair} round restores consistency
+(liveness loss) or validators sign different roots (safety loss).
+
+\textbf{Fix hint}: the ceremony must produce two outputs: (1) the new
+\texttt{fchain\_fhe\_root}, (2) a signed cross-key re-encryption proof
+that maps every active ciphertext slot to its new-key equivalent.
+Rotation lands atomically as a Quasar round whose descriptor binds both.
+Until the re-encryption is committed, the new key cannot decrypt and the
+old key must not be deleted. Block this as a \texttt{HotLaneMode} to
+serialise.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-009 --- M-Chain → F-Chain handoff lacks
+correctness
+binding}\label{q30-fhe-009--m-chain--f-chain-handoff-lacks-correctness-binding}
+
+\textbf{Severity}: High.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-013 §"Key management" (line 174)
+\item
+  LP-019 §CGGMP21 / FROST (general MPC, no TFHE-specific path)
+\item
+  LP-066 §"Key Generation" (mentions TEE mesh DKG but no LP for it)
+\end{itemize}
+
+\textbf{Scenario}: LP-013 says "TFHE keys (bootstrap key, key-switch
+key) are generated via M-Chain MPC ceremony (LP-019 §TFHE keygen,
+LP-076)." LP-019 has no §TFHE keygen. LP-066 says "global FHE public key
+is generated via a distributed key generation ceremony among TEE mesh
+participants (LP-065)" --- a different ceremony, not in scope of
+M-Chain.
+
+The chain \texttt{M\ →\ F} of trust is therefore unspecified:
+
+\begin{itemize}
+\tightlist
+\item
+  Who runs the TFHE DKG? CGGMP21 produces ECDSA shares, not TFHE shares.
+  TFHE thresholding requires a different DKG (e.g., TFHE Threshold from
+  Mouchet, ASIACRYPT\textquotesingle22).
+\item
+  What does \texttt{mchain\_ceremony\_root} commit to? If it commits to
+  a CGGMP21 group public key, that does not constrain a TFHE bootstrap
+  key.
+\item
+  The \texttt{MChainCGGMP21} cert lane only proves a CGGMP21 share is
+  valid; it does not prove that a downstream TFHE key was constructed
+  honestly from it.
+\end{itemize}
+
+\textbf{Attack}: a malicious M-Chain coordinator forges a
+\texttt{mchain\_ceremony\_root} that commits to a TFHE bootstrap key
+generated by them alone (not via DKG). They send the malicious key to
+F-Chain, which has no way to verify that the key is the output of a
+t-of-n ceremony --- \texttt{fchain\_fhe\_root} just hashes whatever
+F-Chain accepts. Now the malicious party knows the secret key for all
+confidential ERC-20 balances.
+
+\textbf{Fix hint}: define an explicit TFHE DKG (LP-019 needs a §TFHE-DKG
+section). The DKG must produce a verifiable transcript; F-Chain must
+accept the new \texttt{fchain\_fhe\_root} only when the transcript hash
+is bound to \texttt{mchain\_ceremony\_root} and the transcript is
+publicly auditable. Use an existing scheme (Mouchet et al., or
+Boneh-Gentry-Halevi-Wang). Do not ship without this LP.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-010 --- F-Chain validator subset reduces
+1/3-stake
+threshold}\label{q30-fhe-010--f-chain-validator-subset-reduces-13-stake-threshold}
+
+\textbf{Severity}: High.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-134 §F-Chain (lines 276-288)
+\item
+  LP-134 §"VM identifiers" (\texttt{F\ =\ lux:fhe})
+\end{itemize}
+
+\textbf{Scenario}: F-Chain has its own validator set carved from
+P-Chain. The spec is silent on the size of the F-Chain validator set
+relative to the total Lux validator set. Quasar BFT tolerance is 1/3 of
+\emph{that subset\textquotesingle s} stake, not of total Lux stake.
+
+\textbf{Attack}:
+
+\begin{itemize}
+\tightlist
+\item
+  If F-Chain runs with, say, 21 validators carved from a 100-validator
+  Lux mainnet, an adversary needs ≥ 8 of 21 = \textasciitilde38\% of
+  F-Chain stake to halt F-Chain. That may be only \textasciitilde8\% of
+  total Lux stake. \textbf{The cost of attacking F-Chain is 4× lower
+  than the cost of attacking the rest of the network.}
+\item
+  For confidentiality (Q3.0-FHE-009), if the F-Chain validator set is
+  also the M-Chain TFHE-DKG ceremony set, the same adversary can corrupt
+  the DKG with ≥ 1/3 of F-Chain stake (regardless of Quasar 2/3 BFT,
+  because DKG only requires t honest parties out of n).
+\end{itemize}
+
+\textbf{Fix hint}: either (a) require F-Chain validators to be a strict
+super-set of P-Chain top-stake validators (e.g., top 67\% by stake), so
+F-Chain compromise implies network compromise; (b) require F-Chain
+validators to post additional bond proportional to total confidential
+supply on the chain; (c) explicitly publish the F-Chain set and its
+stake distribution and let dApps decide whether to trust it.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-011 --- Synchronous decrypt is a deterministic
+oracle}\label{q30-fhe-011--synchronous-decrypt-is-a-deterministic-oracle}
+
+\textbf{Severity}: High.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-066 §"Decryption Protocol": "When t partial decryptions are
+  collected, the result is aggregated and delivered to the callback.
+  Decryption latency: \textasciitilde2 seconds."
+\item
+  \texttt{lux/precompile/fhe/contract.go:873-886} --- implementation is
+  \textbf{synchronous}, no callback.
+\end{itemize}
+
+\textbf{Scenario}: LP-066 specifies async threshold decryption. The
+implementation does single-key sync decryption, returning the plaintext
+in EVM return data with no nonce, no timestamp, no caller binding.
+Repeated calls on the same handle return the same plaintext
+(deterministic). This is a textbook decryption oracle.
+
+\textbf{Attack (with Q3.0-FHE-002)}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary calls \texttt{decrypt(handle\_v)} and gets
+  victim\textquotesingle s plaintext value.
+\item
+  If victim later updates the slot with a different ciphertext under the
+  same key (e.g., same plaintext but fresh randomness), the adversary
+  can correlate the new handle to the old plaintext via known-plaintext
+  arithmetic:
+  \texttt{decrypt(fhe.sub(new\_handle,\ old\_handle))\ =\ delta}.
+\item
+  The chain of deltas reveals the entire balance trajectory.
+\end{enumerate}
+
+\textbf{Fix hint}: remove the sync \texttt{decrypt} precompile entirely.
+Implement \texttt{requestDecrypt(handle)\ →\ (requestId,\ event)};
+off-chain threshold decryptors deliver via signed callback; permit-bound
+delivery into a caller-only state slot.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-012 --- LP-067 underflow-revert pattern leaks
+comparison
+result}\label{q30-fhe-012--lp-067-underflow-revert-pattern-leaks-comparison-result}
+
+\textbf{Severity}: High.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-067 §Transfer step 5: "If \texttt{sufficient} is false, the
+  subtraction underflows and the transaction reverts."
+\end{itemize}
+
+\textbf{Scenario}: the contract intentionally lets underflow signal
+insufficient balance via a revert. Whether the tx reverts is publicly
+observable on-chain. \textbf{Therefore the comparison
+\texttt{amount\ \textgreater{}\ balance(sender)} is publicly observable}
+--- even though both operands are encrypted. This trivially leaks bits
+about the sender\textquotesingle s balance.
+
+\textbf{Attack}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary controls a faucet contract that lets them submit a transfer
+  with a chosen plaintext amount \(a\).
+\item
+  Adversary issues transfers of amount \(a_1, a_2, \ldots\) to a probe
+  address, observing which revert and which succeed.
+\item
+  Binary search recovers victim\textquotesingle s balance to arbitrary
+  precision in \(O(\log_2 \text{balance})\) transfers.
+\end{enumerate}
+
+\textbf{Fix hint}: the pattern must be \texttt{cmux} over the
+comparison. If \texttt{sufficient\ =\ FHE.le(amount,\ balance)}, then:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{new\_sender\ =\ FHE.sub(balance,\ FHE.cmux(sufficient,\ amount,\ 0))}
+\item
+  \texttt{new\_recv\ \ \ =\ FHE.add(recv,\ \ \ \ FHE.cmux(sufficient,\ amount,\ 0))}
+\end{itemize}
+
+Tx never reverts due to balance; instead it commits a no-op when
+insufficient. Then the \emph{fact} of insufficiency is itself encrypted
+(the recipient simply does not receive anything --- observable but
+cleartext- indistinguishable from a legitimate zero-amount transfer if
+the caller issues such transfers as decoys). Combined with batched
+transfers and nonce-gated visibility, the comparison oracle closes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-013 --- LP-067 leaks transfer graph (sender,
+receiver,
+gas)}\label{q30-fhe-013--lp-067-leaks-transfer-graph-sender-receiver-gas}
+
+\textbf{Severity}: High.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-067 §"Security Considerations" item 3 already admits "metadata
+  leakage: sender, receiver, and timing are still visible".
+\end{itemize}
+
+\textbf{Scenario}: even with perfect amount confidentiality,
+transfer-graph analysis reveals account clusters, employer--employee
+relationships, DEX arbitrage flows, etc. LP-067 punts to LP-068, but
+LP-068 only addresses \emph{cross-chain} private transfers, not
+\emph{intra-chain}. There is no privacy mixer for confidential ERC-20 in
+scope.
+
+\textbf{Additional gas leak}: TFHE operations cost gas proportional to
+the number of bootstraps, which depends on the bit-width and the
+operation. Different ciphertext sizes (e.g., euint8 vs. euint64) reveal
+the \emph{type} of transfer. Even within euint64, the gas usage for the
+first SSTORE into a fresh slot is higher than an update SSTORE --- this
+distinguishes "first incoming transfer to a wallet" from "subsequent
+transfer".
+
+\textbf{Attack}: passive on-chain analysis. Standard graph-mining tools
+(used on Bitcoin / Ethereum) work unchanged because the FHE only
+encrypts amounts, not addresses or gas.
+
+\textbf{Fix hint}:
+
+\begin{itemize}
+\tightlist
+\item
+  Combine LP-067 with a privacy mixer (LP-064 ShieldedPool) so that
+  amounts AND addresses are confidential. LP-067 alone is not a privacy
+  primitive; it is a confidentiality primitive.
+\item
+  Pad SSTORE gas to a constant cost regardless of slot freshness (use a
+  dedicated FHE storage subspace where every slot is pre-initialised
+  with an encrypted zero at deploy time).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-014 --- Apple M1/M2 GPU L2 cache shared between
+SM
+groups}\label{q30-fhe-014--apple-m1m2-gpu-l2-cache-shared-between-sm-groups}
+
+\textbf{Severity}: Medium.
+
+\textbf{Files}: LP-013 §"Performance targets" (Apple M1 Max numbers).
+
+\textbf{Scenario}: Apple Silicon GPUs share L2 cache between SM groups
+(each SM has its own L1 but contends for L2). TFHE bootstrap operates on
+the RGSW × RLWE external product, which hits L2 hard for the BSK. A
+co-resident GPU workload (e.g., a malicious WebGPU page running in
+Safari, or another Metal compute task on a multi-tenant macOS validator)
+can:
+
+\begin{itemize}
+\tightlist
+\item
+  Probe L2 latency (PRIME+PROBE) to learn which BSK rows are hot in a
+  given bootstrap.
+\item
+  Correlate hot rows across many bootstraps to recover the secret-key
+  decomposition (BSK = bit-decomposed encryption of secret key under
+  RGSW; cache hits leak the secret-key bits).
+\end{itemize}
+
+This is not science fiction: similar attacks against AES (Bernstein),
+RSA (FLUSH+RELOAD), and AES-NI on Intel are well-established. Apple has
+no documented L2 partitioning primitive.
+
+\textbf{Attack complexity}: high (requires co-residency on a validator
+GPU) but feasible if a validator runs other GPU workloads (LLM
+inference, gaming, browser GPU, HPL) on the same M1 Max alongside
+\texttt{drain\_fhe}.
+
+\textbf{Fix hint}: F-Chain validators must run on dedicated GPUs with no
+other workload. Document this as a hard requirement. Better: use H100
+with MIG partitioning, where L2 is partitioned by hardware. On Apple
+Silicon, validators must dedicate the entire GPU to \texttt{drain\_fhe}
+and disable Safari/Metal preemption. Until LP-013 specifies this, treat
+Apple Silicon F-Chain validators as best-effort (testnet only).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-015 --- Three
+\texttt{external\_product} variants without correctness
+gate}{Q3.0-FHE-015 --- Three external\_product variants without correctness gate}}\label{q30-fhe-015--three-external_product-variants-without-correctness-gate}
+
+\textbf{Severity}: Medium.
+
+\textbf{Files}: LP-013 §"Kernels" ---
+\texttt{external\_product\ (×3\ variants)}.
+
+\textbf{Scenario}: the spec lists three variants of RGSW × RLWE external
+product but does not specify a byte-equality requirement on outputs.
+Variants typically differ in NTT layout, decomposition base, or BSK
+prefetch strategy. If two variants produce \emph{equivalent} but not
+\emph{byte-identical} RLWE samples (e.g., differing in noise term while
+decrypting to the same plaintext), then validators using different
+variants will produce different \texttt{state\_root} values --- fork.
+
+\textbf{Attack}: a malicious miner crafts a tx that exercises a code
+path where Variant A and Variant B diverge. Validators with Variant A
+produce state root \(r_A\); validators with Variant B produce \(r_B\).
+The chain forks. The miner times the attack to a low-quorum window to
+maximise chain instability.
+
+\textbf{Fix hint}: pick one variant. Period. The three-variant
+flexibility is a performance optimisation that contradicts deterministic
+execution. LP-013 must specify \emph{the} variant (with parameters) and
+ban the others on the cert path. If a variant is dropped later, gate it
+behind a hard fork.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-016 --- TLWE noise budget is not tracked
+anywhere}\label{q30-fhe-016--tlwe-noise-budget-is-not-tracked-anywhere}
+
+\textbf{Severity}: Medium.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{lux/fhe/evaluator.go} (no noise tracking)
+\item
+  LP-013 §Security: "TFHE gates run in constant time per bootstrap"
+  (true but unrelated)
+\item
+  2026-04-12 fhecrdt-audit §"No noise budget monitoring" (already
+  flagged)
+\end{itemize}
+
+\textbf{Scenario}: TFHE bootstrap resets noise to a known level \emph{if
+applied correctly}. But:
+
+\begin{itemize}
+\tightlist
+\item
+  The Go reference uses \texttt{eval.bootstrap} inside every gate, which
+  is fine for boolean gates. For arithmetic ops (Add, Mul) over
+  \texttt{BitCiphertext} (multi-bit), the bootstrap is applied per-bit.
+  If a downstream caller treats a \texttt{BitCiphertext} as a unit and
+  chains operations without bootstrap (e.g., scalar multiplication
+  followed by addition), noise can accumulate.
+\item
+  The chain of \texttt{fhe.add(fhe.add(fhe.add(...)))} in confidential
+  ERC-20 --- each \texttt{Add} does internal bootstrap, so this
+  \emph{should} be safe. But unverified.
+\item
+  An adversary can construct a tx that intentionally exhausts noise via
+  an unbootstrapped chain (if any exists), causing decryption to flip
+  bits with attacker-chosen probability --- a key-recovery oracle
+  (Loftus- May-Smart-Vercauteren).
+\end{itemize}
+
+\textbf{Attack}: locate any unbootstrapped chain in the gate library;
+submit a contract that drives it; observe the decryption-error pattern
+via the Q3.0-FHE-002 oracle; recover the secret key (if Q3.0-FHE-001
+weren\textquotesingle t already trivial).
+
+\textbf{Fix hint}: add a property test that asserts every public TFHE op
+(\texttt{Add}, \texttt{Sub}, \texttt{Mul}, \texttt{Div}, \texttt{Rem},
+\texttt{Lt}, \texttt{Le}, \texttt{Eq}, \texttt{Cmux}, \texttt{Min},
+\texttt{Max}) leaves the output noise at exactly the post-bootstrap
+level. Run in CI on every commit. Reject ops that fail the property.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-017 --- Oblivious branching not
+specified in
+\texttt{evm256}}{Q3.0-FHE-017 --- Oblivious branching not specified in evm256}}\label{q30-fhe-017--oblivious-branching-not-specified-in-evm256}
+
+\textbf{Severity}: Medium.
+
+\textbf{Files}: LP-013 §"Encrypted EVM (\texttt{evm256.metal})" ---
+"Branching (JUMPI on encrypted condition) via fully oblivious evaluation
+of both branches, then ciphertext-mux."
+
+\textbf{Scenario}: "fully oblivious" requires:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Both branches execute regardless of condition.
+\item
+  Both branches consume the \textbf{same} number of gates / cycles /
+  cache lines / memory accesses.
+\item
+  The mux is applied as a homomorphic gate, not a CPU select.
+\end{enumerate}
+
+In SIMT (Apple Metal, NVIDIA CUDA), warp divergence on an encrypted
+condition is not directly possible (the condition is a ciphertext bit,
+not a hardware predicate), but \textbf{memory access patterns} can still
+diverge if the two branches touch different state slots. The Block-STM
+read set will differ, leaking which branch was "taken" via the RW set.
+
+\textbf{Attack}: an adversary writes a contract:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ebool cond = FHE.lt(victim\_balance, threshold);}
+\NormalTok{if (cond) sstore(slot\_A, ...);}
+\NormalTok{else      sstore(slot\_B, ...);}
+\end{Highlighting}
+\end{Shaded}
+
+After tx execution, the read/write set in the round descriptor reveals
+whether \texttt{slot\_A} or \texttt{slot\_B} was written, leaking
+\texttt{victim\_balance\ \textless{}\ threshold}.
+
+\textbf{Fix hint}: the contract compiler must lower encrypted JUMPI to:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v\_A = compute\_branch\_A();}
+\NormalTok{v\_B = compute\_branch\_B();}
+\NormalTok{sstore(slot\_A, FHE.cmux(cond, v\_A, sload(slot\_A)));}
+\NormalTok{sstore(slot\_B, FHE.cmux(cond, sload(slot\_B), v\_B));}
+\end{Highlighting}
+\end{Shaded}
+
+i.e., always read+write both slots, mux the result. The RW set then
+includes both slots regardless of condition. This is expensive
+(\textasciitilde2× gas) but is the only correct path for oblivious
+branching at the EVM level.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-018 --- LP-068 cross-chain replay
+protection}\label{q30-fhe-018--lp-068-cross-chain-replay-protection}
+
+\textbf{Severity}: Medium.
+
+\textbf{Files}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-068 §"Cross-Chain Nullifier Sync" (line 56):
+  \texttt{nullifier\ =\ Poseidon2(commitment\ ∥\ spending\_key\ ∥\ sourceChainID)}
+\end{itemize}
+
+\textbf{Scenario}: the destination chain ID is \textbf{not} part of the
+nullifier. A user deposits on chain \texttt{S}, withdraws on chain
+\texttt{D1}. The nullifier is \(N = H(\text{commitment} \| sk \| S)\),
+registered on \(D1\). Now the warp message also reaches \(D2\) (or an
+attacker re-routes it). \(D2\) has not seen \(N\), so the withdrawal
+succeeds again. The attacker drains liquidity on \(D2\).
+
+LP-068 §Security item 4 claims "Cross-chain replay is prevented by
+including the source chain ID in the nullifier" --- but this prevents
+\emph{source-side} replay, not \emph{destination-side} replay. The
+destination chain ID being absent from the nullifier means the nullifier
+is the same on every destination chain. A relayer can re-broadcast the
+same warp message to multiple destinations.
+
+\textbf{Fix hint}: include destination in the nullifier:
+\(N = H(\text{commitment} \| sk \| S \| D \| \text{sequence})\).
+Nullifier is then unique per source-destination pair. Maintain a global
+nullifier registry (B-Chain) that aggregates nullifiers across all
+chains; reject any nullifier already seen on any destination.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-019 --- SSTORE refund pattern leaks first-write
+vs.
+update}\label{q30-fhe-019--sstore-refund-pattern-leaks-first-write-vs-update}
+
+\textbf{Severity}: Medium.
+
+\textbf{Files}: \texttt{lux/precompile/fhe/contract.go:920-994}
+(storeCiphertext loop).
+
+\textbf{Scenario}: the \texttt{storeCiphertext} function writes the
+ciphertext as a sequence of 32-byte chunks via
+\texttt{stateDB.SetState}. EVM SSTORE has different gas costs for fresh
+slots (20 000 gas) vs. update slots (5 000 gas) vs. zero-clear (refund
+15 000 gas). The total gas for a confidential ERC-20 transfer therefore
+reveals:
+
+\begin{itemize}
+\tightlist
+\item
+  Whether the sender\textquotesingle s balance slot already existed
+  (existing user vs. new user).
+\item
+  Whether the recipient\textquotesingle s balance slot already existed.
+\item
+  The size class of the ciphertext (uint8 = 8 KB = 256 chunks vs.
+  uint256 = 32 KB = 1024 chunks).
+\end{itemize}
+
+\textbf{Attack}: passive gas analysis. Surveillance is straightforward.
+
+\textbf{Fix hint}: pre-allocate maximum-size slots at deployment time;
+overwrite in place. Pad ciphertexts to a fixed size class (e.g., always
+32 KB). Use SSTORE patterns that have constant gas cost (write 32 KB of
+zeros first, then overwrite with ciphertext --- accept the extra gas as
+the cost of confidentiality).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-020 --- Handle =
+\texttt{keccak256(ct)} collides on bit-identical
+ciphertexts}{Q3.0-FHE-020 --- Handle = keccak256(ct) collides on bit-identical ciphertexts}}\label{q30-fhe-020--handle--keccak256ct-collides-on-bit-identical-ciphertexts}
+
+\textbf{Severity}: Low.
+
+\textbf{Files}: \texttt{lux/precompile/fhe/contract.go:935-936}.
+
+\textbf{Scenario}: \texttt{handle\ =\ keccak256(ct)}. Two ciphertexts
+with identical bytes produce the same handle. Under randomised LWE
+encryption, identical ciphertexts are negligible probability; but with
+the deterministic seed in Q3.0-FHE-001, a deterministic-encryption mode
+(e.g., \texttt{tfheTrivialEncrypt(constant)}) collides for identical
+plaintexts. Two separate users encrypting "10" trivially get the same
+handle; the second user\textquotesingle s encryption silently aliases to
+the first\textquotesingle s slot.
+
+\textbf{Fix hint}: handle should include caller and a sequence:
+\(H = \text{keccak256}(caller \| nonce \| ct)\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-021 --- \texttt{tfheRandom} is
+keyed by user-supplied
+seed}{Q3.0-FHE-021 --- tfheRandom is keyed by user-supplied seed}}\label{q30-fhe-021--tfherandom-is-keyed-by-user-supplied-seed}
+
+\textbf{Severity}: Low.
+
+\textbf{Files}: \texttt{lux/precompile/fhe/fhe\_ops.go:608-619} (called
+via \texttt{handleRand}).
+
+\textbf{Scenario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ tfheRandom}\OperatorTok{(}\NormalTok{fheType }\DataTypeTok{uint8}\OperatorTok{,}\NormalTok{ seed }\DataTypeTok{uint64}\OperatorTok{)} \OperatorTok{[]}\DataTypeTok{byte} \OperatorTok{\{}
+\NormalTok{    seedBytes }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DecValTok{32}\OperatorTok{)}
+\NormalTok{    binary}\OperatorTok{.}\NormalTok{BigEndian}\OperatorTok{.}\NormalTok{PutUint64}\OperatorTok{(}\NormalTok{seedBytes}\OperatorTok{[}\DecValTok{24}\OperatorTok{:],}\NormalTok{ seed}\OperatorTok{)}
+\NormalTok{    rng }\OperatorTok{:=}\NormalTok{ fhe}\OperatorTok{.}\NormalTok{NewFheRNG}\OperatorTok{(}\NormalTok{params}\OperatorTok{,}\NormalTok{ secretKey}\OperatorTok{,}\NormalTok{ seedBytes}\OperatorTok{)}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The caller supplies the seed. There is no entropy beyond the
+caller\textquotesingle s input. Two callers supplying the same seed
+produce the same encrypted "random" value. A confidential gambling
+contract that reads \texttt{fhe.rand} is trivially predictable.
+
+Worse: the function uses \texttt{secretKey} (Q3.0-FHE-001 → public) plus
+the caller\textquotesingle s seed → the "random" output is
+deterministically computable off-chain by anyone.
+
+\textbf{Fix hint}: derive the seed from
+\texttt{(blockhash,\ tx\_hash,\ salt)} and HKDF through the threshold
+key. Or use a VRF (LP-019 already has FROST-VRF). Never accept
+caller-controlled seeds for on-chain randomness.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-022 ---
+\texttt{tfheTrivialEncrypt} is not trivial
+encryption}{Q3.0-FHE-022 --- tfheTrivialEncrypt is not trivial encryption}}\label{q30-fhe-022--tfhetrivialencrypt-is-not-trivial-encryption}
+
+\textbf{Severity}: Info.
+
+\textbf{Files}: \texttt{lux/precompile/fhe/fhe\_ops.go:584-594}.
+
+\textbf{Scenario}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ tfheTrivialEncrypt}\OperatorTok{(}\NormalTok{plaintext }\OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}\OperatorTok{,}\NormalTok{ toType }\DataTypeTok{uint8}\OperatorTok{)} \OperatorTok{[]}\DataTypeTok{byte} \OperatorTok{\{}
+    \OperatorTok{...}
+\NormalTok{    ct }\OperatorTok{:=}\NormalTok{ encryptor}\OperatorTok{.}\NormalTok{EncryptUint64}\OperatorTok{(}\NormalTok{plaintext}\OperatorTok{.}\NormalTok{Uint64}\OperatorTok{(),}\NormalTok{ targetType}\OperatorTok{)}
+    \ControlFlowTok{return}\NormalTok{ serializeBitCiphertext}\OperatorTok{(}\NormalTok{ct}\OperatorTok{)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Comment says "Use encryptor for now (trivial encryption would be
+noiseless)". Trivial encryption in TFHE is "embed the plaintext directly
+with zero noise" --- which would be safe for public constants. The
+current code uses real encryption with real noise, wasting the noise
+budget for what should be a freebie. Not a security bug, but a
+correctness debt.
+
+\textbf{Fix hint}: implement actual trivial encryption (noiseless RLWE
+sample with the plaintext in the constant term). Document that trivial
+encryption MUST NOT be used for secret data.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-FHE-024 --- LP-013 v1\textquotesingle s "21 GPU
+kernels" never had passing tests in v0.54
+timeline}\label{q30-fhe-024--lp-013-v1s-21-gpu-kernels-never-had-passing-tests-in-v054-timeline}
+
+\textbf{Severity}: Info.
+
+\textbf{Files}: LP-013 v1 (2025-10-01), LP-013 v2 (this LP). LP-013 v2
+says "v1.0 --- 21 GPU TFHE kernels." No PASS evidence on Apple M1 Max
+for any of the 21. The CUDA mirror in v0.55 ("same kernel signatures,
+different SM indexing") is also empty.
+
+This is a documentation truthfulness issue, not an exploit. Flagging so
+ops/marketing does not repeat the 200 tx/s/GPU-on-H100 claim on the
+production landing page on Dec 25.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-FHE-025 --- \texttt{evm256}
+interpreter does not
+exist}{Q3.0-FHE-025 --- evm256 interpreter does not exist}}\label{q30-fhe-025--evm256-interpreter-does-not-exist}
+
+\textbf{Severity}: Info.
+
+\textbf{Files}: LP-013 §"Encrypted EVM (\texttt{evm256.metal})". No file
+by that name in the tree.
+
+\textbf{Implication}: the LP-067 contract template that calls
+\texttt{fhe.add} and \texttt{fhe.sub} resolves to the precompile-fhe Go
+path, not to an \texttt{evm256} interpreter. The opcode-level encrypted
+EVM is design-only. LP-013 v0.56 (full opcode coverage including CALL
+family, LOGn) is unimplemented.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Architectural concerns for
+FHE-on-Quasar}\label{architectural-concerns-for-fhe-on-quasar}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{TFHE soundness has no on-chain verification.} Quasar
+  3.0\textquotesingle s cert pipeline is structured around verifying
+  signatures (BLS, Ringtail, ML-DSA-Groth16) and
+  \texttt{KnownTotalOrder}. An FHE attestation is a \emph{different}
+  class of statement: "this circuit was evaluated correctly on this
+  ciphertext under this evaluation key, producing this output
+  ciphertext". This requires verifiable FHE (a SNARK over a FHE circuit)
+  or a TEE attestation (LP-065). The current design pretends a HMAC over
+  a hash of (circuit, input, output, BSK\_id) is enough --- it
+  isn\textquotesingle t.
+\item
+  \textbf{F-Chain is the most centralised chain in the topology.}
+  Because the secret key is held by the threshold (LP-066) or,
+  currently, universally derivable (Q3.0-FHE-001), the security
+  perimeter for confidentiality is the M-Chain DKG ceremony. A breach of
+  the ceremony breaks every confidential balance ever encrypted. There
+  is no per-tx forward secrecy; rotating the bootstrap key
+  (Q3.0-FHE-008) does not re-protect old ciphertexts.
+\item
+  \textbf{Performance targets and reality differ by 1000× to 1.4
+  million×.} The fheCRDT audit measured 0.24 LWW-Register merges/sec on
+  M1 Max. LP-013 promises 200 tx/s/GPU on H100 and \textasciitilde5 tx/s
+  on M1 Max. There is no kernel that delivers either number; the Go
+  reference is 1,000× slower than the M1 Max claim. \textbf{This LP
+  cannot be production-ready for Dec 25.}
+\item
+  \textbf{Quasar 3.0\textquotesingle s "one GPU process for consensus,
+  DEX, EVM, and FHE in lockstep" is incompatible with Q3.0-FHE-014.} GPU
+  side-channel isolation requires \emph{not} sharing the GPU between FHE
+  and other workloads. Co-residency of \texttt{drain\_fhe} with
+  \texttt{drain\_exec} on the same GPU (LP-013 §"Wave-tick
+  co-residency") makes side-channel attacks possible from inside the EVM
+  workload itself: an adversary\textquotesingle s plaintext contract can
+  probe the L2 cache while a victim\textquotesingle s encrypted contract
+  bootstraps. Either F-Chain runs on dedicated FHE-only GPUs, or the
+  "lockstep" claim is incompatible with FHE security.
+\item
+  \textbf{The HMAC-keccak placeholder (LP-132 v0.38) is unsuitable for
+  F-Chain at any version.} For BLS/Ringtail/ML-DSA, the placeholder is a
+  temporary stand-in until v0.43--v0.45. For F-Chain, there is no "real
+  verifier swap" planned, because verifiable FHE is not in any roadmap.
+  \textbf{F-Chain cannot share the placeholder strategy.}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Must-fix-pre-launch (Dec 25, 2025) ---
+ordered}\label{must-fix-pre-launch-dec-25-2025--ordered}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Q3.0-FHE-001} --- Replace deterministic-seed keygen with a
+  real ceremony. \emph{Blocker.} Without this, FHE provides zero
+  confidentiality.
+\item
+  \textbf{Q3.0-FHE-002} --- Remove the synchronous \texttt{decrypt}
+  precompile; replace with permit-gated async threshold decryption.
+\item
+  \textbf{Q3.0-FHE-005} --- Implement real input ZK proof in
+  \texttt{tfheVerify}; bind to caller; reject ciphertexts without proof.
+\item
+  \textbf{Q3.0-FHE-006} --- Implement \texttt{tfheSealOutput} with HPKE
+  under the recipient\textquotesingle s public key (or remove the API).
+\item
+  \textbf{Q3.0-FHE-009} --- Define LP-019 §TFHE-DKG; bind
+  \texttt{mchain\_ceremony\_root} to the TFHE bootstrap key transcript;
+  F-Chain must verify the transcript before accepting a new
+  \texttt{fchain\_fhe\_root}.
+\item
+  \textbf{Q3.0-FHE-003} --- Either run F-Chain inside TEEs with
+  attestation via A-Chain, OR restrict to a permissioned validator set
+  with explicit bond-vs-confidential-supply ratio. Pure HMAC-keccak
+  F-Chain attestation must not ship.
+\item
+  \textbf{Q3.0-FHE-012} --- Replace underflow-revert in LP-067 transfer
+  with \texttt{cmux}-based no-op-on-insufficient.
+\item
+  \textbf{Q3.0-FHE-015} --- Pick one \texttt{external\_product} variant;
+  ban the other two on the cert path.
+\item
+  \textbf{Q3.0-FHE-018} --- Include destination chain ID in LP-068
+  nullifier.
+\item
+  \textbf{Q3.0-FHE-007} --- Validate every encrypted SSTORE through the
+  input proof gate before MVCC slot accepts; do not let Block-STM commit
+  unverified ciphertexts.
+\end{enumerate}
+
+If any of \{001, 002, 003, 005, 009\} cannot land before Dec 25,
+\textbf{F-Chain must be marked testnet-only and confidential ERC-20 /
+private teleport must not be activated on mainnet.}
+
+\subsection{Should-fix-post-launch (within 90
+days)}\label{should-fix-post-launch-within-90-days}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  Q3.0-FHE-004 --- Ship at least the Apple Metal kernels, even if not
+  optimal, so block-time targets are met.
+\item
+  Q3.0-FHE-008 --- Atomic key rotation with cross-key re-encryption.
+\item
+  Q3.0-FHE-010 --- Publish F-Chain validator set composition and bond.
+\item
+  Q3.0-FHE-011 --- Async decryption with nonce/permit binding.
+\item
+  Q3.0-FHE-013 --- Compose LP-067 with LP-064 (privacy mixer) for graph
+  privacy.
+\item
+  Q3.0-FHE-014 --- Document GPU dedication requirement for F-Chain
+  validators.
+\item
+  Q3.0-FHE-016 --- Property test for noise budget invariants.
+\item
+  Q3.0-FHE-017 --- Compiler lowering for oblivious branching.
+\item
+  Q3.0-FHE-019 --- Pad SSTORE gas to constant cost.
+\end{enumerate}
+
+\subsection{Lower priority}\label{lower-priority}
+
+20--25. Q3.0-FHE-020 through 025.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{References}\label{references}
+
+\begin{itemize}
+\tightlist
+\item
+  LP-013 v2 (this scope): \texttt{lux/lps/LP-013-fhe-gpu.md}
+\item
+  LP-066: \texttt{lux/lps/LP-066-tfhe.md}
+\item
+  LP-067: \texttt{lux/lps/LP-067-confidential-erc20.md}
+\item
+  LP-068: \texttt{lux/lps/LP-068-private-teleport.md}
+\item
+  LP-019: \texttt{lux/lps/LP-019-threshold-mpc.md}
+\item
+  LP-134: \texttt{lux/lps/LP-134-lux-chain-topology.md}
+\item
+  LP-132 (cert lanes, HMAC placeholder):
+  \texttt{lux/lps/LP-132-quasar-gpu-execution-adapter.md} lines 204-214
+\item
+  Go reference TFHE: \texttt{lux/fhe/}
+\item
+  Precompile FHE: \texttt{lux/precompile/fhe/}
+\item
+  Prior fhecrdt audit (corroborates noise/Solidity findings):
+  \texttt{lux/audits/2026-04-12-fhecrdt-audit.tex}
+\item
+  Prior red-swarm audit (C-03 keygen divergence, M-03 unauth decrypt):
+  \texttt{lux/audits/2026-04-13-final-red-swarm.md} lines 57-76,
+  196-213.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Copyright (C) 2026, Lux Partners Limited. All rights reserved.
+
+\end{document}

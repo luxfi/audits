@@ -1,0 +1,885 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Final Red Team Audit:
+luxfi/precompile}\label{final-red-team-audit-luxfiprecompile}
+
+\textbf{Date}: 2026-04-13 \textbf{Scope}: 33 canonical precompiles
+across all 11 layers \textbf{Commits}: c81f2b3 (red-flagged fixes),
+a0f33ee (anchor collision fix), c02cbe1 (VRF), be53b08 (coverage),
+06e1fc3 (PRIMER.md) \textbf{Methodology}: Manual code review + static
+analysis of all precompile \texttt{Run()} paths, \texttt{RequiredGas()},
+state access, and cryptographic operations.
+
+\textbf{Summary}: 3 CRITICAL, 3 HIGH, 4 MEDIUM, 3 LOW, 3 INFO
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{CRITICAL FINDINGS}\label{critical-findings}
+
+\subsubsection{{[}CRITICAL{]} C-01: ML-KEM Encapsulate uses crypto/rand
+-\/- consensus
+split}\label{critical-c-01-ml-kem-encapsulate-uses-cryptorand----consensus-split}
+
+\textbf{File}: \texttt{mlkem/contract.go:201} \textbf{Class}: consensus
+\textbf{Adversary capability}: Any EOA sending a transaction
+\textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  User calls ML-KEM precompile at \texttt{0x0200...07} with
+  \texttt{OpEncapsulate} (0x01), mode 0x01 (ML-KEM-768), and a valid
+  public key.
+\item
+  \texttt{encapsulate()} at line 201 calls \texttt{pk.Encapsulate()}
+  with no seed parameter.
+\item
+  \texttt{luxfi/crypto/mlkem.PublicKey.Encapsulate()} internally uses
+  \texttt{crypto/rand.Reader} to generate the encapsulation randomness.
+\item
+  Each validator generates different randomness, producing different
+  (ciphertext, shared\_secret) pairs.
+\item
+  Validators disagree on the EVM return value. Consensus split.
+\end{enumerate}
+
+This was partially fixed for HPKE (commit c81f2b3 added
+\texttt{deriveEffectiveSeed} + \texttt{deterministicReader}) but the
+same fix was NOT applied to the ML-KEM precompile. The HPKE precompile
+correctly requires a caller-supplied 32-byte seed. ML-KEM does not.
+
+\textbf{Impact}: Chain split on any ML-KEM encapsulate call. Every node
+produces a different output. Immediate liveness failure. \textbf{PoC}:
+\texttt{cast\ call\ 0x0200...07\ 0x01\ 0x01\ \textless{}1184\_bytes\_valid\_pk\textgreater{}}
+-\/- each node returns different 1120 bytes. \textbf{Fix}: Add mandatory
+32-byte seed parameter to ML-KEM encapsulate input format (identical
+pattern to HPKE). Use \texttt{deriveEffectiveSeed(caller,\ seed)} and
+feed the result into
+\texttt{mlkem.EncapsulateDeterministic(pk,\ derivedSeed)}. If
+\texttt{luxfi/crypto/mlkem} does not expose a deterministic variant, add
+one. \textbf{Verified by}: Direct code trace. \texttt{pk.Encapsulate()}
+has no seed parameter; the underlying Kyber implementation samples from
+\texttt{crypto/rand}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}CRITICAL{]} C-02: X-Wing Encapsulate uses crypto/rand
+-\/- consensus
+split}\label{critical-c-02-x-wing-encapsulate-uses-cryptorand----consensus-split}
+
+\textbf{File}: \texttt{xwing/contract.go:93} \textbf{Class}: consensus
+\textbf{Adversary capability}: Any EOA sending a transaction
+\textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  User calls X-Wing precompile at \texttt{0x2221} with
+  \texttt{OpEncapsulate} (0x02) and a valid public key.
+\item
+  Line 93: \texttt{ct,\ ss,\ err\ :=\ scheme.Encapsulate(pk)} calls
+  \texttt{circl/kem/xwing.Scheme().Encapsulate()}.
+\item
+  circl\textquotesingle s \texttt{Encapsulate} internally uses
+  \texttt{crypto/rand} for both the X25519 ephemeral key and the
+  ML-KEM-768 encapsulation randomness.
+\item
+  Each validator generates different \texttt{(ct,\ ss)}. Consensus
+  split.
+\end{enumerate}
+
+Same class as C-01 but on a different precompile. The X-Wing precompile
+was not touched in commit c81f2b3.
+
+\textbf{Impact}: Chain split on any X-Wing encapsulate call.
+\textbf{PoC}:
+\texttt{cast\ call\ 0x2221\ 0x02\ \textless{}xwing\_pk\_bytes\textgreater{}}
+-\/- different output per node. \textbf{Fix}: Add mandatory 32-byte
+seed. Use
+\texttt{scheme.EncapsulateDeterministic(pk,\ deterministicReader(deriveEffectiveSeed(caller,\ seed)))}
+or equivalent. circl supports \texttt{EncapsulateDeterministic} with an
+\texttt{io.Reader}. \textbf{Verified by}: Direct code trace.
+\texttt{scheme.Encapsulate(pk)} passes nil randomness reader, defaulting
+to \texttt{crypto/rand}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}CRITICAL{]} C-03: FHE initTFHE generates keys from
+crypto/rand -\/- consensus
+divergence}\label{critical-c-03-fhe-inittfhe-generates-keys-from-cryptorand----consensus-divergence}
+
+\textbf{File}: \texttt{fhe/fhe\_ops.go:31-53} \textbf{Class}: consensus
+\textbf{Adversary capability}: Any EOA sending the first FHE operation
+after node restart \textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{initTFHE()} runs via \texttt{sync.Once} on the first FHE call
+  after process start.
+\item
+  Line 42: \texttt{kg.GenKeyPair()} generates \texttt{secretKey} and
+  \texttt{publicKey} using \texttt{crypto/rand}.
+\item
+  Every validator generates different FHE keys at startup.
+\item
+  All subsequent FHE operations (encrypt, add, mul, etc.) produce
+  ciphertexts under different keys.
+\item
+  FHE ciphertext handles (stored as \texttt{common.Hash} of ciphertext
+  bytes) differ across validators.
+\item
+  Any transaction that calls \texttt{fhe.add(handle1,\ handle2)} returns
+  different results on each node.
+\end{enumerate}
+
+Additionally, line 628 in \texttt{tfheGetNetworkPublicKey()} has a
+fallback that calls \texttt{rand.Read(result)} if
+\texttt{publicKey.MarshalBinary()} fails -\/- another consensus
+divergence path.
+
+\textbf{Impact}: Complete consensus failure for all FHE operations.
+Every FHE ciphertext is node-specific. \textbf{PoC}: Any FHE
+\texttt{asEuint64(42)} call returns a different handle on each node
+because the encryption key differs. \textbf{Fix}: FHE keys MUST be
+derived from a deterministic seed committed on-chain (e.g., genesis
+config or a key-ceremony output stored in chain state).
+\texttt{initTFHE()} must accept a \texttt{{[}32{]}byte} master seed and
+derive all keys from it using HKDF. The \texttt{rand.Read} fallback in
+\texttt{tfheGetNetworkPublicKey} must be removed entirely (return an
+error instead). \textbf{Verified by}: Direct code trace.
+\texttt{fhe.NewKeyGenerator(params)} followed by \texttt{GenKeyPair()}
+with no seed.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{HIGH FINDINGS}\label{high-findings}
+
+\subsubsection{{[}HIGH{]} H-01: bridge/gateway.go and dex/perpetuals.go
+use time.Now() in state-modifying
+paths}\label{high-h-01-bridgegatewaygo-and-dexperpetualsgo-use-timenow-in-state-modifying-paths}
+
+\textbf{File}: \texttt{bridge/gateway.go:164,194,215,247,293,378,453};
+\texttt{dex/perpetuals.go:73,82,393};
+\texttt{dex/teleport.go:143,161,435,514};
+\texttt{attestation/attestation.go:115,201,366,397,417} \textbf{Class}:
+consensus \textbf{Adversary capability}: Any EOA interacting with
+bridge, perpetuals, or attestation precompiles \textbf{Exploit
+scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{InitiateBridge()} at gateway.go:164 sets
+  \texttt{CreatedAt:\ uint64(time.Now().Unix())}.
+\item
+  Two validators process the same transaction 50ms apart. Validator A
+  sees \texttt{time.Now()} = 1744539600, Validator B sees 1744539601.
+\item
+  The \texttt{CreatedAt} field propagates into the
+  \texttt{BridgeRequest} hash (used as request ID in the
+  \texttt{Requests} map).
+\item
+  If the request ID or any downstream comparison depends on this
+  timestamp, validators disagree on state.
+\end{enumerate}
+
+Similarly, \texttt{teleport.go:143} uses \texttt{time.Now().UnixNano()}
+in \texttt{generateTeleportID()}, making teleport IDs non-deterministic
+across validators.
+
+The PRIMER.md at line 225 explicitly claims: "timestamps come from block
+time, not \texttt{time.Now()}". This claim is false for these
+precompiles.
+
+\textbf{Impact}: Potential consensus split on bridge, teleport, and
+perpetuals operations. Severity depends on whether these map values flow
+into on-chain state (which they do -\/- they\textquotesingle re stored
+in in-memory maps that affect execution outcomes). \textbf{Fix}: Replace
+all \texttt{time.Now()} calls in precompile execution paths with
+\texttt{accessibleState.GetBlockContext().Timestamp()}. The block
+timestamp is consensus-agreed. \textbf{Verified by}: grep for
+\texttt{time.Now()} in non-test \texttt{.go} files under precompile/.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}HIGH{]} H-02: FHE ciphertext store is in-memory, not
+persisted to chain
+state}\label{high-h-02-fhe-ciphertext-store-is-in-memory-not-persisted-to-chain-state}
+
+\textbf{File}: \texttt{fhe/contract.go:920-953} \textbf{Class}: state
+\textbar{} consensus \textbf{Adversary capability}: Any EOA using FHE
+precompile \textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Contract A calls \texttt{fhe.asEuint64(42)}, receiving handle
+  \texttt{0xabcd...}.
+\item
+  Handle is stored in \texttt{ctStore.data} (an in-memory
+  \texttt{map{[}common.Hash{]}{[}{]}byte}).
+\item
+  Contract A stores \texttt{0xabcd...} in EVM storage.
+\item
+  Node restarts. \texttt{ctStore} is empty. FHE keys are regenerated
+  (see C-03).
+\item
+  Contract B reads \texttt{0xabcd...} from storage, calls
+  \texttt{fhe.add(0xabcd...,\ 0x1234...)}.
+\item
+  \texttt{getCiphertext(0xabcd...)} returns \texttt{(nil,\ 0,\ false)}.
+\item
+  \texttt{performFHEOperation} returns \texttt{common.Hash\{\}} (zero
+  hash).
+\item
+  Silently wrong result: add of two encrypted values returns zero.
+\end{enumerate}
+
+This is not just a restart issue. Different nodes joining the network at
+different times never have the same \texttt{ctStore} contents.
+
+\textbf{Impact}: FHE precompile is fundamentally broken for multi-node
+consensus. Ciphertexts exist only in the local process memory of the
+node that created them. \textbf{Fix}: Ciphertext store must be backed by
+EVM state (\texttt{SetState}/\texttt{GetState} on the FHE contract
+address). Each ciphertext handle maps to a storage slot containing the
+serialized ciphertext. This is expensive (SSTOREs) but necessary for
+correctness. \textbf{Verified by}: \texttt{ctStore} is a package-level
+\texttt{var} initialized with \texttt{make(map{[}...{]})}. No
+persistence mechanism.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}HIGH{]} H-03: Ring size parsed as uint8 -\/- gas
+charged for 255 but ring can trigger O(n) EC
+mults}\label{high-h-03-ring-size-parsed-as-uint8----gas-charged-for-255-but-ring-can-trigger-on-ec-mults}
+
+\textbf{File}: \texttt{ring/contract.go:114,173} \textbf{Class}: gas
+\textbf{Adversary capability}: Any EOA \textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{RequiredGas()} at line 114 reads \texttt{ringSize} as
+  \texttt{int(input{[}2{]})}, a single byte. Maximum 255.
+\item
+  Gas = \texttt{GasVerifyBase\ +\ 255\ *\ GasVerifyPerMember} =
+  \texttt{4000\ +\ 255\ *\ 2500} = \texttt{641,500} gas.
+\item
+  The actual ring verify loop (line 238-263) does 2 EC scalar
+  multiplications + 2 EC additions per ring member on secp256k1.
+\item
+  For ringSize=255, that is 510 scalar mults + 510 additions, plus 255
+  hash-to-point (SVDW map, RFC 9380).
+\item
+  Each SVDW hash-to-point involves a modular square root
+  (\textasciitilde200us on CPU). 255 of them = \textasciitilde51ms.
+\item
+  The gas cost of 641,500 is far too cheap for 51ms of CPU work. A
+  standard \texttt{ecrecover} (one EC operation) costs 3,000 gas.
+\item
+  An attacker can fill blocks with ring-sig verifications at below-cost
+  gas, slowing block production.
+\end{enumerate}
+
+\textbf{Impact}: Gas griefing. Attacker can significantly slow block
+processing at below-market-rate gas cost. \textbf{Fix}: Increase
+\texttt{GasVerifyPerMember} for secp256k1 LSAG to at least 6,000
+(reflecting 2 scalar mults per member at 3,000 each, which matches
+ecrecover pricing). Consider capping ring size at 64 or 128 in the
+precompile itself. \textbf{Verified by}: Manual cost analysis. secp256k1
+scalar mult benchmark is \textasciitilde3,000 gas equivalent; LSAG does
+2 per member but charges only 2,500.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{MEDIUM FINDINGS}\label{medium-findings}
+
+\subsubsection{{[}MEDIUM{]} M-01: StableSwap Newton iteration with
+maxIterations=256 -\/- no gas scaling for
+iterations}\label{medium-m-01-stableswap-newton-iteration-with-maxiterations256----no-gas-scaling-for-iterations}
+
+\textbf{File}: \texttt{stableswap/contract.go:52,288} \textbf{Class}:
+gas \textbf{Adversary capability}: Any EOA \textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  StableSwap charges flat \texttt{GasBase\ =\ 5000} gas for all
+  operations.
+\item
+  \texttt{computeD()} runs Newton\textquotesingle s method with up to
+  256 iterations (line 288: \texttt{for\ range\ maxIterations}).
+\item
+  Each iteration performs multiple \texttt{big.Int} multiplications,
+  divisions, additions on 256-bit numbers across \texttt{n} tokens.
+\item
+  With adversarial inputs (e.g., \texttt{amp} close to zero, highly
+  imbalanced balances, \texttt{n=16} tokens), convergence can take many
+  iterations.
+\item
+  256 iterations * 16 tokens * 5 big.Int operations \textasciitilde=
+  20,480 big.Int ops for 5,000 gas.
+\item
+  For comparison, MODEXP (precompile 0x05) charges gas proportional to
+  modulus size and exponent.
+\end{enumerate}
+
+Additionally, \texttt{computeY()} (called from \texttt{getDy}) runs its
+own Newton loop of up to 256 iterations, so a \texttt{getDy} call can
+trigger 512 total iterations for 5,000 gas.
+
+\textbf{Impact}: Gas griefing on StableSwap. Attacker crafts
+pathological inputs that maximize iterations while paying minimal gas.
+\textbf{Fix}: Gas should scale with \texttt{n} (number of tokens) and
+include a per-iteration component, or cap \texttt{n} at a small value
+(e.g., 4) and increase base gas to cover worst-case 256 iterations.
+\textbf{Verified by}: Code inspection of \texttt{computeD} and
+\texttt{computeY} loops; both iterate up to 256 times.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}MEDIUM{]} M-02: HPKE RequiredGas returns 0 for unknown
+operations -\/- free gas
+consumption}\label{medium-m-02-hpke-requiredgas-returns-0-for-unknown-operations----free-gas-consumption}
+
+\textbf{File}: \texttt{hpke/contract.go:169} \textbf{Class}: gas
+\textbf{Adversary capability}: Any EOA \textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{RequiredGas()} returns 0 for any operation byte that is not
+  \texttt{OpSingleShotSeal} (0x20).
+\item
+  \texttt{Run()} at line 182 calls \texttt{RequiredGas()}, gets 0,
+  deducts 0 gas.
+\item
+  \texttt{Run()} then hits the \texttt{default} case at line 200,
+  returning an error.
+\item
+  The error path at line 204 returns \texttt{suppliedGas\ -\ gasCost} =
+  \texttt{suppliedGas\ -\ 0} = full gas refund.
+\item
+  The call consumes zero net gas despite the EVM needing to dispatch,
+  deserialize, and process the call.
+\end{enumerate}
+
+This is a minor gas accounting issue (the error is returned so no state
+changes), but it violates the principle that failed precompile calls
+should consume at least the base gas.
+
+The same pattern exists in multiple precompiles:
+\texttt{ring/contract.go:95,111}, \texttt{poseidon/contract.go:74},
+\texttt{curve25519/contract.go:79}, \texttt{pasta/contract.go:77},
+\texttt{babyjubjub/contract.go:100}.
+
+\textbf{Impact}: Negligible economic impact (errors are cheap), but
+violates gas accounting invariant. \textbf{Fix}: All
+\texttt{RequiredGas()} functions should return a minimum base gas (e.g.,
+100) for any non-empty input, even for invalid operations.
+\textbf{Verified by}: Code inspection of RequiredGas default branches.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}MEDIUM{]} M-03: FHE decrypt exposes plaintext in EVM
+return data -\/- breaks confidentiality
+model}\label{medium-m-03-fhe-decrypt-exposes-plaintext-in-evm-return-data----breaks-confidentiality-model}
+
+\textbf{File}: \texttt{fhe/contract.go:192} (handleDecrypt selector),
+\texttt{fhe/fhe\_ops.go:559-571} \textbf{Class}: crypto
+\textbf{Adversary capability}: Any contract that holds a ciphertext
+handle \textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Contract A stores an FHE-encrypted balance as handle \texttt{H}.
+\item
+  Any contract (including malicious contract B) that knows handle
+  \texttt{H} can call \texttt{fhe.decrypt(H)}.
+\item
+  \texttt{handleDecrypt} calls \texttt{tfheDecrypt(ct,\ ctType)} which
+  uses the global \texttt{decryptor} to decrypt.
+\item
+  The plaintext is returned as a \texttt{*big.Int} in the EVM return
+  data.
+\item
+  Since EVM return data is visible to the caller (and in trace logs),
+  the encrypted value is now public.
+\end{enumerate}
+
+There is no access control on which addresses can decrypt which
+ciphertext handles. The handle hash itself serves as the "capability",
+but handles are 32-byte keccak hashes that can be read from storage
+slots by anyone.
+
+\textbf{Impact}: Any FHE-encrypted value can be decrypted by any
+contract that knows the handle, destroying the confidentiality guarantee
+of FHE. \textbf{Fix}: \texttt{handleDecrypt} should be gated: only the
+original encrypting caller (or a threshold of designated decryptors)
+should be able to decrypt. Alternatively, remove \texttt{decrypt} from
+the on-chain precompile entirely -\/- decryption should happen off-chain
+via a threshold decryption protocol, not via an on-chain precompile that
+reveals plaintext in calldata. \textbf{Verified by}: Code trace through
+\texttt{handleDecrypt} -\textgreater{} \texttt{performFHEDecrypt}
+-\textgreater{} \texttt{tfheDecrypt}. No caller authorization check.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}MEDIUM{]} M-04: Anchor precompile allows any caller to
+submit for any appID -\/- no
+authorization}\label{medium-m-04-anchor-precompile-allows-any-caller-to-submit-for-any-appid----no-authorization}
+
+\textbf{File}: \texttt{anchor/contract.go:107-152} \textbf{Class}: state
+\textbf{Adversary capability}: Any EOA or contract \textbf{Exploit
+scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Legitimate application registers appID \texttt{0xDEAD...} and submits
+  anchor at height 1.
+\item
+  Attacker calls \texttt{submit(0xDEAD...,\ 2,\ 0xFFFF...)} with a
+  garbage root hash.
+\item
+  The anchor precompile stores the garbage root at height 2 for appID
+  \texttt{0xDEAD...}.
+\item
+  The legitimate application can no longer submit at height 2 (already
+  taken) and must use height 3+.
+\item
+  Verifiers who query height 2 get a garbage root, believing the
+  application anchored it.
+\end{enumerate}
+
+The anchor precompile has no access control. Any address can submit
+anchors for any appID. The \texttt{appID} is a 32-byte hash with no
+on-chain registration or ownership concept.
+
+\textbf{Impact}: Anchor integrity compromised. Attackers can front-run
+legitimate anchors and insert fake roots, breaking the monotonic trust
+chain for any CRDT application. \textbf{Fix}: Add an \texttt{owner}
+mapping: the first \texttt{submit} for a given \texttt{appID} sets
+\texttt{msg.sender} as the owner. Subsequent submits require
+\texttt{caller\ ==\ owner}. Alternatively, derive \texttt{appID} from
+\texttt{caller} address to prevent cross-caller collision.
+\textbf{Verified by}: Code inspection. \texttt{submit()} only checks
+\texttt{readOnly} and height monotonicity, not caller identity.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{LOW FINDINGS}\label{low-findings}
+
+\subsubsection{{[}LOW{]} L-01: FROST liftXCache is an
+unbounded-in-practice cache with 1024 cap but no
+eviction}\label{low-l-01-frost-liftxcache-is-an-unbounded-in-practice-cache-with-1024-cap-but-no-eviction}
+
+\textbf{File}: \texttt{frost/contract.go:148-179} \textbf{Class}: state
+\textbf{Adversary capability}: Contract calling FROST verify with many
+distinct public keys \textbf{Exploit scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker sends 1024 FROST verify calls with distinct public keys.
+\item
+  Cache fills to capacity (1024 entries).
+\item
+  All subsequent FROST verifications with new keys skip the cache (line
+  175: \texttt{if\ len(liftXCache)\ \textless{}\ 1024}).
+\item
+  The cache becomes useless for new keys while holding potentially stale
+  entries.
+\end{enumerate}
+
+This is a performance issue, not a security vulnerability. The cache is
+bounded and thread-safe.
+
+\textbf{Impact}: Performance degradation after cache fills. No
+correctness impact. \textbf{Fix}: Use an LRU cache instead of a
+fixed-size map with no eviction. \textbf{Verified by}: Code inspection.
+Cache has insert-only policy.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}LOW{]} L-02: Ed25519 verify returns nil on invalid
+input instead of
+error}\label{low-l-02-ed25519-verify-returns-nil-on-invalid-input-instead-of-error}
+
+\textbf{File}: \texttt{ed25519/contract.go:88-89} \textbf{Class}:
+parsing \textbf{Adversary capability}: None (informational)
+
+When input length != 128, \texttt{Run()} returns
+\texttt{(nil,\ remainingGas,\ nil)} -\/- no error. This is the EVM
+convention for "verification failed" but differs from other precompiles
+(e.g., MLDSA returns an error for invalid input length). Inconsistent
+error reporting across precompiles could confuse Solidity developers who
+expect \texttt{revert} on malformed input.
+
+\textbf{Impact}: Developer confusion. No consensus or security impact.
+\textbf{Fix}: Standardize: either all verify precompiles return nil+nil
+on bad input (current Ed25519 behavior) or all return nil+error. Choose
+one and apply consistently. \textbf{Verified by}: Comparison of error
+handling across ed25519, mldsa, frost, slhdsa, cggmp21.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}LOW{]} L-03: MLDSA batch verify gas is decoupled from
+per-signature message
+length}\label{low-l-03-mldsa-batch-verify-gas-is-decoupled-from-per-signature-message-length}
+
+\textbf{File}: \texttt{mldsa/contract.go:140-147} \textbf{Class}: gas
+\textbf{Adversary capability}: Contract submitting batch verify with
+large messages
+
+\texttt{requiredGasBatch()} charges
+\texttt{BatchVerifyBaseGas\ +\ count\ *\ BatchVerifyPerSigGas} (50k + N
+* 40k). It does not account for per-message length. A batch of 10
+signatures where each message is 1MB would cost the same gas as 10
+signatures with 32-byte messages, despite vastly more hashing work.
+
+\textbf{Impact}: Minor gas undercharging for large-message batch
+verifications. \textbf{Fix}: Add per-byte gas component to batch verify:
+iterate the header to sum message lengths and add
+\texttt{totalMsgBytes\ *\ MLDSAVerifyPerByteGas}. \textbf{Verified by}:
+Code inspection of \texttt{requiredGasBatch}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{INFO FINDINGS}\label{info-findings}
+
+\subsubsection{{[}INFO{]} I-01: PRIMER.md claims "no crypto/rand" but
+SYMMETRIC\_CRYPTO\_ANALYSIS.md documents the HPKE
+bug}\label{info-i-01-primermd-claims-no-cryptorand-but-symmetric_crypto_analysismd-documents-the-hpke-bug}
+
+PRIMER.md line 344: "No crypto/rand...no non-deterministic library
+behavior." SYMMETRIC\_CRYPTO\_ANALYSIS.md line 199 and 268: Documents
+the exact HPKE \texttt{crypto/rand} consensus bug and its fix.
+
+The fix was applied to HPKE (commit c81f2b3). But the PRIMER claim is
+still false for ML-KEM (C-01), X-Wing (C-02), and FHE (C-03). Update
+PRIMER.md to accurately reflect the status.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}INFO{]} I-02: GPU fast path in HPKE singleShotSealGPU
+is a
+no-op}\label{info-i-02-gpu-fast-path-in-hpke-singleshotsealgpu-is-a-no-op}
+
+\textbf{File}: \texttt{hpke/contract.go:431-478}
+
+\texttt{singleShotSealGPU()} creates GPU tensors, calls
+\texttt{lattice.KyberEncaps()}, syncs, then... falls through to
+\texttt{singleShotSealCPU(params)} at line 477. The GPU result is
+computed but discarded. The function always returns the CPU result.
+
+This is not a bug (the CPU path is correct and deterministic), but the
+GPU path is dead code that wastes GPU cycles when \texttt{accel} is
+available.
+
+\textbf{Fix}: Either wire the GPU KEM result into the HPKE key schedule,
+or remove the GPU fast path until it\textquotesingle s properly
+integrated.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{{[}INFO{]} I-03: BLS12-381 subgroup checks are correctly
+implemented}\label{info-i-03-bls12-381-subgroup-checks-are-correctly-implemented}
+
+\texttt{bls12381/contract.go:101} calls \texttt{pt.IsInSubGroup()} for
+G1 points after \texttt{IsOnCurve()}. Line 149 does the same for G2
+points. This is correct per EIP-2537 and prevents rogue-key and
+small-subgroup attacks on pairing inputs. Verified safe.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{VERIFICATION OF PRIOR RED FLAGS (commit
+c81f2b3)}\label{verification-of-prior-red-flags-commit-c81f2b3}
+
+\subsubsection{Flag 1: GPU
+non-determinism}\label{flag-1-gpu-non-determinism}
+
+\textbf{Status}: VERIFIED SAFE (with caveat). GPU and CPU must produce
+identical mathematical results. The comment in
+\texttt{mldsa/contract.go:222-228} documents this correctly. However,
+the statement "deterministic across validators built the same way" is a
+consensus assumption that must be enforced at the operator level (all
+validators MUST use the same build tags). This is acceptable.
+
+\subsubsection{Flag 2: Garbage keys}\label{flag-2-garbage-keys}
+
+\textbf{Status}: VERIFIED SAFE. All signature precompiles (mldsa,
+slhdsa, frost, cggmp21, ed25519) pass public keys through their
+respective library\textquotesingle s \texttt{PublicKeyFromBytes()} or
+\texttt{UnmarshalBinary()} which validates key structure. Invalid keys
+return errors. Garbage keys do not verify; they do not crash.
+
+\subsubsection{Flag 3: HPKE seed
+collision}\label{flag-3-hpke-seed-collision}
+
+\textbf{Status}: FIX VERIFIED.
+\texttt{deriveEffectiveSeed(caller,\ raw)} at
+\texttt{hpke/contract.go:384-392} correctly domain-separates with
+\texttt{"HPKE\_SEAL\_v1"\ \textbar{}\textbar{}\ caller.Bytes()\ \textbar{}\textbar{}\ raw{[}:{]}}.
+Two different callers with the same raw seed produce different effective
+seeds. Same caller with same seed is deterministic (consensus safe).
+
+\textbf{Attempted bypass}: Could an attacker force two contracts to
+share a caller address? No. The \texttt{caller} parameter comes from the
+EVM execution context (\texttt{msg.sender}), which is the direct caller
+of the precompile. Two different contracts always have different
+addresses. A delegatecall from proxy A to implementation B would use
+A\textquotesingle s address as caller, which is correct (the proxy is
+the entity choosing the seed).
+
+\subsubsection{Flag 4: init()
+double-register}\label{flag-4-init-double-register}
+
+\textbf{Status}: FIX VERIFIED. \texttt{modules/registerer.go:219-230}
+now produces descriptive error messages including both the collision key
+and address. The fail-fast behavior was already present (returning
+error); the fix improves diagnostics.
+
+\subsubsection{Flag 5: isLegacyFormat
+heuristic}\label{flag-5-islegacyformat-heuristic}
+
+\textbf{Status}: FIX VERIFIED. \texttt{mldsa/contract.go:425-429}
+confirms both \texttt{isLegacyFormat()} and \texttt{RunLegacy()} are
+deleted. The comment explains the removal. All ML-DSA input now requires
+an explicit mode byte (0x44, 0x65, or 0x87). No bypass possible -\/- the
+dispatch in \texttt{Run()} at line 179 only accepts
+\texttt{OpBatchVerify} (0x10) or a valid mode byte.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{VERIFIED SAFE}\label{verified-safe}
+
+The following components were examined and found to be correctly
+implemented:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{BLS12-381 (bls12381/)}: Subgroup checks on G1 and G2 inputs.
+  EIP-2537 compliant. No rogue-key attack surface.
+\item
+  \textbf{Ed25519 (ed25519/)}: Standard library
+  \texttt{crypto/ed25519.Verify()} for CPU path. Fixed-size 128-byte
+  input prevents buffer issues.
+\item
+  \textbf{Poseidon (poseidon/)}: gnark-crypto \texttt{poseidon2.Hash()}
+  is deterministic. No randomness. Field element validation via
+  \texttt{fr.Element.SetBytes()} which reduces modulo the BN254 scalar
+  field order.
+\item
+  \textbf{Pedersen (pedersen/)}: gnark-crypto point operations are
+  deterministic. Commitment binding/hiding properties depend on the DLOG
+  assumption.
+\item
+  \textbf{Blake3 (blake3/)}: zeebo/blake3 is deterministic. Keyed hash
+  and Merkle modes correctly implemented.
+\item
+  \textbf{secp256r1 (secp256r1/)}: EIP-7212 P-256 verify. Standard ECDSA
+  verification. No key generation on-chain.
+\item
+  \textbf{sr25519 (sr25519/)}: Verify-only. ChainSafe go-schnorrkel.
+  Deterministic.
+\item
+  \textbf{VRF (vrf/)}: Verify-only (no proving). RFC 9381
+  ECVRF-EDWARDS25519-SHA512-ELL2. Correct domain separation tags.
+  Hash-to-curve uses elligator2 (Edwards25519 native, not
+  try-and-increment).
+\item
+  \textbf{KZG4844 (kzg4844/)}: Uses go-kzg-4844 trusted setup.
+  Deterministic polynomial evaluation and proof verification.
+\item
+  \textbf{Anchor (anchor/)}: Deterministic keccak256 storage slot
+  derivation. Monotonic height enforcement correct. (Auth issue flagged
+  as M-04.)
+\item
+  \textbf{CGGMP21 (cggmp21/)}: Verify-only precompile. No threshold
+  signing on-chain.
+\item
+  \textbf{Ringtail (ringtail/)}: Verify-only. Lattice signature
+  verification is deterministic.
+\item
+  \textbf{Pasta (pasta/)}: Pallas/Vesta point operations via
+  gnark-crypto. Deterministic.
+\item
+  \textbf{BabyJubJub (babyjubjub/)}: BN254 twisted Edwards operations.
+  Deterministic.
+\item
+  \textbf{Curve25519 (curve25519/)}: Point operations on Edwards25519
+  via filippo.io/edwards25519. Deterministic.
+\item
+  \textbf{X25519 (x25519/)}: Diffie-Hellman verify-only (scalar mult).
+  No key generation.
+\item
+  \textbf{Quasar (quasar/)}: BLS aggregate, Verkle, Ringtail, hybrid
+  verification. All deterministic verify-only.
+\item
+  \textbf{Stableswap Newton convergence}: \texttt{maxIterations=256}
+  with \texttt{\textbar{}d\ -\ prevD\textbar{}\ \textless{}=\ 1}
+  termination is deterministic (same inputs always take the same number
+  of iterations with \texttt{big.Int} arithmetic). Gas undercharging is
+  M-01 but no consensus risk.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Blue Handoff}\label{blue-handoff}
+
+\textbf{What Blue got right}:
+
+\begin{itemize}
+\tightlist
+\item
+  HPKE domain separation fix (c81f2b3) is cryptographically sound. The
+  \texttt{deriveEffectiveSeed} construction is correct.
+\item
+  Legacy format removal in MLDSA eliminates an ambiguous parsing path.
+\item
+  BLS12-381 subgroup checks are complete and correct per EIP-2537.
+\item
+  Anchor collision fix (a0f33ee) correctly separates FHE and anchor
+  address ranges.
+\item
+  Ring signature hash-to-point uses SVDW (RFC 9380) with proper domain
+  separation tag.
+\item
+  Module registerer error messages are now diagnostic enough to catch
+  collisions at init time.
+\end{itemize}
+
+\textbf{What Blue missed}:
+
+\begin{itemize}
+\tightlist
+\item
+  ML-KEM and X-Wing have the same \texttt{crypto/rand} consensus bug
+  that was fixed in HPKE.
+\item
+  FHE subsystem is fundamentally non-deterministic (keygen from rand,
+  in-memory ciphertext store).
+\item
+  \texttt{time.Now()} in 4 precompile packages (bridge, dex/perpetuals,
+  dex/teleport, attestation).
+\item
+  No authorization model for anchor or FHE decrypt.
+\item
+  Ring signature gas undercharging relative to actual EC operation cost.
+\end{itemize}
+
+\textbf{Fix priority for Blue}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{C-01 + C-02}: Add deterministic seed to ML-KEM and X-Wing
+  encapsulate (same pattern as HPKE).
+\item
+  \textbf{C-03 + H-02}: Redesign FHE key management (deterministic
+  keygen from chain state) and ciphertext persistence (EVM state-backed
+  store).
+\item
+  \textbf{H-01}: Replace all \texttt{time.Now()} in precompile execution
+  paths with block timestamp.
+\item
+  \textbf{H-03}: Increase ring signature per-member gas to match EC
+  operation cost.
+\item
+  \textbf{M-01}: Add iteration-aware gas to StableSwap.
+\item
+  \textbf{M-03}: Gate FHE decrypt with caller authorization.
+\item
+  \textbf{M-04}: Add appID ownership to anchor.
+\end{enumerate}
+
+\textbf{Re-review scope}: C-01, C-02, C-03, H-01, H-02 after fixes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+RED COMPLETE. Findings ready for Blue. Total: 3 critical, 3 high, 4
+medium, 3 low, 3 info Top 3 for Blue to fix:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  ML-KEM + X-Wing encapsulate use crypto/rand (consensus split)
+\item
+  FHE keygen from crypto/rand + in-memory ciphertext store (consensus
+  split)
+\item
+  time.Now() in bridge/perpetuals/teleport/attestation Run paths
+  (consensus split) Re-review needed: yes -\/- C-01, C-02, C-03, H-01,
+  H-02 Recommendation: do-not-ship
+\end{enumerate}
+
+\end{document}

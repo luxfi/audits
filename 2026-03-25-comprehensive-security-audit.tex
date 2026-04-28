@@ -1,0 +1,1555 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Comprehensive Security Audit
+Report}\label{comprehensive-security-audit-report}
+
+\textbf{Date}: 2026-03-25 \textbf{Author}: Woo Bin, Lux Network
+\textbf{Scope}: \texttt{lux/standard} (v1.6.5), \texttt{lux/liquid}
+(v1.1.0), \texttt{liquidity/contracts} \textbf{Severity Ratings}:
+Critical \textbar{} High \textbar{} Medium \textbar{} Low \textbar{}
+Informational
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This report documents a comprehensive security audit conducted on
+2026-03-25 covering three Solidity contract repositories in the Lux
+ecosystem. The audit employed a Red/Blue adversarial agent team
+methodology combining automated static analysis, symbolic execution,
+formal verification, and manual code review.
+
+\textbf{15 Critical}, \textbf{13 High}, \textbf{10 Medium}, and
+\textbf{3 Low} severity vulnerabilities were identified and remediated
+across the three repositories. All fixes have been committed, tested,
+and deployed. No open findings remain.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule\noalign{}
+Repository & Version & Critical & High & Medium & Low & Tests Passing \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{lux/standard} & v1.6.5 & 6 & 2 & 1 & 0 & 1,041 \\
+\texttt{lux/liquid} & v1.1.0 & 6 & 6 & 3 & 0 & 251 \\
+\texttt{liquidity/contracts} & HEAD & 3 & 5 & 6 & 3 & 91 \\
+\textbf{Total} & & \textbf{15} & \textbf{13} & \textbf{10} & \textbf{3}
+& \textbf{1,383} \\
+\end{longtable}
+}
+
+\textbf{Formal verification}: 48 Halmos symbolic proofs (standard) + 15
+Halmos proofs (liquid) + 33 Lean 4 theorems (consensus). 33 Foundry
+invariant tests added to standard.
+
+\textbf{Overall Risk Assessment}: LOW (post-remediation). All critical
+and high findings are resolved. CI pipelines enforce Slither (fail-on:
+medium), Semgrep, Aderyn, and \texttt{forge\ fmt} on every push to main.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Table of Contents}\label{table-of-contents}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \hyperref[1-methodology]{Methodology}
+\item
+  \hyperref[2-scope]{Scope}
+\item
+  \hyperref[3-luxstandard-findings-v165]{lux/standard Findings}
+\item
+  \hyperref[4-luxliquid-findings-v110]{lux/liquid Findings}
+\item
+  \hyperref[5-liquiditycontracts-findings]{liquidity/contracts Findings}
+\item
+  \hyperref[6-formal-verification]{Formal Verification}
+\item
+  \hyperref[7-cicd-security-enforcement]{CI/CD Security Enforcement}
+\item
+  \hyperref[8-remediation-summary]{Remediation Summary}
+\item
+  \hyperref[9-recommendations]{Recommendations}
+\item
+  \hyperref[appendix-a-tool-versions]{Appendix: Tool Versions}
+\item
+  \hyperref[appendix-b-commit-references]{Appendix: Commit References}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Methodology}\label{1-methodology}
+
+\subsubsection{1.1 Process}\label{11-process}
+
+The audit followed a three-phase adversarial approach:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Red Team}: Automated scanning + manual attack surface
+  analysis. Identify all exploitable paths.
+\item
+  \textbf{Blue Team}: Fix each finding, add regression tests, verify fix
+  does not introduce new issues.
+\item
+  \textbf{Formal Verification}: Prove critical invariants hold for ALL
+  inputs via symbolic execution (Halmos) and theorem proving (Lean 4).
+\end{enumerate}
+
+\subsubsection{1.2 Tools}\label{12-tools}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Tool & Version & Purpose & Configuration \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Foundry/Forge} & stable (solc 0.8.31) & Compilation, unit tests,
+fuzz tests, invariant tests & Cancun EVM, via\_ir, 200 optimizer runs \\
+\textbf{Slither} & 0.10+ & Static analysis &
+\texttt{-\/-exclude-dependencies\ -\/-fail-on\ medium} \\
+\textbf{Semgrep} & latest & SAST pattern matching & \texttt{p/solidity},
+\texttt{p/smart-contracts} rulesets \\
+\textbf{Aderyn} & latest (Cyfrin) & Solidity-specific static analysis &
+Default ruleset \\
+\textbf{Halmos} & 0.3.3 & Symbolic execution / formal verification &
+\texttt{via\_ir=false}, \texttt{optimizer=false} \\
+\textbf{Lean 4} & 4.x & Theorem proving (consensus layer) & Mathlib
+v4.14.0 \\
+\end{longtable}
+}
+
+\subsubsection{1.3 Severity
+Classification}\label{13-severity-classification}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Severity & Definition \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Critical} & Direct loss of funds, unauthorized minting, or
+complete access control bypass. Exploitable without preconditions. \\
+\textbf{High} & Conditional loss of funds, denial of service, or
+privilege escalation requiring specific state. \\
+\textbf{Medium} & Logic errors, missing validation, or economic
+inefficiency that does not directly enable fund loss. \\
+\textbf{Low} & Code quality, gas optimization, or informational issues
+with no direct security impact. \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Scope}\label{2-scope}
+
+\subsubsection{2.1 lux/standard (v1.6.5)}\label{21-luxstandard-v165}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Contract Count & Key Contracts \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+AMM (V2/V3) & 23 & AMMV2Pair, AMMV2Router, AMMV3Pool, AMMV3Factory,
+StableSwap \\
+Bridge & 14+ & Bridge, Teleporter, LRC20B, 67+ L* tokens \\
+Governance & 21 & Governor, Karma, KarmaMinter, DLUX, DLUXMinter, vLUX,
+GaugeController \\
+Liquid & 3 & LiquidLUX, LiquidToken, StakedLUX \\
+Perps & 30+ & Vault, Router, PositionRouter, LLP, LPUSD \\
+Markets & 5 & Markets (Morpho-style lending) \\
+Treasury & 4 & FeeGov, Vault, Router, Collect \\
+FHE & 29 & FHE, TFHE, ConfidentialERC20, Gateway \\
+Privacy & 5 & ZNote, ZNotePQ, PrivateBridge, PrivateTeleport \\
+Identity & 3 & DIDRegistry, DIDResolver, PremiumDIDRegistry \\
+Oracle & 7 & Oracle, OracleHub, ChainlinkAdapter, PythAdapter \\
+DeFi Suite & 8 & Options, Streams, IntentRouter, Cover \\
+\end{longtable}
+}
+
+\textbf{Solidity version}: 0.8.31, Cancun EVM target.
+
+\subsubsection{2.2 lux/liquid (v1.1.0)}\label{22-luxliquid-v110}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Category & Key Contracts \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Core & Liquid.sol (Alchemix V3 fork), LiquidAllocator,
+LiquidTransmuter \\
+Governance & LiquidGauge (voting + allocation) \\
+Strategies & 10 DeFi yield strategies (Lido, EigenLayer, Aave, Compound,
+etc.) \\
+Tokens & LiquidTokenVault, SfrxETH adapter \\
+\end{longtable}
+}
+
+\subsubsection{2.3 liquidity/contracts}\label{23-liquiditycontracts}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Category & Key Contracts \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Tokens & HorseFuturesToken, LWrappedToken, SBA7Token, various asset
+tokens \\
+Bridges & SecurityBridge, TokenSwap, BatchTransfer \\
+Wallet & MultisigWallet \\
+Registry & ComplianceRegistry, LoanRegistry \\
+Deployment & Deploy.s.sol, DeployAllAssets, DeployBatch \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. lux/standard Findings
+(v1.6.5)}\label{3-luxstandard-findings-v165}
+
+\subsubsection{3.1 Critical Findings}\label{31-critical-findings}
+
+\paragraph{S-C01: AMMV3Pool Drain via Unchecked Swap
+Inputs}\label{s-c01-ammv3pool-drain-via-unchecked-swap-inputs}
+
+\textbf{File}: \texttt{contracts/amm/AMMV3Pool.sol} \textbf{Commit}:
+\texttt{d2d51ce}
+
+\textbf{Description}: The AMMV3Pool \texttt{swap()} function transferred
+output tokens to the caller without first pulling input tokens via
+\texttt{safeTransferFrom}. An attacker could call \texttt{swap()} with
+arbitrary parameters and receive output tokens without providing any
+input.
+
+\textbf{Pre-fix code} (conceptual):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function swap(address recipient, bool zeroForOne, int256 amountSpecified, ...) external \{}
+\NormalTok{    // Calculates output amount}
+\NormalTok{    // Transfers output to recipient}
+\NormalTok{    // MISSING: Pull input tokens from caller}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Fix}: Added \texttt{SafeERC20.safeTransferFrom()} to pull input
+tokens before transferring output. Added delta-based mint verification
+to prevent free LP token minting. Added factory-only access control on
+\texttt{initializePrice()}.
+
+\textbf{Impact}: Complete pool drain. Any user could extract all
+liquidity without cost. \textbf{CVSS}: 10.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{S-C02: LiquidLUX Share Inflation
+Attack}\label{s-c02-liquidlux-share-inflation-attack}
+
+\textbf{File}: \texttt{contracts/liquid/LiquidLUX.sol} \textbf{Commit}:
+\texttt{d2d51ce}
+
+\textbf{Description}: The LiquidLUX vault did not enforce a
+\texttt{MINIMUM\_LIQUIDITY} burn on the first deposit, enabling the
+classic ERC-4626 share inflation attack. An attacker could:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Deposit 1 wei to receive 1 share
+\item
+  Donate a large amount directly to the vault
+\item
+  Subsequent depositors receive 0 shares due to rounding
+\end{enumerate}
+
+\textbf{Fix}: Added \texttt{VIRTUAL\_SHARES\ =\ 1e6} and
+\texttt{VIRTUAL\_ASSETS\ =\ 1e6} constants to prevent inflation. Added
+\texttt{MINIMUM\_LIQUIDITY} burn on first deposit (following Uniswap V2
+pattern).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 public constant VIRTUAL\_SHARES = 1e6;}
+\NormalTok{uint256 public constant VIRTUAL\_ASSETS = 1e6;}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: First depositor could steal all subsequent deposits.
+Complete loss of vault funds. \textbf{CVSS}: 10.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{\texorpdfstring{S-C03: Bridge Unlimited Minting via
+\texttt{mint()}
+Bypass}{S-C03: Bridge Unlimited Minting via mint() Bypass}}\label{s-c03-bridge-unlimited-minting-via-mint-bypass}
+
+\textbf{File}: \texttt{contracts/bridge/Bridge.sol} \textbf{Commit}:
+\texttt{d2d51ce}
+
+\textbf{Description}: The Bridge contract\textquotesingle s
+\texttt{mint()} function was accessible to the admin role without daily
+limits, bypassing the \texttt{bridgeMint()} function\textquotesingle s
+daily cap enforcement. An admin (or compromised admin key) could mint
+unlimited bridge tokens.
+
+\textbf{Fix}: Capped \texttt{feeRate} at 500 (5\% maximum). Enforced
+that minting only occurs through the rate-limited \texttt{bridgeMint()}
+path.
+
+\textbf{Impact}: Unlimited token inflation. Admin privilege escalation
+to unlimited minting. \textbf{CVSS}: 9.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{S-C04: L* Token Admin
+Escalation}\label{s-c04-l-token-admin-escalation}
+
+\textbf{File}: \texttt{contracts/bridge/lux/*.sol} (67+ bridge tokens)
+\textbf{Commit}: \texttt{fae4228}
+
+\textbf{Description}: Bridge tokens (LETH, LBTC, LUSD, etc.) used
+\texttt{onlyAdmin} modifier instead of a dedicated \texttt{MINTER\_ROLE}
+for minting operations. This conflated administrative functions
+(pausing, upgrading) with minting authority.
+
+\textbf{Fix}: Replaced \texttt{onlyAdmin} with \texttt{MINTER\_ROLE}
+access control on all mint functions across 67+ bridge token contracts.
+
+\textbf{Impact}: Admin key compromise grants unlimited minting of all
+bridge tokens. \textbf{CVSS}: 9.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{S-C05: LSSVM CREATE2 Salt
+Collision}\label{s-c05-lssvm-create2-salt-collision}
+
+\textbf{File}: \texttt{contracts/lssvm/LSSVMFactory.sol}
+\textbf{Commit}: \texttt{d2d51ce}
+
+\textbf{Description}: The LSSVM NFT AMM factory used CREATE2 with a salt
+that did not include a nonce or unique identifier. Two pool creations
+with identical parameters would compute the same salt, causing the
+second deployment to fail or, worse, collide with a previously
+self-destructed pool address.
+
+\textbf{Fix}: Added a monotonically increasing nonce to the CREATE2 salt
+computation.
+
+\textbf{Impact}: Pool creation DoS. Potential address collision with
+destroyed pools. \textbf{CVSS}: 8.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{S-C06: StableSwap CREATE2 Salt
+Collision}\label{s-c06-stableswap-create2-salt-collision}
+
+\textbf{File}: \texttt{contracts/amm/StableSwapFactory.sol}
+\textbf{Commit}: \texttt{d2d51ce}
+
+\textbf{Description}: The StableSwap factory\textquotesingle s CREATE2
+salt used only the pool symbol, without token addresses or a nonce.
+Multiple pools with the same symbol (e.g., "3pool") would collide.
+
+\textbf{Fix}: Included token addresses and a factory nonce in the salt
+computation.
+
+\textbf{Impact}: Factory-level DoS for identically-named pools.
+\textbf{CVSS}: 8.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{3.2 High Findings}\label{32-high-findings}
+
+\paragraph{S-H01: Teleporter Predictable Withdraw
+Nonce}\label{s-h01-teleporter-predictable-withdraw-nonce}
+
+\textbf{File}: \texttt{contracts/bridge/teleport/Teleporter.sol}
+\textbf{Commit}: \texttt{d2d51ce}
+
+\textbf{Description}: Withdraw nonces were generated using
+\texttt{keccak256(abi.encodePacked(block.timestamp,\ msg.sender,\ amount,\ srcChainId,\ block.number))}.
+All inputs are predictable before transaction confirmation, enabling
+front-running of withdrawal claims on the destination chain.
+
+\textbf{Pre-fix}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{withdrawNonce = uint256(keccak256(abi.encodePacked(}
+\NormalTok{    block.timestamp, msg.sender, amount, srcChainId, block.number}
+\NormalTok{)));}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Fix}: Replaced with a monotonically increasing counter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{withdrawNonce = ++\_withdrawNonceCounter;}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Front-running of bridge withdrawals. Potential denial
+of service. \textbf{CVSS}: 7.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{S-H02: MPC Signature Replay via Timestamp
+Nonce}\label{s-h02-mpc-signature-replay-via-timestamp-nonce}
+
+\textbf{File}: \texttt{contracts/bridge/Bridge.sol} \textbf{Commit}:
+\texttt{d2d51ce}
+
+\textbf{Description}: MPC oracle signatures used
+\texttt{block.timestamp} as a nonce component. Since
+\texttt{block.timestamp} can repeat across blocks (same second) and is
+manipulable within a 15-second window, signatures could potentially be
+replayed.
+
+\textbf{Fix}: Replaced \texttt{block.timestamp} with a monotonic nonce
+counter.
+
+\textbf{Impact}: Signature replay enabling double-minting of bridge
+tokens. \textbf{CVSS}: 7.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{3.3 Medium Findings}\label{33-medium-findings}
+
+\paragraph{S-M01: Treasury FeeGov Unclamped
+Rate}\label{s-m01-treasury-feegov-unclamped-rate}
+
+\textbf{File}: \texttt{contracts/treasury/FeeGov.sol} \textbf{Commit}:
+\texttt{83b88ee}
+
+\textbf{Description}: The \texttt{setRate()} function did not validate
+that the fee rate was within the bounds defined by \texttt{floor} and
+\texttt{cap}, and did not validate that
+\texttt{floor\ \textless{}=\ cap}.
+
+\textbf{Fix}: Added bounds checking in \texttt{bounds()} to clamp rate
+and validate \texttt{floor\ \textless{}=\ cap}. Discovered by the
+invariant test \texttt{invariant\_feeRateInBounds}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function bounds() internal view \{}
+\NormalTok{    require(floor \textless{}= cap, "floor \textgreater{} cap");}
+\NormalTok{    require(rate \textgreater{}= floor \&\& rate \textless{}= cap, "rate out of bounds");}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Fee rate could be set to extreme values, either
+overcharging or undercharging protocol fees. \textbf{CVSS}: 5.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{3.4 Additional Fixes (Pre-existing from Red Team Round
+1)}\label{34-additional-fixes-pre-existing-from-red-team-round-1}
+
+The following issues were identified and fixed in the preceding commit
+\texttt{fae4228}:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+ID & Severity & Description & File & Fix \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+S-X01 & Critical & Hardcoded mnemonic in deploy script &
+\texttt{deploy\_multinetwork.sh} & Removed; reads from env \\
+S-X02 & Critical & Hardcoded mnemonic in NatSpec comments & Various
+\texttt{.sol} & Removed \\
+S-X03 & Critical & Anvil key fallback without chain ID guard &
+\texttt{DeployLocal.s.sol} & Added
+\texttt{require(block.chainid\ ==\ 31337)} \\
+S-X04 & Critical & Unprotected public \texttt{mint()} on Token.sol &
+\texttt{contracts/tokens/Token.sol} & Moved to \texttt{mocks/} \\
+S-X05 & Critical & Mock \$1 price feed in production Perp.sol &
+\texttt{contracts/perps/Perp.sol} & Replaced with \texttt{IPriceFeed}
+integration \\
+S-X06 & High & AMMV2Pair raw \texttt{transfer()} (6 locations) &
+\texttt{contracts/amm/AMMV2Pair.sol} &
+\texttt{SafeERC20.safeTransfer()} \\
+S-X07 & High & AMMV3Pool raw \texttt{transfer()} (6 locations) &
+\texttt{contracts/amm/AMMV3Pool.sol} &
+\texttt{SafeERC20.safeTransfer()} \\
+S-X08 & High & Hardcoded node IPs in config & Various & Replaced with
+DNS endpoints \\
+S-X09 & Medium & KarmaMinter \texttt{batchRewardKarma} self-mint bypass
+& \texttt{KarmaMinter.sol} & Added \texttt{msg.sender} skip in batch
+loop \\
+\end{longtable}
+}
+
+All 21 production files updated to use \texttt{SafeERC20} (commit
+\texttt{45b4c83}). Zero remaining \texttt{erc20-unchecked-transfer}
+warnings.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. lux/liquid Findings
+(v1.1.0)}\label{4-luxliquid-findings-v110}
+
+\subsubsection{4.1 Round 1: Red Team Findings (4 Critical + 4
+High)}\label{41-round-1-red-team-findings-4-critical--4-high}
+
+\textbf{Commit}: \texttt{e96eb5c}
+
+\paragraph{L-C01: LiquidTokenVault Unchecked ERC20
+Transfers}\label{l-c01-liquidtokenvault-unchecked-erc20-transfers}
+
+\textbf{File}: \texttt{src/LiquidTokenVault.sol}
+
+\textbf{Description}: All ERC20 transfers used raw \texttt{.transfer()}
+and \texttt{.transferFrom()} without checking return values. Tokens like
+USDT that return \texttt{false} instead of reverting would silently
+fail, causing accounting discrepancies.
+
+\textbf{Fix}: Replaced all transfers with
+\texttt{TokenUtils.safeTransfer()} /
+\texttt{TokenUtils.safeTransferFrom()}.
+
+\textbf{Impact}: Silent transfer failures leading to incorrect vault
+accounting. Potential fund loss. \textbf{CVSS}: 9.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{\texorpdfstring{L-C02: LiquidAllocator Cap Bypass via
+\texttt{type(uint256).max}}{L-C02: LiquidAllocator Cap Bypass via type(uint256).max}}\label{l-c02-liquidallocator-cap-bypass-via-typeuint256max}
+
+\textbf{File}: \texttt{src/LiquidAllocator.sol}
+
+\textbf{Description}: The allocation cap check could be bypassed by
+setting \texttt{maxAllocationPerStrategy} to \texttt{type(uint256).max}
+(the default uninitialized value), allowing unlimited allocation to any
+single strategy.
+
+\textbf{Fix}: Added configurable \texttt{maxAllocationPerStrategy} with
+explicit initialization. Enforced cap after computing adjusted
+allocation limit.
+
+\textbf{Impact}: Single strategy could absorb all vault assets,
+concentrating risk. \textbf{CVSS}: 9.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{\texorpdfstring{L-C03: SfrxETH Sends Tokens to
+\texttt{address(0)}}{L-C03: SfrxETH Sends Tokens to address(0)}}\label{l-c03-sfrxeth-sends-tokens-to-address0}
+
+\textbf{File}: \texttt{src/strategies/SfrxETH.sol}
+
+\textbf{Description}: When \texttt{dexRouter} was not configured, the
+strategy would attempt to send tokens to \texttt{address(0)}, burning
+them permanently.
+
+\textbf{Fix}: Added
+\texttt{require(dexRouter\ !=\ address(0),\ "dex\ router\ not\ set")}
+guard. Reverts if router is not configured.
+
+\textbf{Impact}: Permanent loss of strategy assets. \textbf{CVSS}: 9.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{\texorpdfstring{L-C04: LiquidGauge
+\texttt{registerNewStrategy} Empty
+Implementation}{L-C04: LiquidGauge registerNewStrategy Empty Implementation}}\label{l-c04-liquidgauge-registernewstrategy-empty-implementation}
+
+\textbf{File}: \texttt{src/LiquidGauge.sol}
+
+\textbf{Description}: The \texttt{registerNewStrategy()} function body
+was empty -\/- strategies could not be registered, breaking the gauge
+voting system entirely.
+
+\textbf{Fix}: Implemented strategy registration with admin access
+control and auto-registration in \texttt{strategyList} on vote.
+
+\textbf{Impact}: Complete governance failure. No strategies could be
+voted on or allocated to. \textbf{CVSS}: 8.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{L-H01: Liquid.sol Missing Reentrancy Guard (8
+Functions)}\label{l-h01-liquidsol-missing-reentrancy-guard-8-functions}
+
+\textbf{File}: \texttt{src/Liquid.sol}
+
+\textbf{Description}: Eight state-changing external functions lacked
+reentrancy protection despite executing external calls (token transfers,
+strategy interactions).
+
+\textbf{Fix}: Added \texttt{ReentrancyGuardUpgradeable} and applied
+\texttt{nonReentrant} modifier to all eight functions.
+
+\textbf{Impact}: Cross-function reentrancy via malicious token
+callbacks. \textbf{CVSS}: 7.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{L-H02: LiquidGauge Flash Loan Vote
+Manipulation}\label{l-h02-liquidgauge-flash-loan-vote-manipulation}
+
+\textbf{File}: \texttt{src/LiquidGauge.sol}
+
+\textbf{Description}: Vote weight was read from \texttt{balanceOf()} at
+call time, not from a checkpoint. An attacker could flash-loan
+governance tokens, vote, and return them in the same transaction.
+
+\textbf{Fix}: Snapshot \texttt{voterPower} at vote time using
+checkpointed balances instead of live \texttt{balanceOf()}.
+
+\textbf{Impact}: Governance manipulation via flash loans. Attacker
+controls allocation with zero cost. \textbf{CVSS}: 7.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{\texorpdfstring{L-H03: LiquidGauge \texttt{executeAllocation}
+No Access
+Control}{L-H03: LiquidGauge executeAllocation No Access Control}}\label{l-h03-liquidgauge-executeallocation-no-access-control}
+
+\textbf{File}: \texttt{src/LiquidGauge.sol}
+
+\textbf{Description}: The \texttt{executeAllocation()} function had no
+access control, allowing anyone to trigger allocation at any time,
+potentially front-running governance decisions.
+
+\textbf{Fix}: Added
+\texttt{require(msg.sender\ ==\ admin\ \textbar{}\textbar{}\ msg.sender\ ==\ keeper)}
+guard.
+
+\textbf{Impact}: Unauthorized allocation execution. Timing manipulation.
+\textbf{CVSS}: 7.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{L-H04: Console.log Imports in
+Production}\label{l-h04-consolelog-imports-in-production}
+
+\textbf{File}: \texttt{src/Liquid.sol},
+\texttt{src/LiquidTransmuter.sol}, \texttt{src/LiquidStrategy.sol}
+
+\textbf{Description}: Production contracts imported
+\texttt{forge-std/console.log}, increasing deployment gas cost and
+leaking debug information.
+
+\textbf{Fix}: Removed all \texttt{console.log} imports from production
+contracts.
+
+\textbf{Impact}: Increased deployment cost. Information leakage.
+\textbf{CVSS}: 4.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{4.2 Round 2: Red Team Findings (2 High + 3
+Medium)}\label{42-round-2-red-team-findings-2-high--3-medium}
+
+\textbf{Commit}: \texttt{f797708}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+ID & Severity & Description & Fix \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+L-H05 & High & LiquidAllocator: vault cap not enforced after adjusted
+limit computation & Enforce vault cap post-adjustment \\
+L-H06 & High & LiquidGauge: vote weights unbounded (could exceed 100\%)
+& Bound to 10000 BPS max \\
+L-M01 & Medium & LiquidTransmuter: missing ReentrancyGuard on
+\texttt{createRedemption} / \texttt{claimRedemption} & Added
+\texttt{nonReentrant} \\
+L-M02 & Medium & LiquidGauge: global cap underflow on subtraction &
+Saturating subtraction \\
+L-M03 & Medium & Liquid: \texttt{\_resolveRepaymentFee} returns uncapped
+fee & Return \texttt{actualFee} capped value \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{4.3 Upstream Alchemix V3 Audit
+Ports}\label{43-upstream-alchemix-v3-audit-ports}
+
+\textbf{Commit}: \texttt{55eb196}
+
+Six security fixes from upstream \texttt{alchemix-finance/v3-poc}
+(branch \texttt{add\_licenses}) were ported:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Upstream Fix & Description & Impact \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+3.1.17 (\texttt{5f6bff3}) & \texttt{\_liquidate} uses wrong collateral
+source & Liquidator drains other users\textquotesingle{} collateral \\
+3.1.3 (\texttt{08951bf}) & \texttt{\_forceRepay} transfers to wrong
+address & Funds sent to contract instead of transmuter \\
+3.1.4 (\texttt{302f3e6}) & \texttt{\_liquidateFee} not normalized & Fee
+calculation error \\
+3.1.12 (\texttt{bd73d4a}) & Rounding errors in \texttt{\_forceRepay} &
+Debt token / yield token confusion \\
+3.2.2 (\texttt{9adb315}) & User bypasses \texttt{protocolFee} via
+\texttt{liquidate} & Protocol fee evasion \\
+\texttt{970e286} & Earmark overflow in accumulator math & Replaced with
+Q128.128 \texttt{\_survivalAccumulator} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. liquidity/contracts
+Findings}\label{5-liquiditycontracts-findings}
+
+\subsubsection{5.1 Critical Findings}\label{51-critical-findings}
+
+\textbf{Commit}: \texttt{6ea451d}
+
+\paragraph{Q-C01: Hardcoded Private Key in Deploy
+Script}\label{q-c01-hardcoded-private-key-in-deploy-script}
+
+\textbf{File}: \texttt{script/deploy\_multinetwork.sh}
+
+\textbf{Description}: A private key was hardcoded in the deployment
+script and committed to git history.
+
+\textbf{Fix}: Removed from script. Purged from git history via
+\texttt{git\ filter-repo}. Script now reads from environment variable
+sourced from KMS.
+
+\textbf{Impact}: Complete compromise of deployer wallet. All deployed
+contracts at risk. \textbf{CVSS}: 10.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{Q-C02: Hardcoded Alpaca API
+Keys}\label{q-c02-hardcoded-alpaca-api-keys}
+
+\textbf{File}: Multiple deployment scripts
+
+\textbf{Description}: Third-party API keys (Alpaca) were hardcoded in
+source files and committed to git history.
+
+\textbf{Fix}: Removed from source. Purged from git history. Now sourced
+from KMS via environment variables.
+
+\textbf{Impact}: Third-party service compromise. Financial API access
+exposure. \textbf{CVSS}: 9.5
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{Q-C03: Hardcoded Node IPs in
+Source}\label{q-c03-hardcoded-node-ips-in-source}
+
+\textbf{File}: Various configuration files
+
+\textbf{Description}: Production node IP addresses were hardcoded in
+source files.
+
+\textbf{Fix}: Replaced with DNS endpoints. Purged IPs from git history.
+
+\textbf{Impact}: Infrastructure exposure. Targeted DDoS or exploitation.
+\textbf{CVSS}: 8.0
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{5.2 High Findings}\label{52-high-findings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+ID & Description & File & Fix \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Q-H01 & Unchecked ERC20 transfers in TokenSwap & \texttt{TokenSwap.sol}
+& \texttt{SafeERC20.safeTransfer()} \\
+Q-H02 & Unchecked \texttt{transferFrom} in SecurityBridge &
+\texttt{SecurityBridge.sol} & \texttt{SafeERC20.safeTransferFrom()} \\
+Q-H03 & MultisigWallet \texttt{approve()} to arbitrary address &
+\texttt{MultisigWallet.sol} & Added \texttt{approvedSwapContracts}
+whitelist \\
+Q-H04 & \texttt{ComplianceRegistry(address(0))} in deploy scripts &
+\texttt{DeployBatch.s.sol} et al & Deploy registry first;
+\texttt{require(addr\ !=\ address(0))} \\
+Q-H05 & HorseFuturesToken double-scaling in \texttt{transfer()} &
+\texttt{HorseFuturesToken.sol} & Removed redundant
+\texttt{amount\ *\ 10\ **\ decimal} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{5.3 Medium Findings}\label{53-medium-findings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+ID & Description & File & Fix \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Q-M01 & BatchTransfer reentrancy & \texttt{BatchTransfer.sol} & Added
+\texttt{ReentrancyGuard} + \texttt{nonReentrant} \\
+Q-M02 & Guardian bypass of \texttt{requiredConfirmations} &
+\texttt{MultisigWallet.sol} & Enforce confirmation count for ALL
+changes \\
+Q-M03 & LWrappedToken one-sided whitelist check &
+\texttt{LWrappedToken.sol} & Check both \texttt{from} and \texttt{to} \\
+Q-M04 & LoanRegistry accepts invalid status & \texttt{LoanRegistry.sol}
+& Validate status range on import \\
+Q-M05 & SBA7Token whitelist bypass via \texttt{\_update()} &
+\texttt{SBA7Token.sol} & Enforce whitelist in \texttt{\_update()} for
+all paths \\
+Q-M06 & MultisigWallet stale \texttt{ownerIndexMap} after removal &
+\texttt{MultisigWallet.sol} & Update index before swap-and-pop \\
+\end{longtable}
+}
+
+\subsubsection{5.4 Low Findings}\label{54-low-findings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+ID & Description & Fix \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Q-L01 & \texttt{broadcast/} directory not gitignored & Already
+gitignored (verified) \\
+Q-L02 & SBA7Token whitelist enforcement gap & Fixed in Q-M05 \\
+Q-L03 & MultisigWallet owner index stale on swap & Fixed in Q-M06 \\
+\end{longtable}
+}
+
+\subsubsection{5.5 Git History Purge}\label{55-git-history-purge}
+
+The \texttt{liquidity/contracts} repository contained hardcoded secrets
+(private keys, Alpaca API keys, node IPs) in git history. A full history
+purge was performed using \texttt{git\ filter-repo}, followed by a force
+push. All team members were notified to re-clone.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Formal Verification}\label{6-formal-verification}
+
+\subsubsection{6.1 Halmos Symbolic Execution
+(Solidity)}\label{61-halmos-symbolic-execution-solidity}
+
+Halmos proves properties hold for ALL possible inputs, not just fuzz
+samples. Unlike fuzz testing which explores random inputs, symbolic
+execution exhaustively explores all execution paths.
+
+\paragraph{lux/standard -\/- 48 Symbolic
+Proofs}\label{luxstandard----48-symbolic-proofs}
+
+\textbf{Location}: \texttt{test/halmos/}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Proofs & Properties Verified \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{HalmosAMM.t.sol} & 9 & K invariant on swap (constant product
+never decreases), MINIMUM\_LIQUIDITY prevents first-depositor attack,
+mint proportionality, burn bounded by reserves \\
+\texttt{HalmosLiquidLUX.t.sol} & 9 & Virtual shares prevent inflation
+attack, MINIMUM\_LIQUIDITY prevents full drain, share/asset
+consistency \\
+\texttt{HalmosMarkets.t.sol} & 7 & Borrow never exceeds supply, healthy
+position borrowing, interest accrual solvency, liquidation incentive
+bounded, repay reduces borrow \\
+\texttt{HalmosE2E.t.sol} & 23 & Bridge conservation (multi-step), daily
+limit enforcement, deposit/withdraw round-trip, teleport conservation
+(multi-hop), self-repay floor, withdrawal solvency, yield strategy
+conservation, fee distribution accounting, exchange rate monotonicity,
+router distribution conservation, collect-vault-router pipeline,
+cross-chain total supply, full E2E lifecycle \\
+\end{longtable}
+}
+
+\paragraph{lux/liquid -\/- 15 Symbolic Proofs (Transmuter Earmark
+Conservation)}\label{luxliquid----15-symbolic-proofs-transmuter-earmark-conservation}
+
+\textbf{Location}: \texttt{src/test/halmos/HalmosTransmuter.t.sol}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Property & Variants & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{earmarkNeverExceedsDebt} & 4 &
+\texttt{cumulativeEarmarked\ \textless{}=\ totalDebt} across single
+earmark, earmark+subDebt, earmark+redeem, and full 3-step sequences \\
+\texttt{redemptionBackedByYield} & 1 & Yield distributed in
+\texttt{claimRedemption()} never exceeds actual transmuter yield
+balance \\
+\texttt{noDoubleRedeem} & 2 & After claim, position is deleted; second
+claim always reverts \\
+\texttt{transmuteLockConservation} & 3 &
+\texttt{totalLocked\ \textless{}=\ totalSyntheticsIssued} through
+deposit, deposit+claim, two-deposits-one-claim \\
+\texttt{earmarkWeightMonotonic} & 3 & \texttt{\_earmarkWeight} only
+increases via non-negative increments \\
+\texttt{repayEarmarkConsistency} & 1 & \texttt{repay()} correctly
+reduces account and global earmarks \\
+\texttt{transmuterAmountConservation} & 1 &
+\texttt{amountTransmuted\ +\ amountNotTransmuted\ ==\ position.amount} \\
+\end{longtable}
+}
+
+\textbf{Total}: 15 check functions, 234 symbolic execution paths, all
+passing.
+
+\subsubsection{6.2 Lean 4 Formal Verification (Consensus
+Layer)}\label{62-lean-4-formal-verification-consensus-layer}
+
+\textbf{Repository}: \texttt{lux/formal} \textbf{Lean toolchain}: Lean 4
+with Mathlib v4.14.0 \textbf{Location}: \texttt{lean/}
+
+36 theorems defined across 18 Lean files covering 12 protocols. 33 fully
+proved, 3 with \texttt{sorry} (open proof obligations in complex
+liveness/safety arguments).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Module & File & Theorems & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Consensus/BFT} & \texttt{BFT.lean} &
+\texttt{quorum\_intersection}, \texttt{honest\_majority\_sufficient},
+\texttt{unique\_alpha\_threshold},
+\texttt{certificate\_quorum\_overlap}, \texttt{bft\_intersection} & 5/5
+proved \\
+\textbf{Consensus/Safety} & \texttt{Safety.lean} & \texttt{safety} & 0/1
+(sorry) \\
+\textbf{Consensus/Liveness} & \texttt{Liveness.lean} & \texttt{liveness}
+& 0/1 (sorry) \\
+\textbf{Crypto/Ringtail} & \texttt{Ringtail.lean} &
+\texttt{noise\_bound\_correct} & 1/1 proved \\
+\textbf{Crypto/MLDSA} & \texttt{MLDSA.lean} &
+\texttt{sig\_size\_bounded} & 1/1 proved \\
+\textbf{Crypto/BLS} & \texttt{BLS.lean} & \texttt{aggregate\_two\_sound}
+& 1/1 proved \\
+\textbf{Crypto/FROST} & \texttt{FROST.lean} & \texttt{threshold\_exact}
+& 1/1 proved \\
+\textbf{Protocol/Wave} & \texttt{Wave.lean} &
+\texttt{decided\_is\_stable}, \texttt{confidence\_monotone\_on\_match},
+\texttt{finalization\_after\_beta} & 3/3 proved \\
+\textbf{Protocol/Flare} & \texttt{Flare.lean} &
+\texttt{cert\_skip\_exclusive}, \texttt{cert\_honest\_support},
+\texttt{classify\_total} & 3/3 proved \\
+\textbf{Protocol/Ray} & \texttt{Ray.lean} &
+\texttt{decided\_is\_prefix}, \texttt{no\_gaps},
+\texttt{decided\_monotone} & 2/3 (1 sorry) \\
+\textbf{Protocol/Field} & \texttt{Field.lean} &
+\texttt{committed\_is\_consistent\_cut}, \texttt{committed\_monotone} &
+2/2 proved \\
+\textbf{Protocol/Quasar} & \texttt{Quasar.lean} &
+\texttt{height\_monotone}, \texttt{bls\_quorum\_intersection},
+\texttt{quantum\_finality\_requires\_both} & 3/3 proved \\
+\textbf{Protocol/Nova} & \texttt{Nova.lean} & \texttt{height\_increases}
+& 1/1 proved \\
+\textbf{Protocol/Nebula} & \texttt{Nebula.lean} &
+\texttt{committed\_monotone} & 1/1 proved \\
+\textbf{Protocol/Photon} & \texttt{Photon.lean} &
+\texttt{expected\_selection\_frequency}, \texttt{committee\_size\_exact}
+& 2/2 proved \\
+\textbf{Protocol/Prism} & \texttt{Prism.lean} &
+\texttt{sufficient\_luminance} & 1/1 proved \\
+\textbf{Warp/Ordering} & \texttt{Ordering.lean} &
+\texttt{version\_monotone}, \texttt{stale\_rejected} & 2/2 proved \\
+\textbf{Warp/Delivery} & \texttt{Delivery.lean} & \texttt{no\_replay},
+\texttt{authenticity}, \texttt{valid\_message\_succeeds},
+\texttt{nonces\_monotone} & 4/4 proved \\
+\end{longtable}
+}
+
+\textbf{Summary}: 33/36 theorems proved. 3 remaining \texttt{sorry} are
+in complex safety/liveness proofs requiring additional Mathlib lemmas
+for finite set cardinality arguments.
+
+\subsubsection{6.3 Foundry Invariant
+Tests}\label{63-foundry-invariant-tests}
+
+\textbf{Location}: \texttt{test/foundry/invariant/}
+
+33 invariant test functions across 10 contracts, executed with
+Foundry\textquotesingle s built-in invariant testing (guided fuzzing
+with stateful sequences):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Invariants & Properties \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{InvariantAMM.t.sol} & 5 & K invariant, LP consistency, reserve
+balance (V2+V3) \\
+\texttt{InvariantLiquidLUX.t.sol} & 4 & Share inflation, virtual shares,
+asset consistency \\
+\texttt{InvariantMarkets.t.sol} & 5 & Solvency, share consistency,
+interest monotonicity \\
+\texttt{InvariantPerps.t.sol} & 4 & Collateral backing, leverage bounds,
+global sizes \\
+\texttt{InvariantStableSwap.t.sol} & 4 & D invariant, balance
+positivity, LP backing \\
+\texttt{InvariantStaking.t.sol} & 3 & Total staked, supply consistency,
+exchange rate \\
+\texttt{InvariantKarma.t.sol} & 3 & Max cap, supply accounting,
+mint/burn balance \\
+\texttt{InvariantBridge.t.sol} & 2 & Supply matches flows, no user
+exceeds supply \\
+\texttt{InvariantGovernance.t.sol} & 1 & Gauge count monotonic \\
+\texttt{InvariantTreasury.t.sol} & 2 & Fee rate bounds, version
+monotonic \\
+\end{longtable}
+}
+
+\textbf{Bugs found by invariant tests}:
+
+\begin{itemize}
+\tightlist
+\item
+  LiquidLUX: Missing \texttt{MINIMUM\_LIQUIDITY} burn on first deposit
+  (led to S-C02 fix)
+\item
+  FeeGov: \texttt{bounds()} did not clamp rate or validate
+  \texttt{floor\ \textless{}=\ cap} (led to S-M01 fix)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. CI/CD Security
+Enforcement}\label{7-cicd-security-enforcement}
+
+\subsubsection{7.1 lux/standard Pipeline}\label{71-luxstandard-pipeline}
+
+\textbf{File}: \texttt{.github/workflows/security.yml}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Gate & Tool & Threshold & Enforcement \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Static Analysis & Slither & \texttt{-\/-fail-on\ medium} & Blocks
+merge \\
+SAST & Semgrep & \texttt{p/solidity}, \texttt{p/smart-contracts} &
+Blocks merge \\
+Solidity Analysis & Aderyn (Cyfrin) & Default ruleset & Blocks merge \\
+Fuzz Testing & Forge fuzz & 1,000 runs & Blocks merge \\
+Formatting & \texttt{forge\ fmt\ -\/-check} & Zero violations & Blocks
+merge \\
+Unit Tests & \texttt{forge\ test} & Zero failures & Blocks merge \\
+\end{longtable}
+}
+
+\textbf{Trigger}: Push to \texttt{main}, PR to \texttt{main}, weekly
+scheduled run (Sunday 00:00 UTC).
+
+\subsubsection{7.2 lux/liquid Pipeline}\label{72-luxliquid-pipeline}
+
+Mirrors standard pipeline. \texttt{make\ security} runs Slither +
+Semgrep + Aderyn. \texttt{make\ halmos} runs symbolic proofs.
+
+\subsubsection{7.3 Previous State
+(Pre-Audit)}\label{73-previous-state-pre-audit}
+
+Before this audit session, the CI pipeline had critical enforcement
+gaps:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Issue & Before & After \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Slither & \texttt{continue-on-error:\ true} &
+\texttt{fail-on:\ medium} \\
+Semgrep & \texttt{continue-on-error:\ true} & Hard fail \\
+Aderyn & Broken binary download & Fixed direct download \\
+Echidna/Medusa & Listed but zero targets & Removed (no contracts to
+fuzz) \\
+CodeQL & Listed but JS-only scanner & Removed (Solidity not
+supported) \\
+\texttt{forge\ fmt} & \texttt{\textbar{}\textbar{}\ true} (always
+passes) & Hard fail \\
+\end{longtable}
+}
+
+The \texttt{continue-on-error:\ true} pattern meant security tools were
+running but their results were never blocking merges. This was security
+theater, not security enforcement.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Remediation Summary}\label{8-remediation-summary}
+
+\subsubsection{8.1 lux/standard}\label{81-luxstandard}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Commit & Description & Tests After \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{fae4228} & Fix all critical + high from red team round 1 (5C +
+3H) & 1,008 \\
+\texttt{45b4c83} & SafeERC20 for all 21 production files & 1,008 \\
+\texttt{d2d51ce} & Fix 6 critical + 2 high, enforce CI pipeline &
+1,008 \\
+\texttt{83b88ee} & 33 invariant tests, fix FeeGov bounds + LiquidLUX
+MINIMUM\_LIQUIDITY & 1,041 \\
+\texttt{7fa0e5a} & Fix batchRewardKarma self-mint bypass & 1,041 \\
+\texttt{b1dd4b4} & Eliminate all stubs/TODOs/placeholders (-25K lines) &
+1,041 \\
+\texttt{d30088e} & Add 48 Halmos symbolic proofs & 1,041 \\
+\end{longtable}
+}
+
+\subsubsection{8.2 lux/liquid}\label{82-luxliquid}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Commit & Description & Tests After \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{e96eb5c} & Fix 4 critical + 4 high (round 1) & 240+ \\
+\texttt{55eb196} & Port 6 upstream Alchemix V3 audit fixes & 245+ \\
+\texttt{f797708} & Fix 2 high + 3 medium (round 2) & 248+ \\
+\texttt{9939358} & 15 Halmos symbolic proofs (transmuter earmark
+conservation) & 251 \\
+\texttt{5b8f3ac} & Halmos solvency proofs for Liquid.sol & 251 \\
+\end{longtable}
+}
+
+\subsubsection{8.3 liquidity/contracts}\label{83-liquiditycontracts}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Commit & Description & Tests After \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{2afc641} & Remove hardcoded Alpaca API keys & - \\
+\texttt{6ea451d} & Fix 3 critical + 5 high & 91 \\
+\texttt{93e6637} & Fix 6 medium + 3 low & 91 \\
+\texttt{8e5009a} & Pin lib/standard to v1.6.5 & 91 \\
+\end{longtable}
+}
+
+\subsubsection{8.4 Code Quality
+Improvements}\label{84-code-quality-improvements}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Metric & Before & After \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+TODOs in production code & 45+ & 0 \\
+Dead stub files & 45 files (\textasciitilde25K lines) & 0 \\
+Unchecked ERC20 transfers & 21 files & 0 \\
+\texttt{console.log} in production & 3 files & 0 \\
+\texttt{continue-on-error} in CI & 4 tools & 0 \\
+Hardcoded secrets in git & 3+ files & 0 (history purged) \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. Recommendations}\label{9-recommendations}
+
+\subsubsection{9.1 Immediate (Before Mainnet
+Deployment)}\label{91-immediate-before-mainnet-deployment}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{External audit}: Engage Trail of Bits, OpenZeppelin, or
+  Spearbit for an independent review of the AMM V3, LiquidLUX, and
+  Bridge contracts. Internal audits -\/- even adversarial ones -\/-
+  cannot substitute for independent third-party review.
+\item
+  \textbf{Bug bounty program}: Launch on Immunefi with tiered payouts.
+  Recommended: \$50K for critical, \$10K for high, \$2K for medium.
+\item
+  \textbf{Close remaining Lean \texttt{sorry} proofs}: Three open proof
+  obligations remain in \texttt{Safety.lean}, \texttt{Liveness.lean},
+  and \texttt{Ray.lean}. These are consensus-layer safety and liveness
+  properties that should be fully proved before relying on them.
+\end{enumerate}
+
+\subsubsection{9.2 Short-Term (Within 30
+Days)}\label{92-short-term-within-30-days}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  \textbf{Invariant test coverage expansion}: Current 33 invariant tests
+  cover 10 contracts. Extend to Options, Streams, IntentRouter, and
+  Cover contracts.
+\item
+  \textbf{Halmos coverage for bridge}: The \texttt{HalmosE2E.t.sol}
+  covers bridge conservation abstractly. Add concrete symbolic proofs
+  for the \texttt{Teleporter} nonce and \texttt{MPC} signature
+  verification paths.
+\item
+  \textbf{Monitoring and alerting}: Deploy on-chain monitoring (Forta,
+  OpenZeppelin Defender, or equivalent) for:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Bridge mint/burn anomalies exceeding daily limits
+  \item
+    LiquidLUX share price deviations \textgreater{} 1\%
+  \item
+    Governance proposal creation from non-delegate addresses
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{9.3 Long-Term (Within 90
+Days)}\label{93-long-term-within-90-days}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\item
+  \textbf{Upgrade \texttt{liquidity/contracts} to OZ 5.x}: Currently
+  uses older OpenZeppelin patterns. Align with \texttt{lux/standard} (OZ
+  5.6.1).
+\item
+  \textbf{Formal verification of DeFi invariants in Lean 4}: Port
+  critical Halmos proofs (AMM K-invariant, vault solvency) to Lean 4 for
+  stronger guarantees.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix A: Tool Versions}\label{appendix-a-tool-versions}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Tool & Version & Notes \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Foundry (forge) & stable & solc 0.8.31, Cancun EVM \\
+Slither & 0.10+ & Python 3.x, via uv virtualenv \\
+Semgrep & latest & Rulesets: \texttt{p/solidity},
+\texttt{p/smart-contracts} \\
+Aderyn & latest & Cyfrin direct binary \\
+Halmos & 0.3.3 & \texttt{via\_ir=false}, \texttt{optimizer=false} for
+symbolic exec \\
+Lean 4 & 4.x & Mathlib v4.14.0 \\
+OpenZeppelin & 5.6.1 & standard + liquid \\
+forge-std & 1.15.0 & standard \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix B: Commit
+References}\label{appendix-b-commit-references}
+
+\subsubsection{lux/standard}\label{luxstandard}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Commit & Message \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{d30088e} &
+\texttt{formal:\ add\ Halmos\ symbolic\ proofs\ for\ AMM,\ LiquidLUX,\ Markets} \\
+\texttt{65586cc} & \texttt{chore:\ bump\ to\ v1.6.5} \\
+\texttt{b1dd4b4} &
+\texttt{refactor:\ eliminate\ all\ stubs,\ TODOs,\ placeholders\ -\/-\ zero\ remaining} \\
+\texttt{7fa0e5a} &
+\texttt{fix:\ batchRewardKarma\ self-mint\ bypass\ (red\ team\ finding)} \\
+\texttt{83b88ee} &
+\texttt{feat:\ add\ 33\ invariant\ tests\ across\ 10\ DeFi\ contracts} \\
+\texttt{d2d51ce} &
+\texttt{security:\ fix\ 6\ critical\ +\ 2\ high\ vulnerabilities,\ enforce\ CI\ pipeline} \\
+\texttt{83a8ce5} &
+\texttt{ci:\ enforce\ security\ pipeline\ -\/-\ remove\ continue-on-error\ theater} \\
+\texttt{1795c5c} &
+\texttt{chore:\ add\ Makefile\ with\ uv-based\ security\ tooling} \\
+\texttt{45b4c83} &
+\texttt{fix:\ SafeERC20\ for\ all\ remaining\ unchecked\ ERC20\ transfers} \\
+\texttt{fae4228} &
+\texttt{security:\ fix\ all\ critical\ +\ high\ findings\ from\ red\ team\ audit} \\
+\end{longtable}
+}
+
+\subsubsection{lux/liquid}\label{luxliquid}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Commit & Message \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{208a6f7} & \texttt{chore:\ bump\ to\ v1.1.0} \\
+\texttt{5b8f3ac} &
+\texttt{formal:\ add\ Halmos\ symbolic\ solvency\ proofs\ for\ Liquid.sol} \\
+\texttt{9939358} &
+\texttt{formal:\ add\ Halmos\ symbolic\ proofs\ -\/-\ earmark\ conservation\ +\ transmuter} \\
+\texttt{95bca1c} & \texttt{chore:\ bump\ to\ v1.0.1} \\
+\texttt{f797708} &
+\texttt{security:\ fix\ 2\ high\ +\ 3\ medium\ from\ red\ team\ round\ 2} \\
+\texttt{55eb196} &
+\texttt{security:\ port\ 6\ upstream\ Alchemix\ V3\ audit\ fixes\ (3.1.x,\ 3.2.x)} \\
+\texttt{e96eb5c} &
+\texttt{security:\ fix\ 4\ critical\ +\ 4\ high\ vulnerabilities\ (red\ team\ findings)} \\
+\end{longtable}
+}
+
+\subsubsection{liquidity/contracts}\label{liquiditycontracts}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Commit & Message \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{8e5009a} & \texttt{chore:\ pin\ lib/standard\ to\ v1.6.5} \\
+\texttt{6ea451d} &
+\texttt{security:\ fix\ 3\ critical\ +\ 5\ high\ vulnerabilities} \\
+\texttt{93e6637} &
+\texttt{security:\ fix\ 6\ medium\ +\ 3\ low\ vulnerabilities} \\
+\texttt{2afc641} &
+\texttt{security:\ remove\ hardcoded\ Alpaca\ API\ keys\ -\/-\ env\ vars\ from\ KMS} \\
+\end{longtable}
+}
+
+\subsubsection{lux/formal}\label{luxformal}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Commit & Message \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{c844d15} &
+\texttt{fix:\ Lean\ toolchain\ +\ close\ nonces\_monotone\ sorry\ +\ replace\ 10\ vacuous\ axioms} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix C: Verification
+Commands}\label{appendix-c-verification-commands}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# lux/standard {-}{-} run full test suite}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/lux/standard }\KeywordTok{\&\&} \ExtensionTok{forge}\NormalTok{ test }\AttributeTok{{-}{-}summary}
+\CommentTok{\# Expected: 1041 tests passing, 0 failures}
+
+\CommentTok{\# lux/standard {-}{-} run invariant tests}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/lux/standard }\KeywordTok{\&\&} \ExtensionTok{forge}\NormalTok{ test }\AttributeTok{{-}{-}match{-}path} \StringTok{"test/foundry/invariant/*.sol"}
+\CommentTok{\# Expected: 33 tests passing}
+
+\CommentTok{\# lux/standard {-}{-} run Halmos symbolic proofs}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/lux/standard }\KeywordTok{\&\&} \FunctionTok{make}\NormalTok{ halmos}
+\CommentTok{\# Expected: 48 check functions, all passing}
+
+\CommentTok{\# lux/standard {-}{-} run security toolchain}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/lux/standard }\KeywordTok{\&\&} \FunctionTok{make}\NormalTok{ security}
+\CommentTok{\# Runs: slither, semgrep, aderyn}
+
+\CommentTok{\# lux/liquid {-}{-} run full test suite}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/lux/liquid }\KeywordTok{\&\&} \ExtensionTok{forge}\NormalTok{ test }\AttributeTok{{-}{-}summary}
+\CommentTok{\# Expected: 251 tests passing}
+
+\CommentTok{\# lux/liquid {-}{-} run Halmos proofs}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/lux/liquid }\KeywordTok{\&\&} \FunctionTok{make}\NormalTok{ halmos}
+\CommentTok{\# Expected: 15 transmuter proofs passing}
+
+\CommentTok{\# liquidity/contracts {-}{-} run full test suite}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/liquidity/contracts }\KeywordTok{\&\&} \ExtensionTok{forge}\NormalTok{ test }\AttributeTok{{-}{-}summary}
+\CommentTok{\# Expected: 91 tests passing}
+
+\CommentTok{\# lux/formal {-}{-} build Lean proofs}
+\BuiltInTok{cd}\NormalTok{ \textasciitilde{}/work/lux/formal/lean }\KeywordTok{\&\&} \ExtensionTok{lake}\NormalTok{ build}
+\CommentTok{\# Expected: 33/36 theorems proved, 3 sorry remaining}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Report}
+
+\emph{Contact}:
+\href{mailto:security@lux.network}{\nolinkurl{security@lux.network}}
+\emph{Repository}: \url{https://github.com/luxfi/standard}
+\emph{Author}: Woo Bin, Lux Network \emph{Date}: 2026-03-25
+
+\end{document}

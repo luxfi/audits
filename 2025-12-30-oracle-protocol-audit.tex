@@ -1,0 +1,888 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Oracle and Attestation Protocol Security
+Audit}\label{oracle-and-attestation-protocol-security-audit}
+
+\textbf{Date}: 2025-12-30 \textbf{Scope}: Oracle and price feed
+infrastructure \textbf{Auditor}: CTO Agent \textbf{Severity Scale}:
+Critical \textgreater{} High \textgreater{} Medium \textgreater{} Low
+\textgreater{} Informational
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Lux oracle and attestation protocol provides a multi-source price
+aggregation system with comprehensive defensive measures. The
+architecture is well-designed with multiple redundant price sources
+(Pyth, Chainlink, native chains), robust aggregation via weighted
+median, circuit breakers, and quantum finality verification through
+Q-Chain.
+
+\textbf{Overall Assessment}: \textbf{Good} with specific areas requiring
+hardening.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Finding Count & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Critical & 0 & - \\
+High & 2 & Needs attention \\
+Medium & 5 & Should fix \\
+Low & 4 & Best practice \\
+Informational & 3 & Notes \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Architecture Overview}\label{architecture-overview}
+
+\subsubsection{Price Sources Reviewed}\label{price-sources-reviewed}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Source & Location & Weight & Staleness \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Pyth Network & \texttt{price/pyth.go}, \texttt{lx/pyth\_source.go} &
+1.2-1.5 & 30s \\
+Chainlink & \texttt{price/chainlink.go},
+\texttt{lx/chainlink\_source.go} & 1.0-2.0 & 60s \\
+X-Chain (native) & \texttt{price/xchain.go} & 2.0 & 2s \\
+C-Chain AMM & \texttt{price/cchain.go} & 1.8 & 5s \\
+A-Chain Attestation & \texttt{price/achain.go} & 1.5 & 5s \\
+Q-Chain Finality & \texttt{price/qchain.go} & N/A (verifier) & 5s \\
+Orderbook & \texttt{price/source.go} & 1.0 & 1s \\
+\end{longtable}
+}
+
+\subsubsection{Aggregation Strategy}\label{aggregation-strategy}
+
+\begin{verbatim}
+[Sources] -> [WeightedMedian] -> [OutlierRejection] -> [CircuitBreaker] -> [Final Price]
+              MaxDeviation: 10%   MinSources: 1-2     MaxChange: 20%
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Findings}\label{findings}
+
+\subsubsection{HIGH-001: Default MinSources Too
+Low}\label{high-001-default-minsources-too-low}
+
+\textbf{File}: \texttt{price/aggregator.go:40-41}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{strategy}\OperatorTok{:} \OperatorTok{\&}\NormalTok{WeightedMedian}\OperatorTok{\{}
+\NormalTok{    MinSources}\OperatorTok{:}   \DecValTok{1}\OperatorTok{,}  \CommentTok{// ISSUE: Single source acceptable}
+\NormalTok{    MaxDeviation}\OperatorTok{:} \FloatTok{0.10}\OperatorTok{,}
+\OperatorTok{\},}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Risk}: Oracle manipulation via single compromised/malicious
+source.
+
+\textbf{Attack Scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker compromises one price source
+\item
+  Other sources go offline (network partition, DDoS)
+\item
+  Manipulated price accepted with MinSources=1
+\item
+  Flash loan exploit using stale/manipulated price
+\end{enumerate}
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{MinSources}\OperatorTok{:} \DecValTok{2}\OperatorTok{,}  \CommentTok{// Require at least 2 independent sources}
+\end{Highlighting}
+\end{Shaded}
+
+For high-value operations (liquidations, large swaps), require
+MinSources \textgreater= 3.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{HIGH-002: TWAP/VWAP Not Used for Critical
+Operations}\label{high-002-twapvwap-not-used-for-critical-operations}
+
+\textbf{File}: \texttt{price/aggregator.go:477-510},
+\texttt{lx/oracle.go:759-805}
+
+TWAP and VWAP are calculated but not enforced for price-sensitive
+operations.
+
+\textbf{Current State}:
+
+\begin{itemize}
+\tightlist
+\item
+  TWAP/VWAP calculated every second over 5-minute window
+\item
+  Values stored but not used in aggregation
+\item
+  Spot price returned for all queries
+\end{itemize}
+
+\textbf{Risk}: Flash loan price manipulation within single block.
+
+\textbf{Attack Scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker takes flash loan
+\item
+  Manipulates spot price via large trade
+\item
+  Uses manipulated price for oracle-dependent operation
+\item
+  Reverses trade, repays loan
+\end{enumerate}
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// For liquidations and large margin operations:}
+\KeywordTok{func} \OperatorTok{(}\NormalTok{o }\OperatorTok{*}\NormalTok{Oracle}\OperatorTok{)}\NormalTok{ SafePrice}\OperatorTok{(}\NormalTok{symbol }\DataTypeTok{string}\OperatorTok{)} \DataTypeTok{float64} \OperatorTok{\{}
+\NormalTok{    spot }\OperatorTok{:=}\NormalTok{ o}\OperatorTok{.}\NormalTok{Price}\OperatorTok{(}\NormalTok{symbol}\OperatorTok{)}
+\NormalTok{    twap }\OperatorTok{:=}\NormalTok{ o}\OperatorTok{.}\NormalTok{TWAP}\OperatorTok{(}\NormalTok{symbol}\OperatorTok{)}
+    
+    \CommentTok{// Reject if spot deviates \textgreater{}5\% from TWAP}
+    \ControlFlowTok{if}\NormalTok{ math}\OperatorTok{.}\NormalTok{Abs}\OperatorTok{(}\NormalTok{spot}\OperatorTok{{-}}\NormalTok{twap}\OperatorTok{)/}\NormalTok{twap }\OperatorTok{\textgreater{}} \FloatTok{0.05} \OperatorTok{\{}
+        \ControlFlowTok{return} \DecValTok{0} \CommentTok{// Require human intervention}
+    \OperatorTok{\}}
+    
+    \CommentTok{// Use TWAP for critical operations}
+    \ControlFlowTok{return}\NormalTok{ twap}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM-001: Circuit Breaker Reset
+Window}\label{medium-001-circuit-breaker-reset-window}
+
+\textbf{File}: \texttt{price/aggregator.go:454-457}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ cb}\OperatorTok{.}\NormalTok{Tripped }\OperatorTok{\&\&}\NormalTok{ time}\OperatorTok{.}\NormalTok{Since}\OperatorTok{(}\NormalTok{cb}\OperatorTok{.}\NormalTok{TripTime}\OperatorTok{)} \OperatorTok{\textgreater{}}\NormalTok{ cb}\OperatorTok{.}\NormalTok{Reset }\OperatorTok{\{}
+\NormalTok{    cb}\OperatorTok{.}\NormalTok{Tripped }\OperatorTok{=} \OtherTok{false}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Circuit breaker auto-resets without validating price
+stability.
+
+\textbf{Risk}: Attacker waits for reset, immediately triggers
+manipulation.
+
+\textbf{Recommendation}: Require stable prices for N consecutive
+readings before reset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ CircuitBreaker }\KeywordTok{struct} \OperatorTok{\{}
+    \CommentTok{// ... existing fields}
+\NormalTok{    StableCount    }\DataTypeTok{int}  \CommentTok{// Consecutive stable readings}
+\NormalTok{    StableRequired }\DataTypeTok{int}  \CommentTok{// Required for reset (e.g., 10)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM-002: Confidence Score
+Calculation}\label{medium-002-confidence-score-calculation}
+
+\textbf{File}: \texttt{price/aggregator.go:409-433}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{w }\OperatorTok{*}\NormalTok{WeightedMedian}\OperatorTok{)}\NormalTok{ confidence}\OperatorTok{(}\NormalTok{prices }\OperatorTok{[]*}\NormalTok{Data}\OperatorTok{)} \DataTypeTok{float64} \OperatorTok{\{}
+\NormalTok{    sourceScore }\OperatorTok{:=} \DataTypeTok{float64}\OperatorTok{(}\BuiltInTok{len}\OperatorTok{(}\NormalTok{prices}\OperatorTok{))} \OperatorTok{/} \DataTypeTok{float64}\OperatorTok{(}\NormalTok{w}\OperatorTok{.}\NormalTok{MinSources}\OperatorTok{*}\DecValTok{2}\OperatorTok{)}
+    \CommentTok{// ...}
+    \ControlFlowTok{return}\NormalTok{ sourceScore}\OperatorTok{*}\FloatTok{0.6} \OperatorTok{+}\NormalTok{ devScore}\OperatorTok{*}\FloatTok{0.4}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Confidence calculation doesn\textquotesingle t account
+for:
+
+\begin{itemize}
+\tightlist
+\item
+  Source diversity (all sources from same provider)
+\item
+  Source reputation/historical accuracy
+\item
+  Time since last update per source
+\end{itemize}
+
+\textbf{Recommendation}: Implement diversity-aware confidence:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{w }\OperatorTok{*}\NormalTok{WeightedMedian}\OperatorTok{)}\NormalTok{ confidence}\OperatorTok{(}\NormalTok{prices }\OperatorTok{[]*}\NormalTok{Data}\OperatorTok{)} \DataTypeTok{float64} \OperatorTok{\{}
+    \CommentTok{// Track unique source types}
+\NormalTok{    sourceTypes }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{(}\KeywordTok{map}\OperatorTok{[}\DataTypeTok{string}\OperatorTok{]}\DataTypeTok{bool}\OperatorTok{)}
+    \ControlFlowTok{for}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ p }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ prices }\OperatorTok{\{}
+\NormalTok{        sourceTypes}\OperatorTok{[}\NormalTok{classifySource}\OperatorTok{(}\NormalTok{p}\OperatorTok{.}\NormalTok{Source}\OperatorTok{)]} \OperatorTok{=} \OtherTok{true}
+    \OperatorTok{\}}
+\NormalTok{    diversityScore }\OperatorTok{:=} \DataTypeTok{float64}\OperatorTok{(}\BuiltInTok{len}\OperatorTok{(}\NormalTok{sourceTypes}\OperatorTok{))} \OperatorTok{/} \FloatTok{4.0} \CommentTok{// 4 source categories}
+    
+    \CommentTok{// Weight: 40\% count, 30\% agreement, 30\% diversity}
+    \ControlFlowTok{return}\NormalTok{ sourceScore}\OperatorTok{*}\FloatTok{0.4} \OperatorTok{+}\NormalTok{ devScore}\OperatorTok{*}\FloatTok{0.3} \OperatorTok{+}\NormalTok{ diversityScore}\OperatorTok{*}\FloatTok{0.3}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM-003: Chainlink Simulation in Production
+Code}\label{medium-003-chainlink-simulation-in-production-code}
+
+\textbf{File}: \texttt{price/chainlink.go:96-133},
+\texttt{lx/chainlink\_source.go:133-174}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{s }\OperatorTok{*}\NormalTok{ChainlinkSource}\OperatorTok{)}\NormalTok{ simulate}\OperatorTok{(}\NormalTok{symbol }\DataTypeTok{string}\OperatorTok{)} \DataTypeTok{float64} \OperatorTok{\{}
+\NormalTok{    base }\OperatorTok{:=} \KeywordTok{map}\OperatorTok{[}\DataTypeTok{string}\OperatorTok{]}\DataTypeTok{float64}\OperatorTok{\{}
+        \StringTok{"BTC{-}USD"}\OperatorTok{:}  \FloatTok{50000.0}\OperatorTok{,}
+        \CommentTok{// ...}
+    \OperatorTok{\}}
+\NormalTok{    v }\OperatorTok{:=} \OperatorTok{(}\NormalTok{math}\OperatorTok{.}\NormalTok{Sin}\OperatorTok{(}\DataTypeTok{float64}\OperatorTok{(}\NormalTok{time}\OperatorTok{.}\NormalTok{Now}\OperatorTok{().}\NormalTok{UnixNano}\OperatorTok{())/}\FloatTok{1e9}\OperatorTok{)} \OperatorTok{*} \FloatTok{0.001}\OperatorTok{)} \OperatorTok{+} \FloatTok{1.0}
+    \ControlFlowTok{return}\NormalTok{ b }\OperatorTok{*}\NormalTok{ v}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Production code contains simulated prices instead of
+real oracle calls.
+
+\textbf{Risk}: If deployed as-is, prices would be static/predictable.
+
+\textbf{Recommendation}: Complete actual Chainlink integration:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{s }\OperatorTok{*}\NormalTok{ChainlinkSource}\OperatorTok{)}\NormalTok{ fetch}\OperatorTok{(}\NormalTok{ctx context}\OperatorTok{.}\NormalTok{Context}\OperatorTok{,}\NormalTok{ symbol}\OperatorTok{,}\NormalTok{ addr }\DataTypeTok{string}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    aggregator}\OperatorTok{,}\NormalTok{ \_ }\OperatorTok{:=}\NormalTok{ NewAggregatorV3Interface}\OperatorTok{(}\NormalTok{common}\OperatorTok{.}\NormalTok{HexToAddress}\OperatorTok{(}\NormalTok{addr}\OperatorTok{),}\NormalTok{ client}\OperatorTok{)}
+\NormalTok{    roundData}\OperatorTok{,}\NormalTok{ \_ }\OperatorTok{:=}\NormalTok{ aggregator}\OperatorTok{.}\NormalTok{LatestRoundData}\OperatorTok{(}\OtherTok{nil}\OperatorTok{)}
+    
+\NormalTok{    price }\OperatorTok{:=} \BuiltInTok{new}\OperatorTok{(}\NormalTok{big}\OperatorTok{.}\NormalTok{Float}\OperatorTok{).}\NormalTok{SetInt}\OperatorTok{(}\NormalTok{roundData}\OperatorTok{.}\NormalTok{Answer}\OperatorTok{)}
+\NormalTok{    decimals}\OperatorTok{,}\NormalTok{ \_ }\OperatorTok{:=}\NormalTok{ aggregator}\OperatorTok{.}\NormalTok{Decimals}\OperatorTok{(}\OtherTok{nil}\OperatorTok{)}
+\NormalTok{    divisor }\OperatorTok{:=} \BuiltInTok{new}\OperatorTok{(}\NormalTok{big}\OperatorTok{.}\NormalTok{Float}\OperatorTok{).}\NormalTok{SetInt}\OperatorTok{(}\BuiltInTok{new}\OperatorTok{(}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}\OperatorTok{).}\NormalTok{Exp}\OperatorTok{(}\NormalTok{big}\OperatorTok{.}\NormalTok{NewInt}\OperatorTok{(}\DecValTok{10}\OperatorTok{),}\NormalTok{ big}\OperatorTok{.}\NormalTok{NewInt}\OperatorTok{(}\DataTypeTok{int64}\OperatorTok{(}\NormalTok{decimals}\OperatorTok{)),} \OtherTok{nil}\OperatorTok{))}
+\NormalTok{    price}\OperatorTok{.}\NormalTok{Quo}\OperatorTok{(}\NormalTok{price}\OperatorTok{,}\NormalTok{ divisor}\OperatorTok{)}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM-004: A-Chain Attestation Quorum Too
+Low}\label{medium-004-a-chain-attestation-quorum-too-low}
+
+\textbf{File}: \texttt{price/achain.go:69}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{quorum}\OperatorTok{:} \DecValTok{3}\OperatorTok{,} \CommentTok{// 3 of N validators for consensus}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: With 4 validators configured, 3-of-4 quorum is 75\%. A
+single validator going offline reduces to 3-of-3 (100\% required).
+
+\textbf{Validator Set}:
+
+\begin{itemize}
+\tightlist
+\item
+  validator-1: 1M stake
+\item
+  validator-2: 500k stake
+\item
+  validator-3: 750k stake
+\item
+  validator-4: 250k stake
+\end{itemize}
+
+\textbf{Risk}:
+
+\begin{itemize}
+\tightlist
+\item
+  Validator collusion (3 validators = 90\% stake)
+\item
+  Single validator failure = system halt
+\end{itemize}
+
+\textbf{Recommendation}:
+
+\begin{itemize}
+\tightlist
+\item
+  Increase validator set size to 7+
+\item
+  Use stake-weighted quorum: 66.7\% of total stake
+\item
+  Implement view-change for offline validators
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM-005: Q-Chain Signature Verification Not
+Implemented}\label{medium-005-q-chain-signature-verification-not-implemented}
+
+\textbf{File}: \texttt{price/qchain.go:200-234}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{v }\OperatorTok{*}\NormalTok{QChainVerifier}\OperatorTok{)}\NormalTok{ simulateFinality}\OperatorTok{(}\NormalTok{chain }\DataTypeTok{string}\OperatorTok{)} \OperatorTok{*}\NormalTok{QuantumFinality }\OperatorTok{\{}
+    \CommentTok{// ...}
+\NormalTok{    sigs }\OperatorTok{=} \BuiltInTok{append}\OperatorTok{(}\NormalTok{sigs}\OperatorTok{,}\NormalTok{ QuantumSignature}\OperatorTok{\{}
+\NormalTok{        Validator}\OperatorTok{:}\NormalTok{ name}\OperatorTok{,}
+\NormalTok{        Algorithm}\OperatorTok{:}\NormalTok{ val}\OperatorTok{.}\NormalTok{Algorithm}\OperatorTok{,}
+\NormalTok{        Signature}\OperatorTok{:}\NormalTok{ hash}\OperatorTok{[:],}        \CommentTok{// Simulated, not actual signature}
+\NormalTok{        PublicKey}\OperatorTok{:}\NormalTok{ pubKey}\OperatorTok{[:}\DecValTok{64}\OperatorTok{],}
+    \OperatorTok{\})}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Quantum signatures are simulated, not verified.
+
+\textbf{Risk}: Finality proofs can be forged.
+
+\textbf{Recommendation}: Implement actual PQ signature verification:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{import} \StringTok{"github.com/luxfi/crypto/dilithium"}
+
+\KeywordTok{func} \OperatorTok{(}\NormalTok{v }\OperatorTok{*}\NormalTok{QChainVerifier}\OperatorTok{)}\NormalTok{ verifySignature}\OperatorTok{(}\NormalTok{sig QuantumSignature}\OperatorTok{,}\NormalTok{ data }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \DataTypeTok{bool} \OperatorTok{\{}
+    \ControlFlowTok{switch}\NormalTok{ sig}\OperatorTok{.}\NormalTok{Algorithm }\OperatorTok{\{}
+    \ControlFlowTok{case} \StringTok{"dilithium3"}\OperatorTok{:}
+        \ControlFlowTok{return}\NormalTok{ dilithium}\OperatorTok{.}\NormalTok{Verify}\OperatorTok{(}\NormalTok{sig}\OperatorTok{.}\NormalTok{PublicKey}\OperatorTok{,}\NormalTok{ data}\OperatorTok{,}\NormalTok{ sig}\OperatorTok{.}\NormalTok{Signature}\OperatorTok{)}
+    \ControlFlowTok{case} \StringTok{"sphincs{-}sha2{-}256f"}\OperatorTok{:}
+        \ControlFlowTok{return}\NormalTok{ sphincs}\OperatorTok{.}\NormalTok{Verify}\OperatorTok{(}\NormalTok{sig}\OperatorTok{.}\NormalTok{PublicKey}\OperatorTok{,}\NormalTok{ data}\OperatorTok{,}\NormalTok{ sig}\OperatorTok{.}\NormalTok{Signature}\OperatorTok{)}
+    \OperatorTok{\}}
+    \ControlFlowTok{return} \OtherTok{false}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{LOW-001: Pyth Confidence
+Calculation}\label{low-001-pyth-confidence-calculation}
+
+\textbf{File}: \texttt{price/pyth.go:152-156}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Confidence}\OperatorTok{:} \FloatTok{1.0} \OperatorTok{{-}} \OperatorTok{(}\NormalTok{conf }\OperatorTok{/}\NormalTok{ price}\OperatorTok{),}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Pyth confidence interval is absolute, not percentage.
+Division by price is incorrect for USD-denominated assets.
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Pyth confidence is standard deviation}
+\CommentTok{// Convert to 0{-}1 confidence score}
+\NormalTok{confRatio }\OperatorTok{:=}\NormalTok{ conf }\OperatorTok{/}\NormalTok{ price}
+\ControlFlowTok{if}\NormalTok{ confRatio }\OperatorTok{\textgreater{}} \FloatTok{0.1} \OperatorTok{\{}
+\NormalTok{    Confidence }\OperatorTok{=} \DecValTok{0} \CommentTok{// Too wide}
+\OperatorTok{\}} \ControlFlowTok{else} \OperatorTok{\{}
+\NormalTok{    Confidence }\OperatorTok{=} \FloatTok{1.0} \OperatorTok{{-}} \OperatorTok{(}\NormalTok{confRatio }\OperatorTok{*} \DecValTok{10}\OperatorTok{)} \CommentTok{// Scale 0{-}10\% to 0{-}1}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{LOW-002: Symbol Normalization Edge
+Cases}\label{low-002-symbol-normalization-edge-cases}
+
+\textbf{File}: \texttt{price/normalize.go:24-35}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ detectPair}\OperatorTok{(}\NormalTok{s }\DataTypeTok{string}\OperatorTok{)} \DataTypeTok{string} \OperatorTok{\{}
+\NormalTok{    quotes }\OperatorTok{:=} \OperatorTok{[]}\DataTypeTok{string}\OperatorTok{\{}\StringTok{"USDC"}\OperatorTok{,} \StringTok{"USDT"}\OperatorTok{,} \StringTok{"USD"}\OperatorTok{,} \StringTok{"BTC"}\OperatorTok{,} \StringTok{"ETH"}\OperatorTok{,} \StringTok{"LUX"}\OperatorTok{\}}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Order matters - "BTCUSD" would incorrectly split to
+"BTC-USD" but "USDBTC" would fail.
+
+\textbf{Recommendation}: Add reverse lookup and explicit pair registry.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{LOW-003: History Buffer
+Overflow}\label{low-003-history-buffer-overflow}
+
+\textbf{File}: \texttt{price/aggregator.go:162-164}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{o}\OperatorTok{.}\NormalTok{history}\OperatorTok{[}\NormalTok{symbol}\OperatorTok{])} \OperatorTok{\textgreater{}} \DecValTok{10000} \OperatorTok{\{}
+\NormalTok{    o}\OperatorTok{.}\NormalTok{history}\OperatorTok{[}\NormalTok{symbol}\OperatorTok{]} \OperatorTok{=}\NormalTok{ o}\OperatorTok{.}\NormalTok{history}\OperatorTok{[}\NormalTok{symbol}\OperatorTok{][}\DecValTok{1}\OperatorTok{:]}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Slice reslicing creates memory pressure; old backing
+array not garbage collected.
+
+\textbf{Recommendation}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{const}\NormalTok{ maxHistory }\OperatorTok{=} \DecValTok{10000}
+\ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{o}\OperatorTok{.}\NormalTok{history}\OperatorTok{[}\NormalTok{symbol}\OperatorTok{])} \OperatorTok{\textgreater{}=}\NormalTok{ maxHistory }\OperatorTok{\{}
+    \CommentTok{// Copy to new slice to allow GC}
+\NormalTok{    newHist }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{([]*}\NormalTok{Data}\OperatorTok{,}\NormalTok{ maxHistory}\OperatorTok{{-}}\DecValTok{1}\OperatorTok{)}
+    \BuiltInTok{copy}\OperatorTok{(}\NormalTok{newHist}\OperatorTok{,}\NormalTok{ o}\OperatorTok{.}\NormalTok{history}\OperatorTok{[}\NormalTok{symbol}\OperatorTok{][}\DecValTok{1}\OperatorTok{:])}
+\NormalTok{    o}\OperatorTok{.}\NormalTok{history}\OperatorTok{[}\NormalTok{symbol}\OperatorTok{]} \OperatorTok{=}\NormalTok{ newHist}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{LOW-004: Race Condition in Source
+Polling}\label{low-004-race-condition-in-source-polling}
+
+\textbf{File}: \texttt{price/cchain.go:211-219}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{s }\OperatorTok{*}\NormalTok{CChainSource}\OperatorTok{)}\NormalTok{ poll}\OperatorTok{()} \OperatorTok{\{}
+    \KeywordTok{var}\NormalTok{ wg sync}\OperatorTok{.}\NormalTok{WaitGroup}
+    \ControlFlowTok{for}\NormalTok{ symbol}\OperatorTok{,}\NormalTok{ pair }\OperatorTok{:=} \KeywordTok{range}\NormalTok{ s}\OperatorTok{.}\NormalTok{tokens }\OperatorTok{\{}
+\NormalTok{        wg}\OperatorTok{.}\NormalTok{Add}\OperatorTok{(}\DecValTok{1}\OperatorTok{)}
+        \ControlFlowTok{go} \KeywordTok{func}\OperatorTok{(}\NormalTok{sym }\DataTypeTok{string}\OperatorTok{,}\NormalTok{ p TokenPair}\OperatorTok{)} \OperatorTok{\{}
+            \CommentTok{// ...}
+        \OperatorTok{\}(}\NormalTok{symbol}\OperatorTok{,}\NormalTok{ pair}\OperatorTok{)}
+    \OperatorTok{\}}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue}: Iterating over map in goroutine with value capture.
+Closure correctly captures, but map iteration order is undefined.
+
+\textbf{Recommendation}: No action needed - current implementation is
+correct. Note for reference.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{INFO-001: Source Weight
+Configuration}\label{info-001-source-weight-configuration}
+
+Current weights:
+
+\begin{itemize}
+\tightlist
+\item
+  X-Chain (native DEX): 2.0
+\item
+  Chainlink: 1.0-2.0
+\item
+  C-Chain AMM: 1.8
+\item
+  A-Chain Attestation: 1.5
+\item
+  Pyth: 1.2
+\item
+  Orderbook: 1.0
+\end{itemize}
+
+These weights favor on-chain sources, which is appropriate but should be
+configurable per deployment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{INFO-002: Missing Staleness Alert
+Persistence}\label{info-002-missing-staleness-alert-persistence}
+
+Staleness detection triggers alerts via channel but
+doesn\textquotesingle t persist state:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{case}\NormalTok{ o}\OperatorTok{.}\NormalTok{alerts }\OperatorTok{\textless{}{-}} \OperatorTok{\&}\NormalTok{Alert}\OperatorTok{\{...\}:}
+\ControlFlowTok{default}\OperatorTok{:}
+    \CommentTok{// Dropped if channel full}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Consider adding persistent alert logging for forensics.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{INFO-003: Test Coverage
+Gaps}\label{info-003-test-coverage-gaps}
+
+Observed test files:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{price\_test.go} - Basic coverage
+\item
+  \texttt{coverage\_test.go} - Coverage improvement
+\item
+  \texttt{oracle\_test.go}, \texttt{oracle\_comprehensive\_test.go} -
+  Good coverage
+\end{itemize}
+
+Missing:
+
+\begin{itemize}
+\tightlist
+\item
+  Adversarial manipulation tests
+\item
+  Multi-source failure scenarios
+\item
+  Flash loan attack simulations
+\item
+  TWAP/VWAP manipulation edge cases
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Security Recommendations
+Summary}\label{security-recommendations-summary}
+
+\subsubsection{Immediate Actions (High
+Priority)}\label{immediate-actions-high-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Increase MinSources to 2} for all price queries
+\item
+  \textbf{Use TWAP for liquidations} and margin operations
+\item
+  \textbf{Complete Chainlink integration} - remove simulation code
+\item
+  \textbf{Implement Q-Chain signature verification}
+\end{enumerate}
+
+\subsubsection{Short-Term (Medium
+Priority)}\label{short-term-medium-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  Enhance circuit breaker with stability check before reset
+\item
+  Implement diversity-aware confidence scoring
+\item
+  Increase A-Chain validator set and use stake-weighted quorum
+\item
+  Add adversarial test suite
+\end{enumerate}
+
+\subsubsection{Long-Term (Low Priority)}\label{long-term-low-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{8}
+\tightlist
+\item
+  Memory optimization for history buffers
+\item
+  Persistent alert logging
+\item
+  Configurable source weights
+\item
+  Price feed monitoring dashboard
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Attestation Protocol
+Analysis}\label{attestation-protocol-analysis}
+
+\subsubsection{A-Chain Architecture}\label{a-chain-architecture}
+
+The A-Chain attestation protocol provides validator-signed price
+attestations:
+
+\begin{verbatim}
+[External Oracle] -> [Validator Set] -> [Quorum Signing] -> [Finalized Attestation]
+\end{verbatim}
+
+\textbf{Strengths}:
+
+\begin{itemize}
+\tightlist
+\item
+  Multi-validator consensus (3-of-4 currently)
+\item
+  Stake-weighted validator set
+\item
+  Hash-based attestation integrity
+\item
+  Finalization flag for confirmation
+\end{itemize}
+
+\textbf{Weaknesses}:
+
+\begin{itemize}
+\tightlist
+\item
+  Small validator set (4 validators)
+\item
+  No slashing for misbehavior
+\item
+  Quorum calculation ignores stake weight
+\item
+  No view-change protocol for offline validators
+\end{itemize}
+
+\subsubsection{Q-Chain Quantum Finality}\label{q-chain-quantum-finality}
+
+Provides post-quantum finality verification:
+
+\textbf{Supported Algorithms}:
+
+\begin{itemize}
+\tightlist
+\item
+  Dilithium3 (NIST Level 3)
+\item
+  Dilithium5 (NIST Level 5)
+\item
+  SPHINCS+-SHA2-256f
+\end{itemize}
+
+\textbf{Architecture}:
+
+\begin{verbatim}
+[Chain Finality] -> [Q-Chain Validators] -> [PQ Signature] -> [QuantumFinality Proof]
+\end{verbatim}
+
+\textbf{Gap}: Signature verification not implemented - currently
+simulated.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Oracle Manipulation
+Protection}\label{oracle-manipulation-protection}
+
+\subsubsection{Flash Loan Attack
+Mitigation}\label{flash-loan-attack-mitigation}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Protection & Status & Effectiveness \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+TWAP & Calculated, not enforced & Low \\
+VWAP & Calculated, not enforced & Low \\
+Circuit Breaker & Active, 20\% threshold & Medium \\
+Multi-Source & MinSources=1 default & Low \\
+Staleness Check & 5s limit & Medium \\
+\end{longtable}
+}
+
+\textbf{Recommendation}: Enforce TWAP for all price-sensitive
+operations.
+
+\subsubsection{Stale Price Protection}\label{stale-price-protection}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Source & Staleness Limit & Action \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Pyth & 30s & HTTP fallback \\
+Chainlink & 60s & Mark stale \\
+X-Chain & 2s & Mark stale \\
+C-Chain & 5s & Mark stale \\
+A-Chain & 5s & Mark stale, require finalization \\
+\end{longtable}
+}
+
+\textbf{Recommendation}: Add emergency price feed for critical staleness
+scenarios.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Conclusion}\label{conclusion}
+
+The Lux oracle protocol demonstrates a well-architected multi-source
+price aggregation system with quantum finality integration. The primary
+concerns are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Low MinSources default} - Single source attacks possible
+\item
+  \textbf{TWAP not enforced} - Flash loan manipulation risk
+\item
+  \textbf{Simulation code in production} - Chainlink/Q-Chain not fully
+  integrated
+\item
+  \textbf{Small validator set} - Collusion and availability risks
+\end{enumerate}
+
+Addressing the High-priority findings before mainnet deployment is
+recommended.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Audit Completed}: 2025-12-30 \textbf{Next Review}: Before
+mainnet launch or after significant changes
+
+\end{document}

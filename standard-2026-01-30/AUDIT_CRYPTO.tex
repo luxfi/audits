@@ -1,0 +1,1048 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Cryptographic Operations Audit
+Report}\label{cryptographic-operations-audit-report}
+
+\textbf{Repository:} \texttt{/Users/z/work/lux/standard/contracts/}
+\textbf{Date:} 2026-01-30 \textbf{Auditor:} Automated Security Analysis
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This audit examines all cryptographic operations across the Lux Standard
+contracts. The codebase implements a diverse set of cryptographic
+schemes including ECDSA, FROST Schnorr signatures, Lamport signatures,
+EIP-712 typed data, and Merkle proofs. While most implementations follow
+best practices, several findings require attention.
+
+\textbf{Severity Summary:}
+
+\begin{itemize}
+\tightlist
+\item
+  CRITICAL: 2
+\item
+  HIGH: 4
+\item
+  MEDIUM: 6
+\item
+  LOW: 8
+\item
+  INFORMATIONAL: 5
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Signature Verification
+(ecrecover)}\label{1-signature-verification-ecrecover}
+
+\subsubsection{1.1 Files Using
+ecrecover}\label{11-files-using-ecrecover}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Line & Context \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{bridge/Teleport.sol} & 273 & MPC oracle signature
+verification \\
+\texttt{bridge/Bridge.sol} & 327 & MPC oracle signature verification \\
+\texttt{governance/DAO.sol} & 323 & Vote by signature \\
+\texttt{safe/FROST.sol} & 15-26 & Schnorr signature via ecrecover
+trick \\
+\end{longtable}
+}
+
+\subsubsection{1.2 Findings}\label{12-findings}
+
+\paragraph{CRITICAL: Missing Signature Malleability Protection in Bridge
+Contracts}\label{critical-missing-signature-malleability-protection-in-bridge-contracts}
+
+\textbf{Files:} \texttt{bridge/Teleport.sol}, \texttt{bridge/Bridge.sol}
+
+\textbf{Issue:} Both contracts use raw \texttt{ecrecover} without
+checking the \texttt{s} value is in the lower half of the curve order.
+ECDSA signatures are malleable: for any valid signature
+\texttt{(r,\ s,\ v)}, the signature
+\texttt{(r,\ n\ -\ s,\ v\textquotesingle{})} is also valid for the same
+message.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// bridge/Teleport.sol:271{-}273}
+\NormalTok{function recoverSigner(bytes32 message, bytes memory sig) internal pure returns (address) \{}
+\NormalTok{    (uint8 v, bytes32 r, bytes32 s) = splitSignature(sig);}
+\NormalTok{    return ecrecover(message, v, r, s);  // No malleability check}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact:} An attacker could submit a malleable signature variant
+to bypass replay protection if the signature bytes themselves are used
+as the replay key (which they are in
+\texttt{transactionMap{[}signedTXInfo{]}}).
+
+\textbf{Recommendation:} Use OpenZeppelin\textquotesingle s
+\texttt{ECDSA.recover()} which enforces
+\texttt{s\ \textless{}=\ secp256k1n/2}, or add explicit check:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(uint256(s) \textless{}= 0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5D576E7357A4501DDFE92F46681B20A0);}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{HIGH: No Zero Address Check After
+ecrecover}\label{high-no-zero-address-check-after-ecrecover}
+
+\textbf{Files:} \texttt{bridge/Teleport.sol}, \texttt{bridge/Bridge.sol}
+
+\textbf{Issue:} \texttt{ecrecover} returns \texttt{address(0)} on
+invalid signatures rather than reverting. The bridge contracts do check
+the recovered address against \texttt{MPCOracleAddrMap}, but this relies
+on \texttt{address(0)} not being in the oracle map. An explicit check
+should be added.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// bridge/Bridge.sol:445{-}451}
+\NormalTok{address signer = recoverSigner(}
+\NormalTok{    prefixed(keccak256(abi.encodePacked(message))),}
+\NormalTok{    signedTXInfo\_}
+\NormalTok{);}
+\NormalTok{// Missing: require(signer != address(0), "Invalid signature");}
+\NormalTok{require(MPCOracleAddrMap[signer].exists, "Unauthorized Signature");}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Add explicit zero address check immediately
+after recovery.
+
+\paragraph{LOW: DAO.sol Uses Raw ecrecover
+(Acceptable)}\label{low-daosol-uses-raw-ecrecover-acceptable}
+
+\textbf{File:} \texttt{governance/DAO.sol:323}
+
+The DAO contract uses \texttt{ecrecover} directly but the context is
+acceptable because:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The signature is used to identify the voter, not for replay protection
+\item
+  Invalid signatures (returning \texttt{address(0)}) are caught by
+  subsequent \texttt{require(signer\ !=\ address(0))}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Hash Functions
+(keccak256)}\label{2-hash-functions-keccak256}
+
+\subsubsection{2.1 Hash Collision Risks}\label{21-hash-collision-risks}
+
+\paragraph{MEDIUM: abi.encodePacked with Multiple Dynamic
+Types}\label{medium-abiencodepacked-with-multiple-dynamic-types}
+
+\textbf{Multiple Files}
+
+Using \texttt{abi.encodePacked} with multiple dynamic-length arguments
+can lead to hash collisions:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// bridge/Teleport.sol:183}
+\NormalTok{return string(abi.encodePacked(amt, toTargetAddrStr, txid, tokenAddrStrHash, chainIdStr, vault));}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Example Collision:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{encodePacked("a",\ "bc")} = \texttt{encodePacked("ab",\ "c")}
+  = \texttt{"abc"}
+\end{itemize}
+
+\textbf{Affected Locations:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{bridge/Teleport.sol:183} - Message construction
+\item
+  \texttt{bridge/Bridge.sol:276-284} - Message construction
+\item
+  \texttt{privacy/BulletproofVerifier.sol:166-167} - Challenge
+  computation
+\item
+  \texttt{account/Account.sol:206} - Session key message hash
+\end{itemize}
+
+\textbf{Recommendation:} Use \texttt{abi.encode} instead of
+\texttt{abi.encodePacked} for all security-critical hashing, or ensure
+at least one fixed-length element separates dynamic elements.
+
+\paragraph{LOW: Proper Usage Patterns
+Observed}\label{low-proper-usage-patterns-observed}
+
+Several contracts correctly use \texttt{abi.encode} for EIP-712
+structured data:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{governance/DAO.sol:305-320} - Domain separator and struct hash
+\item
+  \texttt{governance/Council.sol:224-243} - Transaction hashing
+\item
+  \texttt{tokens/LRC20/extensions/LRC20Permit.sol:60-61} - Permit hash
+\item
+  \texttt{router/IntentRouter.sol:444-459} - Order hash
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Nonce Management}\label{3-nonce-management}
+
+\subsubsection{3.1 Files with Nonce
+Management}\label{31-files-with-nonce-management}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Nonce Type & Implementation \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{account/Account.sol} & Session nonce & Incremented after use \\
+\texttt{tokens/LRC20/extensions/LRC20Permit.sol} & EIP-2612 nonce &
+OpenZeppelin Nonces \\
+\texttt{fhe/governance/ConfidentialLRC20Votes.sol} & Delegation nonce &
+Custom mapping \\
+\texttt{router/IntentRouter.sol} & Order nonce & Invalidation mapping \\
+\texttt{safe/SafeThresholdLamportModule.sol} & Lamport nonce &
+Incremented after use \\
+\texttt{bridge/teleport/TeleportBridge.sol} & Burn nonce & Sequential
+counter \\
+\end{longtable}
+}
+
+\subsubsection{3.2 Findings}\label{32-findings}
+
+\paragraph{HIGH: Nonce Not Validated Before Use in
+Account.sol}\label{high-nonce-not-validated-before-use-in-accountsol}
+
+\textbf{File:} \texttt{account/Account.sol:206}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function executeWithSession(...) external returns (bytes memory) \{}
+\NormalTok{    bytes32 hash = keccak256(abi.encodePacked(target, value, data, nonce));}
+\NormalTok{    // ... signature verification ...}
+\NormalTok{    nonce++;  // Nonce incremented AFTER use}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue:} The nonce is included in the hash but
+there\textquotesingle s no validation that the signature was created
+with the current nonce. An attacker could potentially replay old
+signatures if the same \texttt{(target,\ value,\ data)} tuple recurs.
+
+\textbf{Recommendation:} Include explicit nonce validation or use a
+nonce mapping per signer.
+
+\paragraph{MEDIUM: Potential Nonce Desync in
+ConfidentialLRC20Votes}\label{medium-potential-nonce-desync-in-confidentiallrc20votes}
+
+\textbf{File:}
+\texttt{fhe/governance/ConfidentialLRC20Votes.sol:137-139}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (nonce != nonces[delegator]++) \{}
+\NormalTok{    revert SignatureNonceInvalid();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue:} The nonce is incremented even when the signature
+verification fails (due to the \texttt{++} operator in the condition).
+If \texttt{SignatureChecker.isValidSignatureNow} fails first (line 134),
+the nonce is not affected, but the order of checks could lead to
+inconsistent state if reordered.
+
+\textbf{Recommendation:} Separate nonce validation from nonce increment
+for clarity.
+
+\paragraph{LOW: Good Practice - TeleportBridge Nonce
+Management}\label{low-good-practice---teleportbridge-nonce-management}
+
+\textbf{File:} \texttt{bridge/teleport/TeleportBridge.sol:156}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 currentNonce = burnNonce++;}
+\end{Highlighting}
+\end{Shaded}
+
+Good pattern: sequential nonce incremented atomically, included in
+canonical burn ID computation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Randomness Sources}\label{4-randomness-sources}
+
+\subsubsection{4.1 Analysis of block.timestamp/block.number
+Usage}\label{41-analysis-of-blocktimestampblocknumber-usage}
+
+\paragraph{MEDIUM: block.timestamp Used in Pool ID
+Generation}\label{medium-blocktimestamp-used-in-pool-id-generation}
+
+\textbf{File:} \texttt{mocks/MockZChainAMM.sol:36}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{poolId = keccak256(abi.encodePacked(assetA, assetB, block.timestamp));}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue:} Using \texttt{block.timestamp} for generating
+identifiers allows miners/validators to influence the outcome. This is a
+mock contract, but the pattern should not be used in production.
+
+\paragraph{MEDIUM: Potential Time-Based Manipulation in Oracle
+Staleness}\label{medium-potential-time-based-manipulation-in-oracle-staleness}
+
+\textbf{File:} \texttt{precompile/interfaces/IOracle.sol:299}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(block.timestamp {-} p.timestamp \textless{}= maxAge, "Oracle: stale price");}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue:} Price staleness checks rely on \texttt{block.timestamp}
+which can be manipulated by validators within bounds (\textasciitilde15
+seconds on Ethereum). For high-value transactions, this tolerance may be
+exploitable.
+
+\textbf{Recommendation:} Consider using multiple oracle sources or
+implementing TWAP for price-sensitive operations.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. EIP-712 Typed Data
+Signing}\label{5-eip-712-typed-data-signing}
+
+\subsubsection{5.1 Implementation
+Review}\label{51-implementation-review}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Contract & Domain Separator & Findings \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{governance/DAO.sol} & Dynamic construction & Computed per-call
+(gas inefficient but correct) \\
+\texttt{governance/Council.sol} & DOMAIN\_SEPARATOR\_TYPEHASH &
+Correctly typed \\
+\texttt{tokens/LRC20/extensions/LRC20Permit.sol} & OpenZeppelin EIP712 &
+Best practice implementation \\
+\texttt{router/IntentRouter.sol} & OpenZeppelin EIP712 & Best practice
+implementation \\
+\texttt{bridge/teleport/TeleportBridge.sol} & OpenZeppelin EIP712 & Best
+practice implementation \\
+\texttt{fhe/access/PermissionedV2.sol} & Modified EIP712 & Intentionally
+omits verifyingContract \\
+\texttt{account/Account.sol} & Defined but unused & DOMAIN\_TYPEHASH
+defined but EIP-712 not fully implemented \\
+\end{longtable}
+}
+
+\subsubsection{5.2 Findings}\label{52-findings}
+
+\paragraph{HIGH: DAO.sol Domain Separator Lacks
+Version}\label{high-daosol-domain-separator-lacks-version}
+
+\textbf{File:} \texttt{governance/DAO.sol:305-311}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bytes32 domainSeparator = keccak256(}
+\NormalTok{    abi.encode(}
+\NormalTok{        keccak256("EIP712Domain(string name,uint256 chainId,address verifyingContract)"),}
+\NormalTok{        keccak256(bytes("LuxDAO")),}
+\NormalTok{        block.chainid,}
+\NormalTok{        address(this)}
+\NormalTok{    )}
+\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue:} The domain separator is missing the \texttt{version}
+field that is standard in EIP-712. While functional, this deviates from
+the standard and may cause compatibility issues with signing libraries.
+
+\textbf{Recommendation:} Add version field:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{keccak256("EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)")}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{LOW: Domain Separator Not Cached in
+DAO.sol}\label{low-domain-separator-not-cached-in-daosol}
+
+\textbf{File:} \texttt{governance/DAO.sol}
+
+The domain separator is recomputed on every \texttt{castVoteBySig} call.
+While correct (handles chain forks), it\textquotesingle s gas
+inefficient. Consider caching with fork detection like
+OpenZeppelin\textquotesingle s implementation.
+
+\paragraph{INFORMATIONAL: PermissionedV2 Intentionally Omits
+verifyingContract}\label{informational-permissionedv2-intentionally-omits-verifyingcontract}
+
+\textbf{File:} \texttt{fhe/access/PermissionedV2.sol}
+
+This is intentional design to allow single signatures to work across
+multiple contracts. The access control is handled via the
+\texttt{contracts} and \texttt{projects} arrays in the permission
+struct. This is documented and acceptable.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Permit Signatures
+(ERC-2612)}\label{6-permit-signatures-erc-2612}
+
+\subsubsection{6.1 Implementations}\label{61-implementations}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Contract & Base Implementation \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{tokens/LRC20/extensions/LRC20Permit.sol} & Custom (follows
+standard) \\
+\texttt{governance/Stake.sol} & OpenZeppelin ERC20Permit \\
+\texttt{liquid/LiquidLUX.sol} & OpenZeppelin ERC20Permit \\
+\texttt{tokens/LRC4626/LRC4626.sol} & OpenZeppelin ERC20Permit \\
+\texttt{tokens/LRC20/LRC20.sol} & OpenZeppelin ERC20Permit \\
+\end{longtable}
+}
+
+\subsubsection{6.2 Findings}\label{62-findings}
+
+\paragraph{LOW: LRC20Permit Uses ECDSA.recover
+Correctly}\label{low-lrc20permit-uses-ecdsarecover-correctly}
+
+\textbf{File:} \texttt{tokens/LRC20/extensions/LRC20Permit.sol:65}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{address signer = ECDSA.recover(hash, v, r, s);}
+\end{Highlighting}
+\end{Shaded}
+
+Good: Uses OpenZeppelin\textquotesingle s ECDSA library which includes
+malleability protection.
+
+\paragraph{INFORMATIONAL: All Permit Implementations Follow
+ERC-2612}\label{informational-all-permit-implementations-follow-erc-2612}
+
+All permit implementations correctly:
+
+\begin{itemize}
+\tightlist
+\item
+  Use sequential nonces via \texttt{\_useNonce()}
+\item
+  Include deadline validation
+\item
+  Use EIP-712 typed data hashing
+\item
+  Validate signer matches owner
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Merkle Proof
+Verification}\label{7-merkle-proof-verification}
+
+\subsubsection{7.1 Implementations
+Found}\label{71-implementations-found}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Contract & Purpose \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{privacy/ZNote.sol} & Note commitment tree \\
+\texttt{privacy/ShieldedTreasury.sol} & Commitment tree \\
+\texttt{privacy/Poseidon2Commitments.sol} & ZK commitment tree \\
+\texttt{privacy/PrivateBridge.sol} & Cross-chain commitment \\
+\texttt{precompile/interfaces/IZK.sol} & Precompile interface \\
+\texttt{precompile/interfaces/IHash.sol} & Hash precompile interface \\
+\end{longtable}
+}
+
+\subsubsection{7.2 Findings}\label{72-findings}
+
+\paragraph{MEDIUM: Second Preimage Attack Risk in Custom Merkle
+Implementations}\label{medium-second-preimage-attack-risk-in-custom-merkle-implementations}
+
+\textbf{Files:} \texttt{privacy/ZNote.sol},
+\texttt{privacy/ShieldedTreasury.sol}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// privacy/ZNote.sol:382{-}385}
+\NormalTok{if (pathIndices[i] == 0) \{}
+\NormalTok{    currentHash = keccak256(abi.encodePacked(currentHash, proof[i]));}
+\NormalTok{\} else \{}
+\NormalTok{    currentHash = keccak256(abi.encodePacked(proof[i], currentHash));}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue:} Without domain separation between leaf and internal
+nodes, second preimage attacks may be possible. An attacker could
+potentially construct a proof where a leaf hash equals an internal node
+hash.
+
+\textbf{Recommendation:} Use different hash domains for leaves vs
+internal nodes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// For leaves:}
+\NormalTok{keccak256(abi.encodePacked(bytes1(0x00), leafData))}
+\NormalTok{// For internal nodes:}
+\NormalTok{keccak256(abi.encodePacked(bytes1(0x01), left, right))}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{INFORMATIONAL: OpenZeppelin MerkleProof Not
+Used}\label{informational-openzeppelin-merkleproof-not-used}
+
+The contracts implement custom Merkle verification rather than using
+OpenZeppelin\textquotesingle s audited \texttt{MerkleProof} library.
+Custom implementations are acceptable for specific use cases (e.g.,
+incremental Merkle trees) but increase audit surface.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Commitment Schemes}\label{8-commitment-schemes}
+
+\subsubsection{8.1 Implementations}\label{81-implementations}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Contract & Scheme Type \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{safe/SafeLSSSigner.sol} & LSS commitment \\
+\texttt{privacy/Poseidon2Commitments.sol} & Pedersen-style \\
+\texttt{privacy/PrivateTeleport.sol} & Note commitments \\
+\texttt{precompile/interfaces/IZK.sol} & KZG, FRI commitments \\
+\end{longtable}
+}
+
+\subsubsection{8.2 Findings}\label{82-findings}
+
+\paragraph{LOW: Commitment Binding in
+SafeLSSSigner}\label{low-commitment-binding-in-safelsssigner}
+
+\textbf{File:} \texttt{safe/SafeLSSSigner.sol:134}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{commitment: keccak256(abi.encodePacked(\_threshold, \_totalSigners, \_publicKey))}
+\end{Highlighting}
+\end{Shaded}
+
+The commitment binds threshold parameters to public key. This is a good
+pattern for preventing parameter manipulation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. FROST Schnorr
+Signatures}\label{9-frost-schnorr-signatures}
+
+\subsubsection{9.1 Implementation
+Analysis}\label{91-implementation-analysis}
+
+\textbf{File:} \texttt{safe/FROST.sol}
+
+The FROST library implements RFC 9591 FROST(secp256k1, SHA-256) Schnorr
+signatures using the \texttt{ecrecover} precompile trick for mul-mul-add
+operations.
+
+\subsubsection{9.2 Findings}\label{92-findings}
+
+\paragraph{INFORMATIONAL: Signature Malleability
+Handled}\label{informational-signature-malleability-handled}
+
+\textbf{File:} \texttt{safe/FROST.sol:294-311}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// TODO(nlordell): I don\textquotesingle{}t think this is required for Schnorr}
+\NormalTok{// signatures, but do it anyway just in case.}
+\NormalTok{\{}
+\NormalTok{    bool pOk = isValidPublicKey(px, py);}
+\NormalTok{    bool rOk = \_isOnCurve(rx, ry);}
+\NormalTok{    bool zOk = \_isScalar(z);}
+\NormalTok{    // ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Good: The implementation validates that \texttt{z} is a valid scalar (in
+range \texttt{(0,\ N)}), preventing trivial malleability via \texttt{z}
+manipulation.
+
+\paragraph{LOW: Public Key Restriction
+Documented}\label{low-public-key-restriction-documented}
+
+\textbf{File:} `safe/FROST.sol:228-230**
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{/// @dev Note that public key\textquotesingle{}s x{-}coordinate \textasciigrave{}px\textasciigrave{} must be smaller than the}
+\NormalTok{/// curve order for the math trick with \textasciigrave{}ecrecover\textasciigrave{} to work.}
+\end{Highlighting}
+\end{Shaded}
+
+The restriction that \texttt{px\ \textless{}\ N} is documented and
+enforced in \texttt{isValidPublicKey()}. This is a known limitation of
+the ecrecover trick approach.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Lamport Signatures}\label{10-lamport-signatures}
+
+\subsubsection{10.1 Implementation
+Analysis}\label{101-implementation-analysis}
+
+\textbf{File:} \texttt{safe/SafeThresholdLamportModule.sol}
+
+Implements one-time Lamport signatures for post-quantum security with
+T-Chain MPC threshold control.
+
+\subsubsection{10.2 Findings}\label{102-findings}
+
+\paragraph{INFORMATIONAL: Proper One-Time Key
+Rotation}\label{informational-proper-one-time-key-rotation}
+
+\textbf{File:} \texttt{safe/SafeThresholdLamportModule.sol:197-202}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bytes32 oldPkh = pkh;}
+\NormalTok{pkh = nextPKH;}
+\NormalTok{lamportNonce++;}
+
+\NormalTok{emit LamportKeyRotated(oldPkh, nextPKH);}
+\end{Highlighting}
+\end{Shaded}
+
+Good: Key rotation is enforced as part of the execution flow, ensuring
+one-time property of Lamport signatures.
+
+\paragraph{LOW: Domain Separation Properly
+Implemented}\label{low-domain-separation-properly-implemented}
+
+\textbf{File:} `safe/SafeThresholdLamportModule.sol:180-185**
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 m = uint256(keccak256(abi.encodePacked(}
+\NormalTok{    safeTxHash,}
+\NormalTok{    nextPKH,}
+\NormalTok{    address(this),   // Prevent cross{-}contract replay}
+\NormalTok{    block.chainid    // Prevent cross{-}chain replay}
+\NormalTok{)));}
+\end{Highlighting}
+\end{Shaded}
+
+Good: Domain separation includes contract address and chain ID to
+prevent replay attacks across chains and contracts.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Replay Attack Vectors}\label{11-replay-attack-vectors}
+
+\subsubsection{11.1 Analysis}\label{111-analysis}
+
+\paragraph{CRITICAL: Signature-Based Replay Protection in Legacy
+Bridges}\label{critical-signature-based-replay-protection-in-legacy-bridges}
+
+\textbf{Files:} \texttt{bridge/Teleport.sol}, \texttt{bridge/Bridge.sol}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// bridge/Bridge.sol:441{-}443}
+\NormalTok{require(}
+\NormalTok{    !transactionMap[signedTXInfo\_].exists,}
+\NormalTok{    "Duplicated Transaction Hash"}
+\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Issue:} Replay protection uses the raw signature bytes as the
+key. Due to ECDSA signature malleability (see Section 1.2), an attacker
+can derive an alternative valid signature for the same message and
+bypass replay protection.
+
+\textbf{Attack Scenario:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  User submits valid bridge mint with signature \texttt{(r,\ s,\ v)}
+\item
+  Attacker computes malleable signature
+  \texttt{(r,\ n-s,\ v\textquotesingle{})} for same message
+\item
+  Attacker replays with malleable signature, passing replay check
+\item
+  Tokens minted twice
+\end{enumerate}
+
+\textbf{Recommendation:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use message hash (not signature) as replay key, OR
+\item
+  Enforce \texttt{s} is in lower half of curve order before storing
+\end{enumerate}
+
+\paragraph{LOW: Proper Replay Protection
+Examples}\label{low-proper-replay-protection-examples}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{bridge/teleport/TeleportBridge.sol}: Uses \texttt{claimId}
+  computed from claim data, not signature
+\item
+  \texttt{router/IntentRouter.sol}: Uses
+  \texttt{filledAmounts{[}orderHash{]}} where orderHash is from order
+  data
+\item
+  \texttt{governance/DAO.sol}: Uses \texttt{receipt.hasVoted} mapping
+  keyed by voter address
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{12. Front-Running
+Considerations}\label{12-front-running-considerations}
+
+\subsubsection{12.1 Analysis}\label{121-analysis}
+
+\paragraph{MEDIUM: Bridge Mints Susceptible to
+Front-Running}\label{medium-bridge-mints-susceptible-to-front-running}
+
+\textbf{Files:} \texttt{bridge/Teleport.sol}, \texttt{bridge/Bridge.sol}
+
+Once an MPC oracle signature is observed in the mempool, anyone can
+submit the mint transaction. The recipient is fixed in the signed
+message, but gas price wars could occur.
+
+\textbf{Mitigation:} The contracts use \texttt{nonReentrant} which
+prevents reentrancy but not front-running. Consider implementing
+commit-reveal or private mempool submission for high-value transfers.
+
+\paragraph{LOW: Intent Router Has MEV Protection
+Documentation}\label{low-intent-router-has-mev-protection-documentation}
+
+\textbf{File:} \texttt{router/IntentRouter.sol}
+
+The contract explicitly mentions "MEV protection via private mempools"
+in its documentation, indicating awareness of front-running concerns.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{13. Recommendations
+Summary}\label{13-recommendations-summary}
+
+\subsubsection{Critical Priority}\label{critical-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Fix signature malleability in bridge contracts} - Add
+  \texttt{s} value validation or use OpenZeppelin ECDSA
+\item
+  \textbf{Change replay protection key from signature to message hash}
+  in legacy bridges
+\end{enumerate}
+
+\subsubsection{High Priority}\label{high-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \textbf{Add explicit \texttt{address(0)} check after ecrecover} in all
+  signature verification
+\item
+  \textbf{Add version field to DAO.sol EIP-712 domain separator}
+\item
+  \textbf{Fix nonce validation in Account.sol} session key execution
+\item
+  \textbf{Review ConfidentialLRC20Votes nonce increment ordering}
+\end{enumerate}
+
+\subsubsection{Medium Priority}\label{medium-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  \textbf{Replace \texttt{abi.encodePacked} with \texttt{abi.encode}}
+  for security-critical hashing
+\item
+  \textbf{Add leaf/node domain separation} in custom Merkle
+  implementations
+\item
+  \textbf{Review oracle staleness timing} for manipulation resistance
+\item
+  \textbf{Avoid block.timestamp in identifier generation} (even in
+  mocks, as bad patterns propagate)
+\end{enumerate}
+
+\subsubsection{Low Priority}\label{low-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  Consider caching domain separator in DAO.sol
+\item
+  Document public key restrictions for FROST signatures in user-facing
+  docs
+\item
+  Add comments explaining nonce patterns in complex flows
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{14. Positive Findings}\label{14-positive-findings}
+
+The following patterns demonstrate good cryptographic practices:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{OpenZeppelin Usage}: Most newer contracts use audited
+  OpenZeppelin libraries (ECDSA, EIP712, Nonces)
+\item
+  \textbf{EIP-712 Adoption}: Widespread use of typed data signing for
+  user experience and security
+\item
+  \textbf{Domain Separation}: Most signature schemes include chain ID
+  and contract address
+\item
+  \textbf{Sequential Nonces}: Proper sequential nonce patterns in permit
+  and order systems
+\item
+  \textbf{One-Time Key Rotation}: Lamport implementation correctly
+  enforces key rotation
+\item
+  \textbf{Snapshot Voting}: DAO uses checkpointed voting to prevent
+  flash loan attacks
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{15. Files Reviewed}\label{15-files-reviewed}
+
+\subsubsection{Primary Cryptographic
+Contracts}\label{primary-cryptographic-contracts}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{bridge/Teleport.sol}
+\item
+  \texttt{bridge/Bridge.sol}
+\item
+  \texttt{bridge/teleport/TeleportBridge.sol}
+\item
+  \texttt{governance/DAO.sol}
+\item
+  \texttt{governance/Council.sol}
+\item
+  \texttt{account/Account.sol}
+\item
+  \texttt{safe/FROST.sol}
+\item
+  \texttt{safe/SafeThresholdLamportModule.sol}
+\item
+  \texttt{tokens/LRC20/extensions/LRC20Permit.sol}
+\item
+  \texttt{router/IntentRouter.sol}
+\item
+  \texttt{fhe/governance/ConfidentialLRC20Votes.sol}
+\item
+  \texttt{fhe/access/PermissionedV2.sol}
+\end{itemize}
+
+\subsubsection{Supporting Files}\label{supporting-files}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{privacy/ZNote.sol}
+\item
+  \texttt{privacy/ShieldedTreasury.sol}
+\item
+  \texttt{privacy/Poseidon2Commitments.sol}
+\item
+  \texttt{precompile/interfaces/IZK.sol}
+\item
+  \texttt{precompile/interfaces/IHash.sol}
+\item
+  Various yield strategy and bridge token contracts
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Report}
+
+\end{document}

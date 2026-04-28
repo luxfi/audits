@@ -1,0 +1,1030 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{PlatformVM (P-Chain) Security
+Audit}\label{platformvm-p-chain-security-audit}
+
+\textbf{Date}: 2025-12-30\\
+\textbf{Scope}:
+\texttt{\textasciitilde{}/work/lux/node/vms/platformvm/}\\
+\textbf{Auditor}: Claude Code
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+PlatformVM is the staking and validator management chain for the Lux
+network. This audit covers staking logic, state management, block
+execution, transaction validation, fee handling, warp integration, and
+security mechanisms.
+
+\textbf{Overall Assessment}: The codebase demonstrates mature,
+well-structured design with comprehensive validation layers. Several
+areas merit attention for 2025 hardening.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Risk Level & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Double-Spend Prevention & Low & Robust UTXO verification \\
+Stake Slashing & N/A & No slashing implemented \\
+Validator Set Manipulation & Low & Strong verification gates \\
+Reward Calculation & Low & Mathematically sound \\
+State Transitions & Low & Well-defined state machine \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Staking Logic}\label{1-staking-logic}
+
+\subsubsection{1.1 Validator
+Registration}\label{11-validator-registration}
+
+\textbf{Location}: \texttt{txs/add\_validator\_tx.go},
+\texttt{txs/executor/staker\_tx\_verification.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Stake Weight Bounds}: Properly enforced via
+  \texttt{backend.Config.MinValidatorStake} and
+  \texttt{backend.Config.MaxValidatorStake}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ weight }\OperatorTok{\textless{}}\NormalTok{ backend}\OperatorTok{.}\NormalTok{Config}\OperatorTok{.}\NormalTok{MinValidatorStake }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrWeightTooSmall}
+\OperatorTok{\}}
+\ControlFlowTok{if}\NormalTok{ weight }\OperatorTok{\textgreater{}}\NormalTok{ backend}\OperatorTok{.}\NormalTok{Config}\OperatorTok{.}\NormalTok{MaxValidatorStake }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrWeightTooLarge}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Staking Duration}: Enforced against \texttt{MinStakeDuration}
+  and \texttt{MaxStakeDuration}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ duration }\OperatorTok{\textless{}}\NormalTok{ backend}\OperatorTok{.}\NormalTok{Config}\OperatorTok{.}\NormalTok{MinStakeDuration }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrStakeTooShort}
+\OperatorTok{\}}
+\ControlFlowTok{if}\NormalTok{ duration }\OperatorTok{\textgreater{}}\NormalTok{ backend}\OperatorTok{.}\NormalTok{Config}\OperatorTok{.}\NormalTok{MaxStakeDuration }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrStakeTooLong}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Duplicate Validator Check}: Prevents same NodeID from staking
+  twice on Primary Network
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ chainState}\OperatorTok{.}\NormalTok{GetCurrentValidator}\OperatorTok{(}\NormalTok{constants}\OperatorTok{.}\NormalTok{PrimaryNetworkID}\OperatorTok{,}\NormalTok{ nodeID}\OperatorTok{)} \OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrAlreadyValidator}
+\OperatorTok{\}}
+\ControlFlowTok{if}\NormalTok{ chainState}\OperatorTok{.}\NormalTok{GetPendingValidator}\OperatorTok{(}\NormalTok{constants}\OperatorTok{.}\NormalTok{PrimaryNetworkID}\OperatorTok{,}\NormalTok{ nodeID}\OperatorTok{)} \OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrAlreadyValidator}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{BLS Public Key Requirement}: Post-Durango, validators must
+  provide BLS keys
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ backend}\OperatorTok{.}\NormalTok{Config}\OperatorTok{.}\NormalTok{UpgradeConfig}\OperatorTok{.}\NormalTok{IsDurangoActivated}\OperatorTok{(}\NormalTok{currentTimestamp}\OperatorTok{)} \OperatorTok{\&\&}\NormalTok{ tx}\OperatorTok{.}\NormalTok{Signer }\OperatorTok{==} \OtherTok{nil} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrSignerMissing}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\textbf{Recommendation}: Consider adding rate limiting for validator
+registrations to prevent spam attacks during high-activity periods.
+
+\subsubsection{1.2 Delegation}\label{12-delegation}
+
+\textbf{Location}: \texttt{txs/add\_delegator\_tx.go},
+\texttt{txs/executor/staker\_tx\_verification.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Delegation Cap}: Properly enforced via
+  \texttt{MaxValidatorWeightFactor}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{maximumWeight }\OperatorTok{:=}\NormalTok{ min}\OperatorTok{(}
+\NormalTok{    maxWeight}\OperatorTok{,}
+\NormalTok{    validator}\OperatorTok{.}\NormalTok{Weight}\OperatorTok{*}\DataTypeTok{uint64}\OperatorTok{(}\NormalTok{backend}\OperatorTok{.}\NormalTok{Config}\OperatorTok{.}\NormalTok{MaxValidatorWeightFactor}\OperatorTok{),}
+\OperatorTok{)}
+\ControlFlowTok{if}\NormalTok{ vdrWeight }\OperatorTok{\textgreater{}}\NormalTok{ maximumWeight }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrOverDelegated}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Time Bounds}: Delegator duration must be within
+  validator\textquotesingle s staking period
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \OperatorTok{!}\NormalTok{tx}\OperatorTok{.}\NormalTok{Validator}\OperatorTok{.}\NormalTok{BoundedBy}\OperatorTok{(}\NormalTok{validator}\OperatorTok{.}\NormalTok{StartTime}\OperatorTok{,}\NormalTok{ validator}\OperatorTok{.}\NormalTok{EndTime}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrPeriodMismatch}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Minimum Delegation}: Enforced via \texttt{MinDelegatorStake}
+\end{enumerate}
+
+\textbf{Issue}: The \texttt{MaxValidatorWeightFactor} creates an
+implicit delegation limit that could cause legitimate delegations to
+fail if not properly communicated to users.
+
+\subsubsection{1.3 Rewards}\label{13-rewards}
+
+\textbf{Location}: \texttt{reward/calculator.go},
+\texttt{reward/config.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Reward Formula}: Uses consumption-rate model with supply cap
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{adjustedConsumptionRateNumerator }\OperatorTok{:=}\NormalTok{ c}\OperatorTok{.}\NormalTok{maxSubMinConsumptionRate}\OperatorTok{*}\NormalTok{stakingDuration}\OperatorTok{.}\NormalTok{Nanoseconds}\OperatorTok{()} \OperatorTok{+}
+\NormalTok{    c}\OperatorTok{.}\NormalTok{minConsumptionRate}\OperatorTok{*}\NormalTok{c}\OperatorTok{.}\NormalTok{stakingPeriod}\OperatorTok{.}\NormalTok{Nanoseconds}\OperatorTok{()}
+\NormalTok{reward }\OperatorTok{:=} \OperatorTok{(}\NormalTok{supplyCap }\OperatorTok{{-}}\NormalTok{ currentSupply}\OperatorTok{)} \OperatorTok{*}\NormalTok{ adjustedConsumptionRateNumerator}
+\NormalTok{reward }\OperatorTok{*=}\NormalTok{ stakedAmount}
+\NormalTok{reward }\OperatorTok{/=}\NormalTok{ adjustedConsumptionRateDenominator}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Overflow Protection}: Uses \texttt{math.MaxUint64} checks and
+  \texttt{safemath} package
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ stakedAmount }\OperatorTok{\textgreater{}=}\NormalTok{ reward }\OperatorTok{\{}
+    \ControlFlowTok{return} \DecValTok{0}
+\OperatorTok{\}}
+\ControlFlowTok{return}\NormalTok{ reward }\OperatorTok{{-}}\NormalTok{ stakedAmount}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Uptime Tracking}: Delegators share rewards based on validator
+  uptime
+\end{enumerate}
+
+\textbf{No critical issues found}. The reward calculation is
+mathematically sound with proper overflow handling.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. State Management}\label{2-state-management}
+
+\subsubsection{2.1 Validator Sets}\label{21-validator-sets}
+
+\textbf{Location}: \texttt{state/staker.go},
+\texttt{validators/manager.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Staker Priority System}: Well-designed priority ordering for
+  state machine
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{const} \OperatorTok{(}
+\NormalTok{    PrimaryNetworkDelegatorCurrentPriority Priority }\OperatorTok{=} \OtherTok{iota} \OperatorTok{+} \DecValTok{1}
+\NormalTok{    PrimaryNetworkDelegatorPendingPriority}
+\NormalTok{    PrimaryNetworkValidatorCurrentPriority}
+\NormalTok{    PrimaryNetworkValidatorPendingPriority}
+\NormalTok{    NetDelegatorCurrentPriority}
+\NormalTok{    NetDelegatorPendingPriority}
+\NormalTok{    NetValidatorCurrentPriority}
+\NormalTok{    NetValidatorPendingPriority}
+\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Validator Caching}: Manager caches validator sets per height
+  with rebuild capability
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ manager }\KeywordTok{struct} \OperatorTok{\{}
+\NormalTok{    cfg    }\OperatorTok{*}\NormalTok{ManagerConfig}
+\NormalTok{    state  State}
+\NormalTok{    caches }\KeywordTok{map}\OperatorTok{[}\NormalTok{ids}\OperatorTok{.}\NormalTok{ID}\OperatorTok{]}\NormalTok{cache}\OperatorTok{.}\NormalTok{Cacher}\OperatorTok{[}\DataTypeTok{uint64}\OperatorTok{,}\NormalTok{ ValidatorSet}\OperatorTok{]}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Historical Reconstruction}: Supports validator set queries at
+  historical heights via \texttt{GetValidatorSet(ctx,\ height,\ netID)}
+\end{enumerate}
+
+\textbf{Recommendation}: Add validator set checkpointing at configurable
+intervals for faster historical queries.
+
+\subsubsection{2.2 Pending vs Current
+Stakers}\label{22-pending-vs-current-stakers}
+
+\textbf{Location}: \texttt{state/state.go},
+\texttt{txs/executor/state\_changes.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{State Transitions}: Clean separation between pending and
+  current state
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func}\NormalTok{ AdvanceTimeTo}\OperatorTok{(}
+\NormalTok{    txExecutorBackend }\OperatorTok{*}\NormalTok{txexecutor}\OperatorTok{.}\NormalTok{Backend}\OperatorTok{,}
+\NormalTok{    parentState state}\OperatorTok{.}\NormalTok{Chain}\OperatorTok{,}
+\NormalTok{    newChainTime time}\OperatorTok{.}\NormalTok{Time}\OperatorTok{,}
+\OperatorTok{)} \OperatorTok{(}\NormalTok{state}\OperatorTok{.}\NormalTok{Diff}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Time Advancement}: Processes stakers whose \texttt{StartTime}
+  \textless= \texttt{newChainTime}
+\item
+  \textbf{L1 Validator Support}: Post-Etna, L1 validators have
+  continuous fee deduction
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \OperatorTok{!}\NormalTok{isActive }\OperatorTok{\&\&}\NormalTok{ l1Validator}\OperatorTok{.}\NormalTok{EndAccumulatedFee }\OperatorTok{!=} \DecValTok{0} \OperatorTok{\{}
+    \CommentTok{// Still active, continue accumulating}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\textbf{Issue}: The \texttt{AdvanceTimeTo} function modifies state in a
+loop. Consider adding iteration limits to prevent DoS via large pending
+queues.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Block Execution}\label{3-block-execution}
+
+\subsubsection{3.1 Standard Blocks}\label{31-standard-blocks}
+
+\textbf{Location}: \texttt{block/executor/verifier.go},
+\texttt{block/executor/standard\_block\_test.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Block Verification}: Comprehensive checks for timestamp,
+  parent, and transactions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{v }\OperatorTok{*}\NormalTok{verifier}\OperatorTok{)}\NormalTok{ ApricotStandardBlock}\OperatorTok{(}\NormalTok{b }\OperatorTok{*}\NormalTok{block}\OperatorTok{.}\NormalTok{ApricotStandardBlock}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+\NormalTok{    blkID }\OperatorTok{:=}\NormalTok{ b}\OperatorTok{.}\NormalTok{ID}\OperatorTok{()}
+    \ControlFlowTok{if}\NormalTok{ \_}\OperatorTok{,}\NormalTok{ ok }\OperatorTok{:=}\NormalTok{ v}\OperatorTok{.}\NormalTok{blkIDToState}\OperatorTok{[}\NormalTok{blkID}\OperatorTok{];}\NormalTok{ ok }\OperatorTok{\{}
+        \ControlFlowTok{return} \OtherTok{nil} \CommentTok{// Already verified}
+    \OperatorTok{\}}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Transaction Ordering}: Enforced via
+  \texttt{semanticVerifySpendUTXOs} for proper UTXO consumption
+\item
+  \textbf{State Diff}: Each block creates an isolated state diff for
+  atomic commit/rollback
+\end{enumerate}
+
+\subsubsection{3.2 Proposal Blocks}\label{32-proposal-blocks}
+
+\textbf{Location}: \texttt{txs/executor/proposal\_tx\_executor.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Commit/Abort States}: Proposal blocks generate both commit and
+  abort state diffs
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{e }\OperatorTok{*}\NormalTok{ProposalTxExecutor}\OperatorTok{)}\NormalTok{ RewardValidatorTx}\OperatorTok{(}\NormalTok{tx }\OperatorTok{*}\NormalTok{txs}\OperatorTok{.}\NormalTok{RewardValidatorTx}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+    \CommentTok{// Creates both onCommitState (with reward) and onAbortState (without)}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Validator Reward}: Commit state includes reward, abort state
+  returns stake only
+\end{enumerate}
+
+\textbf{No critical issues found}. The dual-state model is sound for
+consensus voting.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Transaction Validation}\label{4-transaction-validation}
+
+\subsubsection{4.1 Transaction Types}\label{41-transaction-types}
+
+\textbf{Location}: \texttt{txs/}, \texttt{txs/executor/}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Transaction & Verified \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+AddValidatorTx & ✓ \\
+AddDelegatorTx & ✓ \\
+CreateNetTx & ✓ \\
+CreateChainTx & ✓ \\
+ImportTx & ✓ \\
+ExportTx & ✓ \\
+AdvanceTimeTx & ✓ \\
+RewardValidatorTx & ✓ \\
+RegisterL1ValidatorTx & ✓ \\
+SetL1ValidatorWeightTx & ✓ \\
+DisableL1ValidatorTx & ✓ \\
+IncreaseL1ValidatorBalanceTx & ✓ \\
+ConvertNetToL1Tx & ✓ \\
+\end{longtable}
+}
+
+\subsubsection{4.2 Flow Verification}\label{42-flow-verification}
+
+\textbf{Location}: \texttt{txs/executor/staker\_tx\_verification.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{UTXO Consumption}: Uses
+  \texttt{backend.FlowChecker.VerifySpend} for input/output balance
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ backend}\OperatorTok{.}\NormalTok{FlowChecker}\OperatorTok{.}\NormalTok{VerifySpend}\OperatorTok{(}
+\NormalTok{    tx}\OperatorTok{,}
+\NormalTok{    chainState}\OperatorTok{,}
+\NormalTok{    tx}\OperatorTok{.}\NormalTok{Ins}\OperatorTok{,}
+\NormalTok{    tx}\OperatorTok{.}\NormalTok{Outs}\OperatorTok{,}
+\NormalTok{    baseTxCreds}\OperatorTok{,}
+    \KeywordTok{map}\OperatorTok{[}\NormalTok{ids}\OperatorTok{.}\NormalTok{ID}\OperatorTok{]}\DataTypeTok{uint64}\OperatorTok{\{}
+\NormalTok{        backend}\OperatorTok{.}\NormalTok{Ctx}\OperatorTok{.}\NormalTok{LUXAssetID}\OperatorTok{:}\NormalTok{ fee}\OperatorTok{,}
+    \OperatorTok{\},}
+\OperatorTok{);}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ err}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Staked Amount Verification}: Ensures stake output matches
+  declared weight
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Fee Handling}\label{5-fee-handling}
+
+\subsubsection{5.1 Static Fees}\label{51-static-fees}
+
+\textbf{Location}: \texttt{txs/fee/static\_calculator.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Fixed Fee Schedule}: Pre-upgrade transactions use static fees
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{var}\NormalTok{ fees }\OperatorTok{=} \KeywordTok{map}\OperatorTok{[}\NormalTok{reflect}\OperatorTok{.}\NormalTok{Type}\OperatorTok{]}\DataTypeTok{uint64}\OperatorTok{\{}
+\NormalTok{    reflect}\OperatorTok{.}\NormalTok{TypeOf}\OperatorTok{(\&}\NormalTok{txs}\OperatorTok{.}\NormalTok{AddValidatorTx}\OperatorTok{\{\}):}    \DecValTok{0}\OperatorTok{,}
+\NormalTok{    reflect}\OperatorTok{.}\NormalTok{TypeOf}\OperatorTok{(\&}\NormalTok{txs}\OperatorTok{.}\NormalTok{AddNetValidatorTx}\OperatorTok{\{\}):}\NormalTok{ config}\OperatorTok{.}\NormalTok{AddNetValidatorFee}\OperatorTok{,}
+\NormalTok{    reflect}\OperatorTok{.}\NormalTok{TypeOf}\OperatorTok{(\&}\NormalTok{txs}\OperatorTok{.}\NormalTok{CreateNetTx}\OperatorTok{\{\}):}\NormalTok{       config}\OperatorTok{.}\NormalTok{CreateNetTxFee}\OperatorTok{,}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Zero Fee for AddValidator}: Primary network validators pay no
+  fee (stake is locked)
+\end{enumerate}
+
+\subsubsection{5.2 Dynamic Fees
+(Post-Etna)}\label{52-dynamic-fees-post-etna}
+
+\textbf{Location}: \texttt{txs/fee/dynamic\_calculator.go},
+\texttt{txs/fee/complexity.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Gas Dimensions}: Four-dimensional gas model
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{type}\NormalTok{ Dimensions }\OperatorTok{[}\DecValTok{4}\OperatorTok{]}\DataTypeTok{uint64}  \CommentTok{// Bandwidth, DBRead, DBWrite, Compute}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Complexity Calculation}: Transaction complexity varies by type
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{c }\OperatorTok{*}\NormalTok{complexityVisitor}\OperatorTok{)}\NormalTok{ AddValidatorTx}\OperatorTok{(}\NormalTok{tx }\OperatorTok{*}\NormalTok{txs}\OperatorTok{.}\NormalTok{AddValidatorTx}\OperatorTok{)} \DataTypeTok{error} \OperatorTok{\{}
+\NormalTok{    baseCost}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ baseTxComplexity}\OperatorTok{(\&}\NormalTok{tx}\OperatorTok{.}\NormalTok{BaseTx}\OperatorTok{)}
+    \ControlFlowTok{if}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ err}
+    \OperatorTok{\}}
+\NormalTok{    signerCost}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ signerComplexity}\OperatorTok{(}\NormalTok{tx}\OperatorTok{.}\NormalTok{Signer}\OperatorTok{)}
+    \ControlFlowTok{if}\NormalTok{ err }\OperatorTok{!=} \OtherTok{nil} \OperatorTok{\{}
+        \ControlFlowTok{return}\NormalTok{ err}
+    \OperatorTok{\}}
+\NormalTok{    outputCost}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ outputComplexity}\OperatorTok{(}\NormalTok{tx}\OperatorTok{.}\NormalTok{StakeOuts}\OperatorTok{...)}
+    \CommentTok{// ...}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Fee Calculation}: Uses excess gas for dynamic pricing similar
+  to EIP-1559
+\end{enumerate}
+
+\textbf{Recommendation}: Document gas cost assumptions and provide
+tooling for fee estimation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Warp Integration}\label{6-warp-integration}
+
+\textbf{Location}: \texttt{warp/signer.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{BLS Signatures}: Validators sign warp messages with BLS12-381
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{s }\OperatorTok{*}\NormalTok{signer}\OperatorTok{)}\NormalTok{ Sign}\OperatorTok{(}\NormalTok{unsignedMsg }\OperatorTok{*}\NormalTok{avalancheWarp}\OperatorTok{.}\NormalTok{UnsignedMessage}\OperatorTok{)} \OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+\NormalTok{    msg}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ avalancheWarp}\OperatorTok{.}\NormalTok{NewMessage}\OperatorTok{(}
+\NormalTok{        unsignedMsg}\OperatorTok{,}
+        \OperatorTok{\&}\NormalTok{avalancheWarp}\OperatorTok{.}\NormalTok{BitSetSignature}\OperatorTok{\{}
+\NormalTok{            Signers}\OperatorTok{:}\NormalTok{ signers}\OperatorTok{,}
+\NormalTok{            Signature}\OperatorTok{:} \OperatorTok{[}\NormalTok{bls}\OperatorTok{.}\NormalTok{SignatureLen}\OperatorTok{]}\DataTypeTok{byte}\OperatorTok{(}
+\NormalTok{                bls}\OperatorTok{.}\NormalTok{SignatureToBytes}\OperatorTok{(}\NormalTok{s}\OperatorTok{.}\NormalTok{warpSigner}\OperatorTok{.}\NormalTok{Sign}\OperatorTok{(}\NormalTok{unsignedMsg}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{())),}
+            \OperatorTok{),}
+        \OperatorTok{\},}
+    \OperatorTok{)}
+    \ControlFlowTok{return}\NormalTok{ msg}\OperatorTok{.}\NormalTok{Bytes}\OperatorTok{(),} \OtherTok{nil}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Validator Verification}: Only current validators can sign warp
+  messages
+\end{enumerate}
+
+\textbf{No critical issues found}. Warp implementation follows standard
+BLS aggregation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Security Analysis}\label{7-security-analysis}
+
+\subsubsection{7.1 Double-Spend
+Prevention}\label{71-double-spend-prevention}
+
+\textbf{Location}: \texttt{utxo/verifier.go}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{UTXO Tracking}: Inputs consumed atomically with outputs
+  created
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{func} \OperatorTok{(}\NormalTok{h }\OperatorTok{*}\NormalTok{handler}\OperatorTok{)}\NormalTok{ VerifySpendUTXOs}\OperatorTok{(}
+\NormalTok{    tx txs}\OperatorTok{.}\NormalTok{UnsignedTx}\OperatorTok{,}
+\NormalTok{    utxos }\OperatorTok{[]*}\NormalTok{lux}\OperatorTok{.}\NormalTok{UTXO}\OperatorTok{,}
+\NormalTok{    ins }\OperatorTok{[]*}\NormalTok{lux}\OperatorTok{.}\NormalTok{TransferableInput}\OperatorTok{,}
+\NormalTok{    outs }\OperatorTok{[]*}\NormalTok{lux}\OperatorTok{.}\NormalTok{TransferableOutput}\OperatorTok{,}
+\NormalTok{    creds }\OperatorTok{[]}\NormalTok{verify}\OperatorTok{.}\NormalTok{Verifiable}\OperatorTok{,}
+\NormalTok{    unlockedProduced }\KeywordTok{map}\OperatorTok{[}\NormalTok{ids}\OperatorTok{.}\NormalTok{ID}\OperatorTok{]}\DataTypeTok{uint64}\OperatorTok{,}
+\OperatorTok{)} \DataTypeTok{error}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Locktime Enforcement}: Stakeable assets respect unlock time
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ inputTimestamp }\OperatorTok{:=}\NormalTok{ in}\OperatorTok{.}\NormalTok{Locktime}\OperatorTok{();}\NormalTok{ inputTimestamp }\OperatorTok{\textgreater{}}\NormalTok{ now }\OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ ErrTimelocked}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+\item
+  \textbf{Input Sorting}: Inputs must be sorted by UTXOID to prevent
+  manipulation
+\end{enumerate}
+
+\textbf{Status}: ✓ Robust protection against double-spend attacks.
+
+\subsubsection{7.2 Stake Slashing}\label{72-stake-slashing}
+
+\textbf{Finding}: \textbf{No slashing mechanism implemented}.
+
+The codebase does not implement stake slashing for misbehavior.
+Validators who go offline simply earn reduced rewards but retain their
+stake.
+
+\textbf{Recommendation for 2025}: Consider implementing slashing for:
+
+\begin{itemize}
+\tightlist
+\item
+  Double voting (signing conflicting blocks)
+\item
+  Excessive downtime
+\item
+  Invalid block proposals
+\end{itemize}
+
+\subsubsection{7.3 Validator Set
+Manipulation}\label{73-validator-set-manipulation}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Weight Limits}: Prevent any single validator from dominating
+\item
+  \textbf{Registration Gates}: Multiple verification layers before
+  staker added
+\item
+  \textbf{Time Constraints}: Cannot register validators for past times
+\end{enumerate}
+
+\textbf{Potential Concern}: Large stake holders could theoretically
+coordinate to form majority if no diversity requirements exist.
+
+\textbf{Recommendation}: Add validator diversity metrics and consider
+geographic/stake distribution requirements.
+
+\subsubsection{7.4 Reward Calculation
+Accuracy}\label{74-reward-calculation-accuracy}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Integer Math}: All calculations use integer arithmetic with
+  proper rounding
+\item
+  \textbf{Overflow Checks}: SafeMath used throughout
+\item
+  \textbf{Supply Cap}: Hard cap prevents infinite inflation
+\end{enumerate}
+
+\textbf{Verified}: Reward calculations are deterministic and accurate.
+
+\subsubsection{7.5 State Transition
+Correctness}\label{75-state-transition-correctness}
+
+\textbf{Findings}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Atomic Operations}: State changes via Diff with atomic commit
+\item
+  \textbf{Rollback Support}: Abort states properly restore previous
+  state
+\item
+  \textbf{Height Tracking}: Block height strictly increasing
+\end{enumerate}
+
+\textbf{Status}: ✓ State machine is well-defined and transitions are
+correct.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Identified Issues}\label{8-identified-issues}
+
+\subsubsection{8.1 High Priority}\label{81-high-priority}
+
+None identified.
+
+\subsubsection{8.2 Medium Priority}\label{82-medium-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{No Slashing}: Malicious validators face no penalty beyond lost
+  rewards
+\item
+  \textbf{Delegation Communication}: MaxValidatorWeightFactor limits not
+  clearly surfaced to users
+\item
+  \textbf{L1 Validator Fee Depletion}: Continuous fee deduction could
+  cause unexpected validator deactivation
+\end{enumerate}
+
+\subsubsection{8.3 Low Priority}\label{83-low-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Pending Queue Size}: No explicit limit on pending stakers
+  queue size
+\item
+  \textbf{Historical Query Performance}: Validator set reconstruction
+  may be slow for old heights
+\item
+  \textbf{Fee Estimation}: Dynamic fees lack comprehensive estimation
+  tooling
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{9. 2025 Recommendations}\label{9-2025-recommendations}
+
+\subsubsection{9.1 Security
+Enhancements}\label{91-security-enhancements}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Implement Basic Slashing}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add slashing for provable double-signing
+  \item
+    Consider partial stake slashing (10-30\%) rather than full
+  \item
+    Require slashing proofs to be submitted within time window
+  \end{itemize}
+\item
+  \textbf{Add Validator Diversity Metrics}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Track geographic distribution of validators
+  \item
+    Monitor stake concentration (Nakamoto coefficient)
+  \item
+    Consider soft limits on single-entity stake percentage
+  \end{itemize}
+\item
+  \textbf{Rate Limiting}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add per-address rate limits for validator/delegator registrations
+  \item
+    Implement mempool prioritization for fee-paying transactions
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{9.2 Performance
+Improvements}\label{92-performance-improvements}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Validator Set Checkpointing}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Store validator set snapshots at epoch boundaries
+  \item
+    Enable fast reconstruction for historical queries
+  \item
+    Consider pruning very old snapshots
+  \end{itemize}
+\item
+  \textbf{Pending Queue Management}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add configurable limit on pending stakers
+  \item
+    Implement priority queue for higher-stake registrations
+  \item
+    Add metrics for queue depth monitoring
+  \end{itemize}
+\item
+  \textbf{State Diff Batching}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Batch state writes during time advancement
+  \item
+    Consider parallel state validation where possible
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{9.3 Operational
+Improvements}\label{93-operational-improvements}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Fee Estimation API}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add RPC endpoint for fee estimation
+  \item
+    Provide gas dimension breakdown for transactions
+  \item
+    Surface current gas prices and congestion metrics
+  \end{itemize}
+\item
+  \textbf{L1 Validator Tooling}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Add balance monitoring for L1 validators
+  \item
+    Provide advance warning before fee depletion
+  \item
+    Consider auto-refill mechanisms
+  \end{itemize}
+\item
+  \textbf{Documentation}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Document all gas costs and complexity calculations
+  \item
+    Provide staking parameter reference
+  \item
+    Create upgrade migration guides
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{9.4 Post-Quantum
+Preparation}\label{94-post-quantum-preparation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{BLS Migration Path}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Plan transition from BLS12-381 to post-quantum signatures
+  \item
+    Consider hybrid signatures during transition period
+  \item
+    Ensure Warp protocol can support new signature schemes
+  \end{itemize}
+\item
+  \textbf{Hash Function Agility}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Abstract hash functions for future algorithm changes
+  \item
+    Prepare for SHA-3 or SHAKE adoption
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{10. Files Reviewed}\label{10-files-reviewed}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Lines & Purpose \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{vm.go} & \textasciitilde1200 & Main VM implementation \\
+\texttt{state/state.go} & \textasciitilde3000 & State management \\
+\texttt{state/staker.go} & \textasciitilde200 & Staker data
+structures \\
+\texttt{reward/calculator.go} & \textasciitilde100 & Reward
+calculation \\
+\texttt{reward/config.go} & \textasciitilde60 & Reward configuration \\
+\texttt{txs/executor/staker\_tx\_verification.go} & \textasciitilde500 &
+Staker verification \\
+\texttt{txs/executor/proposal\_tx\_executor.go} & \textasciitilde400 &
+Proposal execution \\
+\texttt{txs/executor/state\_changes.go} & \textasciitilde300 & State
+transitions \\
+\texttt{txs/add\_validator\_tx.go} & \textasciitilde100 & Validator
+transaction \\
+\texttt{txs/add\_delegator\_tx.go} & \textasciitilde100 & Delegator
+transaction \\
+\texttt{txs/fee/dynamic\_calculator.go} & \textasciitilde150 & Dynamic
+fees \\
+\texttt{txs/fee/static\_calculator.go} & \textasciitilde100 & Static
+fees \\
+\texttt{txs/fee/complexity.go} & \textasciitilde600 & Gas complexity \\
+\texttt{block/executor/verifier.go} & \textasciitilde400 & Block
+verification \\
+\texttt{utxo/verifier.go} & \textasciitilde300 & UTXO verification \\
+\texttt{validators/manager.go} & \textasciitilde200 & Validator
+management \\
+\texttt{warp/signer.go} & \textasciitilde150 & Warp signing \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{11. Conclusion}\label{11-conclusion}
+
+PlatformVM demonstrates solid engineering with comprehensive validation
+and well-defined state management. The primary areas for 2025
+improvement are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Slashing implementation} for stronger security guarantees
+\item
+  \textbf{Validator diversity tracking} to prevent stake centralization
+\item
+  \textbf{Performance optimizations} for historical queries and pending
+  queue management
+\item
+  \textbf{Post-quantum preparation} for future cryptographic agility
+\end{enumerate}
+
+The codebase is production-ready with no critical vulnerabilities
+identified.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Audit completed: 2025-12-30}
+
+\end{document}

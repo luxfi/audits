@@ -1,0 +1,1906 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Quasar 3.0 Cert-Lane --- Red-Team Adversarial
+Review}\label{quasar-30-cert-lane--red-team-adversarial-review}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Field & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Reviewer & Red (Adversarial Security Researcher) \\
+Date & 2026-04-26 \\
+Target version & LP-020 v3.0 (2026-04-26) + LP-132 v0.38 substrate +
+LP-134 v3.1 chain topology \\
+Activation height & 2025-12-25 chain activation (the production
+cutover) \\
+Threat model & Network adversary, can replay/splice, cannot break
+BLS12-381 / Module-LWE / Module-SIS, controls
+\texttt{\textless{}\ τ\ =\ 2/3} of \texttt{pchain\_validator\_root}
+stake \\
+\end{longtable}
+}
+
+\subsection{Executive summary}\label{executive-summary}
+
+The 3.0 spec is sound on paper --- the P/Q/Z root-binding cert subject
+is a real cross-epoch / cross-chain replay defense, and the lane
+indirection is forwards-extensible without breaking ABI. \textbf{The
+implementation, however, does not match the spec yet.} The v0.38
+substrate that the 2025-12-25 chain activation will run is built on:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A symmetric
+  \texttt{keccak256(secret\ \textbar{}\textbar{}\ subject\ \textbar{}\textbar{}\ round)}
+  MAC with a \textbf{publicly-checked-in master secret}
+  (\texttt{kQuasarMasterSecret\ =\ "QUASAR-v038-master-secret-shared"}).
+\item
+  The old 2.0 \texttt{VoteIngress} (96-byte inline sig, no offset/len
+  indirection).
+\item
+  A \texttt{subject} constructed from
+  \texttt{block\_hash\ \textbar{}\textbar{}\ receipts\_root\ \textbar{}\textbar{}\ execution\_root\ \textbar{}\textbar{}\ state\_root\ \textbar{}\textbar{}\ mode\_root}
+  only --- \textbf{no \texttt{chain\_id}, no \texttt{epoch}, no P/Q/Z
+  roots.}
+\item
+  A 32-bit \texttt{quorum\_stake\_*} counter on
+  \texttt{QuasarRoundResult}, fed by \texttt{atomic\_fetch\_add} of
+  host-supplied \texttt{stake\_weight} with no per-validator dedup.
+\end{enumerate}
+
+These four facts together make every cert-lane defense the LP claims
+\textbf{fail in practice}. Shipping the v0.38 substrate to the
+2025-12-25 mainnet activation is a do-not-ship event regardless of the
+LP text.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Severity & Count \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Critical & 6 \\
+High & 7 \\
+Medium & 6 \\
+Low & 4 \\
+Informational & 3 \\
+\textbf{Total} & \textbf{26} \\
+\end{longtable}
+}
+
+\textbf{Must-fix-pre-launch} (block 2025-12-25):
+
+\begin{itemize}
+\tightlist
+\item
+  Q3.0-CERT-001 --- master secret in source tree
+\item
+  Q3.0-CERT-002 --- universal forgery via kQuasarMasterSecret
+\item
+  Q3.0-CERT-003 --- cross-epoch / cross-round subject under-binding
+\item
+  Q3.0-CERT-004 --- no per-validator dedup → single validator drives
+  quorum
+\item
+  Q3.0-CERT-007 --- \texttt{quorum\_stake\_*} is uint32 with
+  overflow→quorum risk
+\item
+  Q3.0-CERT-008 --- \texttt{head\ +\ tid} overflow / OOB read in verify
+  kernel
+\item
+  Q3.0-CERT-009 --- \texttt{verified{[}slot\_idx{]}} indexed by slot,
+  indexed back by \texttt{tid} in \texttt{drain\_vote} --- desync admits
+  unverified votes
+\item
+  Q3.0-CERT-010 --- descriptor missing \texttt{chain\_id} from subject
+  and \texttt{epoch} field entirely
+\end{itemize}
+
+The remaining findings include cross-lane replay (the test in LP-132
+demonstrates that flipping \texttt{sig\_kind} after MAC binding rejects,
+but the MAC itself uses \texttt{chain\_id} instead of
+\texttt{epoch+chain\_id}, and lane-tag is only bound via the secret
+derivation --- see Q3.0-CERT-005), payload-arena out-of-bounds
+(Q3.0-CERT-014, indirection not yet implemented but spec leaves the
+bounds check unspecified), Q-Chain ceremony stalling (Q3.0-CERT-018),
+A-Chain attestation root unverified-trust-root (Q3.0-CERT-021), and
+validator-subset stake concentration on M/F-Chains (Q3.0-CERT-022).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Architectural concern: HMAC-keccak placeholder vs real
+verifiers}\label{architectural-concern-hmac-keccak-placeholder-vs-real-verifiers}
+
+LP-132 §drain\_cert\_lane v0.38 ships HMAC-keccak with
+\texttt{kQuasarMasterSecret} as a placeholder for BLS pairing / Ringtail
+/ Groth16. The roadmap promises real cryptographic verifiers in
+v0.43..v0.45.
+
+\textbf{This is unacceptable for the 2025-12-25 activation.} The
+placeholder differs from the real schemes in three load-bearing ways:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Symmetric, not asymmetric.} A symmetric MAC means every node
+  that can verify can also forge. There is no notion of a
+  validator-specific signing key --- every validator\textquotesingle s
+  "signature" is a deterministic function of
+  \texttt{(sig\_kind,\ chain\_id,\ validator\_index)} and the shared
+  master secret. Anyone holding the master secret (i.e. anyone running
+  \texttt{luxd}) can sign any vote as any validator.
+\item
+  \textbf{Master secret is in source.}
+  \texttt{kQuasarMasterSecret{[}32{]}\ =\ ASCII("QUASAR-v038-master-secret-shared")}.
+  The bytes are literally the ASCII of that phrase. This is in
+  \texttt{quasar\_wave.metal:1212-1215} and
+  \texttt{quasar\_sig.hpp:45-48}. There is no derivation, no
+  per-deployment salt, no IAM/KMS provisioning. Cloning the public repo
+  provides full forgery capability.
+\item
+  \textbf{No epoch / chain-id replay binding in the verified message.}
+  The HMAC binds
+  \texttt{(domain,\ chain\_id,\ validator\_index,\ master\_secret)\ →\ secret},
+  then \texttt{(secret,\ subject,\ round)\ →\ sig}. \texttt{subject}
+  here is the GPU-computed block hash --- it does NOT contain epoch,
+  P/Q/Z chain roots, or any of the protections LP-020 §3.0 promises.
+\end{enumerate}
+
+If the LP text protections matter --- and they do; cross-epoch replay is
+a real attack on BFT consensus --- then the implementation must land
+before activation. Otherwise the chain ships with the
+LP\textquotesingle s threat model violated by construction.
+
+\textbf{Recommendation: shipping the 2025-12-25 chain activation
+requires either (a) real BLS/Ringtail/Groth16 verifiers
+(v0.43+v0.44+v0.45 collapsed into v0.38a), or (b) a substrate that
+hard-rejects all cert-lane traffic and runs only the BLS classical lane
+via the existing luxfi/consensus Go path.} Option (b) is achievable in
+days; option (a) is the proper fix and what the LP claims is the launch
+state.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Detailed findings}\label{detailed-findings}
+
+\subsubsection{Q3.0-CERT-001 --- Master-secret committed to public
+source
+tree}\label{q30-cert-001--master-secret-committed-to-public-source-tree}
+
+\textbf{Severity}: Critical \textbf{Affected files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1212-1215}
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_sig.hpp:45-48}
+\end{itemize}
+
+\textbf{Description}: The substrate computes per-validator "secret" keys
+from a 32-byte constant \texttt{kQuasarMasterSecret}. The bytes
+ASCII-decode to \texttt{"QUASAR-v038-master-secret-shared"}. The file is
+checked into \texttt{\textasciitilde{}/work/luxcpp} and visible to
+anyone with read access to the repository. There is no override path, no
+environment variable, no KMS provisioning hook.
+
+\textbf{Attack scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary clones \texttt{luxcpp} (or reads the published LP-132
+  reference implementation).
+\item
+  Adversary extracts the 32-byte \texttt{kQuasarMasterSecret} constant
+  from \texttt{quasar\_wave.metal:1212}.
+\item
+  For any target
+  \texttt{(sig\_kind,\ chain\_id,\ validator\_index,\ round,\ subject)},
+  adversary computes
+  \texttt{secret\ =\ keccak256(domain{[}16{]}\ \textbar{}\textbar{}\ chain\_id\_le8\ \textbar{}\textbar{}\ validator\_le4\ \textbar{}\textbar{}\ master\_secret\_le32)}
+  then
+  \texttt{sig{[}0..32{]}\ =\ keccak256(secret\ \textbar{}\textbar{}\ subject{[}32{]}\ \textbar{}\textbar{}\ round\_le4)}.
+  This is exactly the verifier\textquotesingle s expected output.
+\item
+  Adversary submits this as a \texttt{HostVote} from any validator they
+  choose --- including ones whose actual stake exceeds 1/3.
+\end{enumerate}
+
+\textbf{Impact}: Universal forgery of any validator\textquotesingle s
+vote on any lane. With 2/3+1 forged stake the adversary finalizes any
+block they choose. This is the entire chain.
+
+\textbf{Fix}: Delete the master-secret path entirely and ship real BLS /
+Ringtail / Groth16 verifiers (LP-132 v0.43..v0.45). If a placeholder is
+unavoidable for testnet, the master secret must be (a) per-validator,
+(b) provisioned via KMS only, (c) gated by a \texttt{LUX\_DEV\_MODE=1}
+environment guard that is rejected on mainnet.
+
+\textbf{Must-fix pre-launch}: Yes, blocks 2025-12-25.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-002 --- Symmetric MAC where asymmetric
+signature is
+required}\label{q30-cert-002--symmetric-mac-where-asymmetric-signature-is-required}
+
+\textbf{Severity}: Critical \textbf{Affected files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1217-1290}
+  (\texttt{quasar\_derive\_secret}, \texttt{quasar\_expected\_sig},
+  \texttt{quasar\_verify\_votes\_kernel})
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_sig.hpp:60-95}
+  (\texttt{derive\_secret}, \texttt{sign})
+\end{itemize}
+
+\textbf{Description}: The verifier and the signer share the same key
+material. A "signature" is
+\texttt{keccak256(secret\_i\ \textbar{}\textbar{}\ subject\ \textbar{}\textbar{}\ round)}
+where
+\texttt{secret\_i\ =\ keccak256(domain\ \textbar{}\textbar{}\ chain\_id\ \textbar{}\textbar{}\ validator\_i\ \textbar{}\textbar{}\ master)}.
+This is a symmetric MAC. Every node that can verify can also sign. The
+LP claims this is "real cryptographic verification (one-way with a
+master secret; cross-lane domain tags reject replay)" --- that is
+incorrect: one-wayness of keccak protects the master secret only, not
+against forgery by anyone holding the master secret.
+
+\textbf{Attack scenario}: same as CERT-001.
+
+\textbf{Impact}: There is no validator authentication. The
+LP\textquotesingle s claim that an adversary "must break ALL THREE
+assumptions simultaneously" (BLS DLOG + Module-LWE + Module-SIS) is
+false in v0.38 --- the adversary needs to break zero of them.
+
+\textbf{Fix}: Replace \texttt{quasar\_verify\_votes\_kernel} with a real
+BLS aggregate verifier (LP-075). The metal kernel
+\texttt{lib/evm/gpu/metal/shaders/crypto/bls12\_381.metal} is referenced
+as the future home. If real BLS isn\textquotesingle t ready by
+activation, the GPU vote path must be disabled entirely and consensus
+must run from the Go implementation in
+\texttt{luxfi/consensus/protocol/quasar/}.
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-003 --- \texttt{subject}
+excludes chain\_id, epoch, P/Q/Z
+roots}{Q3.0-CERT-003 --- subject excludes chain\_id, epoch, P/Q/Z roots}}\label{q30-cert-003--subject-excludes-chain_id-epoch-pqz-roots}
+
+\textbf{Severity}: Critical \textbf{Affected files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1389-1414}
+  (block\_hash construction)
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_gpu\_layout.hpp:333-350}
+  (\texttt{QuasarRoundDescriptor})
+\end{itemize}
+
+\textbf{Description}: LP-020 §"Cert Subject --- The Replay-Proof
+Binding" specifies:
+
+\begin{verbatim}
+certificate_subject = keccak(
+    chain_id || epoch || round || mode ||
+    pchain_validator_root || qchain_ceremony_root || zchain_vk_root ||
+    parent_block_hash || parent_state_root || parent_execution_root ||
+    gas_limit || base_fee )
+\end{verbatim}
+
+The substrate \texttt{quasar\_wave\_kernel} computes
+\texttt{block\_hash} (used as the \texttt{subject} material the verifier
+consumes) as:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{header }\OperatorTok{=}\NormalTok{ round\_le8 }\OperatorTok{||}\NormalTok{ mode\_le4 }\OperatorTok{||}\NormalTok{ receipts\_root }\OperatorTok{||}\NormalTok{ execution\_root }\OperatorTok{||}\NormalTok{ state\_root }\OperatorTok{||}\NormalTok{ mode\_root}
+\NormalTok{block\_hash }\OperatorTok{=}\NormalTok{ keccak256}\OperatorTok{(}\NormalTok{header}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{chain\_id} is NOT in the digest. \texttt{epoch} is NOT a field
+on \texttt{QuasarRoundDescriptor} at all.
+\texttt{pchain\_validator\_root}, \texttt{qchain\_ceremony\_root},
+\texttt{zchain\_vk\_root}, \texttt{parent\_*} are NOT present in the
+descriptor (it has \texttt{parent\_block\_hash},
+\texttt{parent\_state\_root}, \texttt{parent\_execution\_root} only ---
+none are folded into the subject digest).
+
+The verifier independently rebuilds \texttt{subject} via
+\texttt{quasar\_expected\_sig(secret,\ subj,\ round)} which uses the
+host-supplied \texttt{subject{[}32{]}} from the \texttt{VoteIngress}.
+The host can supply ANY 32 bytes in \texttt{v.subject} because the
+verifier never re-derives the descriptor\textquotesingle s binding.
+
+\textbf{Attack scenario} (cross-epoch replay):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary observes a valid quorum on chain \texttt{lux-mainnet}, round
+  1000, that finalized block hash \texttt{B}.
+\item
+  Forks fail (e.g., a stale leader). Round 1001 needs a new block. Same
+  chain id. New round.
+\item
+  Adversary submits the quorum\textquotesingle s votes verbatim with
+  \texttt{v.round\ =\ 1001} (without changing the secret-key material)
+  --- the validators\textquotesingle{} MACs would not match because
+  \texttt{round} is bound. Fine --- that path is closed.
+\item
+  \textbf{But} adversary observes a future round from epoch e1, then
+  waits until epoch e2 has the same
+  \texttt{(round,\ validator\_index,\ chain\_id,\ subject)} tuple.
+  Because the subject does not bind \texttt{epoch}, and the substrate
+  has no \texttt{epoch} field, votes from epoch e1 satisfy the verifier
+  in epoch e2 if rounds happen to coincide modulo the round counter.
+\item
+  With BLS-only mode (hot-path), the verifier accepts the replay,
+  advancing quorum on the wrong block.
+\end{enumerate}
+
+\textbf{Attack scenario} (cross-chain replay):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary controls a vanity test chain with \texttt{chain\_id\ =\ 1}
+  (the same as \texttt{desc.chain\_id\ =\ 1u} in
+  \texttt{test\_quasar\_quorum\_round\_trip}).
+\item
+  Validators on production chain (call it \texttt{chain\_id\ =\ 7777})
+  are tricked into running \texttt{desc.chain\_id\ =\ 1u} via
+  mis-provisioning (config typo), or the adversary simply replays
+  test-chain votes against a misconfigured validator.
+\item
+  Because \texttt{subject} excludes \texttt{chain\_id}, and the
+  secret-derivation includes \texttt{chain\_id} but the host can write
+  any \texttt{chain\_id} to the descriptor, cross-chain forgery becomes
+  a configuration-error exploit class.
+\end{enumerate}
+
+\textbf{Impact}: Both attacks succeed under v0.38. The "structurally
+impossible cross-epoch / cross-chain replay" claim in LP-020 §"Security
+properties" is false until the descriptor is extended and the substrate
+computes \texttt{subject} per the LP recipe.
+
+\textbf{Fix}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add \texttt{epoch:\ uint64},
+  \texttt{pchain\_validator\_root:\ {[}32{]}u8},
+  \texttt{qchain\_ceremony\_root:\ {[}32{]}u8},
+  \texttt{zchain\_vk\_root:\ {[}32{]}u8}, \texttt{gas\_limit:\ uint64},
+  \texttt{base\_fee:\ uint64},
+  \texttt{parent\_block\_hash:\ {[}32{]}u8},
+  \texttt{parent\_state\_root:\ {[}32{]}u8},
+  \texttt{parent\_execution\_root:\ {[}32{]}u8} to
+  \texttt{QuasarRoundDescriptor}.
+\item
+  Compute \texttt{certificate\_subject} in the descriptor on the host
+  (single source of truth), pass it to the GPU.
+\item
+  The GPU verifier MUST recompute \texttt{certificate\_subject} from the
+  descriptor and compare against \texttt{VoteIngress::subject}
+  byte-for-byte before accepting any sig.
+\item
+  Document that \texttt{epoch} rolls over only on validator-set change.
+\end{enumerate}
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-004 --- No per-validator dedup; one vote
+credited multiple
+times}\label{q30-cert-004--no-per-validator-dedup-one-vote-credited-multiple-times}
+
+\textbf{Severity}: Critical \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1139-1187}
+(\texttt{drain\_vote})
+
+\textbf{Description}: \texttt{drain\_vote} reads
+\texttt{VoteIngress::stake\_weight} and accumulates via
+\texttt{atomic\_fetch\_add(stake\_acc,\ v.stake\_weight)}. There is no
+check that \texttt{validator\_index} has not voted before in this round.
+The substrate carries \texttt{validator\_index} on the ingress envelope
+but never indexes it.
+
+\textbf{Attack scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary submits N copies of a single valid vote (or tampers with
+  \texttt{stake\_weight} only --- the MAC binds subject and round, NOT
+  stake\_weight).
+\item
+  Each copy passes verification; each adds \texttt{stake\_weight} to the
+  lane counter.
+\item
+  With \texttt{stake\_weight\ =\ 1} and 1000 copies of a vote from a
+  single 0.1\%-stake validator, the adversary contributes 100\% of stake
+  on the BLS lane --- triggering the 2/3 quorum gate.
+\end{enumerate}
+
+\textbf{Impact}: Single low-stake validator (or even a malicious node
+with \textasciitilde0\% stake plus the master secret from CERT-001)
+finalizes blocks of their choice.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Add a per-round
+  \texttt{validator\_voted\_bitmap:\ device\ atomic\_uint*} indexed by
+  \texttt{validator\_index} on each lane.
+\item
+  Before crediting stake, atomically test-and-set the bit; if already
+  set, skip without crediting.
+\item
+  The bitmap must persist across wave ticks within one round and reset
+  per round.
+\item
+  The MAC must bind \texttt{stake\_weight} so an attacker
+  can\textquotesingle t legitimately re-sign the same vote with
+  different stake amounts.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-005 --- Cross-lane replay
+protection inadequate against tampered
+\texttt{sig\_kind}}{Q3.0-CERT-005 --- Cross-lane replay protection inadequate against tampered sig\_kind}}\label{q30-cert-005--cross-lane-replay-protection-inadequate-against-tampered-sig_kind}
+
+\textbf{Severity}: High \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1217-1289}
+
+\textbf{Description}: The lane-domain-tag defense works ONLY because the
+verifier passes \texttt{v.sig\_kind} into
+\texttt{quasar\_derive\_secret}. So a vote signed for BLS lane will fail
+verification when re-tagged as Ringtail (correct, the LP-132 test
+\texttt{bad\_bls.signature{[}0{]}\ \^{}=\ 0xFF} and the
+\texttt{replay.sig\_kind\ =\ 2} reassignment exercises this).
+
+However, the test in \texttt{test\_quasar\_quorum\_round\_trip} (line
+391-398) shows exactly one cross-lane attempt: a vote signed as BLS,
+retagged as MLDSA. The test asserts this is rejected. \textbf{It works
+only because the secret-derivation includes sig\_kind.}
+
+This is brittle: any new lane (LP-134 added 7 more lanes --- A-Chain,
+B-Chain, M-Chain×3, F-Chain×2) needs its own domain tag in the host
+signer, the GPU verifier, and the lookup table
+\texttt{quasar\_pick\_domain}. The current \texttt{quasar\_pick\_domain}
+only handles \texttt{sig\_kind\ ∈\ \{0,\ 1,\ 2\}} --- sig\_kind=3
+(AChainAttest) falls through to \texttt{kMLDSADomain}. A vote for
+AChainAttest would silently verify against an MLDSA-tagged secret.
+
+\textbf{Attack scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Once LP-134 lands enum values 3..9 but the kernel still has only the
+  3-way switch in \texttt{quasar\_pick\_domain}, an attacker with an
+  MLDSA-tagged vote can submit it tagged as AChainAttest (sig\_kind=3)
+  and have the verifier accept it.
+\item
+  The attestation lane stake counter increments, even though the vote
+  was issued for an entirely different purpose.
+\end{enumerate}
+
+\textbf{Impact}: Cross-lane replay between the LP-134 chains. Once
+A-Chain attests to a TEE quote on the basis of a forged MLDSA-tagged
+vote, the chain\textquotesingle s downstream consumers (every chain that
+reads \texttt{achain\_attestation\_root}) ingest fabricated trust roots.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Extend \texttt{quasar\_pick\_domain} to dispatch by full enum range;
+  reject unknown \texttt{sig\_kind} values explicitly
+  (\texttt{verified{[}tid{]}\ =\ 0}).
+\item
+  Add a \texttt{static\_assert}-equivalent on the host that the lane
+  domain-tag table covers every active \texttt{QuasarCertLane}.
+\item
+  Domain tags should embed the lane name AND a version marker that bumps
+  when verifier semantics change.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes if LP-134 lanes are activated
+2025-12-25; deferrable to v0.50 (LP-134 implementation) otherwise.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-006 --- Subject not bound by stake\_weight;
+tamper
+attack}\label{q30-cert-006--subject-not-bound-by-stake_weight-tamper-attack}
+
+\textbf{Severity}: High \textbf{Affected files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1241-1251}
+  (\texttt{quasar\_expected\_sig})
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1163}
+  (\texttt{atomic\_fetch\_add(stake\_acc,\ v.stake\_weight)})
+\end{itemize}
+
+\textbf{Description}:
+\texttt{quasar\_expected\_sig(secret,\ subject,\ round)\ →\ 32\ bytes}.
+\texttt{stake\_weight} is NOT in the MAC\textquotesingle s input. So an
+attacker who legitimately holds a vote (or forged one via CERT-002) can
+mutate \texttt{v.stake\_weight} to any value and the verifier still
+accepts.
+
+\textbf{Attack scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary intercepts a valid vote with \texttt{stake\_weight\ =\ 10}.
+\item
+  Mutates \texttt{stake\_weight} to \texttt{2\^{}31\ -\ 1}.
+\item
+  Verifier still accepts (MAC didn\textquotesingle t sign over
+  stake\_weight).
+\item
+  \texttt{drain\_vote} adds 2\^{}31-1 to the lane counter, triggering
+  quorum on 1 vote.
+\end{enumerate}
+
+\textbf{Impact}: Any valid vote can be amplified to 2\^{}31 stake.
+Combined with CERT-007\textquotesingle s 32-bit overflow, this becomes a
+quorum-on-zero-stake attack.
+
+\textbf{Fix}: Either (a) include \texttt{stake\_weight} in the
+MAC\textquotesingle s input, or (b) --- the right answer --- read
+\texttt{stake\_weight} from the trusted descriptor\textquotesingle s
+\texttt{pchain\_validator\_root} lookup, never from the network-supplied
+vote envelope.
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-007 ---
+\texttt{quorum\_stake\_*} is uint32; trivial overflow → false
+quorum}{Q3.0-CERT-007 --- quorum\_stake\_* is uint32; trivial overflow → false quorum}}\label{q30-cert-007--quorum_stake_-is-uint32-trivial-overflow--false-quorum}
+
+\textbf{Severity}: Critical \textbf{Affected files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_gpu\_layout.hpp:373-375}
+  (\texttt{quorum\_stake\_bls/mldsa/rt:\ uint32})
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:241-243}
+  (kernel-side atomic\_uint)
+\end{itemize}
+
+\textbf{Description}: The accumulator is a single 32-bit atomic.
+\texttt{prev\_stake\ =\ atomic\_fetch\_add(stake\_acc,\ v.stake\_weight)}.
+There is no overflow check and no 64-bit wide accumulator. Native LUX
+has 1B circulating supply at 1e9 nLux precision = 10\^{}18 lowest-units.
+This trivially exceeds 2\^{}32 = 4.29e9.
+
+The threshold check is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint threshold }\OperatorTok{=}\NormalTok{ uint}\OperatorTok{((}\NormalTok{desc}\OperatorTok{{-}\textgreater{}}\NormalTok{base\_fee }\OperatorTok{*} \DecValTok{2}\BuiltInTok{UL}\OperatorTok{)} \OperatorTok{/} \DecValTok{3}\BuiltInTok{UL}\OperatorTok{);}
+\ControlFlowTok{if} \OperatorTok{(}\NormalTok{prev\_stake }\OperatorTok{\textless{}}\NormalTok{ threshold }\OperatorTok{\&\&}\NormalTok{ new\_stake }\OperatorTok{\textgreater{}=}\NormalTok{ threshold}\OperatorTok{)} \OperatorTok{\{} \CommentTok{/* emit QC */} \OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Note that \texttt{threshold} is also uint32, so the \emph{threshold
+itself} is bounded by 4.29e9. For real LUX stake amounts the
+descriptor\textquotesingle s \texttt{base\_fee} (repurposed as
+total-stake-unit per the comment at line 1167) would have to be
+quantized down --- and even then, the accumulator is one fetch\_add away
+from wrapping.
+
+The LP-020 spec mandates \texttt{cert\_stake\_*\_lo/hi} (uint64-split)
+for exactly this reason. The substrate ignores the spec.
+
+\textbf{Attack scenario} (overflow-to-quorum):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{desc-\textgreater{}base\_fee\ =\ 0xC000\_0000} →
+  \texttt{threshold\ =\ 0x8000\_0000}.
+\item
+  Adversary submits a vote with
+  \texttt{stake\_weight\ =\ 0xFFFF\_FFFF\ -\ 0x7FFF\_FFFE\ =\ 0x8000\_0001}.
+  Counter wraps from \texttt{0x7FFF\_FFFE} (just below threshold) to
+  \texttt{0xFFFF\_FFFF} then \texttt{0x80000000} after wrap --- past
+  threshold. QC emits with one valid (or forged) vote.
+  2\textquotesingle. Even simpler: adversary picks
+  \texttt{stake\_weight\ =\ 0x8000\_0001}; \texttt{prev\_stake\ =\ 0} so
+  \texttt{prev\_stake\ \textless{}\ threshold};
+  \texttt{new\_stake\ =\ 0x8000\_0001\ \textgreater{}=\ threshold}. QC
+  emits with one vote at fabricated stake.
+\end{enumerate}
+
+\textbf{Impact}: Combined with CERT-006, any single forged vote drives
+quorum on any lane.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Extend \texttt{quorum\_stake\_*} to \texttt{uint64} (split into
+  \texttt{\_lo/\_hi} per LP-020 spec).
+\item
+  Use 64-bit atomic adds (Metal: Apple A14+, Apple Silicon M1+; CUDA:
+  native).
+\item
+  The \texttt{cert\_stake\_*\_lo/hi} split on \texttt{QuasarRoundResult}
+  is not yet wired through to the metal kernel --- wire it.
+\item
+  Move the threshold check to use trusted total-stake from
+  \texttt{pchain\_validator\_root}, not
+  \texttt{desc-\textgreater{}base\_fee}.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-008 ---
+\texttt{head\ +\ tid\ \textgreater{}=\ tail} overflow / aliasing in
+verify
+kernel}{Q3.0-CERT-008 --- head + tid \textgreater= tail overflow / aliasing in verify kernel}}\label{q30-cert-008--head--tid--tail-overflow--aliasing-in-verify-kernel}
+
+\textbf{Severity}: Critical \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1264-1274}
+
+\textbf{Description}: The verify kernel computes:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint head }\OperatorTok{=}\NormalTok{ atomic\_load}\OperatorTok{(\&}\NormalTok{vote\_hdr}\OperatorTok{{-}\textgreater{}}\NormalTok{head}\OperatorTok{);}
+\NormalTok{uint tail }\OperatorTok{=}\NormalTok{ atomic\_load}\OperatorTok{(\&}\NormalTok{vote\_hdr}\OperatorTok{{-}\textgreater{}}\NormalTok{tail}\OperatorTok{);}
+\ControlFlowTok{if} \OperatorTok{(}\NormalTok{head }\OperatorTok{+}\NormalTok{ tid }\OperatorTok{\textgreater{}=}\NormalTok{ tail}\OperatorTok{)} \OperatorTok{\{}\NormalTok{ verified}\OperatorTok{[}\NormalTok{tid}\OperatorTok{]} \OperatorTok{=} \DecValTok{0}\BuiltInTok{u}\OperatorTok{;} \ControlFlowTok{return}\OperatorTok{;} \OperatorTok{\}}
+\NormalTok{uint slot\_idx }\OperatorTok{=} \OperatorTok{(}\NormalTok{head }\OperatorTok{+}\NormalTok{ tid}\OperatorTok{)} \OperatorTok{\&}\NormalTok{ mask}\OperatorTok{;}
+\NormalTok{VoteIngress v }\OperatorTok{=}\NormalTok{ items}\OperatorTok{[}\NormalTok{slot\_idx}\OperatorTok{];}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{head\ +\ tid} is \texttt{uint32} --- wraps at 2\^{}32. After
+enough rounds the producer \texttt{tail} and consumer \texttt{head} can
+be anywhere in the 32-bit range; the check
+\texttt{head\ +\ tid\ \textgreater{}=\ tail} is wrong when the ring has
+wrapped.
+
+A more immediate problem: between the kernel sampling \texttt{head/tail}
+and the wave-tick scheduler advancing them in \texttt{drain\_vote}, the
+slot can be popped and overwritten. The verifier then verifies a vote
+that has already been consumed (or is mid-overwrite), writes
+\texttt{verified{[}slot\_idx{]}\ =\ 1}, and \texttt{drain\_vote} later
+reads \texttt{verified{[}head\_pre\ \&\ mask{]}} which corresponds to a
+different vote.
+
+\textbf{Attack scenario} (verified-aliasing):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary submits 16 votes; 8 valid, 8 forged.
+\item
+  The verify kernel runs first, marking valid slots
+  \texttt{verified{[}k{]}\ =\ 1}.
+\item
+  \texttt{drain\_vote} pops votes one-by-one:
+  \texttt{head\_pre\ =\ atomic\_load(head)}, then \texttt{pop}, then
+  read \texttt{verified{[}head\_pre\ \&\ mask{]}}.
+\item
+  Race: between \texttt{drain\_vote}\textquotesingle s
+  \texttt{head\_pre} snapshot and the verify kernel\textquotesingle s
+  snapshot, \texttt{head} advances. The verify result indexed at slot
+  \texttt{H+k} is consumed at slot \texttt{H+k+1}, and so on.
+\item
+  With careful submission ordering, the adversary places a forged vote
+  at the "consumed" slot of a verified one --- the forged vote is
+  treated as verified and credited to stake.
+\end{enumerate}
+
+\textbf{Impact}: Forged votes admitted without verification.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Verify kernel must lock the ring snapshot: copy
+  \texttt{head}/\texttt{tail} once into a per-round field, run all
+  verifications against that snapshot, and \texttt{drain\_vote} must
+  read from the same snapshot.
+\item
+  Use \texttt{(uint64\_t)head\ +\ (uint64\_t)tid} to avoid the 32-bit
+  add overflow on the bounds check.
+\item
+  The verified-bit array should be keyed by an immutable
+  \texttt{(round,\ validator\_index,\ sig\_kind)} tuple, not by ring
+  slot index.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-009 --- \texttt{verified{[}{]}}
+write key mismatches \texttt{drain\_vote} read
+key}{Q3.0-CERT-009 --- verified{[}{]} write key mismatches drain\_vote read key}}\label{q30-cert-009--verified-write-key-mismatches-drain_vote-read-key}
+
+\textbf{Severity}: Critical \textbf{Affected files}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1289} (write:
+  \texttt{verified{[}slot\_idx{]}})
+\item
+  \texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1153-1154}
+  (read: \texttt{verified{[}head\_pre\ \&\ mask{]}})
+\end{itemize}
+
+\textbf{Description}: \texttt{quasar\_verify\_votes\_kernel} writes
+\texttt{verified{[}slot\_idx{]}\ =\ (diff\ ==\ 0u)\ ?\ 1u\ :\ 0u} where
+\texttt{slot\_idx\ =\ (head\ +\ tid)\ \&\ mask} --- the slot in the ring
+corresponding to \texttt{head\ +\ tid}. \texttt{drain\_vote} reads
+\texttt{verified{[}vidx{]}} where
+\texttt{vidx\ =\ head\_pre\ \&\ (vote\_verified\_capacity\ -\ 1u)} ---
+the slot corresponding to the \emph{single} item it just popped.
+
+These index spaces match only if
+\texttt{vote\_verified\_capacity\ ==\ vote\_hdr-\textgreater{}capacity}
+AND
+\texttt{vote\_hdr-\textgreater{}mask\ ==\ vote\_verified\_capacity\ -\ 1}.
+They are two separately-sized buffers (\texttt{vote\_verified\_capacity}
+is buffer(10), \texttt{vote\_hdr-\textgreater{}mask} is data-driven). If
+they differ --- and there is no \texttt{static\_assert} enforcing
+equality --- the lookup is wrong.
+
+Even when equal, there is still a one-shot consume order: if
+\texttt{drain\_vote} runs before the verify kernel, \texttt{head\_pre}
+is stale and \texttt{verified{[}head\_pre\ \&\ mask{]}} returns whatever
+was there from the \emph{previous} round, possibly 1 (if the slot was
+last verified-OK).
+
+\textbf{Attack scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Round R-1 finishes; ring \texttt{verified{[}k{]}\ =\ 1} for k where
+  votes were valid.
+\item
+  Round R starts; the substrate does NOT zero out
+  \texttt{verified{[}{]}} between rounds (no \texttt{clear\_verified}
+  step exists).
+\item
+  Adversary submits unsigned (zero-byte) votes in round R. They land at
+  slots \texttt{k} where \texttt{verified{[}k{]}\ =\ 1} from round R-1.
+\item
+  If verify kernel runs second, it overwrites
+  \texttt{verified{[}k{]}\ =\ 0} for these --- fine.
+\item
+  But there is NO ordering guarantee that verify runs before
+  \texttt{drain\_vote}. The kernel issues services concurrently via
+  \texttt{gid}. If \texttt{gid=10} (drain\_vote) consumes votes before
+  \texttt{gid=K} (verify kernel --- actually a separate kernel, but) ---
+  wait, the verify is its own kernel
+  \texttt{quasar\_verify\_votes\_kernel} separate from
+  \texttt{quasar\_wave\_kernel}. The host must dispatch verify first.
+  \textbf{Is this enforced?} Looking at the LP-132 wording, it
+  isn\textquotesingle t documented. If the host driver dispatches
+  \texttt{quasar\_wave\_kernel} (which contains \texttt{drain\_vote})
+  before \texttt{quasar\_verify\_votes\_kernel}, the check fails open.
+\end{enumerate}
+
+\textbf{Impact}: Unverified votes admitted (forged stake credited).
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Combine verify and drain\_vote into a single kernel pass, OR
+\item
+  Have the host enforce strict ordering:
+  \texttt{quasar\_verify\_votes\_kernel} MUST commit before
+  \texttt{quasar\_wave\_kernel}, AND the verified buffer MUST be zeroed
+  at round-start by \texttt{begin\_round}.
+\item
+  Add
+  \texttt{static\_assert(vote\_verified\_capacity\ ==\ vote\_hdr-\textgreater{}capacity)}
+  and document the contract.
+\item
+  The verified buffer should be a per-(round, validator, sig\_kind)
+  tuple, not a ring-slot lookup, to eliminate the index aliasing.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-010 ---
+\texttt{QuasarRoundDescriptor} missing \texttt{epoch},
+\texttt{chain\_id} not in
+subject}{Q3.0-CERT-010 --- QuasarRoundDescriptor missing epoch, chain\_id not in subject}}\label{q30-cert-010--quasarrounddescriptor-missing-epoch-chain_id-not-in-subject}
+
+\textbf{Severity}: High (composite; Critical when combined with
+CERT-003) \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_gpu\_layout.hpp:333-350}
+
+\textbf{Description}: LP-020 §3.0 mandates an \texttt{epoch} field. The
+substrate has \texttt{round} only. Validator-set changes happen on epoch
+boundaries, but with no epoch in the descriptor, the ceremony / VK /
+validator-set roots cannot be epoch-bound on the device.
+
+\texttt{chain\_id} is in the descriptor (\texttt{uint64\_t\ chain\_id}
+at offset 0) but is not folded into the subject digest (CERT-003).
+
+\textbf{Attack scenario}: see CERT-003.
+
+\textbf{Impact}: cross-epoch and cross-chain replay (per CERT-003).
+
+\textbf{Fix}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add \texttt{uint64\ epoch} to \texttt{QuasarRoundDescriptor}.
+\item
+  Recompute \texttt{certificate\_subject} per LP-020 spec; include in
+  the descriptor as a host-precomputed digest.
+\item
+  Verifier kernel reads
+  \texttt{desc-\textgreater{}certificate\_subject{[}32{]}} and compares
+  against \texttt{v.subject{[}32{]}} byte-for-byte.
+\end{enumerate}
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-011 --- Z-Chain Groth16 freshness: subject
+doesn\textquotesingle t bind unpredictable
+fields}\label{q30-cert-011--z-chain-groth16-freshness-subject-doesnt-bind-unpredictable-fields}
+
+\textbf{Severity}: High \textbf{Affected files}: LP-020 §"Cert Lane:
+MLDSAGroth16", \texttt{quasar\_wave.metal} (no implementation yet)
+
+\textbf{Description}: The MLDSAGroth16 lane verifies a 192-byte Groth16
+proof against \texttt{zchain\_vk\_root}. Public inputs include
+\texttt{subject\ +\ validator\ set\ root}. Per LP-020 §"Cert Subject",
+\texttt{subject} includes \texttt{parent\_block\_hash},
+\texttt{parent\_state\_root}, \texttt{parent\_execution\_root}.
+\textbf{However}, in v0.38 the substrate\textquotesingle s
+\texttt{parent\_*} fields are present in the descriptor but never folded
+into the subject (CERT-003). With v0.38 subject =
+\texttt{(round,\ mode,\ receipts\_root,\ execution\_root,\ state\_root,\ mode\_root)},
+\textbf{all of these are computable by the proposer in advance} ---
+receipts\_root depends on tx ordering (proposer-controlled), state\_root
+depends on execution result (proposer-knowable), mode\_root same.
+
+So a proposer can:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Choose a desired tx ordering and predict the subject
+  \texttt{S\_future} for round 1000 in advance.
+\item
+  Run the Z-Chain Groth16 prover on \texttt{S\_future}, getting proof
+  \texttt{π}.
+\item
+  At round 1000, produce votes --- but the proposer-controlled tx
+  ordering means they always get to produce a block whose subject is
+  S\_future.
+\item
+  Submit \texttt{π} and pass MLDSAGroth16 verification.
+\end{enumerate}
+
+This is "harmless" if the proposer is honest, but it gives a malicious
+proposer a way to \textbf{pre-commit} to a specific
+block\textquotesingle s identity --- useful for MEV attacks
+(specifically for grinding attacks where a proposer searches for a
+\texttt{S\_future} that maximizes their MEV).
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Per LP-020 §"Cert Subject", fold in unpredictable fields:
+  \texttt{pchain\_validator\_root} (changes with stake delegations),
+  \texttt{qchain\_ceremony\_root} (changes with DKG ceremonies), and
+  ideally a VRF output.
+\item
+  Once CERT-003 is fixed, this is mostly mitigated since
+  \texttt{pchain\_validator\_root} is unpredictable to adversaries who
+  don\textquotesingle t control validator set changes.
+\item
+  Add a per-round VRF beacon (committed via P-Chain or similar) into the
+  subject digest for stronger unpredictability.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Partially (depends on CERT-003 fix).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-012 --- Indirect-payload
+attack: \texttt{(artifact\_offset,\ artifact\_len)} not
+bounds-checked}{Q3.0-CERT-012 --- Indirect-payload attack: (artifact\_offset, artifact\_len) not bounds-checked}}\label{q30-cert-012--indirect-payload-attack-artifact_offset-artifact_len-not-bounds-checked}
+
+\textbf{Severity}: High \textbf{Affected files}: LP-020
+§"QuasarCertIngress" (spec only; substrate not yet implemented)
+
+\textbf{Description}: LP-020 specifies \texttt{cert\_artifact\_arena}
+indexed by \texttt{(offset,\ len)} for variable-size lane artifacts. The
+spec does not document:
+
+\begin{itemize}
+\tightlist
+\item
+  How the verifier validates
+  \texttt{offset\ +\ len\ \textless{}=\ arena\_size}.
+\item
+  Whether overlapping \texttt{(offset,\ len)} ranges are permitted
+  across two ingress entries.
+\item
+  Whether two entries with the same \texttt{(offset,\ len)} for the same
+  lane are deduped.
+\end{itemize}
+
+These are \textbf{must-specify} items because the indirection is the
+wire-side ABI surface for variable-size PQ schemes (Ringtail, Falcon,
+SLH-DSA all have variable-size signatures).
+
+\textbf{Attack scenario} (out-of-bounds read):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary submits
+  \texttt{QuasarCertIngress\ \{\ artifact\_offset\ =\ arena\_size\ -\ 4,\ artifact\_len\ =\ 1024\ \}}.
+\item
+  Verifier reads \texttt{arena{[}offset\ ..\ offset+len{]}} extending
+  past the arena. On GPU this reads adjacent buffer memory --- possibly
+  the descriptor, possibly host-bridge state. On CPU host-side
+  composition this is a heap OOB read.
+\item
+  The result either: (a) crashes the verifier (DoS), or (b) reads
+  attacker-controllable state and treats it as a valid sig (when
+  combined with a controllable adjacent buffer).
+\end{enumerate}
+
+\textbf{Attack scenario} (overlapping payload):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary submits 100 ingress entries all with
+  \texttt{artifact\_offset\ =\ 0,\ artifact\_len\ =\ 96} for the BLS
+  lane.
+\item
+  All 100 entries reference the same 96 bytes (one valid BLS aggregate).
+\item
+  The verifier accepts each independently, accumulating stake 100 times
+  for a single signature.
+\end{enumerate}
+
+\textbf{Attack scenario} (1-byte rotation reuse):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary submits two ingress entries with
+  \texttt{(offset=0,\ len=96)} and \texttt{(offset=1,\ len=96)}
+  (overlapping by 95 bytes).
+\item
+  The verifier accepts both as distinct signatures even though they
+  share 95 bytes of payload.
+\item
+  With the right wire-format, this allows reusing aggregate signature
+  material across multiple "votes".
+\end{enumerate}
+
+\textbf{Impact}: Each attack independently breaks quorum integrity.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  LP-020 must specify:
+  \texttt{offset\ \textgreater{}=\ 0\ \&\&\ len\ \textgreater{}=\ 0\ \&\&\ offset\ +\ len\ \textless{}=\ arena\_size\ \&\&\ len\ \textless{}=\ MAX\_LANE\_ARTIFACT\_SIZE\_BY\_LANE{[}lane{]}}.
+\item
+  The verifier must dedup by
+  \texttt{(lane,\ validator\_index,\ hash(arena{[}offset..offset+len{]}))}
+  --- same hash from same validator on same lane = one credit.
+\item
+  The verifier must reject overlapping ranges by maintaining a per-round
+  byte-bitmap of "claimed" arena bytes; an entry\textquotesingle s bytes
+  must be unclaimed.
+\item
+  Better: per-validator per-round per-lane = one entry. Drop the overlap
+  concern by construction.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes (when the indirection lands; the spec
+text alone does not protect).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-013 --- Q-Chain ceremony stalling forces
+fallback ceremony
+root}\label{q30-cert-013--q-chain-ceremony-stalling-forces-fallback-ceremony-root}
+
+\textbf{Severity}: High \textbf{Affected files}: LP-020 §"Cert Lane:
+Ringtail", LP-134 §"Q-Chain"
+
+\textbf{Description}: The Ringtail cert lane verifies against
+\texttt{qchain\_ceremony\_root}. The spec says "Q-Chain runs the
+Ringtail 2-round DKG ceremony for the active epoch and commits the
+result to \texttt{qchain\_ceremony\_root} in the next
+QuasarRoundDescriptor". What happens if the ceremony fails to commit by
+deadline?
+
+\begin{itemize}
+\tightlist
+\item
+  If the substrate falls back to a previous epoch\textquotesingle s
+  \texttt{qchain\_ceremony\_root}, then a current-epoch adversary with
+  archived round-1 share data from the previous epoch can produce a
+  valid Ringtail share against the stale key.
+\item
+  If the substrate halts, the chain stalls (liveness loss) --- but a
+  livenness-loss DoS is a known PQ-threshold problem.
+\item
+  If the substrate proceeds with the BLS-only lane (no Ringtail), the
+  chain effectively downgrades to single-lane consensus --- the
+  spec\textquotesingle s "must break ALL THREE assumptions
+  simultaneously" claim breaks because Ringtail is now optional.
+\end{itemize}
+
+\textbf{Attack scenario} (stall-then-stale-root):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary controls \textgreater{} 1/2 of the t-of-n Ringtail DKG
+  participants for one epoch (this is \textless{} 1/3 of total stake but
+  enough to abort the ceremony).
+\item
+  Adversary aborts round 2 of the DKG. Ceremony fails to commit a new
+  \texttt{qchain\_ceremony\_root}.
+\item
+  Substrate falls back to the previous epoch\textquotesingle s root.
+\item
+  Adversary, who archived previous-epoch share data and know the
+  previous-epoch threshold key, signs round-1 shares with the stale key.
+  They verify against the stale \texttt{qchain\_ceremony\_root}.
+\item
+  Combined with BLS forgery (CERT-002), full quorum is forged on the
+  now-static Ringtail key.
+\end{enumerate}
+
+\textbf{Impact}: Ringtail lane integrity loss (until DKG retries
+succeed). More importantly: the liveness-vs-safety tradeoff on Q-Chain
+ceremony failure is unspecified.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Specify the ceremony failure handling: the LP must declare
+  halt-on-ceremony-failure for Ringtail.
+\item
+  \texttt{qchain\_ceremony\_root} must include an epoch counter that the
+  verifier checks against \texttt{desc-\textgreater{}epoch}.
+\item
+  A stall window (e.g., 1 round) is permissible, after which the chain
+  refuses to advance unless a fresh root commits.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes (specification fix; the
+substrate\textquotesingle s behavior must be deterministic).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-014 ---
+\texttt{cert\_artifact\_arena} indirection unimplemented at
+activation}{Q3.0-CERT-014 --- cert\_artifact\_arena indirection unimplemented at activation}}\label{q30-cert-014--cert_artifact_arena-indirection-unimplemented-at-activation}
+
+\textbf{Severity}: High \textbf{Affected files}: spec gap ---
+\texttt{quasar\_gpu\_layout.hpp} has \texttt{VoteIngress} (96-byte
+inline sig), no \texttt{QuasarCertIngress} with offset/len
+
+\textbf{Description}: The LP-020 §3.0 wire format relies on
+\texttt{(artifact\_offset,\ artifact\_len)} indirection. The substrate
+at v0.38 still uses the v2.0 inline-sig \texttt{VoteIngress}. Either (a)
+the activation must ship with the new ingress format (in which case
+CERT-012 applies) or (b) the activation ships with the old format, and
+LP-020 §3.0 lies about the wire format the chain uses.
+
+\textbf{Impact}: Specification/implementation drift at activation.
+Future upgrade to real PQ schemes (which need variable-size artifacts)
+will require a wire-format break --- which LP-020 explicitly promises
+will never happen.
+
+\textbf{Fix}: Implement \texttt{QuasarCertIngress} per LP-020 spec
+before 2025-12-25. Or update LP-020 to reflect what 2025-12-25 actually
+ships and version-bump to 3.1 when the indirection lands.
+
+\textbf{Must-fix pre-launch}: Yes (one of the two paths).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-015 --- A-Chain attestation root: TEE quote
+chain-of-trust
+unspecified}\label{q30-cert-015--a-chain-attestation-root-tee-quote-chain-of-trust-unspecified}
+
+\textbf{Severity}: High \textbf{Affected files}: LP-134 §"A-Chain
+(Attestation, NEW)"
+
+\textbf{Description}: LP-134 introduces A-Chain with attestation roots
+from SGX/SEV-SNP/TDX TEE quotes. The spec does not specify:
+
+\begin{itemize}
+\tightlist
+\item
+  What attestation chain (root cert) the verifier trusts.
+\item
+  How root cert revocation is handled (Intel\textquotesingle s PCS,
+  AMD\textquotesingle s KDS).
+\item
+  What the per-quote freshness binding is (a TEE quote signed once is
+  replayable forever without a freshness nonce).
+\item
+  Who can submit a TEE attestation to A-Chain --- any node, validators
+  only, specific TEE-equipped validators only?
+\item
+  How \texttt{achain\_attestation\_root} is verified by chains that
+  consume it.
+\end{itemize}
+
+\textbf{Attack scenario} (forged TEE quote):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary observes a valid validator TEE quote from epoch e1.
+\item
+  Submits the same quote to A-Chain in epoch e2. Without a freshness
+  binding, the verifier accepts the quote.
+\item
+  A-Chain commits the (stale) attestation into
+  \texttt{achain\_attestation\_root}.
+\item
+  Downstream chains that consume the root trust the (stale) TEE state,
+  even though that validator\textquotesingle s TEE may have been
+  compromised between e1 and e2.
+\end{enumerate}
+
+\textbf{Attack scenario} (rogue intermediate cert):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Without a pinned root cert, adversary forges a quote signed by an
+  attacker-controlled CA pretending to be Intel PCS.
+\item
+  A-Chain accepts the quote.
+\item
+  Trust chains consuming \texttt{achain\_attestation\_root} are
+  compromised.
+\end{enumerate}
+
+\textbf{Impact}: A-Chain attestation root contains untrusted data;
+downstream chains relying on it operate on falsified TEE attestations.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Pin the trusted root certs (Intel PCS, AMD KDS) via P-Chain governance
+  (cannot be changed without a stake-weighted vote).
+\item
+  Every TEE quote must include a freshness nonce bound to
+  \texttt{(round,\ epoch,\ validator\_index,\ achain\_attestation\_root\_prev)}.
+\item
+  Specify revocation: a quote whose intermediate cert appears in a
+  revoked-CA list (PCS revocation list, etc.) must be rejected by
+  \texttt{drain\_attest}.
+\item
+  Restrict TEE quote submission to validators with attested hardware
+  (chicken-and-egg; bootstrap via P-Chain governance vote on initial
+  set).
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes if A-Chain activates 2025-12-25;
+deferrable to v0.51 (LP-134 implementation) otherwise.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-016 --- M-Chain / F-Chain validator-subset
+stake
+concentration}\label{q30-cert-016--m-chain--f-chain-validator-subset-stake-concentration}
+
+\textbf{Severity}: High \textbf{Affected files}: LP-134 §"M-Chain",
+§"F-Chain"
+
+\textbf{Description}: LP-134 introduces M/F-Chains as smaller validator
+subsets carved from P-Chain. The spec does not specify how the subset is
+selected. Two natural options:
+
+\begin{itemize}
+\tightlist
+\item
+  (a) Top-k by stake → adversary with concentrated stake on M/F-Chain
+  controls \textgreater{} 1/3 of the subset even if
+  they\textquotesingle re \textless{} 1/3 on P-Chain overall.
+\item
+  (b) Random subset weighted by stake → unbiased but requires VRF beacon
+  (which LP-134 doesn\textquotesingle t define for chain-validator-set
+  selection).
+\end{itemize}
+
+If the M-Chain subset has, say, 7 validators chosen from the top-7
+P-Chain stake, an adversary with 14\% of P-Chain stake (well below the
+33\% Byzantine bound) but who concentrates that 14\% in the top-7 can be
+\textgreater{} 33\% of the M-Chain subset.
+
+\textbf{Attack scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary delegates 14\% of total stake to one of their validators.
+\item
+  M-Chain selection picks the top-7 stakeholders.
+  Adversary\textquotesingle s validator is in the top-7 with
+  \textgreater{} 1/7 ≈ 14.3\% of subset stake.
+\item
+  With one or two more colluding validators in the top-7, adversary
+  controls \textgreater{} 33\% of M-Chain.
+\item
+  M-Chain MPC ceremonies (CGGMP21, FROST, Ringtail-general) are
+  compromised --- the threshold is broken.
+\item
+  F-Chain TFHE key shares similarly compromised.
+\end{enumerate}
+
+\textbf{Impact}: Cross-chain trust violation. P-Chain stake distribution
+that\textquotesingle s safe for the main chain is unsafe for M/F-Chain
+operations (custody, cross-chain bridges, etc.).
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  M/F-Chain subset selection must use stake-weighted random sampling
+  with a VRF beacon (not top-k).
+\item
+  Alternatively: M/F-Chain operations require the FULL P-Chain validator
+  set\textquotesingle s threshold --- no carve-out.
+\item
+  Document the security analysis: "for an adversary at A\% of P-Chain
+  stake, the probability they control \textgreater1/3 of an N-validator
+  subset is..."
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes if M/F-Chains activate 2025-12-25;
+deferrable to v0.53/v0.54 otherwise.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-017 --- \texttt{verified{[}{]}}
+not zeroed across
+rounds}{Q3.0-CERT-017 --- verified{[}{]} not zeroed across rounds}}\label{q30-cert-017--verified-not-zeroed-across-rounds}
+
+\textbf{Severity}: High \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal} (no
+\texttt{clear\_verified}), \texttt{quasar\_gpu\_engine.mm:begin\_round}
+
+\textbf{Description}: The \texttt{vote\_verified} buffer is sized once,
+indexed by ring slot. Between rounds, the buffer\textquotesingle s
+contents are NOT zeroed. The substrate\textquotesingle s
+\texttt{begin\_round} initializes ring headers but not verifier output
+buffers.
+
+\textbf{Attack scenario}: see CERT-009.
+
+\textbf{Impact}: Stale \texttt{verified{[}k{]}\ =\ 1} from round R-1 is
+observed by \texttt{drain\_vote} in round R for any vote that
+didn\textquotesingle t get re-verified before being consumed.
+
+\textbf{Fix}: \texttt{begin\_round} must zero
+\texttt{vote\_verified{[}0..capacity{]}}. Add a test: round R-1 ends
+with \texttt{verified{[}5{]}\ =\ 1}; round R submits an unsigned vote at
+slot 5; assert \texttt{drain\_vote} does not credit it.
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-018 --- Domain-tag table only handles 3
+lanes}\label{q30-cert-018--domain-tag-table-only-handles-3-lanes}
+
+\textbf{Severity}: Medium \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1217-1226}
+(\texttt{quasar\_pick\_domain})
+
+\textbf{Description}: \texttt{quasar\_pick\_domain} switches on
+\texttt{sig\_kind\ ∈\ \{0,\ 1,\ default→MLDSA\}}. LP-134 introduces enum
+values 3..9 for the 7 new lanes. Any sig\_kind \textgreater{} 1
+currently falls through to MLDSA\textquotesingle s domain tag. A fresh
+assertion / range check is missing.
+
+\textbf{Attack scenario}: see CERT-005.
+
+\textbf{Fix}: Switch over the full enum; default branch returns nullptr
+/ sets \texttt{verified=0}. Add \texttt{static\_assert} per lane.
+
+\textbf{Must-fix pre-launch}: Yes if LP-134 lanes ship 2025-12-25.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-019 --- Master-secret
+derivation includes \texttt{validator\_index} but not validator
+pubkey}{Q3.0-CERT-019 --- Master-secret derivation includes validator\_index but not validator pubkey}}\label{q30-cert-019--master-secret-derivation-includes-validator_index-but-not-validator-pubkey}
+
+\textbf{Severity}: Medium \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1228-1239}
+
+\textbf{Description}: Even ignoring CERT-001 (publicly-leaked master
+secret), the secret derivation
+\texttt{secret\_i\ =\ keccak256(domain\ \textbar{}\textbar{}\ chain\_id\ \textbar{}\textbar{}\ validator\_index\ \textbar{}\textbar{}\ master)}
+binds validator identity through their \emph{index} --- a 4-byte
+integer. If validator indices are reassigned across epochs (e.g., a
+validator leaves, another takes index 5), the secret is invariant
+per-index, not per-validator.
+
+A validator at index 5 in epoch e1 who leaves the set; a different
+validator at index 5 in epoch e2 --- both share the same
+\texttt{secret\_5} because \texttt{master\_secret} is global. A valid
+epoch-e1 vote from validator-A becomes a valid epoch-e2 vote from
+validator-B without modification.
+
+\textbf{Attack scenario}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Validator A occupies index 5 in epoch e1, signs vote \texttt{v\_A}.
+\item
+  Validator A leaves; validator B takes index 5 in epoch e2.
+\item
+  Adversary replays \texttt{v\_A} in epoch e2 (same
+  \texttt{validator\_index\ =\ 5}, same \texttt{chain\_id}, same
+  \texttt{subject} if subject doesn\textquotesingle t bind epoch --- see
+  CERT-003).
+\item
+  Verifier accepts; B\textquotesingle s stake is credited.
+\end{enumerate}
+
+\textbf{Impact}: validator-set-rotation replay attack; combined with
+CERT-003, this is a real cross-epoch replay.
+
+\textbf{Fix}:
+
+\begin{itemize}
+\tightlist
+\item
+  Bind validator pubkey or BLS-public-key in the secret derivation, not
+  just the index.
+\item
+  Once real BLS lands (v0.43), the issue resolves naturally --- BLS sigs
+  bind to the pubkey.
+\end{itemize}
+
+\textbf{Must-fix pre-launch}: Yes (composite with CERT-003).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-020 ---
+\texttt{desc-\textgreater{}base\_fee} reused as
+\texttt{total\_stake\_unit}}{Q3.0-CERT-020 --- desc-\textgreater base\_fee reused as total\_stake\_unit}}\label{q30-cert-020--desc-base_fee-reused-as-total_stake_unit}
+
+\textbf{Severity}: Medium \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1167-1168}
+
+\textbf{Description}: The kernel comment says "Hosts pass total stake
+via base\_fee for now". This conflates two semantically different
+quantities. A future descriptor change that disambiguates
+\texttt{base\_fee} from \texttt{total\_stake} will break verification at
+deployment boundary unless coordinated.
+
+\textbf{Attack scenario}: A validator is misconfigured to send
+\texttt{base\_fee\ =\ real\_base\_fee} (small, reasonable EIP-1559
+number) instead of \texttt{base\_fee\ =\ total\_stake}. The threshold
+becomes \texttt{(small\ *\ 2\ /\ 3)} --- trivially exceeded by a single
+vote. Quorum forms on one vote.
+
+\textbf{Impact}: Configuration error → quorum-on-zero-stake. Combined
+with CERT-002, no attack capability needed.
+
+\textbf{Fix}: Add a dedicated \texttt{total\_stake:\ uint64} field to
+\texttt{QuasarRoundDescriptor}. Remove the base\_fee reuse.
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-021 --- Round number is uint64 in descriptor
+but uint32 on the
+wire}\label{q30-cert-021--round-number-is-uint64-in-descriptor-but-uint32-on-the-wire}
+
+\textbf{Severity}: Medium \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_gpu\_layout.hpp:294-299}
+(\texttt{VoteIngress::round:\ uint32}),
+\texttt{quasar\_gpu\_layout.hpp:335}
+(\texttt{QuasarRoundDescriptor::round:\ uint64})
+
+\textbf{Description}: \texttt{QuasarRoundDescriptor::round} is
+\texttt{uint64\_t}. \texttt{VoteIngress::round} is \texttt{uint32\_t}.
+The verifier\textquotesingle s MAC binds 4 bytes of round
+(\texttt{round\_le4}). After 2\^{}32 rounds (\textasciitilde136 years at
+1s/round, but just 4 years at 1ms/round on a high-TPS chain), the round
+wraps; replay across the wraparound is permitted.
+
+More immediately, if the chain reaches round \texttt{2\^{}32\ +\ k}, the
+descriptor sees round \texttt{2\^{}32\ +\ k} but the
+vote\textquotesingle s \texttt{v.round} field can only hold \texttt{k}.
+Verification still works because the MAC binds \texttt{v.round}, but the
+same \texttt{v.round\ =\ k} is also valid for round \texttt{k} (the
+original). Replay of all old votes once the round counter wraps.
+
+\textbf{Attack scenario}: Run the chain for 4 years at 1ms blocks.
+Replay archived votes from year 0 against round 2\^{}32+0. Verifier
+accepts.
+
+\textbf{Fix}: Widen \texttt{VoteIngress::round} to \texttt{uint64\_t}.
+Bind \texttt{desc-\textgreater{}round} (full 64 bits) in the MAC; the
+substrate currently only binds 4 bytes (line 1249).
+
+\textbf{Must-fix pre-launch}: Yes (at modern block rates the wraparound
+happens within a deployment lifetime).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-022 --- \texttt{subject}
+re-derivation guard absent in
+\texttt{drain\_vote}}{Q3.0-CERT-022 --- subject re-derivation guard absent in drain\_vote}}\label{q30-cert-022--subject-re-derivation-guard-absent-in-drain_vote}
+
+\textbf{Severity}: Medium \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1139-1187}
+(\texttt{drain\_vote})
+
+\textbf{Description}: \texttt{drain\_vote} reads \texttt{v.subject}
+(host-provided) but never checks it matches the
+descriptor\textquotesingle s \texttt{block\_hash} (or future
+\texttt{certificate\_subject}). The verify kernel runs the MAC against
+\texttt{v.subject}, but if all votes carry
+\texttt{v.subject\ =\ adversary\_choice}, they pass MAC verification
+(the MAC just checks the secret, subject, round triple).
+
+The LP says (§"Cert Subject"): "every cert-lane artifact MUST bind this
+same \texttt{certificate\_subject}". The substrate\textquotesingle s
+\texttt{drain\_vote} doesn\textquotesingle t enforce this.
+
+\textbf{Attack scenario}: Adversary submits 2/3+1 forged votes (per
+CERT-002) all with \texttt{v.subject\ =\ adversary\_block\_hash}.
+Verifier accepts each MAC; quorum forms on
+\texttt{adversary\_block\_hash} --- even though the block actually
+computed by execution has a different hash.
+
+\textbf{Impact}: Quorum on a block that wasn\textquotesingle t actually
+executed.
+
+\textbf{Fix}: \texttt{drain\_vote} (and the verify kernel) MUST check
+\texttt{v.subject\ ==\ result-\textgreater{}block\_hash} (current
+substrate) or
+\texttt{v.subject\ ==\ desc-\textgreater{}certificate\_subject}
+(post-CERT-003 fix). Reject votes whose subject doesn\textquotesingle t
+match.
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-023 ---
+\texttt{validator\_index} not
+bounds-checked}{Q3.0-CERT-023 --- validator\_index not bounds-checked}}\label{q30-cert-023--validator_index-not-bounds-checked}
+
+\textbf{Severity}: Medium \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1281}
+(\texttt{v.validator\_index} used in \texttt{quasar\_derive\_secret})
+
+\textbf{Description}: \texttt{validator\_index} is \texttt{uint32\_t}.
+The host-supplied vote can have
+\texttt{validator\_index\ =\ 0xFFFFFFFE}. The verifier
+doesn\textquotesingle t bound-check it against
+\texttt{pchain\_validator\_root}\textquotesingle s validator count.
+
+A vote from "validator 4 billion" computes a unique \texttt{secret\_i}
+(because the master secret is global; each index produces a distinct
+secret), passes the MAC, and is credited stake.
+
+\textbf{Attack scenario}: Combined with CERT-002, adversary submits 4
+billion forged votes from validators 0..2\^{}32-1. Each is unique, each
+passes the MAC (via the leaked master secret), each is credited stake.
+Even with proper dedup (CERT-004), there are too many slots.
+
+\textbf{Impact}: Stake counter overflows (CERT-007); also attempts to
+deduce a per-validator set bound. Without a bound, the bitmap defense in
+CERT-004 needs 2\^{}32 bits = 512 MB.
+
+\textbf{Fix}: Add \texttt{desc-\textgreater{}validator\_count:\ uint32}.
+Verifier rejects votes with
+\texttt{validator\_index\ \textgreater{}=\ validator\_count}. The bitmap
+in CERT-004 is sized to \texttt{validator\_count}.
+
+\textbf{Must-fix pre-launch}: Yes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-024 ---
+\texttt{qchain\_ceremony\_root} selection for round R: which ceremony
+epoch?}{Q3.0-CERT-024 --- qchain\_ceremony\_root selection for round R: which ceremony epoch?}}\label{q30-cert-024--qchain_ceremony_root-selection-for-round-r-which-ceremony-epoch}
+
+\textbf{Severity}: Medium \textbf{Affected files}: LP-020 §"Cert Lane:
+Ringtail"
+
+\textbf{Description}: LP-020 says "Q-Chain commits the public key for
+round R via \texttt{qchain\_ceremony\_root{[}R{]}}" but the descriptor
+only carries one \texttt{qchain\_ceremony\_root}. Is it indexed by
+round? Epoch? Per-epoch with per-round binding? Spec is ambiguous.
+
+If a round\textquotesingle s \texttt{qchain\_ceremony\_root} is selected
+from a sequence committed by Q-Chain, the selection function must be
+specified. Otherwise the verifier and the prover may disagree on which
+key to use (especially during epoch transitions).
+
+\textbf{Attack scenario}: Selection ambiguity → during an epoch
+transition, validator A\textquotesingle s verifier picks the new key but
+validator B\textquotesingle s verifier picks the old key. They diverge
+on which votes verify. The chain forks.
+
+\textbf{Impact}: Liveness loss (fork) at every epoch transition.
+
+\textbf{Fix}: Specify: \texttt{qchain\_ceremony\_root} is the Q-Chain
+commitment as of the epoch containing round R, indexed by
+\texttt{epoch(R)\ =\ floor(R\ /\ EPOCH\_LEN)}. The
+descriptor\textquotesingle s \texttt{epoch} field is the authority.
+
+\textbf{Must-fix pre-launch}: Yes (spec fix).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-025 ---
+\texttt{RingHeader::head} / \texttt{tail} are uint32 (drains 4G items
+per
+round)}{Q3.0-CERT-025 --- RingHeader::head / tail are uint32 (drains 4G items per round)}}\label{q30-cert-025--ringheaderhead--tail-are-uint32-drains-4g-items-per-round}
+
+\textbf{Severity}: Low \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_gpu\_layout.hpp:68-81}
+
+\textbf{Description}: After 2\^{}32 / capacity ring-wraps, \texttt{head}
+and \texttt{tail} mathematics fail. With \texttt{capacity\ =\ 8192} and
+1ms-rate ingress, this is \textasciitilde50 days. Within a long-running
+round (which doesn\textquotesingle t end), this matters less, but the
+\texttt{pushed} and \texttt{consumed} 32-bit counters wrap independently
+and the close-gate \texttt{ingress\_pushed\ ==\ commit\_consumed}
+becomes false-positive after 2\^{}32 transactions.
+
+\textbf{Attack scenario}: Run a high-TPS test until
+\texttt{pushed\ =\ 2\^{}32}. The close-gate triggers prematurely (or
+never, depending on tail/head rate).
+
+\textbf{Fix}: Widen counters to \texttt{uint64\_t}. Modern GPUs (Apple
+A14+, NVIDIA SM\_70+) support 64-bit atomics.
+
+\textbf{Must-fix pre-launch}: No --- deferrable to v0.50.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-026 --- Lane indirection enables a dedup-scope
+confusion}\label{q30-cert-026--lane-indirection-enables-a-dedup-scope-confusion}
+
+\textbf{Severity}: Low \textbf{Affected files}: LP-020
+§"QuasarCertIngress"
+
+\textbf{Description}: Each \texttt{QuasarCertIngress} carries
+\texttt{(validator\_index,\ cert\_lane,\ artifact\_offset,\ artifact\_len,\ subject)}.
+If dedup is per-\texttt{(validator\_index,\ cert\_lane)}, an attacker
+can submit two ingress entries with
+\texttt{(v=5,\ lane=BLS,\ offset=0,\ len=96)} and
+\texttt{(v=5,\ lane=Ringtail,\ offset=0,\ len=96)} --- the second
+cross-credits stake to the Ringtail lane.
+
+The MAC catches this if domain tags are correct (CERT-005), but the
+dedup key must include lane, validator, and round.
+
+\textbf{Fix}: Dedup key =
+\texttt{(round,\ epoch,\ validator\_index,\ cert\_lane)}. Enforce in the
+verifier.
+
+\textbf{Must-fix pre-launch}: When indirection lands; deferrable.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-027 ---
+\texttt{kQuasarMasterSecret} ASCII content increases
+discoverability}{Q3.0-CERT-027 --- kQuasarMasterSecret ASCII content increases discoverability}}\label{q30-cert-027--kquasarmastersecret-ascii-content-increases-discoverability}
+
+\textbf{Severity}: Informational \textbf{Affected files}:
+\texttt{cevm/lib/consensus/quasar/gpu/quasar\_wave.metal:1212-1215}
+
+\textbf{Description}: The bytes \texttt{0x51,0x55,0x41,0x53,...} decode
+to ASCII \texttt{"QUASAR-v038-master-secret-shared"}. This is a
+self-describing secret; an attacker grepping logs, memory dumps, or
+string-table extracts in deployed binaries finds it immediately.
+Random-looking secret bytes (\texttt{/dev/urandom}) make discovery
+slightly harder.
+
+\textbf{Fix}: This is moot --- see CERT-001 (delete the path entirely).
+Informational only as a code-smell flag.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{Q3.0-CERT-028 --- Wave-tick budget unbounded; DoS by
+ring-fill}\label{q30-cert-028--wave-tick-budget-unbounded-dos-by-ring-fill}
+
+\textbf{Severity}: Informational \textbf{Affected files}:
+\texttt{quasar\_wave.metal:1323}
+(\texttt{budget\ =\ max(uint(64),\ desc-\textgreater{}wave\_tick\_budget)})
+
+\textbf{Description}: \texttt{wave\_tick\_budget} is host-controlled. A
+misconfigured or malicious host can pass a huge budget; the kernel will
+drain that many items per tick. This is a per-validator local DoS ---
+not a remote attack --- but worth flagging as the
+substrate\textquotesingle s only safeguard is \texttt{max(64,\ ...)} (no
+upper bound).
+
+\textbf{Fix}: Cap
+\texttt{budget\ =\ min(budget,\ MAX\_BUDGET\ =\ 16384)}.
+
+\textbf{Must-fix pre-launch}: No.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{\texorpdfstring{Q3.0-CERT-029 --- Block-STM
+\texttt{mvcc\_apply\_writes} runs before commit; allows uncommitted
+state visible to other
+tx}{Q3.0-CERT-029 --- Block-STM mvcc\_apply\_writes runs before commit; allows uncommitted state visible to other tx}}\label{q30-cert-029--block-stm-mvcc_apply_writes-runs-before-commit-allows-uncommitted-state-visible-to-other-tx}
+
+\textbf{Severity}: Low (out-of-scope for cert-lane review but flagged
+for completeness) \textbf{Affected files}:
+\texttt{quasar\_wave.metal:978-979} (drain\_validate applies writes
+BEFORE pushing CommitItem)
+
+\textbf{Description}: \texttt{drain\_validate} runs
+\texttt{mvcc\_apply\_writes} to bump version, then
+\texttt{ring\_try\_push(commit\_hdr,\ ...)}. If commit ring is full, the
+version bump is NOT rolled back (the kernel comment acknowledges this:
+line 997-1001). Other txs concurrently validating against the bumped
+version read a "committed" state that hasn\textquotesingle t actually
+committed.
+
+This is an STM-correctness concern, not a cert-lane attack. Logged for
+completeness.
+
+\textbf{Fix}: out of cert-lane scope; see LP-010 review.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Summary by attack surface}\label{summary-by-attack-surface}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Attack surface (per task brief) & Primary findings \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1. Cross-epoch replay & CERT-003, CERT-010, CERT-019, CERT-021 \\
+2. Cross-chain replay & CERT-003, CERT-010 \\
+3. Lane-tag confusion & CERT-005, CERT-018 \\
+4. Indirect-payload attack & CERT-012, CERT-014, CERT-026 \\
+5. Stake-wrap / overflow & CERT-007, CERT-020 \\
+6. Z-Chain Groth16 freshness & CERT-011 \\
+7. Q-Chain ceremony root attack & CERT-013, CERT-024 \\
+8. A-Chain attestation injection & CERT-015 \\
+9. HMAC-keccak placeholder & CERT-001, CERT-002, CERT-019, CERT-027 \\
+10. Validator-subset isolation & CERT-016 \\
+\end{longtable}
+}
+
+The HMAC-keccak placeholder is not a cryptographic primitive --- it is a
+debug stub. The 2025-12-25 chain activation \textbf{must not ship with
+the placeholder enabled} in any cert lane. Real BLS aggregation (v0.43)
+is the minimum viable launch state for the BLS classical lane; the
+Ringtail and Groth16 lanes can be feature-flagged off until v0.44/v0.45
+land if necessary, downgrading to BLS-only consensus until then.
+
+\subsection{Recommendation}\label{recommendation}
+
+\textbf{Do-not-ship 2025-12-25 with v0.38 substrate.} One of:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Path A (preferred)}: Land v0.43 (real BLS) before 2025-12-25;
+  feature-flag Ringtail and MLDSAGroth16 lanes off until their real
+  verifiers land. Fix CERT-001..CERT-010 and CERT-021..CERT-024.
+\item
+  \textbf{Path B (fallback)}: Disable the GPU cert-lane entirely. Run
+  consensus from \texttt{luxfi/consensus/protocol/quasar/} (Go
+  implementation) with real BLS / Ringtail / ML-DSA verifiers. The GPU
+  substrate runs only execution (Block-STM, EVM fibers) with no role in
+  vote aggregation.
+\end{itemize}
+
+Either path requires CERT-003 (subject binds chain\_id, epoch, P/Q/Z
+roots) and CERT-007 (uint64 stake counter) to be fixed in the descriptor
+regardless of which crypto verifier ships.
+
+\end{document}

@@ -1,0 +1,840 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Cryptography Stack Audit
+Report}\label{lux-cryptography-stack-audit-report}
+
+\textbf{Date}: 2025-12-30\\
+\textbf{Auditor}: Claude Code (CTO Mode)\\
+\textbf{Scope}: \texttt{/Users/z/work/lux/crypto/},
+\texttt{/Users/z/work/lux/lattice/}\\
+\textbf{Note}: \texttt{/Users/z/work/lux/node/utils/crypto/} does not
+exist
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Lux crypto stack demonstrates \textbf{solid foundational security}
+with proper use of established libraries (circl, blst, decred).
+Post-quantum readiness is well-advanced with ML-DSA, ML-KEM, and SLH-DSA
+implementations. However, several issues require attention:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Severity & Count & Summary \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{CRITICAL} & 1 & IPA/Bandersnatch code explicitly
+non-constant-time \\
+\textbf{HIGH} & 1 & Lattice ring signatures use hash simulation, not
+true lattice construction \\
+\textbf{MEDIUM} & 2 & Missing Ringtail implementation; threshold
+parameter validation gaps \\
+\textbf{LOW} & 3 & Documentation gaps; optional hardening
+opportunities \\
+\end{longtable}
+}
+
+\textbf{Overall Assessment}: Production-ready for classical crypto;
+post-quantum components require targeted fixes before mainnet
+deployment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Algorithm-by-Algorithm
+Review}\label{algorithm-by-algorithm-review}
+
+\subsubsection{1. BLS12-381}\label{1-bls12-381}
+
+\textbf{Files}: \texttt{crypto/bls/bls.go},
+\texttt{crypto/bls/bls\_cgo.go}
+
+\paragraph{Implementation Details}\label{implementation-details}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Aspect & Non-CGO (circl) & CGO (blst) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Library & cloudflare/circl & supranational/blst \\
+Performance & Slower & \textasciitilde2-3x faster \\
+Audit Status & Circl audited & blst audited \\
+\end{longtable}
+}
+
+\paragraph{Security Analysis}\label{security-analysis}
+
+\textbf{Signature Aggregation} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// crypto/bls/bls.go:87{-}98}
+\KeywordTok{func}\NormalTok{ AggregateSignatures}\OperatorTok{(}\NormalTok{sigs }\OperatorTok{[]}\NormalTok{Signature}\OperatorTok{)} \OperatorTok{(}\NormalTok{Signature}\OperatorTok{,} \DataTypeTok{error}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{if} \BuiltInTok{len}\OperatorTok{(}\NormalTok{sigs}\OperatorTok{)} \OperatorTok{==} \DecValTok{0} \OperatorTok{\{}
+        \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,}\NormalTok{ errNoSignatures}
+    \OperatorTok{\}}
+    \CommentTok{// Uses circl\textquotesingle{}s bls12381.G2 addition}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Pairing Operations} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Uses standard DST tag:
+  \texttt{BLS\_SIG\_BLS12381G2\_XMD:SHA-256\_SSWU\_RO\_NUL\_}
+\item
+  Proper subgroup checks via library
+\end{itemize}
+
+\textbf{Key Generation Entropy} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// crypto/bls/bls.go:35{-}42}
+\NormalTok{ikm }\OperatorTok{:=} \BuiltInTok{make}\OperatorTok{([]}\DataTypeTok{byte}\OperatorTok{,} \DecValTok{32}\OperatorTok{)}
+\NormalTok{\_}\OperatorTok{,}\NormalTok{ err }\OperatorTok{:=}\NormalTok{ rand}\OperatorTok{.}\NormalTok{Read}\OperatorTok{(}\NormalTok{ikm}\OperatorTok{)}  \CommentTok{// crypto/rand}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Key Validation} ✅ PASS (CGO version)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// crypto/bls/bls\_cgo.go:55{-}57}
+\ControlFlowTok{if}\NormalTok{ sk}\OperatorTok{.}\NormalTok{key}\OperatorTok{.}\NormalTok{Equals}\OperatorTok{(}\NormalTok{zeroSecretKey}\OperatorTok{)} \OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,}\NormalTok{ errZeroSecretKey}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Finding}: Non-CGO version lacks explicit zero-key rejection. LOW
+severity.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2. secp256k1}\label{2-secp256k1}
+
+\textbf{File}: \texttt{crypto/secp256k1/secp256k1.go}
+
+\paragraph{Security Analysis}\label{security-analysis-1}
+
+\textbf{Signature Malleability} ✅ PASS - Critical check present
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Line 108 {-} Rejects high{-}S signatures}
+\ControlFlowTok{if}\NormalTok{ s}\OperatorTok{.}\NormalTok{IsOverHalfOrder}\OperatorTok{()} \OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{false}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Key Derivation} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Line 47{-}48 {-} Proper zeroing}
+\NormalTok{priv }\OperatorTok{:=}\NormalTok{ secp256k1}\OperatorTok{.}\NormalTok{PrivKeyFromBytes}\OperatorTok{(}\NormalTok{k}\OperatorTok{)}
+\ControlFlowTok{defer}\NormalTok{ priv}\OperatorTok{.}\NormalTok{Zero}\OperatorTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Constant-Time Operations} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Uses decred/dcrd which implements constant-time scalar operations
+\item
+  Library is battle-tested (Bitcoin/Decred production use)
+\end{itemize}
+
+\textbf{Key Generation Entropy} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Uses standard Go crypto/rand via ecdsa.GenerateKey}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{3. ML-DSA (FIPS 204)}\label{3-ml-dsa-fips-204}
+
+\textbf{File}: \texttt{crypto/mldsa/mldsa.go}
+
+\paragraph{Security Analysis}\label{security-analysis-2}
+
+\textbf{Implementation} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Wraps cloudflare/circl/sign/mldsa
+\item
+  Supports all three security levels:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    MLDSA44 (NIST Level 1, 128-bit)
+  \item
+    MLDSA65 (NIST Level 3, 192-bit)
+  \item
+    MLDSA87 (NIST Level 5, 256-bit)
+  \end{itemize}
+\end{itemize}
+
+\textbf{Deterministic Signing} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Line 73 {-} Deterministic mode enabled}
+\NormalTok{scheme}\OperatorTok{.}\NormalTok{SignTo}\OperatorTok{(\&}\NormalTok{sk}\OperatorTok{,}\NormalTok{ message}\OperatorTok{,} \OtherTok{nil}\OperatorTok{,} \OtherTok{true}\OperatorTok{,}\NormalTok{ sig}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Parameter Validation} ⚠️ MEDIUM
+
+\begin{itemize}
+\tightlist
+\item
+  Mode selection validated at compile time via type switch
+\item
+  No runtime bounds checking on signature/key sizes exposed to callers
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{4. ML-KEM (FIPS 203)}\label{4-ml-kem-fips-203}
+
+\textbf{File}: \texttt{crypto/mlkem/mlkem.go}
+
+\paragraph{Security Analysis}\label{security-analysis-3}
+
+\textbf{Implementation} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Wraps cloudflare/circl/kem/mlkem
+\item
+  Supports MLKEM512, MLKEM768, MLKEM1024
+\end{itemize}
+
+\textbf{Key Derivation} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Uses DeriveKeyPair with proper seeding}
+\NormalTok{pk}\OperatorTok{,}\NormalTok{ sk }\OperatorTok{:=}\NormalTok{ scheme}\OperatorTok{.}\NormalTok{DeriveKeyPair}\OperatorTok{(}\NormalTok{seed}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Encapsulation/Decapsulation} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Standard KEM interface
+\item
+  Circl handles constant-time decapsulation
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{5. SLH-DSA (FIPS 205)}\label{5-slh-dsa-fips-205}
+
+\textbf{File}: \texttt{crypto/slhdsa/slhdsa.go}
+
+\paragraph{Security Analysis}\label{security-analysis-4}
+
+\textbf{Implementation} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Wraps cloudflare/circl/sign/slhdsa
+\item
+  Supports both SHA2 and SHAKE variants
+\item
+  Multiple security levels (128f, 128s, 192f, 192s, 256f, 256s)
+\end{itemize}
+
+\textbf{Stateless Design} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Hash-based signatures inherently avoid state management issues
+\item
+  No nonce reuse vulnerabilities possible
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{6. Ringtail (Threshold
+Post-Quantum)}\label{6-ringtail-threshold-post-quantum}
+
+\textbf{Status}: ❌ NOT FOUND
+
+\textbf{Finding}: MEDIUM severity. Ringtail threshold post-quantum
+signature scheme was listed in scope but no implementation exists in the
+audited directories. The \texttt{crypto/threshold/} directory contains
+only BLS threshold signatures.
+
+\textbf{Recommendation}: Implement Ringtail or document its planned
+location.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{7. Threshold BLS}\label{7-threshold-bls}
+
+\textbf{File}: \texttt{crypto/threshold/bls/scheme.go}
+
+\paragraph{Security Analysis}\label{security-analysis-5}
+
+\textbf{Shamir Secret Sharing} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Proper polynomial evaluation for share generation}
+\CommentTok{// Uses Lagrange interpolation for reconstruction}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Lagrange Coefficients} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Lines 89{-}110 {-} Proper modular arithmetic}
+\KeywordTok{func}\NormalTok{ lagrangeCoefficient}\OperatorTok{(}\NormalTok{indices }\OperatorTok{[]}\DataTypeTok{int}\OperatorTok{,}\NormalTok{ i }\DataTypeTok{int}\OperatorTok{)} \OperatorTok{*}\NormalTok{big}\OperatorTok{.}\NormalTok{Int}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Parameter Validation} ⚠️ MEDIUM
+
+\begin{itemize}
+\tightlist
+\item
+  Threshold t must be validated:
+  \texttt{1\ \textless{}=\ t\ \textless{}=\ n}
+\item
+  No explicit check for duplicate indices in reconstruction
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{8. CGGMP21 (Threshold
+ECDSA)}\label{8-cggmp21-threshold-ecdsa}
+
+\textbf{File}: \texttt{crypto/cggmp21/cggmp21.go}
+
+\paragraph{Security Analysis}\label{security-analysis-6}
+
+\textbf{Implementation} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Follows CGGMP21 paper structure
+\item
+  Supports secp256k1 curve
+\end{itemize}
+
+\textbf{Concurrent Security} ⚠️ LOW
+
+\begin{itemize}
+\tightlist
+\item
+  Standard Go mutex protection
+\item
+  Consider audit of race conditions in multi-party protocol
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{9. Ring Signatures}\label{9-ring-signatures}
+
+\textbf{Files}: \texttt{crypto/ring/ring.go},
+\texttt{crypto/ring/lsag.go}, \texttt{crypto/ring/lattice.go}
+
+\paragraph{LSAG (secp256k1) ✅
+PASS}\label{lsag-secp256k1-white_check_mark-pass}
+
+\textbf{Constant-Time Comparison} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// crypto/ring/ring.go:240{-}250}
+\KeywordTok{func}\NormalTok{ constantTimeCompare}\OperatorTok{(}\NormalTok{a}\OperatorTok{,}\NormalTok{ b }\OperatorTok{[]}\DataTypeTok{byte}\OperatorTok{)} \DataTypeTok{bool} \OperatorTok{\{}
+    \ControlFlowTok{return}\NormalTok{ subtle}\OperatorTok{.}\NormalTok{ConstantTimeCompare}\OperatorTok{(}\NormalTok{a}\OperatorTok{,}\NormalTok{ b}\OperatorTok{)} \OperatorTok{==} \DecValTok{1}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Key Image Computation} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Proper hash-to-curve for linkability
+\end{itemize}
+
+\paragraph{Lattice Ring Signatures ❌ HIGH
+SEVERITY}\label{lattice-ring-signatures-x-high-severity}
+
+\textbf{File}: \texttt{crypto/ring/lattice.go}
+
+\textbf{Critical Finding}: The "lattice" ring signature implementation
+does NOT use lattice-based cryptography. It uses hash-based simulation
+with ML-DSA keys:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// This is a hash{-}based simulation, not true lattice ring signatures}
+\CommentTok{// Real lattice ring signatures require specialized ring{-}LWE constructions}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation}: Either:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Rename to \texttt{hash\_ring.go} to clarify it\textquotesingle s not
+  lattice-based
+\item
+  Implement actual lattice ring signatures (e.g., based on ring-LWE)
+\item
+  Document the security properties clearly
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{10. NTT (Lattice
+Operations)}\label{10-ntt-lattice-operations}
+
+\textbf{File}: \texttt{lattice/ring/ntt.go}
+
+\paragraph{Security Analysis}\label{security-analysis-7}
+
+\textbf{Montgomery Form} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Proper modular reduction using Montgomery multiplication
+\item
+  Avoids division operations
+\end{itemize}
+
+\textbf{Butterfly Operations} ✅ PASS
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Standard Cooley{-}Tukey butterfly}
+\KeywordTok{func}\NormalTok{ butterfly}\OperatorTok{(}\NormalTok{a}\OperatorTok{,}\NormalTok{ b}\OperatorTok{,}\NormalTok{ omega }\DataTypeTok{uint64}\OperatorTok{)} \OperatorTok{(}\DataTypeTok{uint64}\OperatorTok{,} \DataTypeTok{uint64}\OperatorTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Inverse NTT} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Proper scaling by n\^{}(-1) mod q
+\end{itemize}
+
+\textbf{Side-Channel Considerations} ⚠️ LOW
+
+\begin{itemize}
+\tightlist
+\item
+  Access patterns are data-independent (good)
+\item
+  No explicit constant-time guarantees documented
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{11. KZG Commitments
+(EIP-4844)}\label{11-kzg-commitments-eip-4844}
+
+\textbf{File}: \texttt{crypto/kzg4844/kzg4844.go}
+
+\paragraph{Security Analysis}\label{security-analysis-8}
+
+\textbf{Implementation} ✅ PASS
+
+\begin{itemize}
+\tightlist
+\item
+  Uses trusted setup parameters
+\item
+  Proper blob-to-polynomial conversion
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Security Vulnerabilities}\label{security-vulnerabilities}
+
+\subsubsection{CRITICAL}\label{critical}
+
+\paragraph{V-001: IPA/Bandersnatch Non-Constant-Time
+Operations}\label{v-001-ipabandersnatch-non-constant-time-operations}
+
+\textbf{Location}: \texttt{crypto/ipa/bandersnatch/fr/element.go}
+
+\textbf{Evidence}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Line 249: }\AlertTok{WARNING}\CommentTok{: this is NOT constant time}
+\CommentTok{// Line 390: }\AlertTok{WARNING}\CommentTok{: this is NOT constant time  }
+\CommentTok{// Line 441: }\AlertTok{WARNING}\CommentTok{: this is NOT constant time}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Timing side-channel attacks possible. An attacker
+measuring execution time could extract secret scalars.
+
+\textbf{Recommendation}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add constant-time field arithmetic or
+\item
+  Isolate this code from secret-dependent paths or
+\item
+  Remove from production builds until fixed
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{HIGH}\label{high}
+
+\paragraph{V-002: Lattice Ring Signatures Are Hash-Based
+Simulation}\label{v-002-lattice-ring-signatures-are-hash-based-simulation}
+
+\textbf{Location}: \texttt{crypto/ring/lattice.go}
+
+\textbf{Impact}: Security properties differ from claimed lattice-based
+construction. Linkability and unforgeability guarantees may not match
+true lattice ring signatures.
+
+\textbf{Recommendation}: Rename and document actual security properties.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{MEDIUM}\label{medium}
+
+\paragraph{V-003: Missing Ringtail
+Implementation}\label{v-003-missing-ringtail-implementation}
+
+\textbf{Impact}: Post-quantum threshold signatures unavailable.
+
+\textbf{Recommendation}: Implement or clarify roadmap.
+
+\paragraph{V-004: Threshold Parameter Validation
+Gaps}\label{v-004-threshold-parameter-validation-gaps}
+
+\textbf{Location}: \texttt{crypto/threshold/bls/scheme.go}
+
+\textbf{Impact}: Invalid threshold parameters could cause panics or
+incorrect behavior.
+
+\textbf{Recommendation}: Add explicit validation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ t }\OperatorTok{\textless{}} \DecValTok{1} \OperatorTok{||}\NormalTok{ t }\OperatorTok{\textgreater{}}\NormalTok{ n }\OperatorTok{\{}
+    \ControlFlowTok{return} \OtherTok{nil}\OperatorTok{,}\NormalTok{ errInvalidThreshold}
+\OperatorTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{LOW}\label{low}
+
+\paragraph{V-005: Non-CGO BLS Missing Zero-Key
+Check}\label{v-005-non-cgo-bls-missing-zero-key-check}
+
+\textbf{Location}: \texttt{crypto/bls/bls.go}
+
+\textbf{Recommendation}: Add zero-key rejection matching CGO version.
+
+\paragraph{V-006: Documentation Gaps}\label{v-006-documentation-gaps}
+
+\textbf{Impact}: Security properties not always clear to integrators.
+
+\paragraph{V-007: NTT Side-Channel
+Documentation}\label{v-007-ntt-side-channel-documentation}
+
+\textbf{Recommendation}: Document constant-time properties of NTT
+implementation.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Quantum Readiness
+Assessment}\label{quantum-readiness-assessment}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Algorithm & Type & Status & NIST Level \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+ML-DSA & Signature & ✅ Ready & 1/3/5 \\
+ML-KEM & KEM & ✅ Ready & 1/3/5 \\
+SLH-DSA & Signature & ✅ Ready & 1/3/5 \\
+Ringtail & Threshold Sig & ❌ Missing & - \\
+Lattice Ring & Ring Sig & ⚠️ Mislabeled & - \\
+\end{longtable}
+}
+
+\textbf{Overall}: 60\% quantum-ready. Core primitives present; threshold
+and ring variants need work.
+
+\subsubsection{Migration Path}\label{migration-path}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Hybrid Mode} (recommended for 2025):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Combine classical + PQ signatures
+  \item
+    Example: secp256k1 + ML-DSA dual signing
+  \end{itemize}
+\item
+  \textbf{Full PQ Mode} (future):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Pure ML-DSA/ML-KEM
+  \item
+    Requires Ringtail for threshold operations
+  \end{itemize}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2025 Recommendations}\label{2025-recommendations}
+
+\subsubsection{Immediate (Q1 2025)}\label{immediate-q1-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Fix IPA/Bandersnatch timing}: Either make constant-time or
+  remove from secret paths
+\item
+  \textbf{Rename lattice.go}: Clarify it\textquotesingle s hash-based
+  simulation
+\item
+  \textbf{Add threshold validation}: Prevent invalid t/n combinations
+\end{enumerate}
+
+\subsubsection{Short-Term (Q2 2025)}\label{short-term-q2-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Implement Ringtail}: Post-quantum threshold signatures needed
+  for validator sets
+\item
+  \textbf{Add zero-key check to non-CGO BLS}: Parity with CGO version
+\item
+  \textbf{Audit NTT for side channels}: Document or fix timing
+  properties
+\end{enumerate}
+
+\subsubsection{Medium-Term (Q3-Q4 2025)}\label{medium-term-q3-q4-2025}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  \textbf{True lattice ring signatures}: Research ring-LWE based
+  construction
+\item
+  \textbf{Hybrid signature scheme}: Combine secp256k1 + ML-DSA for
+  transition period
+\item
+  \textbf{Hardware acceleration}: Consider GPU/TPU offload for lattice
+  operations
+\end{enumerate}
+
+\subsubsection{Documentation}\label{documentation}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  \textbf{Security properties document}: Each
+  algorithm\textquotesingle s guarantees
+\item
+  \textbf{Integration guide}: Safe usage patterns for each primitive
+\item
+  \textbf{Threat model}: What attacks each component resists
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix: File Inventory}\label{appendix-file-inventory}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+File & Purpose & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{crypto/bls/bls.go} & BLS12-381 (circl) & ✅ \\
+\texttt{crypto/bls/bls\_cgo.go} & BLS12-381 (blst) & ✅ \\
+\texttt{crypto/secp256k1/secp256k1.go} & ECDSA & ✅ \\
+\texttt{crypto/mldsa/mldsa.go} & ML-DSA & ✅ \\
+\texttt{crypto/mlkem/mlkem.go} & ML-KEM & ✅ \\
+\texttt{crypto/slhdsa/slhdsa.go} & SLH-DSA & ✅ \\
+\texttt{crypto/threshold/bls/scheme.go} & Threshold BLS & ⚠️ \\
+\texttt{crypto/cggmp21/cggmp21.go} & Threshold ECDSA & ✅ \\
+\texttt{crypto/ring/ring.go} & Ring sig interface & ✅ \\
+\texttt{crypto/ring/lsag.go} & LSAG (secp256k1) & ✅ \\
+\texttt{crypto/ring/lattice.go} & "Lattice" ring & ❌ \\
+\texttt{crypto/kzg4844/kzg4844.go} & KZG commitments & ✅ \\
+\texttt{crypto/ipa/bandersnatch/} & IPA proofs & ❌ \\
+\texttt{lattice/ring/ntt.go} & NTT operations & ⚠️ \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{End of Audit Report}
+
+\end{document}

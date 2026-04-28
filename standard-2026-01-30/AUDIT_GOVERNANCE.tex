@@ -1,0 +1,983 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Security Audit: Lux Governance
+Contracts}\label{security-audit-lux-governance-contracts}
+
+\textbf{Auditor:} Trail of Bits-level Security Review \textbf{Date:}
+2026-01-30 \textbf{Scope:} \texttt{/contracts/governance/} - Core
+governance system \textbf{Contracts Reviewed:}
+
+\begin{itemize}
+\tightlist
+\item
+  Stake.sol
+\item
+  Charter.sol
+\item
+  Council.sol
+\item
+  Committee.sol
+\item
+  Governance.sol (re-exports only)
+\item
+  MultiDAOGovernor.sol
+\item
+  Secretariat.sol
+\item
+  veto/Veto.sol
+\item
+  veto/Sanction.sol
+\item
+  voting/VotingWeightLRC20.sol
+\item
+  voting/VoteTrackerLRC20.sol
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+The Lux governance system implements a modular DAO governance
+architecture with Council-Charter separation, multi-DAO coordination,
+and parent-child veto mechanics. This audit identified \textbf{4
+critical}, \textbf{6 high}, \textbf{9 medium}, and \textbf{12 low}
+severity issues across the contract suite.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Severity & Count \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Critical & 4 \\
+High & 6 \\
+Medium & 9 \\
+Low & 12 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Critical Findings}\label{critical-findings}
+
+\subsubsection{C-01: Flash Loan Voting Attack in
+Charter.sol}\label{c-01-flash-loan-voting-attack-in-chartersol}
+
+\textbf{Location:} \texttt{Charter.sol:395-458} (\texttt{castVote})
+\textbf{Severity:} Critical \textbf{Impact:} Complete governance
+takeover
+
+\textbf{Description:} The voting weight is calculated at
+\texttt{proposal.votingStartTimestamp} using \texttt{getPastVotes}, but
+this does not prevent flash loan attacks within the same block as
+proposal creation. An attacker can:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Monitor mempool for \texttt{submitProposal} transactions
+\item
+  Frontrun with flash loan to acquire tokens
+\item
+  Delegate tokens to themselves (in same transaction)
+\item
+  Wait for proposal initialization (same block,
+  \texttt{votingStartTimestamp\ =\ block.timestamp})
+\item
+  Vote with massive weight
+\end{enumerate}
+
+\textbf{Vulnerable Code:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Charter.sol:433}
+\NormalTok{(uint256 weight, bytes memory processedData) = IVotingWeight(config.votingWeight)}
+\NormalTok{    .calculateWeight(voter, proposal.votingStartTimestamp, configData.voteData);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Root Cause:} The \texttt{votingStartTimestamp} is set to
+\texttt{block.timestamp} in \texttt{initializeProposal()}, allowing
+same-block voting with manipulated balances.
+
+\textbf{Recommendation:} Add a minimum voting delay (e.g., 1 block)
+between proposal creation and voting start:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{proposal.votingStartTimestamp = uint48(block.timestamp + MIN\_VOTING\_DELAY);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{C-02: Quorum Manipulation via Checkpoint Timing in
+VotingWeightLRC20.sol}\label{c-02-quorum-manipulation-via-checkpoint-timing-in-votingweightlrc20sol}
+
+\textbf{Location:} \texttt{VotingWeightLRC20.sol:104-113}
+(\texttt{calculateWeight}) \textbf{Severity:} Critical \textbf{Impact:}
+Artificial quorum satisfaction
+
+\textbf{Description:} An attacker can manipulate quorum by acquiring
+tokens just before proposal creation, voting, then transferring tokens
+to other controlled addresses that also vote. Since weight is calculated
+at \texttt{votingStartTimestamp}, the same tokens can be used to inflate
+quorum through circular transfers completed before the snapshot.
+
+\textbf{Attack Vector:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Attacker creates N addresses
+\item
+  Acquires large token position
+\item
+  Creates checkpoint by delegating at each address sequentially
+\item
+  Creates proposal (snapshot taken)
+\item
+  Each address has the full balance at snapshot time if delegations were
+  orchestrated correctly
+\end{enumerate}
+
+\textbf{Recommendation:} Use block-based snapshots instead of
+timestamp-based, and ensure delegation changes require minimum settling
+period.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{C-03: Cross-DAO Vote Replay in
+MultiDAOGovernor.sol}\label{c-03-cross-dao-vote-replay-in-multidaogovernorsol}
+
+\textbf{Location:} \texttt{MultiDAOGovernor.sol:427-461}
+(\texttt{castVote}) \textbf{Severity:} Critical \textbf{Impact:} Vote
+weight double-counting across DAOs
+
+\textbf{Description:} The \texttt{castVote} function allows voting on a
+per-DAO basis with the same token balance. A user with 1000 tokens can
+vote on 5 DAOs with 1000 weight each (total 5000 weight influence from
+1000 tokens).
+
+\textbf{Vulnerable Code:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// MultiDAOGovernor.sol:446}
+\NormalTok{uint256 weight = governanceToken.getPastVotes(msg.sender, proposal.snapshotBlock);}
+\NormalTok{// No check that weight hasn\textquotesingle{}t been used in another DAO for same proposal}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Design Flaw:} The delegation system (\texttt{delegateMultiple}
+with weights) suggests intended vote splitting, but \texttt{castVote}
+ignores the \texttt{daoWeight} mapping entirely.
+
+\textbf{Recommendation:} Either:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Enforce vote weight splitting when voting across multiple DAOs
+\item
+  Track cumulative weight used per proposal per voter globally
+\item
+  Require explicit weight allocation at vote time
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{C-04: Veto Race Condition in
+Veto.sol}\label{c-04-veto-race-condition-in-vetosol}
+
+\textbf{Location:} \texttt{Veto.sol:163-192} (\texttt{castVetoVote})
+\textbf{Severity:} Critical \textbf{Impact:} Veto bypass through
+proposal expiration manipulation
+
+\textbf{Description:} The veto proposal period check and vote recording
+are not atomic. An attacker can exploit the window where:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Veto proposal is near expiration
+\item
+  Attacker initiates a new proposal (resetting the counter)
+\item
+  Legitimate veto votes are lost
+\end{enumerate}
+
+\textbf{Vulnerable Code:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Veto.sol:167{-}173}
+\NormalTok{bool proposalExpired = $.vetoProposalCreated == 0 ||}
+\NormalTok{    block.timestamp \textgreater{} $.vetoProposalCreated + $.vetoProposalPeriod;}
+
+\NormalTok{if (proposalExpired) \{}
+\NormalTok{    \_initializeVetoProposal();  // Resets vetoProposalVoteCount to 0}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Any user (including attackers) can trigger proposal expiration reset by
+calling \texttt{castVetoVote}, wiping accumulated legitimate votes.
+
+\textbf{Recommendation:} Add cooldown period before new veto proposals
+can be created, or require admin action to initialize new veto
+proposals.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{High Severity Findings}\label{high-severity-findings}
+
+\subsubsection{H-01: Delegation Bypass in Charter Light Account
+Resolution}\label{h-01-delegation-bypass-in-charter-light-account-resolution}
+
+\textbf{Location:} \texttt{Charter.sol:508-530}
+(\texttt{\_resolveVoter}) \textbf{Severity:} High \textbf{Impact:} Vote
+weight theft
+
+\textbf{Description:} The light account resolution logic contains a
+logical flaw. When \texttt{lightAccountIndex\ \textgreater{}\ 0}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (lightAccount == sender) \{}
+\NormalTok{    return sender;  // This condition is backwards}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+The check should verify that calling
+\texttt{getAddress(sender,\ lightAccountIndex)} returns an account the
+sender controls, but instead returns \texttt{sender} unconditionally
+when light account equals sender (which would be a collision).
+
+\textbf{Recommendation:} Verify the light account factory correctly maps
+the index to an owned account, and return the actual owner from the
+light account.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-02: Missing Proposal Count Bounds in
+Council.sol}\label{h-02-missing-proposal-count-bounds-in-councilsol}
+
+\textbf{Location:} \texttt{Council.sol:293-339}
+(\texttt{submitProposal}) \textbf{Severity:} High \textbf{Impact:}
+Denial of service via proposal spam
+
+\textbf{Description:} No limit on \texttt{totalProposalCount}. An
+attacker with proposer rights can spam unlimited proposals, consuming
+storage and making proposal enumeration impossible.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// No maximum check}
+\NormalTok{$.totalProposalCount++;}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Add maximum proposal limit or require proposal
+deposits that are returned on execution/expiration.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-03: Reentrancy in Committee Vote
+Execution}\label{h-03-reentrancy-in-committee-vote-execution}
+
+\textbf{Location:} \texttt{Committee.sol:161-171} (\texttt{execute})
+\textbf{Severity:} High \textbf{Impact:} Potential state manipulation
+
+\textbf{Description:} While \texttt{ReentrancyGuard} is inherited, the
+\texttt{execute} function only marks \texttt{proposal.executed\ =\ true}
+after the state check. A malicious executor could potentially exploit
+state changes between external calls (if any are added).
+
+More critically, the contract emits an event but performs no actual
+execution logic - the \texttt{execute} function is a no-op beyond
+marking executed, suggesting incomplete implementation.
+
+\textbf{Recommendation:} Complete the execution logic or document that
+Committee is signaling-only. Add explicit CEI pattern if execution is
+added.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-04: Soulbound Mode Toggle Attack in
+Stake.sol}\label{h-04-soulbound-mode-toggle-attack-in-stakesol}
+
+\textbf{Location:} \texttt{Stake.sol:119-122} (\texttt{setSoulbound})
+\textbf{Severity:} High \textbf{Impact:} Governance token liquidity
+manipulation
+
+\textbf{Description:} The owner can toggle soulbound mode at will. This
+enables a governance attack:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  DAO votes to make token soulbound (locking voting power)
+\item
+  Malicious owner disables soulbound before attack
+\item
+  Attacker acquires tokens on market
+\item
+  Attacker votes
+\item
+  Owner re-enables soulbound
+\end{enumerate}
+
+\textbf{Recommendation:} Require timelock for soulbound mode changes, or
+make soulbound mode immutable after initial setting.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-05: Bridge Tally Manipulation in
+MultiDAOGovernor.sol}\label{h-05-bridge-tally-manipulation-in-multidaogovernorsol}
+
+\textbf{Location:} \texttt{MultiDAOGovernor.sol:466-493}
+(\texttt{receiveTally}) \textbf{Severity:} High \textbf{Impact:}
+Cross-chain vote manipulation
+
+\textbf{Description:} The \texttt{receiveTally} function blindly accepts
+any tally from the \texttt{BRIDGE\_ROLE} without verifying:
+
+\begin{itemize}
+\tightlist
+\item
+  The source chain
+\item
+  The attestation data (currently ignored)
+\item
+  Whether votes were already recorded locally
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Attestation parameter is completely ignored}
+\NormalTok{bytes calldata /* attestation */}
+\end{Highlighting}
+\end{Shaded}
+
+An attacker controlling the bridge role can inject arbitrary vote
+tallies.
+
+\textbf{Recommendation:} Implement attestation verification using a
+threshold signature scheme or merkle proof.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{H-06: Sanction Guard Can Be Removed by Child
+DAO}\label{h-06-sanction-guard-can-be-removed-by-child-dao}
+
+\textbf{Location:} \texttt{Sanction.sol:80-89} (\texttt{initialize}) and
+\texttt{Secretariat.sol:93-96} (\texttt{setGuard}) \textbf{Severity:}
+High \textbf{Impact:} Veto mechanism bypass
+
+\textbf{Description:} The Sanction guard is set via
+\texttt{Secretariat.setGuard()} which requires \texttt{onlyVault}.
+However, if the child DAO\textquotesingle s Safe executes a transaction
+to remove the guard, the veto mechanism becomes ineffective.
+
+\textbf{Attack Path:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Child DAO proposes removing the Sanction guard
+\item
+  Proposal passes before parent can veto
+\item
+  Guard removed, veto mechanism bypassed
+\end{enumerate}
+
+\textbf{Recommendation:} Implement immutable guard attachment or require
+parent DAO approval for guard changes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Medium Severity Findings}\label{medium-severity-findings}
+
+\subsubsection{M-01: Quorum Denominator Missing in
+Committee.sol}\label{m-01-quorum-denominator-missing-in-committeesol}
+
+\textbf{Location:} \texttt{Committee.sol:76,\ 167} \textbf{Severity:}
+Medium \textbf{Impact:} Quorum check never enforced
+
+\textbf{Description:} The \texttt{quorumPercentage} storage variable is
+set but never used in voting logic:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(proposal.forVotes \textgreater{} proposal.againstVotes, "Proposal defeated");}
+\NormalTok{// Missing: quorum check against total votes}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Implement quorum check in \texttt{execute()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(totalVotes * 100 \textgreater{}= totalSupply * quorumPercentage, "Quorum not reached");}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-02: Timestamp Manipulation in Charter Voting
+Period}\label{m-02-timestamp-manipulation-in-charter-voting-period}
+
+\textbf{Location:} \texttt{Charter.sol:412-419} \textbf{Severity:}
+Medium \textbf{Impact:} Vote timing manipulation
+
+\textbf{Description:} Voting end is checked against
+\texttt{block.timestamp} which can be manipulated by miners within
+\textasciitilde900 seconds on most chains. This allows miners to:
+
+\begin{itemize}
+\tightlist
+\item
+  Accept votes slightly after the deadline
+\item
+  Reject votes slightly before the deadline
+\end{itemize}
+
+\textbf{Recommendation:} Use block numbers for timing-critical
+operations or add tolerance margin.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-03: DID Immutability in
+Stake.sol}\label{m-03-did-immutability-in-stakesol}
+
+\textbf{Location:} \texttt{Stake.sol:140-146} (\texttt{linkDID})
+\textbf{Severity:} Medium \textbf{Impact:} Permanent DID lock
+
+\textbf{Description:} Once a DID is linked, it cannot be updated. If a
+DID document changes or a user loses control of their DID, they cannot
+update it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (bytes(did[msg.sender]).length \textgreater{} 0) \{}
+\NormalTok{    revert DIDAlreadyLinked();}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation:} Add an \texttt{updateDID()} function with
+appropriate timelock or governance controls.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-04: Veto Proposal Period Not Configurable
+Post-Deployment}\label{m-04-veto-proposal-period-not-configurable-post-deployment}
+
+\textbf{Location:} \texttt{Veto.sol:91-104} (\texttt{initialize})
+\textbf{Severity:} Medium \textbf{Impact:} Inflexible governance
+parameters
+
+\textbf{Description:} The \texttt{vetoProposalPeriod} and
+\texttt{vetoPeriod} are set at initialization and cannot be updated.
+Changed governance requirements require contract redeployment.
+
+\textbf{Recommendation:} Add admin functions to update parameters with
+appropriate access control and timelock.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-05: Missing Vote Event in MultiDAOGovernor
+Finalization}\label{m-05-missing-vote-event-in-multidaogovernor-finalization}
+
+\textbf{Location:} \texttt{MultiDAOGovernor.sol:502-534}
+(\texttt{finalizeProposal}) \textbf{Severity:} Medium \textbf{Impact:}
+Missing audit trail
+
+\textbf{Description:} No event is emitted when a proposal transitions to
+\texttt{Succeeded} or \texttt{Defeated} state during finalization.
+
+\textbf{Recommendation:} Add
+\texttt{ProposalFinalized(bytes32\ indexed\ proposalId,\ ProposalState\ state)}
+event.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-06: Unbounded Array Iteration in Charter Veto Voter
+Management}\label{m-06-unbounded-array-iteration-in-charter-veto-voter-management}
+
+\textbf{Location:} \texttt{Charter.sol:486-493}
+(\texttt{removeVetoVoter}) \textbf{Severity:} Medium \textbf{Impact:}
+Gas DoS
+
+\textbf{Description:} Removing a veto voter iterates through the entire
+\texttt{vetoVotersList} array. With many veto voters, this could exceed
+block gas limits.
+
+\textbf{Recommendation:} Use a mapping with linked list pattern or
+maintain index mapping.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-07: Proposal State Race in
+Council.sol}\label{m-07-proposal-state-race-in-councilsol}
+
+\textbf{Location:} \texttt{Council.sol:180-217} (\texttt{proposalState})
+\textbf{Severity:} Medium \textbf{Impact:} State inconsistency
+
+\textbf{Description:} The proposal state is computed dynamically from
+charter status and timestamps. Two calls to \texttt{proposalState()}
+could return different values if block timestamp crosses a boundary
+mid-transaction (in external calls).
+
+\textbf{Recommendation:} Consider caching state or adding explicit state
+transition functions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-08: No Minimum Voting Period in
+Charter.sol}\label{m-08-no-minimum-voting-period-in-chartersol}
+
+\textbf{Location:} \texttt{Charter.sol:133-158} (\texttt{initialize})
+\textbf{Severity:} Medium \textbf{Impact:} Flash governance attacks
+
+\textbf{Description:} No minimum is enforced for
+\texttt{votingPeriod\_}. A malicious deployer could set a 1-second
+voting period, effectively allowing instant governance.
+
+\textbf{Recommendation:} Add \texttt{MIN\_VOTING\_PERIOD} constant
+(e.g., 1 day).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{M-09: Constitutional Amendment Bypass in
+MultiDAOGovernor}\label{m-09-constitutional-amendment-bypass-in-multidaogovernor}
+
+\textbf{Location:} \texttt{MultiDAOGovernor.sol:366-376}
+\textbf{Severity:} Medium \textbf{Impact:} Governance capture
+
+\textbf{Description:} The constitutional amendment check only verifies
+array length and strategyDAO presence, not that the specified DAOs are
+actually critical DAOs:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{require(targetDAOs.length \textgreater{}= constitutionalApprovalCount, "Need more DAOs");}
+\end{Highlighting}
+\end{Shaded}
+
+Attacker could use non-critical community DAOs to meet the count
+requirement.
+
+\textbf{Recommendation:} Verify critical DAO participation:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{for (uint i = 0; i \textless{} constitutionalApprovalCount; i++) \{}
+\NormalTok{    require(daos[targetDAOs[i]].isCritical, "Not a critical DAO");}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Low Severity Findings}\label{low-severity-findings}
+
+\subsubsection{L-01: Missing Zero Address Check in Council
+Constructor}\label{l-01-missing-zero-address-check-in-council-constructor}
+
+\textbf{Location:} \texttt{Council.sol:95-115} (\texttt{initialize})
+\textbf{Impact:} Invalid initialization possible
+
+\texttt{vault\_} and \texttt{target\_} are not validated for zero
+address.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-02: Event Emission After State Change Pattern
+Violation}\label{l-02-event-emission-after-state-change-pattern-violation}
+
+\textbf{Location:} Multiple contracts \textbf{Impact:} Event ordering
+issues
+
+Events should be emitted after state changes. Several instances emit
+before final state update.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-03: Floating Pragma in
+MultiDAOGovernor}\label{l-03-floating-pragma-in-multidaogovernor}
+
+\textbf{Location:} \texttt{MultiDAOGovernor.sol:4} \textbf{Impact:}
+Compiler version inconsistency
+
+Uses \texttt{\^{}0.8.24} while other contracts use \texttt{\^{}0.8.31}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-04: Missing NatSpec
+Documentation}\label{l-04-missing-natspec-documentation}
+
+\textbf{Location:} Multiple internal functions \textbf{Impact:} Reduced
+auditability
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-05: Unused Error
+Definitions}\label{l-05-unused-error-definitions}
+
+\textbf{Location:} \texttt{Committee.sol} does not use custom errors
+despite pattern elsewhere \textbf{Impact:} Inconsistent error handling
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-06: Magic Numbers in Committee Block
+Calculation}\label{l-06-magic-numbers-in-committee-block-calculation}
+
+\textbf{Location:} \texttt{Committee.sol:131} \textbf{Impact:} Hardcoded
+assumption
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{proposal.endBlock = block.number + votingPeriod / 12; // \textasciitilde{}12s blocks}
+\end{Highlighting}
+\end{Shaded}
+
+Block time varies by chain.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-07: No Upgrade Gap in Upgradeable
+Contracts}\label{l-07-no-upgrade-gap-in-upgradeable-contracts}
+
+\textbf{Location:} \texttt{Charter.sol}, \texttt{Veto.sol},
+\texttt{Council.sol} \textbf{Impact:} Future upgrade storage collision
+risk
+
+Contracts using EIP-7201 should still reserve gap for potential
+non-namespaced additions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-08: Redundant Interface Alias
+Functions}\label{l-08-redundant-interface-alias-functions}
+
+\textbf{Location:} \texttt{Charter.sol:537-603} \textbf{Impact:} Code
+bloat, increased attack surface
+
+Multiple alias functions (\texttt{charterAdmin()} -\textgreater{}
+\texttt{admin()}, etc.) increase contract size unnecessarily.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-09: Missing Input Validation in MultiDAOGovernor
+Constructor}\label{l-09-missing-input-validation-in-multidaogovernor-constructor}
+
+\textbf{Location:} \texttt{MultiDAOGovernor.sol:204-236}
+\textbf{Impact:} Invalid configuration possible
+
+No validation that
+\texttt{\_constitutionalApprovalCount\ \textless{}=\ \_criticalDAOs.length}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-10: Secretariat setUp() Not
+Protected}\label{l-10-secretariat-setup-not-protected}
+
+\textbf{Location:} \texttt{Secretariat.sol:163} \textbf{Impact:}
+Potential reinitialization
+
+Abstract function requires implementers to ensure initialization
+protection.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-11: VoteTrackerLRC20 Cannot Add Authorized
+Callers}\label{l-11-votetrackerlrc20-cannot-add-authorized-callers}
+
+\textbf{Location:} \texttt{VoteTrackerLRC20.sol:76-85} \textbf{Impact:}
+Inflexible caller management
+
+Once initialized, cannot add new authorized callers if governance
+evolves.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{L-12: Committee Uses require() Instead of Custom
+Errors}\label{l-12-committee-uses-require-instead-of-custom-errors}
+
+\textbf{Location:} \texttt{Committee.sol:139-142,\ 163-167}
+\textbf{Impact:} Higher gas costs, inconsistent error handling
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Informational}\label{informational}
+
+\subsubsection{I-01: Governance.sol Contains Only
+Re-exports}\label{i-01-governancesol-contains-only-re-exports}
+
+The file only re-exports OpenZeppelin governance contracts. This is
+acceptable but should be documented as a convenience module, not custom
+implementation.
+
+\subsubsection{I-02: Stake Token Division
+Behavior}\label{i-02-stake-token-division-behavior}
+
+The \texttt{Stake} contract inherits standard ERC20 division behavior.
+Consider implications for vote weight calculations with tokens having
+decimals != 18.
+
+\subsubsection{I-03: ERC165 Implementation
+Completeness}\label{i-03-erc165-implementation-completeness}
+
+All contracts properly implement ERC165 for interface detection.
+
+\subsubsection{I-04: Storage Slot Collision
+Risk}\label{i-04-storage-slot-collision-risk}
+
+EIP-7201 storage locations appear correctly computed, but should be
+verified against keccak256 outputs.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Recommendations Summary}\label{recommendations-summary}
+
+\subsubsection{Immediate Actions
+(Critical/High)}\label{immediate-actions-criticalhigh}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Add voting delay} between proposal creation and voting start
+  (C-01)
+\item
+  \textbf{Implement vote weight tracking} across DAOs in
+  MultiDAOGovernor (C-03)
+\item
+  \textbf{Add veto proposal cooldown} to prevent reset attacks (C-04)
+\item
+  \textbf{Verify attestations} in bridge tally reception (H-05)
+\item
+  \textbf{Make guard attachment immutable} or require parent approval
+  (H-06)
+\end{enumerate}
+
+\subsubsection{Short-term Actions
+(Medium)}\label{short-term-actions-medium}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Implement quorum check in Committee.sol
+\item
+  Add minimum voting period constants
+\item
+  Emit finalization events in MultiDAOGovernor
+\item
+  Validate constitutional amendment DAO criticality
+\end{enumerate}
+
+\subsubsection{Long-term Actions
+(Low/Informational)}\label{long-term-actions-lowinformational}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{9}
+\tightlist
+\item
+  Standardize error handling across all contracts
+\item
+  Add upgrade gaps to all upgradeable contracts
+\item
+  Remove redundant alias functions
+\item
+  Add comprehensive NatSpec documentation
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix: Attack Scenario
+Details}\label{appendix-attack-scenario-details}
+
+\subsubsection{Flash Loan Voting Attack (C-01
+Detailed)}\label{flash-loan-voting-attack-c-01-detailed}
+
+\begin{verbatim}
+Block N:
+1. Attacker calls Aave flash loan for 10M tokens
+2. Attacker calls token.delegate(attacker)
+3. Attacker calls council.submitProposal(...) via frontrunning
+4. Charter.initializeProposal sets votingStartTimestamp = block.timestamp
+5. Attacker calls charter.castVote with 10M token weight
+6. Attacker repays flash loan
+
+Result: Attacker controls vote outcome with zero capital
+\end{verbatim}
+
+\subsubsection{Cross-DAO Vote Amplification (C-03
+Detailed)}\label{cross-dao-vote-amplification-c-03-detailed}
+
+\begin{verbatim}
+Setup: Attacker holds 1000 governance tokens
+Proposal targets: [DAO_A, DAO_B, DAO_C, DAO_D, DAO_E]
+
+1. castVote(proposalId, DAO_A, YES) -> 1000 weight to DAO_A
+2. castVote(proposalId, DAO_B, YES) -> 1000 weight to DAO_B
+3. castVote(proposalId, DAO_C, YES) -> 1000 weight to DAO_C
+4. castVote(proposalId, DAO_D, YES) -> 1000 weight to DAO_D
+5. castVote(proposalId, DAO_E, YES) -> 1000 weight to DAO_E
+
+Total influence: 5000 weight from 1000 tokens (5x amplification)
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Methodology}\label{methodology}
+
+This audit employed:
+
+\begin{itemize}
+\tightlist
+\item
+  Manual code review
+\item
+  Control flow analysis
+\item
+  Data flow analysis
+\item
+  State machine modeling
+\item
+  Attack vector enumeration
+\item
+  Cross-contract interaction analysis
+\end{itemize}
+
+Automated tools used:
+
+\begin{itemize}
+\tightlist
+\item
+  Slither static analysis
+\item
+  Foundry fuzzing (where applicable)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{This audit does not constitute legal or investment advice. Smart
+contracts may contain vulnerabilities not identified in this report.}
+
+\end{document}

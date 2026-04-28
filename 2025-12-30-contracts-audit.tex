@@ -1,0 +1,673 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Smart Contracts Security
+Audit}\label{lux-smart-contracts-security-audit}
+
+\textbf{Date}: 2025-12-30\\
+\textbf{Auditor}: Claude (Automated Audit)\\
+\textbf{Scope}: \textasciitilde/work/lux/standard/contracts/,
+\textasciitilde/work/lux/node/contracts/
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This audit covers the Lux Network smart contract ecosystem including FHE
+(Fully Homomorphic Encryption) contracts, DEX/AMM, Bridge, Governance,
+Perpetuals, and Precompile interfaces. The codebase demonstrates solid
+security practices overall but contains several areas requiring
+attention.
+
+\textbf{Risk Level}: MEDIUM\\
+\textbf{Critical Issues}: 0\\
+\textbf{High Issues}: 3\\
+\textbf{Medium Issues}: 7\\
+\textbf{Low Issues}: 12
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Contract Inventory}\label{1-contract-inventory}
+
+\subsubsection{\texorpdfstring{1.1 Standard Contracts
+(\texttt{/Users/z/work/lux/standard/contracts/})}{1.1 Standard Contracts (/Users/z/work/lux/standard/contracts/)}}\label{11-standard-contracts-userszworkluxstandardcontracts}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Category & Contract Count & Key Contracts \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+FHE & 16 & FHE.sol, IFHE.sol, TFHE.sol, ConfidentialLRC20.sol \\
+Bridge & 14+ & Bridge.sol, BridgeVault.sol, TeleportBridge.sol \\
+AMM & 8 & AMMV2Pair.sol, AMMV3Pool.sol, PriceAggregator.sol \\
+Governance & 21 & Governor.sol, DAO.sol, vLUX.sol, Timelock.sol \\
+Perpetuals & 30+ & Vault.sol, PositionRouter.sol, OrderBook.sol \\
+Safe & 14 & Safe.sol, QuantumSafe.sol, SafeFROSTSigner.sol \\
+Tokens & 15+ & LRC20.sol, LRC721.sol, WLUX.sol \\
+Oracle & 7 & Oracle.sol, OracleHub.sol, CircuitBreaker.sol \\
+Liquidity & 12 & CrossChainDeFiRouter.sol,
+UniversalLiquidityRouter.sol \\
+\end{longtable}
+}
+
+\subsubsection{\texorpdfstring{1.2 Node Contracts
+(\texttt{/Users/z/work/lux/node/contracts/})}{1.2 Node Contracts (/Users/z/work/lux/node/contracts/)}}\label{12-node-contracts-userszworkluxnodecontracts}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Category & Contracts \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Governance & ChainFeeRegistry.sol, ChainFeeRegistryV2.sol,
+ChainFeeRegistryV3.sol \\
+Fee & FeeGovernor.sol, FeeTimelock.sol, WarpFeeEmitter.sol \\
+\end{longtable}
+}
+
+\subsubsection{1.3 Precompile
+Interfaces}\label{13-precompile-interfaces}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Precompile & Address & Purpose \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+FheOps & 0x02...0080 & FHE Operations \\
+ACL & 0x02...0081 & Access Control \\
+InputVerifier & 0x02...0082 & Input Verification \\
+Gateway & 0x02...0083 & Decryption Gateway \\
+PoolManager & 0x0400 & DEX Singleton \\
+SwapRouter & 0x0401 & Swap Routing \\
+HooksRegistry & 0x0402 & Hook Management \\
+FlashLoan & 0x0403 & Flash Loans \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Vulnerability Findings}\label{2-vulnerability-findings}
+
+\subsubsection{2.1 HIGH SEVERITY}\label{21-high-severity}
+
+\paragraph{H-01: Missing Reentrancy Guard in
+Bridge.sol}\label{h-01-missing-reentrancy-guard-in-bridgesol}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/bridge/Bridge.sol}
+
+\textbf{Description}: The Bridge contract handles token transfers and
+vault deposits/withdrawals without ReentrancyGuard protection.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function vaultDeposit(uint256 amount\_, address tokenAddr\_) public payable \{}
+\NormalTok{    if (tokenAddr\_ != address(0)) \{}
+\NormalTok{        IERC20(tokenAddr\_).transferFrom(msg.sender, address(vault), amount\_);}
+\NormalTok{    \}}
+\NormalTok{    vault.deposit\{value: msg.value\}(tokenAddr\_, amount\_);}
+\NormalTok{    emit VaultDeposit(msg.sender, amount\_, tokenAddr\_);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Impact}: Potential reentrancy via malicious ERC20 token with
+callback hooks.
+
+\textbf{Recommendation}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Add \texttt{ReentrancyGuard} from OpenZeppelin
+\item
+  Apply \texttt{nonReentrant} modifier to all external functions
+  involving transfers
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{H-02: Missing Reentrancy Guard in
+BridgeVault.sol}\label{h-02-missing-reentrancy-guard-in-bridgevaultsol}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/bridge/BridgeVault.sol}
+
+\textbf{Description}: Vault operations lack reentrancy protection
+despite handling ETH and ERC20 transfers.
+
+\textbf{Impact}: Cross-function reentrancy attacks possible.
+
+\textbf{Recommendation}: Implement \texttt{ReentrancyGuard} on all
+deposit/withdraw functions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{H-03: Missing Reentrancy Guard in
+AMMV2Router.sol}\label{h-03-missing-reentrancy-guard-in-ammv2routersol}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/amm/AMMV2Router.sol}
+
+\textbf{Description}: Router functions handle multi-hop swaps without
+reentrancy protection.
+
+\textbf{Impact}: Flash loan attacks could exploit price manipulation
+during multi-hop swaps.
+
+\textbf{Recommendation}: Add \texttt{nonReentrant} to swap and liquidity
+functions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2.2 MEDIUM SEVERITY}\label{22-medium-severity}
+
+\paragraph{M-01: Centralized Admin Control in
+Bridge}\label{m-01-centralized-admin-control-in-bridge}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/bridge/Bridge.sol:50}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modifier onlyAdmin() \{}
+\NormalTok{    require(hasRole(DEFAULT\_ADMIN\_ROLE, msg.sender), "Ownable");}
+\NormalTok{    \_;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description}: Single admin role controls critical bridge
+functions including MPC oracle updates.
+
+\textbf{Recommendation}: Implement multi-sig or timelock for admin
+operations.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{M-02: Lack of Slippage Protection in
+AMMV2Pair}\label{m-02-lack-of-slippage-protection-in-ammv2pair}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/amm/AMMV2Pair.sol}
+
+\textbf{Description}: Swap function does not have built-in slippage
+protection at the pair level.
+
+\textbf{Recommendation}: While router should handle slippage, consider
+adding optional min/max bounds.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{M-03: No Circuit Breaker in Perpetuals
+Vault}\label{m-03-no-circuit-breaker-in-perpetuals-vault}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/perps/core/Vault.sol}
+
+\textbf{Description}: 50x leverage enabled without circuit breaker for
+extreme market conditions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{uint256 public override maxLeverage = 50 * 10000; // 50x}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation}: Implement dynamic leverage limits based on
+volatility.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{M-04: Unbounded Array in Fee
+Registry}\label{m-04-unbounded-array-in-fee-registry}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/perps/core/Vault.sol:84}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{address[] public override allWhitelistedTokens;}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description}: No limit on whitelisted tokens could cause gas
+issues.
+
+\textbf{Recommendation}: Add maximum token limit or pagination for
+reads.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{M-05: Timestamp Dependence in
+Governance}\label{m-05-timestamp-dependence-in-governance}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/governance/Governor.sol:191}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{if (block.timestamp \textless{}= votingEndTimestamp) \{}
+\NormalTok{    return ProposalState.ACTIVE;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Description}: Block timestamp can be manipulated by miners
+within 15-second window.
+
+\textbf{Recommendation}: Use block numbers for critical timing or accept
+manipulation window.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{M-06: FHE Security Zone
+Validation}\label{m-06-fhe-security-zone-validation}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/standard/contracts/fhe/IFHE.sol}
+
+\textbf{Description}: Security zones use \texttt{int32} which could
+allow negative values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{function verify(uint8 utype, bytes memory input, int32 securityZone) external pure returns (bytes memory);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Recommendation}: Validate security zone is non-negative or use
+\texttt{uint32}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph{M-07: Missing Access Control on Fee
+Distribution}\label{m-07-missing-access-control-on-fee-distribution}
+
+\textbf{Location}:
+\texttt{/Users/z/work/lux/node/contracts/governance/ChainFeeRegistryV3.sol}
+
+\textbf{Description}: Fee distribution parameters can be changed by
+governor role without timelock delay.
+
+\textbf{Recommendation}: Add timelock for fee parameter changes to allow
+user exit.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2.3 LOW SEVERITY}\label{23-low-severity}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+ID & Location & Issue & Recommendation \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+L-01 & AMMV2Pair.sol & No slippage protection in \texttt{skim()} & Add
+access control \\
+L-02 & Bridge.sol & \texttt{approve(type(uint256).max)} used & Use exact
+amounts \\
+L-03 & Vault.sol & Magic numbers (10000, 1000000) & Use named
+constants \\
+L-04 & Governor.sol & EIP-7201 slot calculation hardcoded & Document
+derivation \\
+L-05 & FHE.sol & Large file (4645 lines) & Split into modules \\
+L-06 & Bridge.sol & Missing event for fee rate changes & Add events \\
+L-07 & Vault.sol & \texttt{isInitialized} not used consistently & Remove
+or enforce \\
+L-08 & ChainFeeRegistryV3 & No pause mechanism & Add emergency pause \\
+L-09 & AMMV3Pool & Missing NatSpec documentation & Add documentation \\
+L-10 & Safe.sol & Re-exports without version pinning & Pin Safe
+version \\
+L-11 & Perpetuals & No position size limits & Add max position checks \\
+L-12 & Bridge & MPC signature replay possible across chains & Add
+chainId to signature \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Gas Optimization
+Opportunities}\label{3-gas-optimization-opportunities}
+
+\subsubsection{3.1 High Impact}\label{31-high-impact}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Contract & Optimization & Estimated Savings \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+AMMV2Pair & Cache \texttt{totalSupply()} in \texttt{mint()} &
+\textasciitilde2000 gas \\
+Vault.sol & Use \texttt{unchecked} for safe math & \textasciitilde5000
+gas per position \\
+Bridge.sol & Batch MPC signature verification & \textasciitilde10000 gas
+per batch \\
+ChainFeeRegistryV3 & Pack struct storage & \textasciitilde5000 gas per
+update \\
+\end{longtable}
+}
+
+\subsubsection{3.2 Medium Impact}\label{32-medium-impact}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Contract & Optimization & Estimated Savings \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Governor.sol & Use \texttt{calldata} for \texttt{Transaction} &
+\textasciitilde500 gas \\
+FHE.sol & Cache precompile addresses & \textasciitilde100 gas per
+call \\
+Vault.sol & Short-circuit in \texttt{\_validate()} & \textasciitilde200
+gas \\
+\end{longtable}
+}
+
+\subsubsection{3.3 Storage Layout
+Improvements}\label{33-storage-layout-improvements}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// ChainFeeRegistryV3: Pack fee parameters}
+\NormalTok{struct BaseFeeParams \{}
+\NormalTok{    uint64 basePerUnit;           // slot 1}
+\NormalTok{    uint64 minBasePerUnit;        // slot 1}
+\NormalTok{    uint64 maxBasePerUnit;        // slot 1}
+\NormalTok{    uint32 targetUtilization;     // slot 1 (fits!)}
+\NormalTok{    uint32 maxChangePerBlock;     // slot 2 {-}\textgreater{} could fit in slot 1}
+\NormalTok{\}}
+\NormalTok{// Recommendation: Reorder to pack into 2 slots instead of 3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. 2025 Recommendations}\label{4-2025-recommendations}
+
+\subsubsection{4.1 Security
+Enhancements}\label{41-security-enhancements}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Implement Formal Verification} for FHE contracts given
+  cryptographic complexity
+\item
+  \textbf{Add Fuzz Testing} for DEX price calculations and perpetuals
+  liquidations
+\item
+  \textbf{Upgrade Safe Integration} to v1.5.0+ with modular architecture
+\item
+  \textbf{Add Rate Limiting} on bridge operations to prevent flash
+  attacks
+\end{enumerate}
+
+\subsubsection{4.2 Architecture
+Improvements}\label{42-architecture-improvements}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Modularize FHE.sol} - Split 4645-line file into logical
+  components
+\item
+  \textbf{Standardize Error Handling} - Use custom errors consistently
+  (saves gas)
+\item
+  \textbf{Add Upgrade Tests} - Governor uses UUPS, verify upgrade paths
+\item
+  \textbf{Document Precompile Gas Costs} - Critical for DEX operations
+\end{enumerate}
+
+\subsubsection{4.3 Compliance}\label{43-compliance}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{EIP Compatibility} - Verify EIP-4626 vault compliance for
+  bridge vaults
+\item
+  \textbf{ERC-7201 Storage} - Governor uses namespaced storage; extend
+  to other upgradeable contracts
+\item
+  \textbf{EIP-712 Signatures} - Audit signature validation in Bridge for
+  domain separation
+\end{enumerate}
+
+\subsubsection{4.4 Monitoring}\label{44-monitoring}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Event Coverage} - Add events for all state changes (gaps in
+  Bridge, Vault)
+\item
+  \textbf{Invariant Checks} - Add on-chain invariant assertions for
+  critical functions
+\item
+  \textbf{Oracle Fallbacks} - Implement Chainlink + Pyth redundancy in
+  perpetuals
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. Contracts Requiring Immediate
+Attention}\label{5-contracts-requiring-immediate-attention}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Priority & Contract & Issue & Action \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P0 & Bridge.sol & Missing reentrancy guard & Add immediately \\
+P0 & BridgeVault.sol & Missing reentrancy guard & Add immediately \\
+P0 & AMMV2Router.sol & Missing reentrancy guard & Add immediately \\
+P1 & Vault.sol & No circuit breaker & Design + implement \\
+P1 & ChainFeeRegistryV3 & Missing timelock & Add delay mechanism \\
+P2 & FHE.sol & File size / complexity & Refactor \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Testing Coverage
+Assessment}\label{6-testing-coverage-assessment}
+
+\subsubsection{6.1 Files Identified with
+Tests}\label{61-files-identified-with-tests}
+
+\begin{itemize}
+\tightlist
+\item
+  AMMV2Pair.sol - Has ReentrancyGuard
+\item
+  AMMV3Pool.sol - Has ReentrancyGuard
+\item
+  Vault.sol (perps) - Has ReentrancyGuard
+\item
+  ConfidentialLRC20.sol - FHE tests present
+\end{itemize}
+
+\subsubsection{6.2 Files Missing Reentrancy
+Protection}\label{62-files-missing-reentrancy-protection}
+
+Total contracts missing ReentrancyGuard in critical paths: \textbf{18}
+
+Key gaps:
+
+\begin{itemize}
+\tightlist
+\item
+  All Bridge contracts (8 files)
+\item
+  AMMV2Router.sol, AMMV2Factory.sol
+\item
+  Multiple oracle/liquidity contracts
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Conclusion}\label{7-conclusion}
+
+The Lux smart contract ecosystem demonstrates modern Solidity practices
+including:
+
+\begin{itemize}
+\tightlist
+\item
+  Use of OpenZeppelin contracts for standard patterns
+\item
+  EIP-7201 namespaced storage for upgradeability
+\item
+  Proper access control hierarchies
+\item
+  Well-structured precompile interfaces
+\end{itemize}
+
+\textbf{Critical gaps} that require immediate remediation:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Reentrancy protection in Bridge and Router contracts
+\item
+  Circuit breaker mechanisms for high-leverage perpetuals
+\item
+  Timelock delays for governance parameter changes
+\end{enumerate}
+
+The FHE integration is well-designed with proper precompile abstraction,
+though the main FHE.sol file would benefit from modularization for
+maintainability.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Report generated by automated security analysis. Manual review
+recommended for critical findings.}
+
+\end{document}
