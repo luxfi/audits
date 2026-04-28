@@ -1,0 +1,435 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.50,0.00}{\textbf{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Lux Standard Security Audit
+Summary}\label{lux-standard-security-audit-summary}
+
+\textbf{Date:} 2026-01-30 \textbf{Audited By:} Claude AI (Opus 4.5)
+\textbf{Test Results:} 832 tests pass, 0 failures
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Executive Summary}\label{executive-summary}
+
+Complete security audit of the Lux Standard smart contract stack using:
+
+\begin{itemize}
+\tightlist
+\item
+  Foundry forge tests (832 tests)
+\item
+  Slither static analysis
+\item
+  105 fuzz tests across 5 test suites
+\item
+  Manual code review by specialized audit agents
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Test Fixes Applied}\label{test-fixes-applied}
+
+\subsubsection{\texorpdfstring{1. Governance.t.sol -
+\texttt{InsufficientVotes()} Error (6 tests
+fixed)}{1. Governance.t.sol - InsufficientVotes() Error (6 tests fixed)}}\label{1-governancetsol---insufficientvotes-error-6-tests-fixed}
+
+\textbf{Root Cause:} ERC20Votes delegation requires block advancement
+for voting power checkpoints to be recorded.
+
+\textbf{Fix:} Added \texttt{vm.roll(block.number\ +\ 1)} before calling
+\texttt{DAO.propose()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// test/foundry/Governance.t.sol:702{-}706}
+\NormalTok{function test\_DAOCreateProposal() public \{}
+\NormalTok{    // Advance a block so alice\textquotesingle{}s voting power is recorded}
+\NormalTok{    vm.roll(block.number + 1);}
+\NormalTok{    vm.startPrank(alice);}
+\NormalTok{    ...}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Affected Tests:}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{test\_DAOCreateProposal}
+\item
+  \texttt{test\_DAOVote}
+\item
+  \texttt{test\_DAOExecute}
+\item
+  \texttt{test\_DAOGuardianCancel}
+\item
+  \texttt{test\_DoubleVote}
+\item
+  \texttt{test\_ExpiredProposal}
+\end{itemize}
+
+\subsubsection{2. ProtocolLiquidity.fuzz.t.sol - Struct Destructuring
+Error}\label{2-protocolliquidityfuzztsol---struct-destructuring-error}
+
+\textbf{Root Cause:} Test expected 9 struct fields but
+\texttt{PoolConfig} has 8 fields.
+
+\textbf{Fix:} Corrected struct destructuring:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{// Changed from:}
+\NormalTok{(,,,, uint256 actualDiscount,,,,,) = pol.pools(poolId);  // 9 positions WRONG}
+
+\NormalTok{// To:}
+\NormalTok{(,,, uint256 actualDiscount,,,,) = pol.pools(poolId);  // 8 positions CORRECT}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{3. FHE.t.sol - Precompile Address
+Mismatch}\label{3-fhetsol---precompile-address-mismatch}
+
+\textbf{Root Cause:} Test expected old precompile address
+\texttt{0x0200...0080} but actual is \texttt{0x0700...0080}.
+
+\textbf{Fix:} Updated address constant in test assertion.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Slither Static Analysis
+Findings}\label{slither-static-analysis-findings}
+
+\subsubsection{High Severity}\label{high-severity}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Contract & Issue & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+LuxVoting & Unchecked transfer returns & Vote.sol:113,149,159 \\
+Recall & Arbitrary from in transferFrom & Recall.sol:175 \\
+LiquidVault & Arbitrary ETH send & LiquidVault.sol:173-175 \\
+LiquidVault & Reentrancy in allocateToStrategy &
+LiquidVault.sol:187-214 \\
+\end{longtable}
+}
+
+\subsubsection{Medium Severity}\label{medium-severity}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Contract & Issue & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DLUX & Divide before multiply & DLUX.sol:311-315 \\
+ProtocolLiquidity & Divide before multiply &
+ProtocolLiquidity.sol:311-315 \\
+vLUX & Divide before multiply & vLUX.sol:141,168,289 \\
+Collect & Locked ether (no withdraw function) & Collect.sol:97-103 \\
+ValidatorVault & Locked ether (no withdraw function) &
+ValidatorVault.sol:125-127 \\
+\end{longtable}
+}
+
+\subsubsection{Low Severity}\label{low-severity}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Contract & Issue & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Bond & Local variable shadowing & Bond.sol:173 \\
+ProtocolLiquidity & Local variable shadowing &
+ProtocolLiquidity.sol:346,366 \\
+Various & Missing zero-address checks & Multiple locations \\
+Various & Missing event emissions for arithmetic & FeeGov.sol,
+LiquidBond.sol \\
+\end{longtable}
+}
+
+\subsubsection{Informational}\label{informational}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Contract & Issue & Location \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Bridge & abi.encodePacked collision risk & Bridge.sol:274-285 \\
+LRTStrategyAggregator & msg.value in loop &
+RestakingStrategies.sol:1154 \\
+Various liquid tokens & State variable shadowing & All L*.sol tokens \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Fuzz Test Coverage}\label{fuzz-test-coverage}
+
+\subsubsection{Test Suites}\label{test-suites}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Suite & Tests & Coverage \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Registry.fuzz.t.sol & 12 & DID claims, staking, name pricing \\
+Bond.fuzz.t.sol & 15 & Purchases, vesting, discounts \\
+ProtocolLiquidity.fuzz.t.sol & 19 & LP bonding, single-sided,
+capacity \\
+LiquidToken.fuzz.t.sol & 28 & Flash loans, fees, reentrancy \\
+Stake.fuzz.t.sol & 31 & Delegation, checkpoints, soulbound \\
+\textbf{Total} & \textbf{105} & \\
+\end{longtable}
+}
+
+\subsubsection{Key Invariants Tested}\label{key-invariants-tested}
+
+\begin{itemize}
+\tightlist
+\item
+  Flash loan zero-sum: Total supply unchanged after flash loan
+\item
+  Delegation conserved: Voting power moves but total constant
+\item
+  Capacity limits: Pool deposits never exceed capacity
+\item
+  Supply limits: Minting respects max supply
+\item
+  Checkpoint integrity: Historical voting power preserved
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Previous Audit Reports (from
+agents)}\label{previous-audit-reports-from-agents}
+
+The following detailed audit reports were generated:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{AUDIT\_DID.md} - Registry.sol, IdentityNFT.sol
+\item
+  \textbf{AUDIT\_TREASURY.md} - Bond, LiquidBond, ProtocolLiquidity,
+  Vault
+\item
+  \textbf{AUDIT\_GOVERNANCE.md} - DAO, Stake, Governor, Veto
+\item
+  \textbf{AUDIT\_LIQUID.md} - LiquidToken, Flash loans
+\item
+  \textbf{AUDIT\_BRIDGE.md} - XChainVault, Teleport, Bridge
+\item
+  \textbf{AUDIT\_CRYPTO.md} - Signature verification, EIP-712
+\item
+  \textbf{AUDIT\_GAS\_DOS.md} - Gas optimization, DoS vectors
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Recommendations}\label{recommendations}
+
+\subsubsection{Critical (Fix Before
+Deployment)}\label{critical-fix-before-deployment}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Add return value checks for ERC20 transfers} in LuxVoting.sol
+\item
+  \textbf{Add reentrancy guard} to LiquidVault.allocateToStrategy()
+\item
+  \textbf{Add ETH withdrawal function} to Collect.sol and
+  ValidatorVault.sol
+\end{enumerate}
+
+\subsubsection{High Priority}\label{high-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \textbf{Fix divide-before-multiply} patterns in DLUX, vLUX,
+  ProtocolLiquidity
+\item
+  \textbf{Add domain separation} to Bridge abi.encodePacked calls
+\item
+  \textbf{Review arbitrary ETH sends} in LiquidVault and yield
+  strategies
+\end{enumerate}
+
+\subsubsection{Medium Priority}\label{medium-priority}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{6}
+\tightlist
+\item
+  Add missing zero-address checks in constructors
+\item
+  Add events for arithmetic state changes
+\item
+  Fix local variable shadowing issues
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Verification Commands}\label{verification-commands}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Run all tests}
+\BuiltInTok{cd}\NormalTok{ /Users/z/work/lux/standard }\KeywordTok{\&\&} \ExtensionTok{forge}\NormalTok{ test}
+
+\CommentTok{\# Run fuzz tests only}
+\ExtensionTok{forge}\NormalTok{ test }\AttributeTok{{-}{-}match{-}path} \StringTok{"test/foundry/fuzz/*.sol"} \AttributeTok{{-}vv}
+
+\CommentTok{\# Run slither analysis}
+\ExtensionTok{slither}\NormalTok{ contracts/governance/ }\AttributeTok{{-}{-}exclude{-}dependencies}
+\ExtensionTok{slither}\NormalTok{ contracts/treasury/ }\AttributeTok{{-}{-}exclude{-}dependencies}
+\ExtensionTok{slither}\NormalTok{ contracts/liquid/ }\AttributeTok{{-}{-}exclude{-}dependencies}
+\ExtensionTok{slither}\NormalTok{ contracts/bridge/ }\AttributeTok{{-}{-}exclude{-}dependencies}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Conclusion}\label{conclusion}
+
+The Lux Standard contracts are well-structured with comprehensive test
+coverage. All 832 tests pass including 105 fuzz tests. The primary
+concerns are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Unchecked transfer return values in legacy voting contract
+\item
+  Potential reentrancy in yield allocation functions
+\item
+  Locked ether in collector contracts
+\item
+  Precision loss from divide-before-multiply patterns
+\end{enumerate}
+
+These issues should be addressed before mainnet deployment.
+
+\end{document}
